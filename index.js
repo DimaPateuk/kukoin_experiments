@@ -3,7 +3,17 @@ const kucoin = require('./kucoin')
 const { v4 } = require('uuid')
 const exactMath = require('exact-math')
 const strategies = require('./pairs');
-const { Subject, from, filter, switchMap, switchMapTo, tap, take } = require('rxjs')
+const {
+  pipe,
+  Subject,
+  filter,
+  switchMap,
+  switchMapTo,
+  tap,
+  take,
+  map,
+  delay,
+} = require('rxjs')
 
 kucoin.init({
   apiKey: process.env.apiKey,
@@ -12,90 +22,161 @@ kucoin.init({
   environment: 'live'
 });
 
+const symbolsInfo = {};
+kucoin.getSymbols()
+  .then(response => {
+
+    response
+      .data
+      .forEach(item => {
+        symbolsInfo[item.symbol] = item;
+      });
+  });
+
 const subjectsMap = {};
 
 const ordersSubject = new Subject();
+const balansesSubject = new Subject();
 const strategiesSubject = new Subject();
 
+balansesSubject
+  .pipe(
+    filter(event => {
+      return event.currency === 'USDT';
+    }),
+    tap(event => {
+      console.log('USDT', event.available)
+    })
+
+  )
+  .subscribe();
+
 function placeOrder(params) {
+
   return kucoin.placeOrder({
-    type: 'market',
-    ...params
-  });
+      clientOid: v4(),
+      type: 'market',
+      ...params
+    })
+    .then((res) => {
+      return res;
+
+    }, (err) => {
+      console.log(err);
+    });
 }
 
 function filterOrder(symbol, side) {
-    return filter(event => {
+  return pipe(
+    filter(event => {
       if (event.side !== side) {
         return;
       }
 
-      return event.symbol === buy;
+      return event.symbol === symbol;
+    }),
+    take(1)
+  );
+}
+
+function waitBlanceUpdateAfterOrder(currency, contextSymbol) {
+    return switchMap((beforeBalanceEvent) => {
+
+      return balansesSubject
+        .pipe(
+          filter(balanceEvent => {
+            return balanceEvent.currency === currency &&
+              balanceEvent.relationContext.symbol === contextSymbol &&
+              balanceEvent.relationContext.orderId === beforeBalanceEvent.orderId;
+          }),
+          map((e) => {
+            return beforeBalanceEvent;
+          }),
+          take(1)
+        );
     });
 }
 
 let oneStrategyInProgress = false;
 
-function startStratgy(currentStrateg, potentialProfitInfo) {
-
-
+function startStratgy(currentStrategy, potentialProfitInfo) {
   if (oneStrategyInProgress) {
-    console.log('skip');
+    console.log('skip', currentStrategy);
     console.log(JSON.stringify(potentialProfitInfo, null, 4));
     console.log('------');
     return;
   }
-  const currentStrategy = [buy, buy2, sell];
 
   oneStrategyInProgress = true;
 
+  const [buy, buy2, sell] = currentStrategy;
+
   const strategyData = [];
 
-  return from(
-    placeOrder({
-      side: 'buy',
-      symbol: buy,
-      funds: '1',
-    })
-  ).pipe(
-    switchMapTo(ordersSubject),
+  console.log(currentStrategy, '---- started');
+
+  placeOrder({
+    side: 'buy',
+    symbol: buy,
+    funds: '2',
+  });
+
+  return ordersSubject.pipe(
+    tap(() => {
+      console.log('margek buy', buy);
+    }),
     filterOrder(buy, 'buy'),
-    switchMap((buyData) => {
+    waitBlanceUpdateAfterOrder(buy.split('-')[0], buy),
+    tap((buyData) => {
+      console.log('margek buy done');
       strategyData.push(buyData);
-      return from(
-        placeOrder({
-          side: 'buy',
-          symbol: buy2,
-          funds: buyData.filledSize,
-        })
-      );
+
+      placeOrder({
+        side: 'buy',
+        symbol: buy2,
+        funds: buyData.filledSize.substring(
+          0,
+          symbolsInfo[buy2].minFunds.length
+        ),
+      });
+    }),
+    tap(() => {
+      console.log('margek buy2', buy2);
     }),
     switchMapTo(ordersSubject),
     filterOrder(buy2, 'buy'),
-    switchMap((buy2Data) => {
+    waitBlanceUpdateAfterOrder(buy2.split('-')[0], buy2),
+    tap((buy2Data) => {
       strategyData.push(buy2Data);
+      console.log('margek buy2 done');
 
-      return from(
-        placeOrder({
-          side: 'sell',
-          symbol: buy2,
-          size: buy2Data.filledSize,
-        })
-      );
+      placeOrder({
+        side: 'sell',
+        symbol: sell,
+        size: buy2Data.filledSize.substring(
+          0,
+          symbolsInfo[sell].baseMinSize.length
+        ),
+      })
+    }),
+    tap(() => {
+      console.log('margek sell', sell);
     }),
     switchMapTo(ordersSubject),
     filterOrder(sell, 'sell'),
+    //waitBlanceUpdateAfterOrder(sell.split('-')[1], sell),
+    delay(500),
     tap(sellData => {
       strategyData.push(sellData);
       const [buy, buy2, sell] = strategyData;
+      console.log('margek sell done');
 
       console.log('---+++');
       console.log(currentStrategy)
-      console.log('final', sell.filledSize);
       console.log('---+++');
 
       oneStrategyInProgress = false;
-      strategiesSubject.next({ strategy: currentStrateg, type: 'end' })
+      strategiesSubject.next({ strategy: currentStrategy, type: 'end' })
     }),
     take(1)
   )
@@ -125,6 +206,26 @@ kucoin.initSocket({ topic: "orders" }, (msg) => {
   }
 });
 
+kucoin.initSocket({ topic: "balances" }, (msg) => {
+  const parsedMessage = JSON.parse(msg);
+
+  if (parsedMessage.topic !== "/account/balance") {
+    return;
+  }
+
+  const { data } = parsedMessage;
+  balansesSubject.next(data);
+});
+
+// test !!!
+// setTimeout(() => {
+
+//   const test = [ 'BTC-USDT', 'XLM-BTC', 'XLM-USDT' ];
+
+//   startStratgy(test);
+// }, 5000);
+
+
 const info = {};
 
 function makeCalculation() {
@@ -135,7 +236,7 @@ function makeCalculation() {
       const currentStrategy = strategies[strategyName];
       const [buy, buy2, sell] = currentStrategy;
 
-      if(!buy.split('-')[1] !== 'USDT') {
+      if(buy.split('-')[1] !== 'USDT') {
         return;
       }
 
@@ -158,7 +259,7 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
-      const MYbaseFee = 0.01;
+      const MYbaseFee = 0.05;
       const spend = prices[0];
       const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1],  1 + MYbaseFee));
       const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
