@@ -1,0 +1,3472 @@
+{
+  "TRX-BTC,WIN-TRX,WIN-BTC": [
+      "TRX-BTC",
+      "WIN-TRX",
+      "WIN-BTC"
+  ],
+  "TRX-BTC,KLV-TRX,KLV-BTC": [
+      "TRX-BTC",
+      "KLV-TRX",
+      "KLV-BTC"
+  ],
+  "TRX-USDT,WIN-TRX,WIN-USDT": [
+      "TRX-USDT",
+      "WIN-TRX",
+      "WIN-USDT"
+  ],
+  "TRX-USDT,KLV-TRX,KLV-USDT": [
+      "TRX-USDT",
+      "KLV-TRX",
+      "KLV-USDT"
+  ],
+  "TRX-USDT,NFT-TRX,NFT-USDT": [
+      "TRX-USDT",
+      "NFT-TRX",
+      "NFT-USDT"
+  ],
+  "TRX-USDT,USDD-TRX,USDD-USDT": [
+      "TRX-USDT",
+      "USDD-TRX",
+      "USDD-USDT"
+  ],
+  "KCS-USDT,EOS-KCS,EOS-USDT": [
+      "KCS-USDT",
+      "EOS-KCS",
+      "EOS-USDT"
+  ],
+  "KCS-USDT,LTC-KCS,LTC-USDT": [
+      "KCS-USDT",
+      "LTC-KCS",
+      "LTC-USDT"
+  ],
+  "KCS-USDT,NEO-KCS,NEO-USDT": [
+      "KCS-USDT",
+      "NEO-KCS",
+      "NEO-USDT"
+  ],
+  "KCS-USDT,TRX-KCS,TRX-USDT": [
+      "KCS-USDT",
+      "TRX-KCS",
+      "TRX-USDT"
+  ],
+  "KCS-USDT,ATOM-KCS,ATOM-USDT": [
+      "KCS-USDT",
+      "ATOM-KCS",
+      "ATOM-USDT"
+  ],
+  "KCS-USDT,BCH-KCS,BCH-USDT": [
+      "KCS-USDT",
+      "BCH-KCS",
+      "BCH-USDT"
+  ],
+  "KCS-USDT,ADA-KCS,ADA-USDT": [
+      "KCS-USDT",
+      "ADA-KCS",
+      "ADA-USDT"
+  ],
+  "KCS-USDT,BCHSV-KCS,BCHSV-USDT": [
+      "KCS-USDT",
+      "BCHSV-KCS",
+      "BCHSV-USDT"
+  ],
+  "KCS-USDT,DOT-KCS,DOT-USDT": [
+      "KCS-USDT",
+      "DOT-KCS",
+      "DOT-USDT"
+  ],
+  "KCS-USDT,LINK-KCS,LINK-USDT": [
+      "KCS-USDT",
+      "LINK-KCS",
+      "LINK-USDT"
+  ],
+  "KCS-USDT,MIR-KCS,MIR-USDT": [
+      "KCS-USDT",
+      "MIR-KCS",
+      "MIR-USDT"
+  ],
+  "KCS-USDT,BNB-KCS,BNB-USDT": [
+      "KCS-USDT",
+      "BNB-KCS",
+      "BNB-USDT"
+  ],
+  "KCS-USDT,XLM-KCS,XLM-USDT": [
+      "KCS-USDT",
+      "XLM-KCS",
+      "XLM-USDT"
+  ],
+  "KCS-USDT,VET-KCS,VET-USDT": [
+      "KCS-USDT",
+      "VET-KCS",
+      "VET-USDT"
+  ],
+  "KCS-USDT,DASH-KCS,DASH-USDT": [
+      "KCS-USDT",
+      "DASH-KCS",
+      "DASH-USDT"
+  ],
+  "KCS-USDT,UNI-KCS,UNI-USDT": [
+      "KCS-USDT",
+      "UNI-KCS",
+      "UNI-USDT"
+  ],
+  "KCS-USDT,AAVE-KCS,AAVE-USDT": [
+      "KCS-USDT",
+      "AAVE-KCS",
+      "AAVE-USDT"
+  ],
+  "KCS-USDT,DOGE-KCS,DOGE-USDT": [
+      "KCS-USDT",
+      "DOGE-KCS",
+      "DOGE-USDT"
+  ],
+  "KCS-USDT,ZEC-KCS,ZEC-USDT": [
+      "KCS-USDT",
+      "ZEC-KCS",
+      "ZEC-USDT"
+  ],
+  "KCS-USDT,XTZ-KCS,XTZ-USDT": [
+      "KCS-USDT",
+      "XTZ-KCS",
+      "XTZ-USDT"
+  ],
+  "KCS-USDT,GRT-KCS,GRT-USDT": [
+      "KCS-USDT",
+      "GRT-KCS",
+      "GRT-USDT"
+  ],
+  "KCS-USDT,ALGO-KCS,ALGO-USDT": [
+      "KCS-USDT",
+      "ALGO-KCS",
+      "ALGO-USDT"
+  ],
+  "KCS-USDT,EWT-KCS,EWT-USDT": [
+      "KCS-USDT",
+      "EWT-KCS",
+      "EWT-USDT"
+  ],
+  "KCS-USDT,TOKO-KCS,TOKO-USDT": [
+      "KCS-USDT",
+      "TOKO-KCS",
+      "TOKO-USDT"
+  ],
+  "KCS-USDT,MJT-KCS,MJT-USDT": [
+      "KCS-USDT",
+      "MJT-KCS",
+      "MJT-USDT"
+  ],
+  "KCS-USDT,XRP-KCS,XRP-USDT": [
+      "KCS-USDT",
+      "XRP-KCS",
+      "XRP-USDT"
+  ],
+  "KCS-ETH,EOS-KCS,EOS-ETH": [
+      "KCS-ETH",
+      "EOS-KCS",
+      "EOS-ETH"
+  ],
+  "KCS-ETH,LTC-KCS,LTC-ETH": [
+      "KCS-ETH",
+      "LTC-KCS",
+      "LTC-ETH"
+  ],
+  "KCS-ETH,NEO-KCS,NEO-ETH": [
+      "KCS-ETH",
+      "NEO-KCS",
+      "NEO-ETH"
+  ],
+  "KCS-ETH,TRX-KCS,TRX-ETH": [
+      "KCS-ETH",
+      "TRX-KCS",
+      "TRX-ETH"
+  ],
+  "KCS-ETH,ATOM-KCS,ATOM-ETH": [
+      "KCS-ETH",
+      "ATOM-KCS",
+      "ATOM-ETH"
+  ],
+  "KCS-ETH,BCHSV-KCS,BCHSV-ETH": [
+      "KCS-ETH",
+      "BCHSV-KCS",
+      "BCHSV-ETH"
+  ],
+  "KCS-ETH,XLM-KCS,XLM-ETH": [
+      "KCS-ETH",
+      "XLM-KCS",
+      "XLM-ETH"
+  ],
+  "KCS-ETH,VET-KCS,VET-ETH": [
+      "KCS-ETH",
+      "VET-KCS",
+      "VET-ETH"
+  ],
+  "KCS-ETH,DASH-KCS,DASH-ETH": [
+      "KCS-ETH",
+      "DASH-KCS",
+      "DASH-ETH"
+  ],
+  "KCS-ETH,ALGO-KCS,ALGO-ETH": [
+      "KCS-ETH",
+      "ALGO-KCS",
+      "ALGO-ETH"
+  ],
+  "KCS-ETH,XRP-KCS,XRP-ETH": [
+      "KCS-ETH",
+      "XRP-KCS",
+      "XRP-ETH"
+  ],
+  "KCS-BTC,EOS-KCS,EOS-BTC": [
+      "KCS-BTC",
+      "EOS-KCS",
+      "EOS-BTC"
+  ],
+  "KCS-BTC,LTC-KCS,LTC-BTC": [
+      "KCS-BTC",
+      "LTC-KCS",
+      "LTC-BTC"
+  ],
+  "KCS-BTC,NEO-KCS,NEO-BTC": [
+      "KCS-BTC",
+      "NEO-KCS",
+      "NEO-BTC"
+  ],
+  "KCS-BTC,TRX-KCS,TRX-BTC": [
+      "KCS-BTC",
+      "TRX-KCS",
+      "TRX-BTC"
+  ],
+  "KCS-BTC,ATOM-KCS,ATOM-BTC": [
+      "KCS-BTC",
+      "ATOM-KCS",
+      "ATOM-BTC"
+  ],
+  "KCS-BTC,BCH-KCS,BCH-BTC": [
+      "KCS-BTC",
+      "BCH-KCS",
+      "BCH-BTC"
+  ],
+  "KCS-BTC,ADA-KCS,ADA-BTC": [
+      "KCS-BTC",
+      "ADA-KCS",
+      "ADA-BTC"
+  ],
+  "KCS-BTC,BCHSV-KCS,BCHSV-BTC": [
+      "KCS-BTC",
+      "BCHSV-KCS",
+      "BCHSV-BTC"
+  ],
+  "KCS-BTC,DOT-KCS,DOT-BTC": [
+      "KCS-BTC",
+      "DOT-KCS",
+      "DOT-BTC"
+  ],
+  "KCS-BTC,LINK-KCS,LINK-BTC": [
+      "KCS-BTC",
+      "LINK-KCS",
+      "LINK-BTC"
+  ],
+  "KCS-BTC,BNB-KCS,BNB-BTC": [
+      "KCS-BTC",
+      "BNB-KCS",
+      "BNB-BTC"
+  ],
+  "KCS-BTC,XLM-KCS,XLM-BTC": [
+      "KCS-BTC",
+      "XLM-KCS",
+      "XLM-BTC"
+  ],
+  "KCS-BTC,VET-KCS,VET-BTC": [
+      "KCS-BTC",
+      "VET-KCS",
+      "VET-BTC"
+  ],
+  "KCS-BTC,DASH-KCS,DASH-BTC": [
+      "KCS-BTC",
+      "DASH-KCS",
+      "DASH-BTC"
+  ],
+  "KCS-BTC,AAVE-KCS,AAVE-BTC": [
+      "KCS-BTC",
+      "AAVE-KCS",
+      "AAVE-BTC"
+  ],
+  "KCS-BTC,DOGE-KCS,DOGE-BTC": [
+      "KCS-BTC",
+      "DOGE-KCS",
+      "DOGE-BTC"
+  ],
+  "KCS-BTC,ZEC-KCS,ZEC-BTC": [
+      "KCS-BTC",
+      "ZEC-KCS",
+      "ZEC-BTC"
+  ],
+  "KCS-BTC,XTZ-KCS,XTZ-BTC": [
+      "KCS-BTC",
+      "XTZ-KCS",
+      "XTZ-BTC"
+  ],
+  "KCS-BTC,ALGO-KCS,ALGO-BTC": [
+      "KCS-BTC",
+      "ALGO-KCS",
+      "ALGO-BTC"
+  ],
+  "KCS-BTC,EWT-KCS,EWT-BTC": [
+      "KCS-BTC",
+      "EWT-KCS",
+      "EWT-BTC"
+  ],
+  "KCS-BTC,TOKO-KCS,TOKO-BTC": [
+      "KCS-BTC",
+      "TOKO-KCS",
+      "TOKO-BTC"
+  ],
+  "KCS-BTC,XRP-KCS,XRP-BTC": [
+      "KCS-BTC",
+      "XRP-KCS",
+      "XRP-BTC"
+  ],
+  "USDT-TUSD,ETH-USDT,ETH-TUSD": [
+      "USDT-TUSD",
+      "ETH-USDT",
+      "ETH-TUSD"
+  ],
+  "USDT-TUSD,BTC-USDT,BTC-TUSD": [
+      "USDT-TUSD",
+      "BTC-USDT",
+      "BTC-TUSD"
+  ],
+  "USDT-TUSD,XRP-USDT,XRP-TUSD": [
+      "USDT-TUSD",
+      "XRP-USDT",
+      "XRP-TUSD"
+  ],
+  "USDT-USDC,EOS-USDT,EOS-USDC": [
+      "USDT-USDC",
+      "EOS-USDT",
+      "EOS-USDC"
+  ],
+  "USDT-USDC,ETC-USDT,ETC-USDC": [
+      "USDT-USDC",
+      "ETC-USDT",
+      "ETC-USDC"
+  ],
+  "USDT-USDC,LTC-USDT,LTC-USDC": [
+      "USDT-USDC",
+      "LTC-USDT",
+      "LTC-USDC"
+  ],
+  "USDT-USDC,TRX-USDT,TRX-USDC": [
+      "USDT-USDC",
+      "TRX-USDT",
+      "TRX-USDC"
+  ],
+  "USDT-USDC,BCHSV-USDT,BCHSV-USDC": [
+      "USDT-USDC",
+      "BCHSV-USDT",
+      "BCHSV-USDC"
+  ],
+  "USDT-USDC,KCS-USDT,KCS-USDC": [
+      "USDT-USDC",
+      "KCS-USDT",
+      "KCS-USDC"
+  ],
+  "USDT-USDC,BCH-USDT,BCH-USDC": [
+      "USDT-USDC",
+      "BCH-USDT",
+      "BCH-USDC"
+  ],
+  "USDT-USDC,ETH-USDT,ETH-USDC": [
+      "USDT-USDC",
+      "ETH-USDT",
+      "ETH-USDC"
+  ],
+  "USDT-USDC,BTC-USDT,BTC-USDC": [
+      "USDT-USDC",
+      "BTC-USDT",
+      "BTC-USDC"
+  ],
+  "USDT-USDC,ATOM-USDT,ATOM-USDC": [
+      "USDT-USDC",
+      "ATOM-USDT",
+      "ATOM-USDC"
+  ],
+  "USDT-USDC,FTM-USDT,FTM-USDC": [
+      "USDT-USDC",
+      "FTM-USDT",
+      "FTM-USDC"
+  ],
+  "USDT-USDC,BNB-USDT,BNB-USDC": [
+      "USDT-USDC",
+      "BNB-USDT",
+      "BNB-USDC"
+  ],
+  "USDT-USDC,ALGO-USDT,ALGO-USDC": [
+      "USDT-USDC",
+      "ALGO-USDT",
+      "ALGO-USDC"
+  ],
+  "USDT-USDC,ADA-USDT,ADA-USDC": [
+      "USDT-USDC",
+      "ADA-USDT",
+      "ADA-USDC"
+  ],
+  "USDT-USDC,LUNA-USDT,LUNA-USDC": [
+      "USDT-USDC",
+      "LUNA-USDT",
+      "LUNA-USDC"
+  ],
+  "USDT-USDC,VRA-USDT,VRA-USDC": [
+      "USDT-USDC",
+      "VRA-USDT",
+      "VRA-USDC"
+  ],
+  "USDT-USDC,LINK-USDT,LINK-USDC": [
+      "USDT-USDC",
+      "LINK-USDT",
+      "LINK-USDC"
+  ],
+  "USDT-USDC,DOT-USDT,DOT-USDC": [
+      "USDT-USDC",
+      "DOT-USDT",
+      "DOT-USDC"
+  ],
+  "USDT-USDC,DOGE-USDT,DOGE-USDC": [
+      "USDT-USDC",
+      "DOGE-USDT",
+      "DOGE-USDC"
+  ],
+  "USDT-USDC,AVAX-USDT,AVAX-USDC": [
+      "USDT-USDC",
+      "AVAX-USDT",
+      "AVAX-USDC"
+  ],
+  "USDT-USDC,ZIL-USDT,ZIL-USDC": [
+      "USDT-USDC",
+      "ZIL-USDT",
+      "ZIL-USDC"
+  ],
+  "USDT-USDC,SHIB-USDT,SHIB-USDC": [
+      "USDT-USDC",
+      "SHIB-USDT",
+      "SHIB-USDC"
+  ],
+  "USDT-USDC,KDA-USDT,KDA-USDC": [
+      "USDT-USDC",
+      "KDA-USDT",
+      "KDA-USDC"
+  ],
+  "USDT-USDC,MATIC-USDT,MATIC-USDC": [
+      "USDT-USDC",
+      "MATIC-USDT",
+      "MATIC-USDC"
+  ],
+  "USDT-USDC,NEAR-USDT,NEAR-USDC": [
+      "USDT-USDC",
+      "NEAR-USDT",
+      "NEAR-USDC"
+  ],
+  "USDT-USDC,SOL-USDT,SOL-USDC": [
+      "USDT-USDC",
+      "SOL-USDT",
+      "SOL-USDC"
+  ],
+  "USDT-USDC,TXA-USDT,TXA-USDC": [
+      "USDT-USDC",
+      "TXA-USDT",
+      "TXA-USDC"
+  ],
+  "USDT-USDC,RUNE-USDT,RUNE-USDC": [
+      "USDT-USDC",
+      "RUNE-USDT",
+      "RUNE-USDC"
+  ],
+  "USDT-USDC,NTVRK-USDT,NTVRK-USDC": [
+      "USDT-USDC",
+      "NTVRK-USDT",
+      "NTVRK-USDC"
+  ],
+  "USDT-USDC,JASMY-USDT,JASMY-USDC": [
+      "USDT-USDC",
+      "JASMY-USDT",
+      "JASMY-USDC"
+  ],
+  "USDT-USDC,APE-USDT,APE-USDC": [
+      "USDT-USDC",
+      "APE-USDT",
+      "APE-USDC"
+  ],
+  "USDT-USDC,GMT-USDT,GMT-USDC": [
+      "USDT-USDC",
+      "GMT-USDT",
+      "GMT-USDC"
+  ],
+  "USDT-USDC,XCN-USDT,XCN-USDC": [
+      "USDT-USDC",
+      "XCN-USDT",
+      "XCN-USDC"
+  ],
+  "USDT-USDC,SWFTC-USDT,SWFTC-USDC": [
+      "USDT-USDC",
+      "SWFTC-USDT",
+      "SWFTC-USDC"
+  ],
+  "USDT-USDC,FITFI-USDT,FITFI-USDC": [
+      "USDT-USDC",
+      "FITFI-USDT",
+      "FITFI-USDC"
+  ],
+  "USDT-USDC,USDD-USDT,USDD-USDC": [
+      "USDT-USDC",
+      "USDD-USDT",
+      "USDD-USDC"
+  ],
+  "USDT-USDC,AFK-USDT,AFK-USDC": [
+      "USDT-USDC",
+      "AFK-USDT",
+      "AFK-USDC"
+  ],
+  "USDT-USDC,LUNC-USDT,LUNC-USDC": [
+      "USDT-USDC",
+      "LUNC-USDT",
+      "LUNC-USDC"
+  ],
+  "USDT-USDC,USTC-USDT,USTC-USDC": [
+      "USDT-USDC",
+      "USTC-USDT",
+      "USTC-USDC"
+  ],
+  "USDT-USDC,OP-USDT,OP-USDC": [
+      "USDT-USDC",
+      "OP-USDT",
+      "OP-USDC"
+  ],
+  "USDT-USDC,LDO-USDT,LDO-USDC": [
+      "USDT-USDC",
+      "LDO-USDT",
+      "LDO-USDC"
+  ],
+  "USDT-USDC,BUSD-USDT,BUSD-USDC": [
+      "USDT-USDC",
+      "BUSD-USDT",
+      "BUSD-USDC"
+  ],
+  "USDT-USDC,XRP-USDT,XRP-USDC": [
+      "USDT-USDC",
+      "XRP-USDT",
+      "XRP-USDC"
+  ],
+  "ETH-USDC,ETC-ETH,ETC-USDC": [
+      "ETH-USDC",
+      "ETC-ETH",
+      "ETC-USDC"
+  ],
+  "ETH-USDC,EOS-ETH,EOS-USDC": [
+      "ETH-USDC",
+      "EOS-ETH",
+      "EOS-USDC"
+  ],
+  "ETH-USDC,LTC-ETH,LTC-USDC": [
+      "ETH-USDC",
+      "LTC-ETH",
+      "LTC-USDC"
+  ],
+  "ETH-USDC,ZIL-ETH,ZIL-USDC": [
+      "ETH-USDC",
+      "ZIL-ETH",
+      "ZIL-USDC"
+  ],
+  "ETH-USDC,TRX-ETH,TRX-USDC": [
+      "ETH-USDC",
+      "TRX-ETH",
+      "TRX-USDC"
+  ],
+  "ETH-USDC,BCHSV-ETH,BCHSV-USDC": [
+      "ETH-USDC",
+      "BCHSV-ETH",
+      "BCHSV-USDC"
+  ],
+  "ETH-USDC,KCS-ETH,KCS-USDC": [
+      "ETH-USDC",
+      "KCS-ETH",
+      "KCS-USDC"
+  ],
+  "ETH-USDC,ATOM-ETH,ATOM-USDC": [
+      "ETH-USDC",
+      "ATOM-ETH",
+      "ATOM-USDC"
+  ],
+  "ETH-USDC,ALGO-ETH,ALGO-USDC": [
+      "ETH-USDC",
+      "ALGO-ETH",
+      "ALGO-USDC"
+  ],
+  "ETH-USDC,XRP-ETH,XRP-USDC": [
+      "ETH-USDC",
+      "XRP-ETH",
+      "XRP-USDC"
+  ],
+  "ETH-USDC,FTM-ETH,FTM-USDC": [
+      "ETH-USDC",
+      "FTM-ETH",
+      "FTM-USDC"
+  ],
+  "ETH-TUSD,XRP-ETH,XRP-TUSD": [
+      "ETH-TUSD",
+      "XRP-ETH",
+      "XRP-TUSD"
+  ],
+  "BTC-TUSD,ETH-BTC,ETH-TUSD": [
+      "BTC-TUSD",
+      "ETH-BTC",
+      "ETH-TUSD"
+  ],
+  "BTC-TUSD,XRP-BTC,XRP-TUSD": [
+      "BTC-TUSD",
+      "XRP-BTC",
+      "XRP-TUSD"
+  ],
+  "ETH-USDT,REQ-ETH,REQ-USDT": [
+      "ETH-USDT",
+      "REQ-ETH",
+      "REQ-USDT"
+  ],
+  "ETH-USDT,POWR-ETH,POWR-USDT": [
+      "ETH-USDT",
+      "POWR-ETH",
+      "POWR-USDT"
+  ],
+  "ETH-USDT,KNC-ETH,KNC-USDT": [
+      "ETH-USDT",
+      "KNC-ETH",
+      "KNC-USDT"
+  ],
+  "ETH-USDT,OMG-ETH,OMG-USDT": [
+      "ETH-USDT",
+      "OMG-ETH",
+      "OMG-USDT"
+  ],
+  "ETH-USDT,MANA-ETH,MANA-USDT": [
+      "ETH-USDT",
+      "MANA-ETH",
+      "MANA-USDT"
+  ],
+  "ETH-USDT,DGB-ETH,DGB-USDT": [
+      "ETH-USDT",
+      "DGB-ETH",
+      "DGB-USDT"
+  ],
+  "ETH-USDT,ENJ-ETH,ENJ-USDT": [
+      "ETH-USDT",
+      "ENJ-ETH",
+      "ENJ-USDT"
+  ],
+  "ETH-USDT,SNX-ETH,SNX-USDT": [
+      "ETH-USDT",
+      "SNX-ETH",
+      "SNX-USDT"
+  ],
+  "ETH-USDT,TIME-ETH,TIME-USDT": [
+      "ETH-USDT",
+      "TIME-ETH",
+      "TIME-USDT"
+  ],
+  "ETH-USDT,DASH-ETH,DASH-USDT": [
+      "ETH-USDT",
+      "DASH-ETH",
+      "DASH-USDT"
+  ],
+  "ETH-USDT,ETC-ETH,ETC-USDT": [
+      "ETH-USDT",
+      "ETC-ETH",
+      "ETC-USDT"
+  ],
+  "ETH-USDT,EOS-ETH,EOS-USDT": [
+      "ETH-USDT",
+      "EOS-ETH",
+      "EOS-USDT"
+  ],
+  "ETH-USDT,LTC-ETH,LTC-USDT": [
+      "ETH-USDT",
+      "LTC-ETH",
+      "LTC-USDT"
+  ],
+  "ETH-USDT,IOST-ETH,IOST-USDT": [
+      "ETH-USDT",
+      "IOST-ETH",
+      "IOST-USDT"
+  ],
+  "ETH-USDT,TEL-ETH,TEL-USDT": [
+      "ETH-USDT",
+      "TEL-ETH",
+      "TEL-USDT"
+  ],
+  "ETH-USDT,WAX-ETH,WAX-USDT": [
+      "ETH-USDT",
+      "WAX-ETH",
+      "WAX-USDT"
+  ],
+  "ETH-USDT,COV-ETH,COV-USDT": [
+      "ETH-USDT",
+      "COV-ETH",
+      "COV-USDT"
+  ],
+  "ETH-USDT,ZIL-ETH,ZIL-USDT": [
+      "ETH-USDT",
+      "ZIL-ETH",
+      "ZIL-USDT"
+  ],
+  "ETH-USDT,TOMO-ETH,TOMO-USDT": [
+      "ETH-USDT",
+      "TOMO-ETH",
+      "TOMO-USDT"
+  ],
+  "ETH-USDT,BAX-ETH,BAX-USDT": [
+      "ETH-USDT",
+      "BAX-ETH",
+      "BAX-USDT"
+  ],
+  "ETH-USDT,LYM-ETH,LYM-USDT": [
+      "ETH-USDT",
+      "LYM-ETH",
+      "LYM-USDT"
+  ],
+  "ETH-USDT,IOTX-ETH,IOTX-USDT": [
+      "ETH-USDT",
+      "IOTX-ETH",
+      "IOTX-USDT"
+  ],
+  "ETH-USDT,ONT-ETH,ONT-USDT": [
+      "ETH-USDT",
+      "ONT-ETH",
+      "ONT-USDT"
+  ],
+  "ETH-USDT,GO-ETH,GO-USDT": [
+      "ETH-USDT",
+      "GO-ETH",
+      "GO-USDT"
+  ],
+  "ETH-USDT,SOUL-ETH,SOUL-USDT": [
+      "ETH-USDT",
+      "SOUL-ETH",
+      "SOUL-USDT"
+  ],
+  "ETH-USDT,ETN-ETH,ETN-USDT": [
+      "ETH-USDT",
+      "ETN-ETH",
+      "ETN-USDT"
+  ],
+  "ETH-USDT,DAG-ETH,DAG-USDT": [
+      "ETH-USDT",
+      "DAG-ETH",
+      "DAG-USDT"
+  ],
+  "ETH-USDT,XLM-ETH,XLM-USDT": [
+      "ETH-USDT",
+      "XLM-ETH",
+      "XLM-USDT"
+  ],
+  "ETH-USDT,TRX-ETH,TRX-USDT": [
+      "ETH-USDT",
+      "TRX-ETH",
+      "TRX-USDT"
+  ],
+  "ETH-USDT,ELA-ETH,ELA-USDT": [
+      "ETH-USDT",
+      "ELA-ETH",
+      "ELA-USDT"
+  ],
+  "ETH-USDT,CRPT-ETH,CRPT-USDT": [
+      "ETH-USDT",
+      "CRPT-ETH",
+      "CRPT-USDT"
+  ],
+  "ETH-USDT,BCHSV-ETH,BCHSV-USDT": [
+      "ETH-USDT",
+      "BCHSV-ETH",
+      "BCHSV-USDT"
+  ],
+  "ETH-USDT,KCS-ETH,KCS-USDT": [
+      "ETH-USDT",
+      "KCS-ETH",
+      "KCS-USDT"
+  ],
+  "ETH-USDT,VET-ETH,VET-USDT": [
+      "ETH-USDT",
+      "VET-ETH",
+      "VET-USDT"
+  ],
+  "ETH-USDT,NEO-ETH,NEO-USDT": [
+      "ETH-USDT",
+      "NEO-ETH",
+      "NEO-USDT"
+  ],
+  "ETH-USDT,MHC-ETH,MHC-USDT": [
+      "ETH-USDT",
+      "MHC-ETH",
+      "MHC-USDT"
+  ],
+  "ETH-USDT,LOKI-ETH,LOKI-USDT": [
+      "ETH-USDT",
+      "LOKI-ETH",
+      "LOKI-USDT"
+  ],
+  "ETH-USDT,XMR-ETH,XMR-USDT": [
+      "ETH-USDT",
+      "XMR-ETH",
+      "XMR-USDT"
+  ],
+  "ETH-USDT,MTV-ETH,MTV-USDT": [
+      "ETH-USDT",
+      "MTV-ETH",
+      "MTV-USDT"
+  ],
+  "ETH-USDT,ATOM-ETH,ATOM-USDT": [
+      "ETH-USDT",
+      "ATOM-ETH",
+      "ATOM-USDT"
+  ],
+  "ETH-USDT,OCEAN-ETH,OCEAN-USDT": [
+      "ETH-USDT",
+      "OCEAN-ETH",
+      "OCEAN-USDT"
+  ],
+  "ETH-USDT,NIM-ETH,NIM-USDT": [
+      "ETH-USDT",
+      "NIM-ETH",
+      "NIM-USDT"
+  ],
+  "ETH-USDT,ALGO-ETH,ALGO-USDT": [
+      "ETH-USDT",
+      "ALGO-ETH",
+      "ALGO-USDT"
+  ],
+  "ETH-USDT,LYXE-ETH,LYXE-USDT": [
+      "ETH-USDT",
+      "LYXE-ETH",
+      "LYXE-USDT"
+  ],
+  "ETH-USDT,AMPL-ETH,AMPL-USDT": [
+      "ETH-USDT",
+      "AMPL-ETH",
+      "AMPL-USDT"
+  ],
+  "ETH-USDT,KAI-ETH,KAI-USDT": [
+      "ETH-USDT",
+      "KAI-ETH",
+      "KAI-USDT"
+  ],
+  "ETH-USDT,DEGO-ETH,DEGO-USDT": [
+      "ETH-USDT",
+      "DEGO-ETH",
+      "DEGO-USDT"
+  ],
+  "ETH-USDT,UBX-ETH,UBX-USDT": [
+      "ETH-USDT",
+      "UBX-ETH",
+      "UBX-USDT"
+  ],
+  "ETH-USDT,TONE-ETH,TONE-USDT": [
+      "ETH-USDT",
+      "TONE-ETH",
+      "TONE-USDT"
+  ],
+  "ETH-USDT,OPCT-ETH,OPCT-USDT": [
+      "ETH-USDT",
+      "OPCT-ETH",
+      "OPCT-USDT"
+  ],
+  "ETH-USDT,CTI-ETH,CTI-USDT": [
+      "ETH-USDT",
+      "CTI-ETH",
+      "CTI-USDT"
+  ],
+  "ETH-USDT,PHA-ETH,PHA-USDT": [
+      "ETH-USDT",
+      "PHA-ETH",
+      "PHA-USDT"
+  ],
+  "ETH-USDT,TARA-ETH,TARA-USDT": [
+      "ETH-USDT",
+      "TARA-ETH",
+      "TARA-USDT"
+  ],
+  "ETH-USDT,DYP-ETH,DYP-USDT": [
+      "ETH-USDT",
+      "DYP-ETH",
+      "DYP-USDT"
+  ],
+  "ETH-USDT,BOSON-ETH,BOSON-USDT": [
+      "ETH-USDT",
+      "BOSON-ETH",
+      "BOSON-USDT"
+  ],
+  "ETH-USDT,LABS-ETH,LABS-USDT": [
+      "ETH-USDT",
+      "LABS-ETH",
+      "LABS-USDT"
+  ],
+  "ETH-USDT,STND-ETH,STND-USDT": [
+      "ETH-USDT",
+      "STND-ETH",
+      "STND-USDT"
+  ],
+  "ETH-USDT,XDC-ETH,XDC-USDT": [
+      "ETH-USDT",
+      "XDC-ETH",
+      "XDC-USDT"
+  ],
+  "ETH-USDT,YOP-ETH,YOP-USDT": [
+      "ETH-USDT",
+      "YOP-ETH",
+      "YOP-USDT"
+  ],
+  "ETH-USDT,ALBT-ETH,ALBT-USDT": [
+      "ETH-USDT",
+      "ALBT-ETH",
+      "ALBT-USDT"
+  ],
+  "ETH-USDT,FCL-ETH,FCL-USDT": [
+      "ETH-USDT",
+      "FCL-ETH",
+      "FCL-USDT"
+  ],
+  "ETH-USDT,JUP-ETH,JUP-USDT": [
+      "ETH-USDT",
+      "JUP-ETH",
+      "JUP-USDT"
+  ],
+  "ETH-USDT,AGIX-ETH,AGIX-USDT": [
+      "ETH-USDT",
+      "AGIX-ETH",
+      "AGIX-USDT"
+  ],
+  "ETH-USDT,LITH-ETH,LITH-USDT": [
+      "ETH-USDT",
+      "LITH-ETH",
+      "LITH-USDT"
+  ],
+  "ETH-USDT,MOVR-ETH,MOVR-USDT": [
+      "ETH-USDT",
+      "MOVR-ETH",
+      "MOVR-USDT"
+  ],
+  "ETH-USDT,QRDO-ETH,QRDO-USDT": [
+      "ETH-USDT",
+      "QRDO-ETH",
+      "QRDO-USDT"
+  ],
+  "ETH-USDT,SDN-ETH,SDN-USDT": [
+      "ETH-USDT",
+      "SDN-ETH",
+      "SDN-USDT"
+  ],
+  "ETH-USDT,REP-ETH,REP-USDT": [
+      "ETH-USDT",
+      "REP-ETH",
+      "REP-USDT"
+  ],
+  "ETH-USDT,BNT-ETH,BNT-USDT": [
+      "ETH-USDT",
+      "BNT-ETH",
+      "BNT-USDT"
+  ],
+  "ETH-USDT,OXT-ETH,OXT-USDT": [
+      "ETH-USDT",
+      "OXT-ETH",
+      "OXT-USDT"
+  ],
+  "ETH-USDT,BAL-ETH,BAL-USDT": [
+      "ETH-USDT",
+      "BAL-ETH",
+      "BAL-USDT"
+  ],
+  "ETH-USDT,STORJ-ETH,STORJ-USDT": [
+      "ETH-USDT",
+      "STORJ-ETH",
+      "STORJ-USDT"
+  ],
+  "ETH-USDT,SDAO-ETH,SDAO-USDT": [
+      "ETH-USDT",
+      "SDAO-ETH",
+      "SDAO-USDT"
+  ],
+  "ETH-USDT,ALICE-ETH,ALICE-USDT": [
+      "ETH-USDT",
+      "ALICE-ETH",
+      "ALICE-USDT"
+  ],
+  "ETH-USDT,TLM-ETH,TLM-USDT": [
+      "ETH-USDT",
+      "TLM-ETH",
+      "TLM-USDT"
+  ],
+  "ETH-USDT,DEXE-ETH,DEXE-USDT": [
+      "ETH-USDT",
+      "DEXE-ETH",
+      "DEXE-USDT"
+  ],
+  "ETH-USDT,FORM-ETH,FORM-USDT": [
+      "ETH-USDT",
+      "FORM-ETH",
+      "FORM-USDT"
+  ],
+  "ETH-USDT,VEGA-ETH,VEGA-USDT": [
+      "ETH-USDT",
+      "VEGA-ETH",
+      "VEGA-USDT"
+  ],
+  "ETH-USDT,LRC-ETH,LRC-USDT": [
+      "ETH-USDT",
+      "LRC-ETH",
+      "LRC-USDT"
+  ],
+  "ETH-USDT,BAKE-ETH,BAKE-USDT": [
+      "ETH-USDT",
+      "BAKE-ETH",
+      "BAKE-USDT"
+  ],
+  "ETH-USDT,CIRUS-ETH,CIRUS-USDT": [
+      "ETH-USDT",
+      "CIRUS-ETH",
+      "CIRUS-USDT"
+  ],
+  "ETH-USDT,LACE-ETH,LACE-USDT": [
+      "ETH-USDT",
+      "LACE-ETH",
+      "LACE-USDT"
+  ],
+  "ETH-USDT,BONDLY-ETH,BONDLY-USDT": [
+      "ETH-USDT",
+      "BONDLY-ETH",
+      "BONDLY-USDT"
+  ],
+  "ETH-USDT,KOL-ETH,KOL-USDT": [
+      "ETH-USDT",
+      "KOL-ETH",
+      "KOL-USDT"
+  ],
+  "ETH-USDT,JAM-ETH,JAM-USDT": [
+      "ETH-USDT",
+      "JAM-ETH",
+      "JAM-USDT"
+  ],
+  "ETH-USDT,RPC-ETH,RPC-USDT": [
+      "ETH-USDT",
+      "RPC-ETH",
+      "RPC-USDT"
+  ],
+  "ETH-USDT,VOXEL-ETH,VOXEL-USDT": [
+      "ETH-USDT",
+      "VOXEL-ETH",
+      "VOXEL-USDT"
+  ],
+  "ETH-USDT,SPA-ETH,SPA-USDT": [
+      "ETH-USDT",
+      "SPA-ETH",
+      "SPA-USDT"
+  ],
+  "ETH-USDT,STORE-ETH,STORE-USDT": [
+      "ETH-USDT",
+      "STORE-ETH",
+      "STORE-USDT"
+  ],
+  "ETH-USDT,ICX-ETH,ICX-USDT": [
+      "ETH-USDT",
+      "ICX-ETH",
+      "ICX-USDT"
+  ],
+  "ETH-USDT,CSPR-ETH,CSPR-USDT": [
+      "ETH-USDT",
+      "CSPR-ETH",
+      "CSPR-USDT"
+  ],
+  "ETH-USDT,XYO-ETH,XYO-USDT": [
+      "ETH-USDT",
+      "XYO-ETH",
+      "XYO-USDT"
+  ],
+  "ETH-USDT,GMB-ETH,GMB-USDT": [
+      "ETH-USDT",
+      "GMB-ETH",
+      "GMB-USDT"
+  ],
+  "ETH-USDT,AVA-ETH,AVA-USDT": [
+      "ETH-USDT",
+      "AVA-ETH",
+      "AVA-USDT"
+  ],
+  "ETH-USDT,MKR-ETH,MKR-USDT": [
+      "ETH-USDT",
+      "MKR-ETH",
+      "MKR-USDT"
+  ],
+  "ETH-USDT,XRP-ETH,XRP-USDT": [
+      "ETH-USDT",
+      "XRP-ETH",
+      "XRP-USDT"
+  ],
+  "ETH-USDT,FTM-ETH,FTM-USDT": [
+      "ETH-USDT",
+      "FTM-ETH",
+      "FTM-USDT"
+  ],
+  "BTC-USDT,REQ-BTC,REQ-USDT": [
+      "BTC-USDT",
+      "REQ-BTC",
+      "REQ-USDT"
+  ],
+  "BTC-USDT,BCHSV-BTC,BCHSV-USDT": [
+      "BTC-USDT",
+      "BCHSV-BTC",
+      "BCHSV-USDT"
+  ],
+  "BTC-USDT,POWR-BTC,POWR-USDT": [
+      "BTC-USDT",
+      "POWR-BTC",
+      "POWR-USDT"
+  ],
+  "BTC-USDT,KNC-BTC,KNC-USDT": [
+      "BTC-USDT",
+      "KNC-BTC",
+      "KNC-USDT"
+  ],
+  "BTC-USDT,OMG-BTC,OMG-USDT": [
+      "BTC-USDT",
+      "OMG-BTC",
+      "OMG-USDT"
+  ],
+  "BTC-USDT,MANA-BTC,MANA-USDT": [
+      "BTC-USDT",
+      "MANA-BTC",
+      "MANA-USDT"
+  ],
+  "BTC-USDT,ETN-BTC,ETN-USDT": [
+      "BTC-USDT",
+      "ETN-BTC",
+      "ETN-USDT"
+  ],
+  "BTC-USDT,DGB-BTC,DGB-USDT": [
+      "BTC-USDT",
+      "DGB-BTC",
+      "DGB-USDT"
+  ],
+  "BTC-USDT,ENJ-BTC,ENJ-USDT": [
+      "BTC-USDT",
+      "ENJ-BTC",
+      "ENJ-USDT"
+  ],
+  "BTC-USDT,SNX-BTC,SNX-USDT": [
+      "BTC-USDT",
+      "SNX-BTC",
+      "SNX-USDT"
+  ],
+  "BTC-USDT,TIME-BTC,TIME-USDT": [
+      "BTC-USDT",
+      "TIME-BTC",
+      "TIME-USDT"
+  ],
+  "BTC-USDT,DASH-BTC,DASH-USDT": [
+      "BTC-USDT",
+      "DASH-BTC",
+      "DASH-USDT"
+  ],
+  "BTC-USDT,EOS-BTC,EOS-USDT": [
+      "BTC-USDT",
+      "EOS-BTC",
+      "EOS-USDT"
+  ],
+  "BTC-USDT,ETC-BTC,ETC-USDT": [
+      "BTC-USDT",
+      "ETC-BTC",
+      "ETC-USDT"
+  ],
+  "BTC-USDT,GAS-BTC,GAS-USDT": [
+      "BTC-USDT",
+      "GAS-BTC",
+      "GAS-USDT"
+  ],
+  "BTC-USDT,BCH-BTC,BCH-USDT": [
+      "BTC-USDT",
+      "BCH-BTC",
+      "BCH-USDT"
+  ],
+  "BTC-USDT,LTC-BTC,LTC-USDT": [
+      "BTC-USDT",
+      "LTC-BTC",
+      "LTC-USDT"
+  ],
+  "BTC-USDT,IOST-BTC,IOST-USDT": [
+      "BTC-USDT",
+      "IOST-BTC",
+      "IOST-USDT"
+  ],
+  "BTC-USDT,TEL-BTC,TEL-USDT": [
+      "BTC-USDT",
+      "TEL-BTC",
+      "TEL-USDT"
+  ],
+  "BTC-USDT,WAX-BTC,WAX-USDT": [
+      "BTC-USDT",
+      "WAX-BTC",
+      "WAX-USDT"
+  ],
+  "BTC-USDT,ZIL-BTC,ZIL-USDT": [
+      "BTC-USDT",
+      "ZIL-BTC",
+      "ZIL-USDT"
+  ],
+  "BTC-USDT,MAN-BTC,MAN-USDT": [
+      "BTC-USDT",
+      "MAN-BTC",
+      "MAN-USDT"
+  ],
+  "BTC-USDT,COV-BTC,COV-USDT": [
+      "BTC-USDT",
+      "COV-BTC",
+      "COV-USDT"
+  ],
+  "BTC-USDT,ONT-BTC,ONT-USDT": [
+      "BTC-USDT",
+      "ONT-BTC",
+      "ONT-USDT"
+  ],
+  "BTC-USDT,GO-BTC,GO-USDT": [
+      "BTC-USDT",
+      "GO-BTC",
+      "GO-USDT"
+  ],
+  "BTC-USDT,TOMO-BTC,TOMO-USDT": [
+      "BTC-USDT",
+      "TOMO-BTC",
+      "TOMO-USDT"
+  ],
+  "BTC-USDT,SOUL-BTC,SOUL-USDT": [
+      "BTC-USDT",
+      "SOUL-BTC",
+      "SOUL-USDT"
+  ],
+  "BTC-USDT,IOTX-BTC,IOTX-USDT": [
+      "BTC-USDT",
+      "IOTX-BTC",
+      "IOTX-USDT"
+  ],
+  "BTC-USDT,BAX-BTC,BAX-USDT": [
+      "BTC-USDT",
+      "BAX-BTC",
+      "BAX-USDT"
+  ],
+  "BTC-USDT,LYM-BTC,LYM-USDT": [
+      "BTC-USDT",
+      "LYM-BTC",
+      "LYM-USDT"
+  ],
+  "BTC-USDT,AOA-BTC,AOA-USDT": [
+      "BTC-USDT",
+      "AOA-BTC",
+      "AOA-USDT"
+  ],
+  "BTC-USDT,ELA-BTC,ELA-USDT": [
+      "BTC-USDT",
+      "ELA-BTC",
+      "ELA-USDT"
+  ],
+  "BTC-USDT,CBC-BTC,CBC-USDT": [
+      "BTC-USDT",
+      "CBC-BTC",
+      "CBC-USDT"
+  ],
+  "BTC-USDT,TRX-BTC,TRX-USDT": [
+      "BTC-USDT",
+      "TRX-BTC",
+      "TRX-USDT"
+  ],
+  "BTC-USDT,XLM-BTC,XLM-USDT": [
+      "BTC-USDT",
+      "XLM-BTC",
+      "XLM-USDT"
+  ],
+  "BTC-USDT,DAG-BTC,DAG-USDT": [
+      "BTC-USDT",
+      "DAG-BTC",
+      "DAG-USDT"
+  ],
+  "BTC-USDT,CRPT-BTC,CRPT-USDT": [
+      "BTC-USDT",
+      "CRPT-BTC",
+      "CRPT-USDT"
+  ],
+  "BTC-USDT,KCS-BTC,KCS-USDT": [
+      "BTC-USDT",
+      "KCS-BTC",
+      "KCS-USDT"
+  ],
+  "BTC-USDT,VET-BTC,VET-USDT": [
+      "BTC-USDT",
+      "VET-BTC",
+      "VET-USDT"
+  ],
+  "BTC-USDT,NEO-BTC,NEO-USDT": [
+      "BTC-USDT",
+      "NEO-BTC",
+      "NEO-USDT"
+  ],
+  "BTC-USDT,ETH-BTC,ETH-USDT": [
+      "BTC-USDT",
+      "ETH-BTC",
+      "ETH-USDT"
+  ],
+  "BTC-USDT,MHC-BTC,MHC-USDT": [
+      "BTC-USDT",
+      "MHC-BTC",
+      "MHC-USDT"
+  ],
+  "BTC-USDT,LOKI-BTC,LOKI-USDT": [
+      "BTC-USDT",
+      "LOKI-BTC",
+      "LOKI-USDT"
+  ],
+  "BTC-USDT,ANKR-BTC,ANKR-USDT": [
+      "BTC-USDT",
+      "ANKR-BTC",
+      "ANKR-USDT"
+  ],
+  "BTC-USDT,XMR-BTC,XMR-USDT": [
+      "BTC-USDT",
+      "XMR-BTC",
+      "XMR-USDT"
+  ],
+  "BTC-USDT,MTV-BTC,MTV-USDT": [
+      "BTC-USDT",
+      "MTV-BTC",
+      "MTV-USDT"
+  ],
+  "BTC-USDT,CRO-BTC,CRO-USDT": [
+      "BTC-USDT",
+      "CRO-BTC",
+      "CRO-USDT"
+  ],
+  "BTC-USDT,KMD-BTC,KMD-USDT": [
+      "BTC-USDT",
+      "KMD-BTC",
+      "KMD-USDT"
+  ],
+  "BTC-USDT,ATOM-BTC,ATOM-USDT": [
+      "BTC-USDT",
+      "ATOM-BTC",
+      "ATOM-USDT"
+  ],
+  "BTC-USDT,OCEAN-BTC,OCEAN-USDT": [
+      "BTC-USDT",
+      "OCEAN-BTC",
+      "OCEAN-USDT"
+  ],
+  "BTC-USDT,CHR-BTC,CHR-USDT": [
+      "BTC-USDT",
+      "CHR-BTC",
+      "CHR-USDT"
+  ],
+  "BTC-USDT,NIM-BTC,NIM-USDT": [
+      "BTC-USDT",
+      "NIM-BTC",
+      "NIM-USDT"
+  ],
+  "BTC-USDT,COTI-BTC,COTI-USDT": [
+      "BTC-USDT",
+      "COTI-BTC",
+      "COTI-USDT"
+  ],
+  "BTC-USDT,BNB-BTC,BNB-USDT": [
+      "BTC-USDT",
+      "BNB-BTC",
+      "BNB-USDT"
+  ],
+  "BTC-USDT,JAR-BTC,JAR-USDT": [
+      "BTC-USDT",
+      "JAR-BTC",
+      "JAR-USDT"
+  ],
+  "BTC-USDT,ALGO-BTC,ALGO-USDT": [
+      "BTC-USDT",
+      "ALGO-BTC",
+      "ALGO-USDT"
+  ],
+  "BTC-USDT,XEM-BTC,XEM-USDT": [
+      "BTC-USDT",
+      "XEM-BTC",
+      "XEM-USDT"
+  ],
+  "BTC-USDT,XTZ-BTC,XTZ-USDT": [
+      "BTC-USDT",
+      "XTZ-BTC",
+      "XTZ-USDT"
+  ],
+  "BTC-USDT,ZEC-BTC,ZEC-USDT": [
+      "BTC-USDT",
+      "ZEC-BTC",
+      "ZEC-USDT"
+  ],
+  "BTC-USDT,ADA-BTC,ADA-USDT": [
+      "BTC-USDT",
+      "ADA-BTC",
+      "ADA-USDT"
+  ],
+  "BTC-USDT,WXT-BTC,WXT-USDT": [
+      "BTC-USDT",
+      "WXT-BTC",
+      "WXT-USDT"
+  ],
+  "BTC-USDT,FORESTPLUS-BTC,FORESTPLUS-USDT": [
+      "BTC-USDT",
+      "FORESTPLUS-BTC",
+      "FORESTPLUS-USDT"
+  ],
+  "BTC-USDT,BOLT-BTC,BOLT-USDT": [
+      "BTC-USDT",
+      "BOLT-BTC",
+      "BOLT-USDT"
+  ],
+  "BTC-USDT,CHZ-BTC,CHZ-USDT": [
+      "BTC-USDT",
+      "CHZ-BTC",
+      "CHZ-USDT"
+  ],
+  "BTC-USDT,DAPPT-BTC,DAPPT-USDT": [
+      "BTC-USDT",
+      "DAPPT-BTC",
+      "DAPPT-USDT"
+  ],
+  "BTC-USDT,NOIA-BTC,NOIA-USDT": [
+      "BTC-USDT",
+      "NOIA-BTC",
+      "NOIA-USDT"
+  ],
+  "BTC-USDT,WIN-BTC,WIN-USDT": [
+      "BTC-USDT",
+      "WIN-BTC",
+      "WIN-USDT"
+  ],
+  "BTC-USDT,DERO-BTC,DERO-USDT": [
+      "BTC-USDT",
+      "DERO-BTC",
+      "DERO-USDT"
+  ],
+  "BTC-USDT,ENQ-BTC,ENQ-USDT": [
+      "BTC-USDT",
+      "ENQ-BTC",
+      "ENQ-USDT"
+  ],
+  "BTC-USDT,ONE-BTC,ONE-USDT": [
+      "BTC-USDT",
+      "ONE-BTC",
+      "ONE-USDT"
+  ],
+  "BTC-USDT,TOKO-BTC,TOKO-USDT": [
+      "BTC-USDT",
+      "TOKO-BTC",
+      "TOKO-USDT"
+  ],
+  "BTC-USDT,VID-BTC,VID-USDT": [
+      "BTC-USDT",
+      "VID-BTC",
+      "VID-USDT"
+  ],
+  "BTC-USDT,SXP-BTC,SXP-USDT": [
+      "BTC-USDT",
+      "SXP-BTC",
+      "SXP-USDT"
+  ],
+  "BTC-USDT,VIDT-BTC,VIDT-USDT": [
+      "BTC-USDT",
+      "VIDT-BTC",
+      "VIDT-USDT"
+  ],
+  "BTC-USDT,AKRO-BTC,AKRO-USDT": [
+      "BTC-USDT",
+      "AKRO-BTC",
+      "AKRO-USDT"
+  ],
+  "BTC-USDT,MAP-BTC,MAP-USDT": [
+      "BTC-USDT",
+      "MAP-BTC",
+      "MAP-USDT"
+  ],
+  "BTC-USDT,AMPL-BTC,AMPL-USDT": [
+      "BTC-USDT",
+      "AMPL-BTC",
+      "AMPL-USDT"
+  ],
+  "BTC-USDT,NWC-BTC,NWC-USDT": [
+      "BTC-USDT",
+      "NWC-BTC",
+      "NWC-USDT"
+  ],
+  "BTC-USDT,BEPRO-BTC,BEPRO-USDT": [
+      "BTC-USDT",
+      "BEPRO-BTC",
+      "BEPRO-USDT"
+  ],
+  "BTC-USDT,VRA-BTC,VRA-USDT": [
+      "BTC-USDT",
+      "VRA-BTC",
+      "VRA-USDT"
+  ],
+  "BTC-USDT,KSM-BTC,KSM-USDT": [
+      "BTC-USDT",
+      "KSM-BTC",
+      "KSM-USDT"
+  ],
+  "BTC-USDT,SUTER-BTC,SUTER-USDT": [
+      "BTC-USDT",
+      "SUTER-BTC",
+      "SUTER-USDT"
+  ],
+  "BTC-USDT,PRE-BTC,PRE-USDT": [
+      "BTC-USDT",
+      "PRE-BTC",
+      "PRE-USDT"
+  ],
+  "BTC-USDT,SENSO-BTC,SENSO-USDT": [
+      "BTC-USDT",
+      "SENSO-BTC",
+      "SENSO-USDT"
+  ],
+  "BTC-USDT,XDB-BTC,XDB-USDT": [
+      "BTC-USDT",
+      "XDB-BTC",
+      "XDB-USDT"
+  ],
+  "BTC-USDT,STX-BTC,STX-USDT": [
+      "BTC-USDT",
+      "STX-BTC",
+      "STX-USDT"
+  ],
+  "BTC-USDT,KAI-BTC,KAI-USDT": [
+      "BTC-USDT",
+      "KAI-BTC",
+      "KAI-USDT"
+  ],
+  "BTC-USDT,WEST-BTC,WEST-USDT": [
+      "BTC-USDT",
+      "WEST-BTC",
+      "WEST-USDT"
+  ],
+  "BTC-USDT,EWT-BTC,EWT-USDT": [
+      "BTC-USDT",
+      "EWT-BTC",
+      "EWT-USDT"
+  ],
+  "BTC-USDT,WAVES-BTC,WAVES-USDT": [
+      "BTC-USDT",
+      "WAVES-BTC",
+      "WAVES-USDT"
+  ],
+  "BTC-USDT,BNS-BTC,BNS-USDT": [
+      "BTC-USDT",
+      "BNS-BTC",
+      "BNS-USDT"
+  ],
+  "BTC-USDT,SUKU-BTC,SUKU-USDT": [
+      "BTC-USDT",
+      "SUKU-BTC",
+      "SUKU-USDT"
+  ],
+  "BTC-USDT,MLK-BTC,MLK-USDT": [
+      "BTC-USDT",
+      "MLK-BTC",
+      "MLK-USDT"
+  ],
+  "BTC-USDT,DIA-BTC,DIA-USDT": [
+      "BTC-USDT",
+      "DIA-BTC",
+      "DIA-USDT"
+  ],
+  "BTC-USDT,LINK-BTC,LINK-USDT": [
+      "BTC-USDT",
+      "LINK-BTC",
+      "LINK-USDT"
+  ],
+  "BTC-USDT,DOT-BTC,DOT-USDT": [
+      "BTC-USDT",
+      "DOT-BTC",
+      "DOT-USDT"
+  ],
+  "BTC-USDT,SHA-BTC,SHA-USDT": [
+      "BTC-USDT",
+      "SHA-BTC",
+      "SHA-USDT"
+  ],
+  "BTC-USDT,EFX-BTC,EFX-USDT": [
+      "BTC-USDT",
+      "EFX-BTC",
+      "EFX-USDT"
+  ],
+  "BTC-USDT,CKB-BTC,CKB-USDT": [
+      "BTC-USDT",
+      "CKB-BTC",
+      "CKB-USDT"
+  ],
+  "BTC-USDT,UOS-BTC,UOS-USDT": [
+      "BTC-USDT",
+      "UOS-BTC",
+      "UOS-USDT"
+  ],
+  "BTC-USDT,AAVE-BTC,AAVE-USDT": [
+      "BTC-USDT",
+      "AAVE-BTC",
+      "AAVE-USDT"
+  ],
+  "BTC-USDT,TONE-BTC,TONE-USDT": [
+      "BTC-USDT",
+      "TONE-BTC",
+      "TONE-USDT"
+  ],
+  "BTC-USDT,OPCT-BTC,OPCT-USDT": [
+      "BTC-USDT",
+      "OPCT-BTC",
+      "OPCT-USDT"
+  ],
+  "BTC-USDT,SHR-BTC,SHR-USDT": [
+      "BTC-USDT",
+      "SHR-BTC",
+      "SHR-USDT"
+  ],
+  "BTC-USDT,BUX-BTC,BUX-USDT": [
+      "BTC-USDT",
+      "BUX-BTC",
+      "BUX-USDT"
+  ],
+  "BTC-USDT,CAS-BTC,CAS-USDT": [
+      "BTC-USDT",
+      "CAS-BTC",
+      "CAS-USDT"
+  ],
+  "BTC-USDT,MSWAP-BTC,MSWAP-USDT": [
+      "BTC-USDT",
+      "MSWAP-BTC",
+      "MSWAP-USDT"
+  ],
+  "BTC-USDT,GOM2-BTC,GOM2-USDT": [
+      "BTC-USDT",
+      "GOM2-BTC",
+      "GOM2-USDT"
+  ],
+  "BTC-USDT,REVV-BTC,REVV-USDT": [
+      "BTC-USDT",
+      "REVV-BTC",
+      "REVV-USDT"
+  ],
+  "BTC-USDT,FRONT-BTC,FRONT-USDT": [
+      "BTC-USDT",
+      "FRONT-BTC",
+      "FRONT-USDT"
+  ],
+  "BTC-USDT,DFI-BTC,DFI-USDT": [
+      "BTC-USDT",
+      "DFI-BTC",
+      "DFI-USDT"
+  ],
+  "BTC-USDT,KLV-BTC,KLV-USDT": [
+      "BTC-USDT",
+      "KLV-BTC",
+      "KLV-USDT"
+  ],
+  "BTC-USDT,TRIAS-BTC,TRIAS-USDT": [
+      "BTC-USDT",
+      "TRIAS-BTC",
+      "TRIAS-USDT"
+  ],
+  "BTC-USDT,DOGE-BTC,DOGE-USDT": [
+      "BTC-USDT",
+      "DOGE-BTC",
+      "DOGE-USDT"
+  ],
+  "BTC-USDT,MITX-BTC,MITX-USDT": [
+      "BTC-USDT",
+      "MITX-BTC",
+      "MITX-USDT"
+  ],
+  "BTC-USDT,LTX-BTC,LTX-USDT": [
+      "BTC-USDT",
+      "LTX-BTC",
+      "LTX-USDT"
+  ],
+  "BTC-USDT,SRK-BTC,SRK-USDT": [
+      "BTC-USDT",
+      "SRK-BTC",
+      "SRK-USDT"
+  ],
+  "BTC-USDT,HTR-BTC,HTR-USDT": [
+      "BTC-USDT",
+      "HTR-BTC",
+      "HTR-USDT"
+  ],
+  "BTC-USDT,SWINGBY-BTC,SWINGBY-USDT": [
+      "BTC-USDT",
+      "SWINGBY-BTC",
+      "SWINGBY-USDT"
+  ],
+  "BTC-USDT,XHV-BTC,XHV-USDT": [
+      "BTC-USDT",
+      "XHV-BTC",
+      "XHV-USDT"
+  ],
+  "BTC-USDT,AVAX-BTC,AVAX-USDT": [
+      "BTC-USDT",
+      "AVAX-BTC",
+      "AVAX-USDT"
+  ],
+  "BTC-USDT,KRL-BTC,KRL-USDT": [
+      "BTC-USDT",
+      "KRL-BTC",
+      "KRL-USDT"
+  ],
+  "BTC-USDT,POLK-BTC,POLK-USDT": [
+      "BTC-USDT",
+      "POLK-BTC",
+      "POLK-USDT"
+  ],
+  "BTC-USDT,RNDR-BTC,RNDR-USDT": [
+      "BTC-USDT",
+      "RNDR-BTC",
+      "RNDR-USDT"
+  ],
+  "BTC-USDT,XYM-BTC,XYM-USDT": [
+      "BTC-USDT",
+      "XYM-BTC",
+      "XYM-USDT"
+  ],
+  "BTC-USDT,PCX-BTC,PCX-USDT": [
+      "BTC-USDT",
+      "PCX-BTC",
+      "PCX-USDT"
+  ],
+  "BTC-USDT,ORBS-BTC,ORBS-USDT": [
+      "BTC-USDT",
+      "ORBS-BTC",
+      "ORBS-USDT"
+  ],
+  "BTC-USDT,DSLA-BTC,DSLA-USDT": [
+      "BTC-USDT",
+      "DSLA-BTC",
+      "DSLA-USDT"
+  ],
+  "BTC-USDT,XCUR-BTC,XCUR-USDT": [
+      "BTC-USDT",
+      "XCUR-BTC",
+      "XCUR-USDT"
+  ],
+  "BTC-USDT,PUNDIX-BTC,PUNDIX-USDT": [
+      "BTC-USDT",
+      "PUNDIX-BTC",
+      "PUNDIX-USDT"
+  ],
+  "BTC-USDT,PHNX-BTC,PHNX-USDT": [
+      "BTC-USDT",
+      "PHNX-BTC",
+      "PHNX-USDT"
+  ],
+  "BTC-USDT,TOWER-BTC,TOWER-USDT": [
+      "BTC-USDT",
+      "TOWER-BTC",
+      "TOWER-USDT"
+  ],
+  "BTC-USDT,KDA-BTC,KDA-USDT": [
+      "BTC-USDT",
+      "KDA-BTC",
+      "KDA-USDT"
+  ],
+  "BTC-USDT,ICP-BTC,ICP-USDT": [
+      "BTC-USDT",
+      "ICP-BTC",
+      "ICP-USDT"
+  ],
+  "BTC-USDT,STC-BTC,STC-USDT": [
+      "BTC-USDT",
+      "STC-BTC",
+      "STC-USDT"
+  ],
+  "BTC-USDT,GOVI-BTC,GOVI-USDT": [
+      "BTC-USDT",
+      "GOVI-BTC",
+      "GOVI-USDT"
+  ],
+  "BTC-USDT,CELO-BTC,CELO-USDT": [
+      "BTC-USDT",
+      "CELO-BTC",
+      "CELO-USDT"
+  ],
+  "BTC-USDT,CUSD-BTC,CUSD-USDT": [
+      "BTC-USDT",
+      "CUSD-BTC",
+      "CUSD-USDT"
+  ],
+  "BTC-USDT,MATIC-BTC,MATIC-USDT": [
+      "BTC-USDT",
+      "MATIC-BTC",
+      "MATIC-USDT"
+  ],
+  "BTC-USDT,OGN-BTC,OGN-USDT": [
+      "BTC-USDT",
+      "OGN-BTC",
+      "OGN-USDT"
+  ],
+  "BTC-USDT,OUSD-BTC,OUSD-USDT": [
+      "BTC-USDT",
+      "OUSD-BTC",
+      "OUSD-USDT"
+  ],
+  "BTC-USDT,TLOS-BTC,TLOS-USDT": [
+      "BTC-USDT",
+      "TLOS-BTC",
+      "TLOS-USDT"
+  ],
+  "BTC-USDT,GLQ-BTC,GLQ-USDT": [
+      "BTC-USDT",
+      "GLQ-BTC",
+      "GLQ-USDT"
+  ],
+  "BTC-USDT,HYVE-BTC,HYVE-USDT": [
+      "BTC-USDT",
+      "HYVE-BTC",
+      "HYVE-USDT"
+  ],
+  "BTC-USDT,MAHA-BTC,MAHA-USDT": [
+      "BTC-USDT",
+      "MAHA-BTC",
+      "MAHA-USDT"
+  ],
+  "BTC-USDT,PYR-BTC,PYR-USDT": [
+      "BTC-USDT",
+      "PYR-BTC",
+      "PYR-USDT"
+  ],
+  "BTC-USDT,PROM-BTC,PROM-USDT": [
+      "BTC-USDT",
+      "PROM-BTC",
+      "PROM-USDT"
+  ],
+  "BTC-USDT,APL-BTC,APL-USDT": [
+      "BTC-USDT",
+      "APL-BTC",
+      "APL-USDT"
+  ],
+  "BTC-USDT,VEED-BTC,VEED-USDT": [
+      "BTC-USDT",
+      "VEED-BTC",
+      "VEED-USDT"
+  ],
+  "BTC-USDT,PDEX-BTC,PDEX-USDT": [
+      "BTC-USDT",
+      "PDEX-BTC",
+      "PDEX-USDT"
+  ],
+  "BTC-USDT,POLS-BTC,POLS-USDT": [
+      "BTC-USDT",
+      "POLS-BTC",
+      "POLS-USDT"
+  ],
+  "BTC-USDT,LPOOL-BTC,LPOOL-USDT": [
+      "BTC-USDT",
+      "LPOOL-BTC",
+      "LPOOL-USDT"
+  ],
+  "BTC-USDT,ETHO-BTC,ETHO-USDT": [
+      "BTC-USDT",
+      "ETHO-BTC",
+      "ETHO-USDT"
+  ],
+  "BTC-USDT,ABBC-BTC,ABBC-USDT": [
+      "BTC-USDT",
+      "ABBC-BTC",
+      "ABBC-USDT"
+  ],
+  "BTC-USDT,DORA-BTC,DORA-USDT": [
+      "BTC-USDT",
+      "DORA-BTC",
+      "DORA-USDT"
+  ],
+  "BTC-USDT,ZCX-BTC,ZCX-USDT": [
+      "BTC-USDT",
+      "ZCX-BTC",
+      "ZCX-USDT"
+  ],
+  "BTC-USDT,AGIX-BTC,AGIX-USDT": [
+      "BTC-USDT",
+      "AGIX-BTC",
+      "AGIX-USDT"
+  ],
+  "BTC-USDT,MODEFI-BTC,MODEFI-USDT": [
+      "BTC-USDT",
+      "MODEFI-BTC",
+      "MODEFI-USDT"
+  ],
+  "BTC-USDT,YFDAI-BTC,YFDAI-USDT": [
+      "BTC-USDT",
+      "YFDAI-BTC",
+      "YFDAI-USDT"
+  ],
+  "BTC-USDT,ARRR-BTC,ARRR-USDT": [
+      "BTC-USDT",
+      "ARRR-BTC",
+      "ARRR-USDT"
+  ],
+  "BTC-USDT,CEUR-BTC,CEUR-USDT": [
+      "BTC-USDT",
+      "CEUR-BTC",
+      "CEUR-USDT"
+  ],
+  "BTC-USDT,HAI-BTC,HAI-USDT": [
+      "BTC-USDT",
+      "HAI-BTC",
+      "HAI-USDT"
+  ],
+  "BTC-USDT,NEAR-BTC,NEAR-USDT": [
+      "BTC-USDT",
+      "NEAR-BTC",
+      "NEAR-USDT"
+  ],
+  "BTC-USDT,CFG-BTC,CFG-USDT": [
+      "BTC-USDT",
+      "CFG-BTC",
+      "CFG-USDT"
+  ],
+  "BTC-USDT,XDC-BTC,XDC-USDT": [
+      "BTC-USDT",
+      "XDC-BTC",
+      "XDC-USDT"
+  ],
+  "BTC-USDT,ERG-BTC,ERG-USDT": [
+      "BTC-USDT",
+      "ERG-BTC",
+      "ERG-USDT"
+  ],
+  "BTC-USDT,LAYER-BTC,LAYER-USDT": [
+      "BTC-USDT",
+      "LAYER-BTC",
+      "LAYER-USDT"
+  ],
+  "BTC-USDT,MTL-BTC,MTL-USDT": [
+      "BTC-USDT",
+      "MTL-BTC",
+      "MTL-USDT"
+  ],
+  "BTC-USDT,QI-BTC,QI-USDT": [
+      "BTC-USDT",
+      "QI-BTC",
+      "QI-USDT"
+  ],
+  "BTC-USDT,PNT-BTC,PNT-USDT": [
+      "BTC-USDT",
+      "PNT-BTC",
+      "PNT-USDT"
+  ],
+  "BTC-USDT,XPR-BTC,XPR-USDT": [
+      "BTC-USDT",
+      "XPR-BTC",
+      "XPR-USDT"
+  ],
+  "BTC-USDT,SHFT-BTC,SHFT-USDT": [
+      "BTC-USDT",
+      "SHFT-BTC",
+      "SHFT-USDT"
+  ],
+  "BTC-USDT,MAKI-BTC,MAKI-USDT": [
+      "BTC-USDT",
+      "MAKI-BTC",
+      "MAKI-USDT"
+  ],
+  "BTC-USDT,REP-BTC,REP-USDT": [
+      "BTC-USDT",
+      "REP-BTC",
+      "REP-USDT"
+  ],
+  "BTC-USDT,BNT-BTC,BNT-USDT": [
+      "BTC-USDT",
+      "BNT-BTC",
+      "BNT-USDT"
+  ],
+  "BTC-USDT,OXT-BTC,OXT-USDT": [
+      "BTC-USDT",
+      "OXT-BTC",
+      "OXT-USDT"
+  ],
+  "BTC-USDT,BAL-BTC,BAL-USDT": [
+      "BTC-USDT",
+      "BAL-BTC",
+      "BAL-USDT"
+  ],
+  "BTC-USDT,STORJ-BTC,STORJ-USDT": [
+      "BTC-USDT",
+      "STORJ-BTC",
+      "STORJ-USDT"
+  ],
+  "BTC-USDT,SKL-BTC,SKL-USDT": [
+      "BTC-USDT",
+      "SKL-BTC",
+      "SKL-USDT"
+  ],
+  "BTC-USDT,NMR-BTC,NMR-USDT": [
+      "BTC-USDT",
+      "NMR-BTC",
+      "NMR-USDT"
+  ],
+  "BTC-USDT,TRB-BTC,TRB-USDT": [
+      "BTC-USDT",
+      "TRB-BTC",
+      "TRB-USDT"
+  ],
+  "BTC-USDT,GTC-BTC,GTC-USDT": [
+      "BTC-USDT",
+      "GTC-BTC",
+      "GTC-USDT"
+  ],
+  "BTC-USDT,EQX-BTC,EQX-USDT": [
+      "BTC-USDT",
+      "EQX-BTC",
+      "EQX-USDT"
+  ],
+  "BTC-USDT,RLC-BTC,RLC-USDT": [
+      "BTC-USDT",
+      "RLC-BTC",
+      "RLC-USDT"
+  ],
+  "BTC-USDT,EGLD-BTC,EGLD-USDT": [
+      "BTC-USDT",
+      "EGLD-BTC",
+      "EGLD-USDT"
+  ],
+  "BTC-USDT,HBAR-BTC,HBAR-USDT": [
+      "BTC-USDT",
+      "HBAR-BTC",
+      "HBAR-USDT"
+  ],
+  "BTC-USDT,FLOW-BTC,FLOW-USDT": [
+      "BTC-USDT",
+      "FLOW-BTC",
+      "FLOW-USDT"
+  ],
+  "BTC-USDT,NKN-BTC,NKN-USDT": [
+      "BTC-USDT",
+      "NKN-BTC",
+      "NKN-USDT"
+  ],
+  "BTC-USDT,MLN-BTC,MLN-USDT": [
+      "BTC-USDT",
+      "MLN-BTC",
+      "MLN-USDT"
+  ],
+  "BTC-USDT,WNCG-BTC,WNCG-USDT": [
+      "BTC-USDT",
+      "WNCG-BTC",
+      "WNCG-USDT"
+  ],
+  "BTC-USDT,CTSI-BTC,CTSI-USDT": [
+      "BTC-USDT",
+      "CTSI-BTC",
+      "CTSI-USDT"
+  ],
+  "BTC-USDT,ALICE-BTC,ALICE-USDT": [
+      "BTC-USDT",
+      "ALICE-BTC",
+      "ALICE-USDT"
+  ],
+  "BTC-USDT,BAND-BTC,BAND-USDT": [
+      "BTC-USDT",
+      "BAND-BTC",
+      "BAND-USDT"
+  ],
+  "BTC-USDT,FTT-BTC,FTT-USDT": [
+      "BTC-USDT",
+      "FTT-BTC",
+      "FTT-USDT"
+  ],
+  "BTC-USDT,SKU-BTC,SKU-USDT": [
+      "BTC-USDT",
+      "SKU-BTC",
+      "SKU-USDT"
+  ],
+  "BTC-USDT,TLM-BTC,TLM-USDT": [
+      "BTC-USDT",
+      "TLM-BTC",
+      "TLM-USDT"
+  ],
+  "BTC-USDT,DEXE-BTC,DEXE-USDT": [
+      "BTC-USDT",
+      "DEXE-BTC",
+      "DEXE-USDT"
+  ],
+  "BTC-USDT,CUDOS-BTC,CUDOS-USDT": [
+      "BTC-USDT",
+      "CUDOS-BTC",
+      "CUDOS-USDT"
+  ],
+  "BTC-USDT,RUNE-BTC,RUNE-USDT": [
+      "BTC-USDT",
+      "RUNE-BTC",
+      "RUNE-USDT"
+  ],
+  "BTC-USDT,PUSH-BTC,PUSH-USDT": [
+      "BTC-USDT",
+      "PUSH-BTC",
+      "PUSH-USDT"
+  ],
+  "BTC-USDT,REEF-BTC,REEF-USDT": [
+      "BTC-USDT",
+      "REEF-BTC",
+      "REEF-USDT"
+  ],
+  "BTC-USDT,TVK-BTC,TVK-USDT": [
+      "BTC-USDT",
+      "TVK-BTC",
+      "TVK-USDT"
+  ],
+  "BTC-USDT,INJ-BTC,INJ-USDT": [
+      "BTC-USDT",
+      "INJ-BTC",
+      "INJ-USDT"
+  ],
+  "BTC-USDT,ALPHA-BTC,ALPHA-USDT": [
+      "BTC-USDT",
+      "ALPHA-BTC",
+      "ALPHA-USDT"
+  ],
+  "BTC-USDT,BADGER-BTC,BADGER-USDT": [
+      "BTC-USDT",
+      "BADGER-BTC",
+      "BADGER-USDT"
+  ],
+  "BTC-USDT,UNO-BTC,UNO-USDT": [
+      "BTC-USDT",
+      "UNO-BTC",
+      "UNO-USDT"
+  ],
+  "BTC-USDT,AR-BTC,AR-USDT": [
+      "BTC-USDT",
+      "AR-BTC",
+      "AR-USDT"
+  ],
+  "BTC-USDT,XVS-BTC,XVS-USDT": [
+      "BTC-USDT",
+      "XVS-BTC",
+      "XVS-USDT"
+  ],
+  "BTC-USDT,PERP-BTC,PERP-USDT": [
+      "BTC-USDT",
+      "PERP-BTC",
+      "PERP-USDT"
+  ],
+  "BTC-USDT,GHST-BTC,GHST-USDT": [
+      "BTC-USDT",
+      "GHST-BTC",
+      "GHST-USDT"
+  ],
+  "BTC-USDT,SCLP-BTC,SCLP-USDT": [
+      "BTC-USDT",
+      "SCLP-BTC",
+      "SCLP-USDT"
+  ],
+  "BTC-USDT,SUPER-BTC,SUPER-USDT": [
+      "BTC-USDT",
+      "SUPER-BTC",
+      "SUPER-USDT"
+  ],
+  "BTC-USDT,XED-BTC,XED-USDT": [
+      "BTC-USDT",
+      "XED-BTC",
+      "XED-USDT"
+  ],
+  "BTC-USDT,LTO-BTC,LTO-USDT": [
+      "BTC-USDT",
+      "LTO-BTC",
+      "LTO-USDT"
+  ],
+  "BTC-USDT,QUICK-BTC,QUICK-USDT": [
+      "BTC-USDT",
+      "QUICK-BTC",
+      "QUICK-USDT"
+  ],
+  "BTC-USDT,TRU-BTC,TRU-USDT": [
+      "BTC-USDT",
+      "TRU-BTC",
+      "TRU-USDT"
+  ],
+  "BTC-USDT,WRX-BTC,WRX-USDT": [
+      "BTC-USDT",
+      "WRX-BTC",
+      "WRX-USDT"
+  ],
+  "BTC-USDT,TKO-BTC,TKO-USDT": [
+      "BTC-USDT",
+      "TKO-BTC",
+      "TKO-USDT"
+  ],
+  "BTC-USDT,DATA-BTC,DATA-USDT": [
+      "BTC-USDT",
+      "DATA-BTC",
+      "DATA-USDT"
+  ],
+  "BTC-USDT,NORD-BTC,NORD-USDT": [
+      "BTC-USDT",
+      "NORD-BTC",
+      "NORD-USDT"
+  ],
+  "BTC-USDT,HEGIC-BTC,HEGIC-USDT": [
+      "BTC-USDT",
+      "HEGIC-BTC",
+      "HEGIC-USDT"
+  ],
+  "BTC-USDT,ERN-BTC,ERN-USDT": [
+      "BTC-USDT",
+      "ERN-BTC",
+      "ERN-USDT"
+  ],
+  "BTC-USDT,PAXG-BTC,PAXG-USDT": [
+      "BTC-USDT",
+      "PAXG-BTC",
+      "PAXG-USDT"
+  ],
+  "BTC-USDT,AUDIO-BTC,AUDIO-USDT": [
+      "BTC-USDT",
+      "AUDIO-BTC",
+      "AUDIO-USDT"
+  ],
+  "BTC-USDT,FXS-BTC,FXS-USDT": [
+      "BTC-USDT",
+      "FXS-BTC",
+      "FXS-USDT"
+  ],
+  "BTC-USDT,ATA-BTC,ATA-USDT": [
+      "BTC-USDT",
+      "ATA-BTC",
+      "ATA-USDT"
+  ],
+  "BTC-USDT,LRC-BTC,LRC-USDT": [
+      "BTC-USDT",
+      "LRC-BTC",
+      "LRC-USDT"
+  ],
+  "BTC-USDT,CWAR-BTC,CWAR-USDT": [
+      "BTC-USDT",
+      "CWAR-BTC",
+      "CWAR-USDT"
+  ],
+  "BTC-USDT,FLUX-BTC,FLUX-USDT": [
+      "BTC-USDT",
+      "FLUX-BTC",
+      "FLUX-USDT"
+  ],
+  "BTC-USDT,EDG-BTC,EDG-USDT": [
+      "BTC-USDT",
+      "EDG-BTC",
+      "EDG-USDT"
+  ],
+  "BTC-USDT,WNXM-BTC,WNXM-USDT": [
+      "BTC-USDT",
+      "WNXM-BTC",
+      "WNXM-USDT"
+  ],
+  "BTC-USDT,ANT-BTC,ANT-USDT": [
+      "BTC-USDT",
+      "ANT-BTC",
+      "ANT-USDT"
+  ],
+  "BTC-USDT,TWT-BTC,TWT-USDT": [
+      "BTC-USDT",
+      "TWT-BTC",
+      "TWT-USDT"
+  ],
+  "BTC-USDT,OM-BTC,OM-USDT": [
+      "BTC-USDT",
+      "OM-BTC",
+      "OM-USDT"
+  ],
+  "BTC-USDT,GLM-BTC,GLM-USDT": [
+      "BTC-USDT",
+      "GLM-BTC",
+      "GLM-USDT"
+  ],
+  "BTC-USDT,BAKE-BTC,BAKE-USDT": [
+      "BTC-USDT",
+      "BAKE-BTC",
+      "BAKE-USDT"
+  ],
+  "BTC-USDT,VLX-BTC,VLX-USDT": [
+      "BTC-USDT",
+      "VLX-BTC",
+      "VLX-USDT"
+  ],
+  "BTC-USDT,TRADE-BTC,TRADE-USDT": [
+      "BTC-USDT",
+      "TRADE-BTC",
+      "TRADE-USDT"
+  ],
+  "BTC-USDT,MFT-BTC,MFT-USDT": [
+      "BTC-USDT",
+      "MFT-BTC",
+      "MFT-USDT"
+  ],
+  "BTC-USDT,LIT-BTC,LIT-USDT": [
+      "BTC-USDT",
+      "LIT-BTC",
+      "LIT-USDT"
+  ],
+  "BTC-USDT,SFP-BTC,SFP-USDT": [
+      "BTC-USDT",
+      "SFP-BTC",
+      "SFP-USDT"
+  ],
+  "BTC-USDT,BURGER-BTC,BURGER-USDT": [
+      "BTC-USDT",
+      "BURGER-BTC",
+      "BURGER-USDT"
+  ],
+  "BTC-USDT,CREAM-BTC,CREAM-USDT": [
+      "BTC-USDT",
+      "CREAM-BTC",
+      "CREAM-USDT"
+  ],
+  "BTC-USDT,RSR-BTC,RSR-USDT": [
+      "BTC-USDT",
+      "RSR-BTC",
+      "RSR-USDT"
+  ],
+  "BTC-USDT,BUY-BTC,BUY-USDT": [
+      "BTC-USDT",
+      "BUY-BTC",
+      "BUY-USDT"
+  ],
+  "BTC-USDT,SRM-BTC,SRM-USDT": [
+      "BTC-USDT",
+      "SRM-BTC",
+      "SRM-USDT"
+  ],
+  "BTC-USDT,POND-BTC,POND-USDT": [
+      "BTC-USDT",
+      "POND-BTC",
+      "POND-USDT"
+  ],
+  "BTC-USDT,NGL-BTC,NGL-USDT": [
+      "BTC-USDT",
+      "NGL-BTC",
+      "NGL-USDT"
+  ],
+  "BTC-USDT,LINA-BTC,LINA-USDT": [
+      "BTC-USDT",
+      "LINA-BTC",
+      "LINA-USDT"
+  ],
+  "BTC-USDT,KLAY-BTC,KLAY-USDT": [
+      "BTC-USDT",
+      "KLAY-BTC",
+      "KLAY-USDT"
+  ],
+  "BTC-USDT,HEART-BTC,HEART-USDT": [
+      "BTC-USDT",
+      "HEART-BTC",
+      "HEART-USDT"
+  ],
+  "BTC-USDT,ADS-BTC,ADS-USDT": [
+      "BTC-USDT",
+      "ADS-BTC",
+      "ADS-USDT"
+  ],
+  "BTC-USDT,IOTA-BTC,IOTA-USDT": [
+      "BTC-USDT",
+      "IOTA-BTC",
+      "IOTA-USDT"
+  ],
+  "BTC-USDT,OOKI-BTC,OOKI-USDT": [
+      "BTC-USDT",
+      "OOKI-BTC",
+      "OOKI-USDT"
+  ],
+  "BTC-USDT,HNT-BTC,HNT-USDT": [
+      "BTC-USDT",
+      "HNT-BTC",
+      "HNT-USDT"
+  ],
+  "BTC-USDT,GLMR-BTC,GLMR-USDT": [
+      "BTC-USDT",
+      "GLMR-BTC",
+      "GLMR-USDT"
+  ],
+  "BTC-USDT,CTC-BTC,CTC-USDT": [
+      "BTC-USDT",
+      "CTC-BTC",
+      "CTC-USDT"
+  ],
+  "BTC-USDT,ASTR-BTC,ASTR-USDT": [
+      "BTC-USDT",
+      "ASTR-BTC",
+      "ASTR-USDT"
+  ],
+  "BTC-USDT,ACA-BTC,ACA-USDT": [
+      "BTC-USDT",
+      "ACA-BTC",
+      "ACA-USDT"
+  ],
+  "BTC-USDT,SHX-BTC,SHX-USDT": [
+      "BTC-USDT",
+      "SHX-BTC",
+      "SHX-USDT"
+  ],
+  "BTC-USDT,XNO-BTC,XNO-USDT": [
+      "BTC-USDT",
+      "XNO-BTC",
+      "XNO-USDT"
+  ],
+  "BTC-USDT,TFUEL-BTC,TFUEL-USDT": [
+      "BTC-USDT",
+      "TFUEL-BTC",
+      "TFUEL-USDT"
+  ],
+  "BTC-USDT,LMR-BTC,LMR-USDT": [
+      "BTC-USDT",
+      "LMR-BTC",
+      "LMR-USDT"
+  ],
+  "BTC-USDT,XCN-BTC,XCN-USDT": [
+      "BTC-USDT",
+      "XCN-BTC",
+      "XCN-USDT"
+  ],
+  "BTC-USDT,DAR-BTC,DAR-USDT": [
+      "BTC-USDT",
+      "DAR-BTC",
+      "DAR-USDT"
+  ],
+  "BTC-USDT,TRVL-BTC,TRVL-USDT": [
+      "BTC-USDT",
+      "TRVL-BTC",
+      "TRVL-USDT"
+  ],
+  "BTC-USDT,SYS-BTC,SYS-USDT": [
+      "BTC-USDT",
+      "SYS-BTC",
+      "SYS-USDT"
+  ],
+  "BTC-USDT,MBOX-BTC,MBOX-USDT": [
+      "BTC-USDT",
+      "MBOX-BTC",
+      "MBOX-USDT"
+  ],
+  "BTC-USDT,SCRT-BTC,SCRT-USDT": [
+      "BTC-USDT",
+      "SCRT-BTC",
+      "SCRT-USDT"
+  ],
+  "BTC-USDT,EGAME-BTC,EGAME-USDT": [
+      "BTC-USDT",
+      "EGAME-BTC",
+      "EGAME-USDT"
+  ],
+  "BTC-USDT,PEEL-BTC,PEEL-USDT": [
+      "BTC-USDT",
+      "PEEL-BTC",
+      "PEEL-USDT"
+  ],
+  "BTC-USDT,AERGO-BTC,AERGO-USDT": [
+      "BTC-USDT",
+      "AERGO-BTC",
+      "AERGO-USDT"
+  ],
+  "BTC-USDT,GMB-BTC,GMB-USDT": [
+      "BTC-USDT",
+      "GMB-BTC",
+      "GMB-USDT"
+  ],
+  "BTC-USDT,MKR-BTC,MKR-USDT": [
+      "BTC-USDT",
+      "MKR-BTC",
+      "MKR-USDT"
+  ],
+  "BTC-USDT,KAT-BTC,KAT-USDT": [
+      "BTC-USDT",
+      "KAT-BTC",
+      "KAT-USDT"
+  ],
+  "BTC-USDT,XYO-BTC,XYO-USDT": [
+      "BTC-USDT",
+      "XYO-BTC",
+      "XYO-USDT"
+  ],
+  "BTC-USDT,XRP-BTC,XRP-USDT": [
+      "BTC-USDT",
+      "XRP-BTC",
+      "XRP-USDT"
+  ],
+  "BTC-USDT,AVA-BTC,AVA-USDT": [
+      "BTC-USDT",
+      "AVA-BTC",
+      "AVA-USDT"
+  ],
+  "BTC-USDT,FTM-BTC,FTM-USDT": [
+      "BTC-USDT",
+      "FTM-BTC",
+      "FTM-USDT"
+  ],
+  "BTC-USDT,VSYS-BTC,VSYS-USDT": [
+      "BTC-USDT",
+      "VSYS-BTC",
+      "VSYS-USDT"
+  ],
+  "BTC-USDT,SOLVE-BTC,SOLVE-USDT": [
+      "BTC-USDT",
+      "SOLVE-BTC",
+      "SOLVE-USDT"
+  ],
+  "BTC-USDT,GRIN-BTC,GRIN-USDT": [
+      "BTC-USDT",
+      "GRIN-BTC",
+      "GRIN-USDT"
+  ],
+  "ETH-BTC,REQ-ETH,REQ-BTC": [
+      "ETH-BTC",
+      "REQ-ETH",
+      "REQ-BTC"
+  ],
+  "ETH-BTC,NULS-ETH,NULS-BTC": [
+      "ETH-BTC",
+      "NULS-ETH",
+      "NULS-BTC"
+  ],
+  "ETH-BTC,SNT-ETH,SNT-BTC": [
+      "ETH-BTC",
+      "SNT-ETH",
+      "SNT-BTC"
+  ],
+  "ETH-BTC,POWR-ETH,POWR-BTC": [
+      "ETH-BTC",
+      "POWR-ETH",
+      "POWR-BTC"
+  ],
+  "ETH-BTC,BCD-ETH,BCD-BTC": [
+      "ETH-BTC",
+      "BCD-ETH",
+      "BCD-BTC"
+  ],
+  "ETH-BTC,KNC-ETH,KNC-BTC": [
+      "ETH-BTC",
+      "KNC-ETH",
+      "KNC-BTC"
+  ],
+  "ETH-BTC,OMG-ETH,OMG-BTC": [
+      "ETH-BTC",
+      "OMG-ETH",
+      "OMG-BTC"
+  ],
+  "ETH-BTC,AMB-ETH,AMB-BTC": [
+      "ETH-BTC",
+      "AMB-ETH",
+      "AMB-BTC"
+  ],
+  "ETH-BTC,MANA-ETH,MANA-BTC": [
+      "ETH-BTC",
+      "MANA-ETH",
+      "MANA-BTC"
+  ],
+  "ETH-BTC,DGB-ETH,DGB-BTC": [
+      "ETH-BTC",
+      "DGB-ETH",
+      "DGB-BTC"
+  ],
+  "ETH-BTC,AION-ETH,AION-BTC": [
+      "ETH-BTC",
+      "AION-ETH",
+      "AION-BTC"
+  ],
+  "ETH-BTC,ENJ-ETH,ENJ-BTC": [
+      "ETH-BTC",
+      "ENJ-ETH",
+      "ENJ-BTC"
+  ],
+  "ETH-BTC,SNX-ETH,SNX-BTC": [
+      "ETH-BTC",
+      "SNX-ETH",
+      "SNX-BTC"
+  ],
+  "ETH-BTC,TIME-ETH,TIME-BTC": [
+      "ETH-BTC",
+      "TIME-ETH",
+      "TIME-BTC"
+  ],
+  "ETH-BTC,DASH-ETH,DASH-BTC": [
+      "ETH-BTC",
+      "DASH-ETH",
+      "DASH-BTC"
+  ],
+  "ETH-BTC,UTK-ETH,UTK-BTC": [
+      "ETH-BTC",
+      "UTK-ETH",
+      "UTK-BTC"
+  ],
+  "ETH-BTC,AXPR-ETH,AXPR-BTC": [
+      "ETH-BTC",
+      "AXPR-ETH",
+      "AXPR-BTC"
+  ],
+  "ETH-BTC,ETC-ETH,ETC-BTC": [
+      "ETH-BTC",
+      "ETC-ETH",
+      "ETC-BTC"
+  ],
+  "ETH-BTC,EOS-ETH,EOS-BTC": [
+      "ETH-BTC",
+      "EOS-ETH",
+      "EOS-BTC"
+  ],
+  "ETH-BTC,DENT-ETH,DENT-BTC": [
+      "ETH-BTC",
+      "DENT-ETH",
+      "DENT-BTC"
+  ],
+  "ETH-BTC,DRGN-ETH,DRGN-BTC": [
+      "ETH-BTC",
+      "DRGN-ETH",
+      "DRGN-BTC"
+  ],
+  "ETH-BTC,LTC-ETH,LTC-BTC": [
+      "ETH-BTC",
+      "LTC-ETH",
+      "LTC-BTC"
+  ],
+  "ETH-BTC,CV-ETH,CV-BTC": [
+      "ETH-BTC",
+      "CV-ETH",
+      "CV-BTC"
+  ],
+  "ETH-BTC,KEY-ETH,KEY-BTC": [
+      "ETH-BTC",
+      "KEY-ETH",
+      "KEY-BTC"
+  ],
+  "ETH-BTC,IOST-ETH,IOST-BTC": [
+      "ETH-BTC",
+      "IOST-ETH",
+      "IOST-BTC"
+  ],
+  "ETH-BTC,ADB-ETH,ADB-BTC": [
+      "ETH-BTC",
+      "ADB-ETH",
+      "ADB-BTC"
+  ],
+  "ETH-BTC,TEL-ETH,TEL-BTC": [
+      "ETH-BTC",
+      "TEL-ETH",
+      "TEL-BTC"
+  ],
+  "ETH-BTC,WAX-ETH,WAX-BTC": [
+      "ETH-BTC",
+      "WAX-ETH",
+      "WAX-BTC"
+  ],
+  "ETH-BTC,CAPP-ETH,CAPP-BTC": [
+      "ETH-BTC",
+      "CAPP-ETH",
+      "CAPP-BTC"
+  ],
+  "ETH-BTC,ELF-ETH,ELF-BTC": [
+      "ETH-BTC",
+      "ELF-ETH",
+      "ELF-BTC"
+  ],
+  "ETH-BTC,COV-ETH,COV-BTC": [
+      "ETH-BTC",
+      "COV-ETH",
+      "COV-BTC"
+  ],
+  "ETH-BTC,ZIL-ETH,ZIL-BTC": [
+      "ETH-BTC",
+      "ZIL-ETH",
+      "ZIL-BTC"
+  ],
+  "ETH-BTC,TOMO-ETH,TOMO-BTC": [
+      "ETH-BTC",
+      "TOMO-ETH",
+      "TOMO-BTC"
+  ],
+  "ETH-BTC,BAX-ETH,BAX-BTC": [
+      "ETH-BTC",
+      "BAX-ETH",
+      "BAX-BTC"
+  ],
+  "ETH-BTC,LYM-ETH,LYM-BTC": [
+      "ETH-BTC",
+      "LYM-ETH",
+      "LYM-BTC"
+  ],
+  "ETH-BTC,TRAC-ETH,TRAC-BTC": [
+      "ETH-BTC",
+      "TRAC-ETH",
+      "TRAC-BTC"
+  ],
+  "ETH-BTC,IOTX-ETH,IOTX-BTC": [
+      "ETH-BTC",
+      "IOTX-ETH",
+      "IOTX-BTC"
+  ],
+  "ETH-BTC,ONT-ETH,ONT-BTC": [
+      "ETH-BTC",
+      "ONT-ETH",
+      "ONT-BTC"
+  ],
+  "ETH-BTC,LOOM-ETH,LOOM-BTC": [
+      "ETH-BTC",
+      "LOOM-ETH",
+      "LOOM-BTC"
+  ],
+  "ETH-BTC,GO-ETH,GO-BTC": [
+      "ETH-BTC",
+      "GO-ETH",
+      "GO-BTC"
+  ],
+  "ETH-BTC,QKC-ETH,QKC-BTC": [
+      "ETH-BTC",
+      "QKC-ETH",
+      "QKC-BTC"
+  ],
+  "ETH-BTC,SOUL-ETH,SOUL-BTC": [
+      "ETH-BTC",
+      "SOUL-ETH",
+      "SOUL-BTC"
+  ],
+  "ETH-BTC,WAN-ETH,WAN-BTC": [
+      "ETH-BTC",
+      "WAN-ETH",
+      "WAN-BTC"
+  ],
+  "ETH-BTC,ETN-ETH,ETN-BTC": [
+      "ETH-BTC",
+      "ETN-ETH",
+      "ETN-BTC"
+  ],
+  "ETH-BTC,DOCK-ETH,DOCK-BTC": [
+      "ETH-BTC",
+      "DOCK-ETH",
+      "DOCK-BTC"
+  ],
+  "ETH-BTC,CS-ETH,CS-BTC": [
+      "ETH-BTC",
+      "CS-ETH",
+      "CS-BTC"
+  ],
+  "ETH-BTC,DAG-ETH,DAG-BTC": [
+      "ETH-BTC",
+      "DAG-ETH",
+      "DAG-BTC"
+  ],
+  "ETH-BTC,XLM-ETH,XLM-BTC": [
+      "ETH-BTC",
+      "XLM-ETH",
+      "XLM-BTC"
+  ],
+  "ETH-BTC,TRX-ETH,TRX-BTC": [
+      "ETH-BTC",
+      "TRX-ETH",
+      "TRX-BTC"
+  ],
+  "ETH-BTC,CPC-ETH,CPC-BTC": [
+      "ETH-BTC",
+      "CPC-ETH",
+      "CPC-BTC"
+  ],
+  "ETH-BTC,ZRX-ETH,ZRX-BTC": [
+      "ETH-BTC",
+      "ZRX-ETH",
+      "ZRX-BTC"
+  ],
+  "ETH-BTC,MVP-ETH,MVP-BTC": [
+      "ETH-BTC",
+      "MVP-ETH",
+      "MVP-BTC"
+  ],
+  "ETH-BTC,ELA-ETH,ELA-BTC": [
+      "ETH-BTC",
+      "ELA-ETH",
+      "ELA-BTC"
+  ],
+  "ETH-BTC,CRPT-ETH,CRPT-BTC": [
+      "ETH-BTC",
+      "CRPT-ETH",
+      "CRPT-BTC"
+  ],
+  "ETH-BTC,OLT-ETH,OLT-BTC": [
+      "ETH-BTC",
+      "OLT-ETH",
+      "OLT-BTC"
+  ],
+  "ETH-BTC,BCHSV-ETH,BCHSV-BTC": [
+      "ETH-BTC",
+      "BCHSV-ETH",
+      "BCHSV-BTC"
+  ],
+  "ETH-BTC,DCR-ETH,DCR-BTC": [
+      "ETH-BTC",
+      "DCR-ETH",
+      "DCR-BTC"
+  ],
+  "ETH-BTC,KCS-ETH,KCS-BTC": [
+      "ETH-BTC",
+      "KCS-ETH",
+      "KCS-BTC"
+  ],
+  "ETH-BTC,VET-ETH,VET-BTC": [
+      "ETH-BTC",
+      "VET-ETH",
+      "VET-BTC"
+  ],
+  "ETH-BTC,NEO-ETH,NEO-BTC": [
+      "ETH-BTC",
+      "NEO-ETH",
+      "NEO-BTC"
+  ],
+  "ETH-BTC,MHC-ETH,MHC-BTC": [
+      "ETH-BTC",
+      "MHC-ETH",
+      "MHC-BTC"
+  ],
+  "ETH-BTC,LOKI-ETH,LOKI-BTC": [
+      "ETH-BTC",
+      "LOKI-ETH",
+      "LOKI-BTC"
+  ],
+  "ETH-BTC,FET-ETH,FET-BTC": [
+      "ETH-BTC",
+      "FET-ETH",
+      "FET-BTC"
+  ],
+  "ETH-BTC,XMR-ETH,XMR-BTC": [
+      "ETH-BTC",
+      "XMR-ETH",
+      "XMR-BTC"
+  ],
+  "ETH-BTC,MTV-ETH,MTV-BTC": [
+      "ETH-BTC",
+      "MTV-ETH",
+      "MTV-BTC"
+  ],
+  "ETH-BTC,ATOM-ETH,ATOM-BTC": [
+      "ETH-BTC",
+      "ATOM-ETH",
+      "ATOM-BTC"
+  ],
+  "ETH-BTC,OCEAN-ETH,OCEAN-BTC": [
+      "ETH-BTC",
+      "OCEAN-ETH",
+      "OCEAN-BTC"
+  ],
+  "ETH-BTC,FX-ETH,FX-BTC": [
+      "ETH-BTC",
+      "FX-ETH",
+      "FX-BTC"
+  ],
+  "ETH-BTC,NIM-ETH,NIM-BTC": [
+      "ETH-BTC",
+      "NIM-ETH",
+      "NIM-BTC"
+  ],
+  "ETH-BTC,NRG-ETH,NRG-BTC": [
+      "ETH-BTC",
+      "NRG-ETH",
+      "NRG-BTC"
+  ],
+  "ETH-BTC,ALGO-ETH,ALGO-BTC": [
+      "ETH-BTC",
+      "ALGO-ETH",
+      "ALGO-BTC"
+  ],
+  "ETH-BTC,AMPL-ETH,AMPL-BTC": [
+      "ETH-BTC",
+      "AMPL-ETH",
+      "AMPL-BTC"
+  ],
+  "ETH-BTC,KAI-ETH,KAI-BTC": [
+      "ETH-BTC",
+      "KAI-ETH",
+      "KAI-BTC"
+  ],
+  "ETH-BTC,TONE-ETH,TONE-BTC": [
+      "ETH-BTC",
+      "TONE-ETH",
+      "TONE-BTC"
+  ],
+  "ETH-BTC,UQC-ETH,UQC-BTC": [
+      "ETH-BTC",
+      "UQC-ETH",
+      "UQC-BTC"
+  ],
+  "ETH-BTC,OPCT-ETH,OPCT-BTC": [
+      "ETH-BTC",
+      "OPCT-ETH",
+      "OPCT-BTC"
+  ],
+  "ETH-BTC,WBTC-ETH,WBTC-BTC": [
+      "ETH-BTC",
+      "WBTC-ETH",
+      "WBTC-BTC"
+  ],
+  "ETH-BTC,XDC-ETH,XDC-BTC": [
+      "ETH-BTC",
+      "XDC-ETH",
+      "XDC-BTC"
+  ],
+  "ETH-BTC,STRK-ETH,STRK-BTC": [
+      "ETH-BTC",
+      "STRK-ETH",
+      "STRK-BTC"
+  ],
+  "ETH-BTC,AGIX-ETH,AGIX-BTC": [
+      "ETH-BTC",
+      "AGIX-ETH",
+      "AGIX-BTC"
+  ],
+  "ETH-BTC,REP-ETH,REP-BTC": [
+      "ETH-BTC",
+      "REP-ETH",
+      "REP-BTC"
+  ],
+  "ETH-BTC,BNT-ETH,BNT-BTC": [
+      "ETH-BTC",
+      "BNT-ETH",
+      "BNT-BTC"
+  ],
+  "ETH-BTC,OXT-ETH,OXT-BTC": [
+      "ETH-BTC",
+      "OXT-ETH",
+      "OXT-BTC"
+  ],
+  "ETH-BTC,BAL-ETH,BAL-BTC": [
+      "ETH-BTC",
+      "BAL-ETH",
+      "BAL-BTC"
+  ],
+  "ETH-BTC,STORJ-ETH,STORJ-BTC": [
+      "ETH-BTC",
+      "STORJ-ETH",
+      "STORJ-BTC"
+  ],
+  "ETH-BTC,ALICE-ETH,ALICE-BTC": [
+      "ETH-BTC",
+      "ALICE-ETH",
+      "ALICE-BTC"
+  ],
+  "ETH-BTC,TLM-ETH,TLM-BTC": [
+      "ETH-BTC",
+      "TLM-ETH",
+      "TLM-BTC"
+  ],
+  "ETH-BTC,DEXE-ETH,DEXE-BTC": [
+      "ETH-BTC",
+      "DEXE-ETH",
+      "DEXE-BTC"
+  ],
+  "ETH-BTC,LRC-ETH,LRC-BTC": [
+      "ETH-BTC",
+      "LRC-ETH",
+      "LRC-BTC"
+  ],
+  "ETH-BTC,BAKE-ETH,BAKE-BTC": [
+      "ETH-BTC",
+      "BAKE-ETH",
+      "BAKE-BTC"
+  ],
+  "ETH-BTC,XYO-ETH,XYO-BTC": [
+      "ETH-BTC",
+      "XYO-ETH",
+      "XYO-BTC"
+  ],
+  "ETH-BTC,GMB-ETH,GMB-BTC": [
+      "ETH-BTC",
+      "GMB-ETH",
+      "GMB-BTC"
+  ],
+  "ETH-BTC,LSK-ETH,LSK-BTC": [
+      "ETH-BTC",
+      "LSK-ETH",
+      "LSK-BTC"
+  ],
+  "ETH-BTC,AVA-ETH,AVA-BTC": [
+      "ETH-BTC",
+      "AVA-ETH",
+      "AVA-BTC"
+  ],
+  "ETH-BTC,MKR-ETH,MKR-BTC": [
+      "ETH-BTC",
+      "MKR-ETH",
+      "MKR-BTC"
+  ],
+  "ETH-BTC,XRP-ETH,XRP-BTC": [
+      "ETH-BTC",
+      "XRP-ETH",
+      "XRP-BTC"
+  ],
+  "ETH-BTC,FTM-ETH,FTM-BTC": [
+      "ETH-BTC",
+      "FTM-ETH",
+      "FTM-BTC"
+  ],
+  "BTC-USDC,BCHSV-BTC,BCHSV-USDC": [
+      "BTC-USDC",
+      "BCHSV-BTC",
+      "BCHSV-USDC"
+  ],
+  "BTC-USDC,EOS-BTC,EOS-USDC": [
+      "BTC-USDC",
+      "EOS-BTC",
+      "EOS-USDC"
+  ],
+  "BTC-USDC,ETC-BTC,ETC-USDC": [
+      "BTC-USDC",
+      "ETC-BTC",
+      "ETC-USDC"
+  ],
+  "BTC-USDC,BCH-BTC,BCH-USDC": [
+      "BTC-USDC",
+      "BCH-BTC",
+      "BCH-USDC"
+  ],
+  "BTC-USDC,LTC-BTC,LTC-USDC": [
+      "BTC-USDC",
+      "LTC-BTC",
+      "LTC-USDC"
+  ],
+  "BTC-USDC,ZIL-BTC,ZIL-USDC": [
+      "BTC-USDC",
+      "ZIL-BTC",
+      "ZIL-USDC"
+  ],
+  "BTC-USDC,TRX-BTC,TRX-USDC": [
+      "BTC-USDC",
+      "TRX-BTC",
+      "TRX-USDC"
+  ],
+  "BTC-USDC,KCS-BTC,KCS-USDC": [
+      "BTC-USDC",
+      "KCS-BTC",
+      "KCS-USDC"
+  ],
+  "BTC-USDC,ETH-BTC,ETH-USDC": [
+      "BTC-USDC",
+      "ETH-BTC",
+      "ETH-USDC"
+  ],
+  "BTC-USDC,ATOM-BTC,ATOM-USDC": [
+      "BTC-USDC",
+      "ATOM-BTC",
+      "ATOM-USDC"
+  ],
+  "BTC-USDC,BNB-BTC,BNB-USDC": [
+      "BTC-USDC",
+      "BNB-BTC",
+      "BNB-USDC"
+  ],
+  "BTC-USDC,ALGO-BTC,ALGO-USDC": [
+      "BTC-USDC",
+      "ALGO-BTC",
+      "ALGO-USDC"
+  ],
+  "BTC-USDC,ADA-BTC,ADA-USDC": [
+      "BTC-USDC",
+      "ADA-BTC",
+      "ADA-USDC"
+  ],
+  "BTC-USDC,VRA-BTC,VRA-USDC": [
+      "BTC-USDC",
+      "VRA-BTC",
+      "VRA-USDC"
+  ],
+  "BTC-USDC,LINK-BTC,LINK-USDC": [
+      "BTC-USDC",
+      "LINK-BTC",
+      "LINK-USDC"
+  ],
+  "BTC-USDC,DOT-BTC,DOT-USDC": [
+      "BTC-USDC",
+      "DOT-BTC",
+      "DOT-USDC"
+  ],
+  "BTC-USDC,DOGE-BTC,DOGE-USDC": [
+      "BTC-USDC",
+      "DOGE-BTC",
+      "DOGE-USDC"
+  ],
+  "BTC-USDC,AVAX-BTC,AVAX-USDC": [
+      "BTC-USDC",
+      "AVAX-BTC",
+      "AVAX-USDC"
+  ],
+  "BTC-USDC,KDA-BTC,KDA-USDC": [
+      "BTC-USDC",
+      "KDA-BTC",
+      "KDA-USDC"
+  ],
+  "BTC-USDC,MATIC-BTC,MATIC-USDC": [
+      "BTC-USDC",
+      "MATIC-BTC",
+      "MATIC-USDC"
+  ],
+  "BTC-USDC,NEAR-BTC,NEAR-USDC": [
+      "BTC-USDC",
+      "NEAR-BTC",
+      "NEAR-USDC"
+  ],
+  "BTC-USDC,RUNE-BTC,RUNE-USDC": [
+      "BTC-USDC",
+      "RUNE-BTC",
+      "RUNE-USDC"
+  ],
+  "BTC-USDC,XCN-BTC,XCN-USDC": [
+      "BTC-USDC",
+      "XCN-BTC",
+      "XCN-USDC"
+  ],
+  "BTC-USDC,XRP-BTC,XRP-USDC": [
+      "BTC-USDC",
+      "XRP-BTC",
+      "XRP-USDC"
+  ],
+  "BTC-USDC,FTM-BTC,FTM-USDC": [
+      "BTC-USDC",
+      "FTM-BTC",
+      "FTM-USDC"
+  ],
+  "USDC-USDT,ETH-USDC,ETH-USDT": [
+      "USDC-USDT",
+      "ETH-USDC",
+      "ETH-USDT"
+  ],
+  "USDC-USDT,BTC-USDC,BTC-USDT": [
+      "USDC-USDT",
+      "BTC-USDC",
+      "BTC-USDT"
+  ],
+  "USDC-USDT,LTC-USDC,LTC-USDT": [
+      "USDC-USDT",
+      "LTC-USDC",
+      "LTC-USDT"
+  ],
+  "USDC-USDT,BCH-USDC,BCH-USDT": [
+      "USDC-USDT",
+      "BCH-USDC",
+      "BCH-USDT"
+  ],
+  "USDC-USDT,EOS-USDC,EOS-USDT": [
+      "USDC-USDT",
+      "EOS-USDC",
+      "EOS-USDT"
+  ],
+  "USDC-USDT,BCHSV-USDC,BCHSV-USDT": [
+      "USDC-USDT",
+      "BCHSV-USDC",
+      "BCHSV-USDT"
+  ],
+  "USDC-USDT,ADA-USDC,ADA-USDT": [
+      "USDC-USDT",
+      "ADA-USDC",
+      "ADA-USDT"
+  ],
+  "USDC-USDT,LINK-USDC,LINK-USDT": [
+      "USDC-USDT",
+      "LINK-USDC",
+      "LINK-USDT"
+  ],
+  "USDC-USDT,DOGE-USDC,DOGE-USDT": [
+      "USDC-USDT",
+      "DOGE-USDC",
+      "DOGE-USDT"
+  ],
+  "USDC-USDT,TXA-USDC,TXA-USDT": [
+      "USDC-USDT",
+      "TXA-USDC",
+      "TXA-USDT"
+  ],
+  "USDC-USDT,NTVRK-USDC,NTVRK-USDT": [
+      "USDC-USDT",
+      "NTVRK-USDC",
+      "NTVRK-USDT"
+  ],
+  "USDC-USDT,USDD-USDC,USDD-USDT": [
+      "USDC-USDT",
+      "USDD-USDC",
+      "USDD-USDT"
+  ],
+  "USDC-USDT,FITFI-USDC,FITFI-USDT": [
+      "USDC-USDT",
+      "FITFI-USDC",
+      "FITFI-USDT"
+  ],
+  "USDC-USDT,APE-USDC,APE-USDT": [
+      "USDC-USDT",
+      "APE-USDC",
+      "APE-USDT"
+  ],
+  "USDC-USDT,AVAX-USDC,AVAX-USDT": [
+      "USDC-USDT",
+      "AVAX-USDC",
+      "AVAX-USDT"
+  ],
+  "USDC-USDT,SHIB-USDC,SHIB-USDT": [
+      "USDC-USDT",
+      "SHIB-USDC",
+      "SHIB-USDT"
+  ],
+  "USDC-USDT,XCN-USDC,XCN-USDT": [
+      "USDC-USDT",
+      "XCN-USDC",
+      "XCN-USDT"
+  ],
+  "USDC-USDT,TRX-USDC,TRX-USDT": [
+      "USDC-USDT",
+      "TRX-USDC",
+      "TRX-USDT"
+  ],
+  "USDC-USDT,NEAR-USDC,NEAR-USDT": [
+      "USDC-USDT",
+      "NEAR-USDC",
+      "NEAR-USDT"
+  ],
+  "USDC-USDT,MATIC-USDC,MATIC-USDT": [
+      "USDC-USDT",
+      "MATIC-USDC",
+      "MATIC-USDT"
+  ],
+  "USDC-USDT,FTM-USDC,FTM-USDT": [
+      "USDC-USDT",
+      "FTM-USDC",
+      "FTM-USDT"
+  ],
+  "USDC-USDT,ZIL-USDC,ZIL-USDT": [
+      "USDC-USDT",
+      "ZIL-USDC",
+      "ZIL-USDT"
+  ],
+  "USDC-USDT,SOL-USDC,SOL-USDT": [
+      "USDC-USDT",
+      "SOL-USDC",
+      "SOL-USDT"
+  ],
+  "USDC-USDT,AFK-USDC,AFK-USDT": [
+      "USDC-USDT",
+      "AFK-USDC",
+      "AFK-USDT"
+  ],
+  "USDC-USDT,LUNC-USDC,LUNC-USDT": [
+      "USDC-USDT",
+      "LUNC-USDC",
+      "LUNC-USDT"
+  ],
+  "USDC-USDT,USTC-USDC,USTC-USDT": [
+      "USDC-USDT",
+      "USTC-USDC",
+      "USTC-USDT"
+  ],
+  "USDC-USDT,GMT-USDC,GMT-USDT": [
+      "USDC-USDT",
+      "GMT-USDC",
+      "GMT-USDT"
+  ],
+  "USDC-USDT,VRA-USDC,VRA-USDT": [
+      "USDC-USDT",
+      "VRA-USDC",
+      "VRA-USDT"
+  ],
+  "USDC-USDT,DOT-USDC,DOT-USDT": [
+      "USDC-USDT",
+      "DOT-USDC",
+      "DOT-USDT"
+  ],
+  "USDC-USDT,RUNE-USDC,RUNE-USDT": [
+      "USDC-USDT",
+      "RUNE-USDC",
+      "RUNE-USDT"
+  ],
+  "USDC-USDT,ATOM-USDC,ATOM-USDT": [
+      "USDC-USDT",
+      "ATOM-USDC",
+      "ATOM-USDT"
+  ],
+  "USDC-USDT,BNB-USDC,BNB-USDT": [
+      "USDC-USDT",
+      "BNB-USDC",
+      "BNB-USDT"
+  ],
+  "USDC-USDT,JASMY-USDC,JASMY-USDT": [
+      "USDC-USDT",
+      "JASMY-USDC",
+      "JASMY-USDT"
+  ],
+  "USDC-USDT,KCS-USDC,KCS-USDT": [
+      "USDC-USDT",
+      "KCS-USDC",
+      "KCS-USDT"
+  ],
+  "USDC-USDT,KDA-USDC,KDA-USDT": [
+      "USDC-USDT",
+      "KDA-USDC",
+      "KDA-USDT"
+  ],
+  "USDC-USDT,ALGO-USDC,ALGO-USDT": [
+      "USDC-USDT",
+      "ALGO-USDC",
+      "ALGO-USDT"
+  ],
+  "USDC-USDT,LUNA-USDC,LUNA-USDT": [
+      "USDC-USDT",
+      "LUNA-USDC",
+      "LUNA-USDT"
+  ],
+  "USDC-USDT,OP-USDC,OP-USDT": [
+      "USDC-USDT",
+      "OP-USDC",
+      "OP-USDT"
+  ],
+  "USDC-USDT,LDO-USDC,LDO-USDT": [
+      "USDC-USDT",
+      "LDO-USDC",
+      "LDO-USDT"
+  ],
+  "USDC-USDT,SWFTC-USDC,SWFTC-USDT": [
+      "USDC-USDT",
+      "SWFTC-USDC",
+      "SWFTC-USDT"
+  ],
+  "USDC-USDT,BUSD-USDC,BUSD-USDT": [
+      "USDC-USDT",
+      "BUSD-USDC",
+      "BUSD-USDT"
+  ],
+  "USDC-USDT,ETC-USDC,ETC-USDT": [
+      "USDC-USDT",
+      "ETC-USDC",
+      "ETC-USDT"
+  ],
+  "USDC-USDT,XRP-USDC,XRP-USDT": [
+      "USDC-USDT",
+      "XRP-USDC",
+      "XRP-USDT"
+  ],
+  "DOGE-USDT,SHIB-DOGE,SHIB-USDT": [
+      "DOGE-USDT",
+      "SHIB-DOGE",
+      "SHIB-USDT"
+  ],
+  "DOGE-USDC,SHIB-DOGE,SHIB-USDC": [
+      "DOGE-USDC",
+      "SHIB-DOGE",
+      "SHIB-USDC"
+  ],
+  "TRX-USDC,USDD-TRX,USDD-USDC": [
+      "TRX-USDC",
+      "USDD-TRX",
+      "USDD-USDC"
+  ],
+  "KCS-USDC,EOS-KCS,EOS-USDC": [
+      "KCS-USDC",
+      "EOS-KCS",
+      "EOS-USDC"
+  ],
+  "KCS-USDC,LTC-KCS,LTC-USDC": [
+      "KCS-USDC",
+      "LTC-KCS",
+      "LTC-USDC"
+  ],
+  "KCS-USDC,TRX-KCS,TRX-USDC": [
+      "KCS-USDC",
+      "TRX-KCS",
+      "TRX-USDC"
+  ],
+  "KCS-USDC,ATOM-KCS,ATOM-USDC": [
+      "KCS-USDC",
+      "ATOM-KCS",
+      "ATOM-USDC"
+  ],
+  "KCS-USDC,BCH-KCS,BCH-USDC": [
+      "KCS-USDC",
+      "BCH-KCS",
+      "BCH-USDC"
+  ],
+  "KCS-USDC,ADA-KCS,ADA-USDC": [
+      "KCS-USDC",
+      "ADA-KCS",
+      "ADA-USDC"
+  ],
+  "KCS-USDC,BCHSV-KCS,BCHSV-USDC": [
+      "KCS-USDC",
+      "BCHSV-KCS",
+      "BCHSV-USDC"
+  ],
+  "KCS-USDC,DOT-KCS,DOT-USDC": [
+      "KCS-USDC",
+      "DOT-KCS",
+      "DOT-USDC"
+  ],
+  "KCS-USDC,LINK-KCS,LINK-USDC": [
+      "KCS-USDC",
+      "LINK-KCS",
+      "LINK-USDC"
+  ],
+  "KCS-USDC,BNB-KCS,BNB-USDC": [
+      "KCS-USDC",
+      "BNB-KCS",
+      "BNB-USDC"
+  ],
+  "KCS-USDC,DOGE-KCS,DOGE-USDC": [
+      "KCS-USDC",
+      "DOGE-KCS",
+      "DOGE-USDC"
+  ],
+  "KCS-USDC,ALGO-KCS,ALGO-USDC": [
+      "KCS-USDC",
+      "ALGO-KCS",
+      "ALGO-USDC"
+  ],
+  "KCS-USDC,XRP-KCS,XRP-USDC": [
+      "KCS-USDC",
+      "XRP-KCS",
+      "XRP-USDC"
+  ],
+  "BTC-BRL,ETH-BTC,ETH-BRL": [
+      "BTC-BRL",
+      "ETH-BTC",
+      "ETH-BRL"
+  ],
+  "USDT-BRL,ETH-USDT,ETH-BRL": [
+      "USDT-BRL",
+      "ETH-USDT",
+      "ETH-BRL"
+  ],
+  "USDT-BRL,BTC-USDT,BTC-BRL": [
+      "USDT-BRL",
+      "BTC-USDT",
+      "BTC-BRL"
+  ],
+  "ETH-DAI,MKR-ETH,MKR-DAI": [
+      "ETH-DAI",
+      "MKR-ETH",
+      "MKR-DAI"
+  ],
+  "USDT-DAI,ETH-USDT,ETH-DAI": [
+      "USDT-DAI",
+      "ETH-USDT",
+      "ETH-DAI"
+  ],
+  "USDT-DAI,BTC-USDT,BTC-DAI": [
+      "USDT-DAI",
+      "BTC-USDT",
+      "BTC-DAI"
+  ],
+  "USDT-DAI,MKR-USDT,MKR-DAI": [
+      "USDT-DAI",
+      "MKR-USDT",
+      "MKR-DAI"
+  ],
+  "BTC-DAI,ETH-BTC,ETH-DAI": [
+      "BTC-DAI",
+      "ETH-BTC",
+      "ETH-DAI"
+  ],
+  "BTC-DAI,MKR-BTC,MKR-DAI": [
+      "BTC-DAI",
+      "MKR-BTC",
+      "MKR-DAI"
+  ]
+}
