@@ -7,10 +7,8 @@ kucoin.init({
   environment: 'live'
 });
 
-
 let subjectsMap = {
 };
-
 
 function getSubjects() {
   return Object.keys(subjectsMap.data);

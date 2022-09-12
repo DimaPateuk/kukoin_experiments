@@ -2,18 +2,8 @@ require('dotenv').config()
 const kucoin = require('./kucoin')
 const { v4 } = require('uuid')
 const exactMath = require('exact-math')
-const debounce = require('debounce')
 const strategies = require('./pairs');
-const { exec } = require("child_process");
-
-
-// const strategies = {
-//     "BTC-USDT,ETH-BTC,ETH-USDT": [
-//         "BTC-USDT",
-//         "ETH-BTC",
-//         "ETH-USDT"
-//     ],
-// };
+const { Subject, from, filter, switchMap, switchMapTo, tap, take } = require('rxjs')
 
 kucoin.init({
   apiKey: process.env.apiKey,
@@ -22,18 +12,95 @@ kucoin.init({
   environment: 'live'
 });
 
+const subjectsMap = {};
 
-const subjectsMap = {
-};
+const ordersSubject = new Subject();
+const strategiesSubject = new Subject();
 
-let baseFee = {};
-kucoin.baseFee()
-  .then((response) => {
-    baseFee = response;
-    baseFee.takerFeeRate = parseFloat(response.data.takerFeeRate);
-    baseFee.makerFeeRate = parseFloat(response.data.makerFeeRate);
+function placeOrder(params) {
+  return kucoin.placeOrder({
+    type: 'market',
+    ...params
   });
+}
 
+function filterOrder(symbol, side) {
+    return filter(event => {
+      if (event.side !== side) {
+        return;
+      }
+
+      return event.symbol === buy;
+    });
+}
+
+let oneStrategyInProgress = false;
+
+function startStratgy(currentStrateg, potentialProfitInfo) {
+
+
+  if (oneStrategyInProgress) {
+    console.log('skip');
+    console.log(JSON.stringify(potentialProfitInfo, null, 4));
+    console.log('------');
+    return;
+  }
+  const currentStrategy = [buy, buy2, sell];
+
+  oneStrategyInProgress = true;
+
+  const strategyData = [];
+
+  return from(
+    placeOrder({
+      side: 'buy',
+      symbol: buy,
+      funds: '1',
+    })
+  ).pipe(
+    switchMapTo(ordersSubject),
+    filterOrder(buy, 'buy'),
+    switchMap((buyData) => {
+      strategyData.push(buyData);
+      return from(
+        placeOrder({
+          side: 'buy',
+          symbol: buy2,
+          funds: buyData.filledSize,
+        })
+      );
+    }),
+    switchMapTo(ordersSubject),
+    filterOrder(buy2, 'buy'),
+    switchMap((buy2Data) => {
+      strategyData.push(buy2Data);
+
+      return from(
+        placeOrder({
+          side: 'sell',
+          symbol: buy2,
+          size: buy2Data.filledSize,
+        })
+      );
+    }),
+    switchMapTo(ordersSubject),
+    filterOrder(sell, 'sell'),
+    tap(sellData => {
+      strategyData.push(sellData);
+      const [buy, buy2, sell] = strategyData;
+
+      console.log('---+++');
+      console.log(currentStrategy)
+      console.log('final', sell.filledSize);
+      console.log('---+++');
+
+      oneStrategyInProgress = false;
+      strategiesSubject.next({ strategy: currentStrateg, type: 'end' })
+    }),
+    take(1)
+  )
+  .subscribe();
+}
 
 kucoin.initSocket({ topic: "allTicker" }, (msg) => {
   const parsedMessage = JSON.parse(msg);
@@ -44,6 +111,19 @@ kucoin.initSocket({ topic: "allTicker" }, (msg) => {
 
 });
 
+kucoin.initSocket({ topic: "orders" }, (msg) => {
+  const parsedMessage = JSON.parse(msg);
+
+  if (parsedMessage.topic !== "/spotMarket/tradeOrders") {
+    return;
+  }
+
+  const { data } = parsedMessage;
+
+  if (data.status === 'done') {
+    ordersSubject.next(data);
+  }
+});
 
 const info = {};
 
@@ -52,13 +132,17 @@ function makeCalculation() {
 
   strategiesArray
     .forEach((strategyName) => {
-      const [buy, buy2, sell] = strategies[strategyName];
+      const currentStrategy = strategies[strategyName];
+      const [buy, buy2, sell] = currentStrategy;
+
+      if(!buy.split('-')[1] !== 'USDT') {
+        return;
+      }
 
       if (
         !subjectsMap[buy]?.bestBid ||
         !subjectsMap[buy2]?.bestBid ||
-        !subjectsMap[sell]?.bestAsk ||
-        !baseFee.takerFeeRate
+        !subjectsMap[sell]?.bestAsk
       ) {
         return;
       }
@@ -74,7 +158,7 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
-      const MYbaseFee = 0.05;
+      const MYbaseFee = 0.01;
       const spend = prices[0];
       const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1],  1 + MYbaseFee));
       const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
@@ -84,17 +168,22 @@ function makeCalculation() {
         return;
       }
 
+      strategiesSubject.next({ strategy: currentStrategy, type: 'start' });
       info[strategyName] = {
+        strategyName,
         prices,
         final: receive - spend
       };
-
+      startStratgy(currentStrategy, info[strategyName]);
     });
 
+}
+
+function logPotentialProfit() {
   const entries = Object
     .entries(info)
 
-  // console.clear();
+  console.clear();
   entries
     .forEach(([key, value]) => {
       console.log('-----');
@@ -103,5 +192,3 @@ function makeCalculation() {
       console.log(value.final);
     });
 }
-
-
