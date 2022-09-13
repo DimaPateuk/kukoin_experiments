@@ -37,19 +37,6 @@ const subjectsMap = {};
 
 const ordersSubject = new Subject();
 const balansesSubject = new Subject();
-const strategiesSubject = new Subject();
-
-balansesSubject
-  .pipe(
-    filter(event => {
-      return event.currency === 'USDT';
-    }),
-    tap(event => {
-      console.log('USDT', event.available)
-    })
-
-  )
-  .subscribe();
 
 function placeOrder(params) {
 
@@ -66,18 +53,6 @@ function placeOrder(params) {
     });
 }
 
-function filterOrder(symbol, side) {
-  return pipe(
-    filter(event => {
-      if (event.side !== side) {
-        return;
-      }
-
-      return event.symbol === symbol;
-    }),
-    take(1)
-  );
-}
 
 function waitBlanceUpdateAfterOrder(currency, contextSymbol) {
     return switchMap((beforeBalanceEvent) => {
@@ -85,14 +60,15 @@ function waitBlanceUpdateAfterOrder(currency, contextSymbol) {
       return balansesSubject
         .pipe(
           filter(balanceEvent => {
+            console.log(balanceEvent);
             return balanceEvent.currency === currency &&
               balanceEvent.relationContext.symbol === contextSymbol &&
               balanceEvent.relationContext.orderId === beforeBalanceEvent.orderId;
           }),
-          map((e) => {
-            return beforeBalanceEvent;
+          take(1),
+          map((balanceEvent) => {
+            return [beforeBalanceEvent, balanceEvent];
           }),
-          take(1)
         );
     });
 }
@@ -100,13 +76,6 @@ function waitBlanceUpdateAfterOrder(currency, contextSymbol) {
 let oneStrategyInProgress = false;
 
 function startStratgy(currentStrategy, potentialProfitInfo) {
-  if (oneStrategyInProgress) {
-    console.log('skip', currentStrategy);
-    console.log(JSON.stringify(potentialProfitInfo, null, 4));
-    console.log('------');
-    return;
-  }
-
   oneStrategyInProgress = true;
 
   const [buy, buy2, sell] = currentStrategy;
@@ -115,6 +84,7 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
 
   console.log(currentStrategy, '---- started');
 
+
   placeOrder({
     side: 'buy',
     symbol: buy,
@@ -122,13 +92,9 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
   });
 
   return ordersSubject.pipe(
-    tap(() => {
-      console.log('margek buy', buy);
-    }),
-    filterOrder(buy, 'buy'),
     waitBlanceUpdateAfterOrder(buy.split('-')[0], buy),
-    tap((buyData) => {
-      console.log('margek buy done');
+    tap(([buyData]) => {
+      console.log('manage buy done');
       strategyData.push(buyData);
 
       placeOrder({
@@ -140,15 +106,11 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
         ),
       });
     }),
-    tap(() => {
-      console.log('margek buy2', buy2);
-    }),
     switchMapTo(ordersSubject),
-    filterOrder(buy2, 'buy'),
     waitBlanceUpdateAfterOrder(buy2.split('-')[0], buy2),
-    tap((buy2Data) => {
+    tap(([buy2Data]) => {
       strategyData.push(buy2Data);
-      console.log('margek buy2 done');
+      console.log('manage buy2 done');
 
       placeOrder({
         side: 'sell',
@@ -159,29 +121,29 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
         ),
       })
     }),
-    tap(() => {
-      console.log('margek sell', sell);
-    }),
     switchMapTo(ordersSubject),
-    filterOrder(sell, 'sell'),
-    //waitBlanceUpdateAfterOrder(sell.split('-')[1], sell),
-    delay(500),
-    tap(sellData => {
+    waitBlanceUpdateAfterOrder(sell.split('-')[1], sell),
+    tap(([sellData, balanceEvent]) => {
       strategyData.push(sellData);
       const [buy, buy2, sell] = strategyData;
-      console.log('margek sell done');
+      console.log('manage sell done');
 
       console.log('---+++');
-      console.log(currentStrategy)
+      console.log(currentStrategy);
+      console.log(strategyData.length);
+      console.log(balanceEvent);
       console.log('---+++');
 
-      oneStrategyInProgress = false;
-      strategiesSubject.next({ strategy: currentStrategy, type: 'end' })
+      // oneStrategyInProgress = false;
     }),
     take(1)
   )
   .subscribe();
 }
+
+// setTimeout(() => {
+//   startStratgy([ 'BTC-USDT', 'PUNDIX-BTC', 'PUNDIX-USDT' ]);
+// }, 5000);
 
 kucoin.initSocket({ topic: "allTicker" }, (msg) => {
   const parsedMessage = JSON.parse(msg);
@@ -240,6 +202,10 @@ function makeCalculation() {
         return;
       }
 
+      if (oneStrategyInProgress) {
+        return;
+      }
+
       if (
         !subjectsMap[buy]?.bestBid ||
         !subjectsMap[buy2]?.bestBid ||
@@ -259,37 +225,18 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
-      const MYbaseFee = 0.05;
+      const MYbaseFee = 0;
       const spend = prices[0];
       const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1],  1 + MYbaseFee));
       const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
 
       if (receive - spend < 0) {
+        console.log(currentStrategy);
         delete info[strategyName]
         return;
       }
 
-      strategiesSubject.next({ strategy: currentStrategy, type: 'start' });
-      info[strategyName] = {
-        strategyName,
-        prices,
-        final: receive - spend
-      };
       startStratgy(currentStrategy, info[strategyName]);
     });
-
 }
 
-function logPotentialProfit() {
-  const entries = Object
-    .entries(info)
-
-  console.clear();
-  entries
-    .forEach(([key, value]) => {
-      console.log('-----');
-      console.log(key);
-      console.log(value.prices);
-      console.log(value.final);
-    });
-}
