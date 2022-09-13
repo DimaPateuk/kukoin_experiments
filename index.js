@@ -12,9 +12,9 @@ const {
   take,
   map,
   of,
-  delay,
-  interval,
+  last,
   merge,
+  delay,
 } = require('rxjs')
 
 kucoin.init({
@@ -40,6 +40,15 @@ const subjectsMap = {};
 const ordersSubject = new Subject();
 const balansesSubject = new Subject();
 
+balansesSubject
+  .subscribe(({balance}) => {
+    if (balance.currency !== 'USDT') {
+      return;
+    }
+
+    console.log(balance.available);
+  });
+
 function placeOrder(params) {
 
   return kucoin.placeOrder({
@@ -52,31 +61,6 @@ function placeOrder(params) {
 
     }, (err) => {
       console.log(err);
-    });
-}
-
-
-function waitBlanceUpdateAfterOrder(currency, contextSymbol) {
-    return switchMap((beforeBalanceEvent) => {
-      const filledSize = parseFloat(beforeBalanceEvent.filledSize);
-      if (filledSize <= balancesMap[currency]) {
-
-        return of([beforeBalanceEvent]);
-      }
-
-      return balansesSubject
-        .pipe(
-          filter(balanceEvent => {
-            return balanceEvent.currency === currency &&
-              balanceEvent.relationContext.symbol === contextSymbol &&
-              balanceEvent.relationContext.orderId === beforeBalanceEvent.orderId &&
-              filledSize <= parseFloat(balanceEvent.available);
-          }),
-          take(1),
-          map((balanceEvent) => {
-            return [beforeBalanceEvent, balanceEvent];
-          }),
-        );
     });
 }
 
@@ -102,6 +86,7 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
   let step = 1;
   return merge(ordersSubject, balansesSubject)
     .pipe(
+      delay(500),
       tap(event => {
         if (event.order) {
           doneOrder.push(event.order);
@@ -172,23 +157,14 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
       tap(() => {
         if (doneOrder.length !== 3 || step !== 3) {
 
-          console.log(
-            'in progress',
-            availableMap
-          );
           return;
         }
         step++;
-
-        console.log(
-          'final',
-          availableMap
-        );
-
+        console.log('strategy end', currentStrategy);
       }),
       takeWhile(() => {
         return step < 4;
-      })
+      }),
     )
     .subscribe();
 }
@@ -199,6 +175,15 @@ kucoin.initSocket({ topic: "allTicker" }, (msg) => {
   subjectsMap[parsedMessage.subject] = parsedMessage.data;
 
   makeCalculation();
+
+}, () => {
+
+  Object
+    .keys(subjectsMap)
+    .forEach(key => {
+      delete subjectsMap[key];
+    });
+  console.log(key);
 
 });
 
@@ -264,13 +249,12 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
-      const MYbaseFee = 0;
+      const MYbaseFee = 0.01;
       const spend = prices[0];
       const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1],  1 + MYbaseFee));
       const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
 
       if (receive - spend < 0) {
-        console.log(currentStrategy);
         delete info[strategyName]
         return;
       }
