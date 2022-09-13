@@ -4,15 +4,17 @@ const { v4 } = require('uuid')
 const exactMath = require('exact-math')
 const strategies = require('./pairs');
 const {
-  pipe,
+  takeWhile,
   Subject,
   filter,
   switchMap,
-  switchMapTo,
   tap,
   take,
   map,
+  of,
   delay,
+  interval,
+  merge,
 } = require('rxjs')
 
 kucoin.init({
@@ -23,6 +25,7 @@ kucoin.init({
 });
 
 const symbolsInfo = {};
+
 kucoin.getSymbols()
   .then(response => {
 
@@ -34,7 +37,6 @@ kucoin.getSymbols()
   });
 
 const subjectsMap = {};
-
 const ordersSubject = new Subject();
 const balansesSubject = new Subject();
 
@@ -56,14 +58,19 @@ function placeOrder(params) {
 
 function waitBlanceUpdateAfterOrder(currency, contextSymbol) {
     return switchMap((beforeBalanceEvent) => {
+      const filledSize = parseFloat(beforeBalanceEvent.filledSize);
+      if (filledSize <= balancesMap[currency]) {
+
+        return of([beforeBalanceEvent]);
+      }
 
       return balansesSubject
         .pipe(
           filter(balanceEvent => {
-            console.log(balanceEvent);
             return balanceEvent.currency === currency &&
               balanceEvent.relationContext.symbol === contextSymbol &&
-              balanceEvent.relationContext.orderId === beforeBalanceEvent.orderId;
+              balanceEvent.relationContext.orderId === beforeBalanceEvent.orderId &&
+              filledSize <= parseFloat(balanceEvent.available);
           }),
           take(1),
           map((balanceEvent) => {
@@ -84,66 +91,107 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
 
   console.log(currentStrategy, '---- started');
 
-
   placeOrder({
     side: 'buy',
     symbol: buy,
-    funds: '2',
+    funds: '1',
   });
 
-  return ordersSubject.pipe(
-    waitBlanceUpdateAfterOrder(buy.split('-')[0], buy),
-    tap(([buyData]) => {
-      console.log('manage buy done');
-      strategyData.push(buyData);
+  const doneOrder = [];
+  const availableMap = {};
+  let step = 1;
+  return merge(ordersSubject, balansesSubject)
+    .pipe(
+      tap(event => {
+        if (event.order) {
+          doneOrder.push(event.order);
+        }
 
-      placeOrder({
-        side: 'buy',
-        symbol: buy2,
-        funds: buyData.filledSize.substring(
-          0,
-          symbolsInfo[buy2].minFunds.length
-        ),
-      });
-    }),
-    switchMapTo(ordersSubject),
-    waitBlanceUpdateAfterOrder(buy2.split('-')[0], buy2),
-    tap(([buy2Data]) => {
-      strategyData.push(buy2Data);
-      console.log('manage buy2 done');
+        if (event.balance) {
+          availableMap[event.balance.currency] = parseFloat(event.balance.available);
+        }
+      }),
+      tap(() => {
+        if (doneOrder.length !== 1 || step !== 1) {
+          return;
+        }
 
-      placeOrder({
-        side: 'sell',
-        symbol: sell,
-        size: buy2Data.filledSize.substring(
-          0,
-          symbolsInfo[sell].baseMinSize.length
-        ),
+        const order = doneOrder[0];
+        const filledSize = parseFloat(order.filledSize);
+        const currency = order.symbol.split('-')[1];
+        const available = availableMap[currency];
+
+        if (!available) {
+          return;
+        }
+
+        if (filledSize >= available) {
+          return;
+        }
+
+        step++;
+
+        placeOrder({
+          side: 'buy',
+          symbol: buy2,
+          funds: order.filledSize.substring(
+            0,
+            symbolsInfo[buy2].minFunds.length
+          ),
+        });
+      }),
+      tap(() => {
+        if (doneOrder.length !== 2 || step !== 2) {
+          return;
+        }
+
+        const order = doneOrder[1];
+        const filledSize = parseFloat(order.filledSize);
+        const currency = order.symbol.split('-')[0];
+        const available = availableMap[currency];
+
+        if (!available) {
+          return;
+        }
+
+        if (filledSize >= available) {
+          return;
+        }
+
+        step++;
+
+        placeOrder({
+          side: 'sell',
+          symbol: sell,
+          size: order.filledSize.substring(
+            0,
+            symbolsInfo[sell].baseMinSize.length
+          ),
+        });
+      }),
+      tap(() => {
+        if (doneOrder.length !== 3 || step !== 3) {
+
+          console.log(
+            'in progress',
+            availableMap
+          );
+          return;
+        }
+        step++;
+
+        console.log(
+          'final',
+          availableMap
+        );
+
+      }),
+      takeWhile(() => {
+        return step < 4;
       })
-    }),
-    switchMapTo(ordersSubject),
-    waitBlanceUpdateAfterOrder(sell.split('-')[1], sell),
-    tap(([sellData, balanceEvent]) => {
-      strategyData.push(sellData);
-      const [buy, buy2, sell] = strategyData;
-      console.log('manage sell done');
-
-      console.log('---+++');
-      console.log(currentStrategy);
-      console.log(strategyData.length);
-      console.log(balanceEvent);
-      console.log('---+++');
-
-      // oneStrategyInProgress = false;
-    }),
-    take(1)
-  )
-  .subscribe();
+    )
+    .subscribe();
 }
-
-// setTimeout(() => {
-//   startStratgy([ 'BTC-USDT', 'PUNDIX-BTC', 'PUNDIX-USDT' ]);
-// }, 5000);
 
 kucoin.initSocket({ topic: "allTicker" }, (msg) => {
   const parsedMessage = JSON.parse(msg);
@@ -164,7 +212,7 @@ kucoin.initSocket({ topic: "orders" }, (msg) => {
   const { data } = parsedMessage;
 
   if (data.status === 'done') {
-    ordersSubject.next(data);
+    ordersSubject.next({ order: data });
   }
 });
 
@@ -176,17 +224,8 @@ kucoin.initSocket({ topic: "balances" }, (msg) => {
   }
 
   const { data } = parsedMessage;
-  balansesSubject.next(data);
+  balansesSubject.next({ balance: data });
 });
-
-// test !!!
-// setTimeout(() => {
-
-//   const test = [ 'BTC-USDT', 'XLM-BTC', 'XLM-USDT' ];
-
-//   startStratgy(test);
-// }, 5000);
-
 
 const info = {};
 
