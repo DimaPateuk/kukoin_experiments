@@ -6,15 +6,8 @@ const strategies = require('./pairs');
 const {
   takeWhile,
   Subject,
-  filter,
-  switchMap,
   tap,
-  take,
-  map,
-  of,
-  last,
   merge,
-  delay,
 } = require('rxjs')
 
 kucoin.init({
@@ -25,10 +18,8 @@ kucoin.init({
 });
 
 const symbolsInfo = {};
-
 kucoin.getSymbols()
   .then(response => {
-
     response
       .data
       .forEach(item => {
@@ -36,17 +27,36 @@ kucoin.getSymbols()
       });
   });
 
+
+
+function updateSubjectsInfo() {
+  // return kucoin.getAllTickers()
+  //   .then(response => {
+  //     response
+  //       .data
+  //       .ticker
+  //       .forEach(item => {
+  //         subjectsMap[item.symbol] = {
+  //           bestAsk: item.buy,
+  //           bestBid: item.sell,
+  //         }
+  //       });
+  //   });
+}
+updateSubjectsInfo();
+
+
 const subjectsMap = {};
 const ordersSubject = new Subject();
-const balansesSubject = new Subject();
+const balancesSubject = new Subject();
 
-balansesSubject
+balancesSubject
   .subscribe(({balance}) => {
     if (balance.currency !== 'USDT') {
       return;
     }
 
-    console.log(balance.available);
+    console.log('USDT', balance.available);
   });
 
 function placeOrder(params) {
@@ -57,6 +67,13 @@ function placeOrder(params) {
       ...params
     })
     .then((res) => {
+      console.log(params.symbol, res);
+
+      // if (res.code === '200004') {
+      //   console.log(params);
+      //   return placeOrder(params);
+      // }
+
       return res;
 
     }, (err) => {
@@ -64,14 +81,48 @@ function placeOrder(params) {
     });
 }
 
+const currenciesMap = {};
+kucoin.getCurrencies()
+  .then(response => {
+    response.data
+      .forEach(item => {
+        currenciesMap[item.currency] = item;
+      });
+  });
+
+const accountsInfo = {};
+kucoin.getAccounts()
+  .then(response => {
+    account.data = response.data;
+
+    console.log(accountsInfo.data);
+  })
+
+const MYbaseFee = 0.01;
+function processNumber(strNumber, pair, type) {
+  // const { myFeeMul } = tradeFeesMap[pair];
+  // const num = parseFloat(strNumber);
+  const num = exactMath.mul(parseFloat(strNumber), exactMath.add(1, -0.005));
+  const [beforeDot, afterDot] = num.toString().split('.');
+
+  if (!afterDot) {
+    return strNumber;
+  }
+
+  const amount = type === 'buy' ? symbolsInfo[pair].quoteIncrement : symbolsInfo[pair].baseIncrement;
+  const countNumbersAfterDot = amount.split('.')[1].length;
+
+  return `${beforeDot}.${afterDot.substring(0, countNumbersAfterDot)}`;
+}
+
 let oneStrategyInProgress = false;
 
-function startStratgy(currentStrategy, potentialProfitInfo) {
+let count = 0;
+
+function startStrategy(currentStrategy) {
   oneStrategyInProgress = true;
 
   const [buy, buy2, sell] = currentStrategy;
-
-  const strategyData = [];
 
   console.log(currentStrategy, '---- started');
 
@@ -84,9 +135,9 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
   const doneOrder = [];
   const availableMap = {};
   let step = 1;
-  return merge(ordersSubject, balansesSubject)
+
+  merge(ordersSubject, balancesSubject)
     .pipe(
-      delay(500),
       tap(event => {
         if (event.order) {
           doneOrder.push(event.order);
@@ -103,26 +154,25 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
 
         const order = doneOrder[0];
         const filledSize = parseFloat(order.filledSize);
-        const currency = order.symbol.split('-')[1];
+        const currency = order.symbol.split('-')[0];
         const available = availableMap[currency];
 
         if (!available) {
           return;
         }
 
-        if (filledSize >= available) {
+        if (filledSize > available) {
           return;
         }
 
         step++;
 
+        console.log('price', order.price);
+        console.log('buy2', processNumber(order.filledSize, buy2, 'buy'));
         placeOrder({
           side: 'buy',
           symbol: buy2,
-          funds: order.filledSize.substring(
-            0,
-            symbolsInfo[buy2].minFunds.length
-          ),
+          funds: processNumber(order.filledSize, buy2, 'buy'),
         });
       }),
       tap(() => {
@@ -139,28 +189,34 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
           return;
         }
 
-        if (filledSize >= available) {
+        if (filledSize > available) {
           return;
         }
 
         step++;
 
+        console.log('price', order.price);
+        console.log('sell', processNumber(order.filledSize, sell, 'sell'));
         placeOrder({
           side: 'sell',
           symbol: sell,
-          size: order.filledSize.substring(
-            0,
-            symbolsInfo[sell].baseMinSize.length
-          ),
+          size: processNumber(order.filledSize, sell, 'sell'),
         });
       }),
       tap(() => {
         if (doneOrder.length !== 3 || step !== 3) {
-
           return;
         }
+
+        console.log('price', doneOrder[2].price);
         step++;
         console.log('strategy end', currentStrategy);
+
+        // count++;
+        // if (count < 5) {
+        //   oneStrategyInProgress = false;
+        // }
+
       }),
       takeWhile(() => {
         return step < 4;
@@ -169,23 +225,25 @@ function startStratgy(currentStrategy, potentialProfitInfo) {
     .subscribe();
 }
 
-kucoin.initSocket({ topic: "allTicker" }, (msg) => {
-  const parsedMessage = JSON.parse(msg);
+setTimeout(() => {
+  kucoin.initSocket({ topic: "allTicker" }, (msg) => {
+    const parsedMessage = JSON.parse(msg);
+  
+    subjectsMap[parsedMessage.subject] = parsedMessage.data;
+  
+    makeCalculation();
+  
+  }, () => {
+    Object
+      .keys(subjectsMap)
+      .forEach(key => {
+        delete subjectsMap[key];
+      });
+  }, () => {
+    updateSubjectsInfo();
+  });
+},1000);
 
-  subjectsMap[parsedMessage.subject] = parsedMessage.data;
-
-  makeCalculation();
-
-}, () => {
-
-  Object
-    .keys(subjectsMap)
-    .forEach(key => {
-      delete subjectsMap[key];
-    });
-  console.log(key);
-
-});
 
 kucoin.initSocket({ topic: "orders" }, (msg) => {
   const parsedMessage = JSON.parse(msg);
@@ -209,12 +267,18 @@ kucoin.initSocket({ topic: "balances" }, (msg) => {
   }
 
   const { data } = parsedMessage;
-  balansesSubject.next({ balance: data });
+  balancesSubject.next({ balance: data });
 });
 
-const info = {};
-
 function makeCalculation() {
+  if (oneStrategyInProgress) {
+    return;
+  }
+
+  // startStrategy([ 'TRX-USDT', 'KLV-TRX', 'KLV-USDT' ]);
+
+  // return;
+
   const strategiesArray = Object.keys(strategies);
 
   strategiesArray
@@ -249,17 +313,15 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
-      const MYbaseFee = 0.01;
       const spend = prices[0];
       const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1],  1 + MYbaseFee));
       const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
 
       if (receive - spend < 0) {
-        delete info[strategyName]
         return;
       }
-
-      startStratgy(currentStrategy, info[strategyName]);
+      console.log(prices);
+      startStrategy(currentStrategy);
     });
 }
 
