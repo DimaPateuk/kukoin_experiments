@@ -1,13 +1,14 @@
 
 const {
   symbolsInfo,
+  MYbaseFee,
 } = require('./resources');
 const exactMath = require('exact-math');
 
 function processNumber(strNumber, pair, type) {
   // const { myFeeMul } = tradeFeesMap[pair];
   // const num = parseFloat(strNumber);
-  const num = exactMath.mul(parseFloat(strNumber), exactMath.add(1, -0.005));
+  const num = exactMath.mul(parseFloat(strNumber), exactMath.add(1, -MYbaseFee));
   const [beforeDot, afterDot] = num.toString().split('.');
 
   if (!afterDot) {

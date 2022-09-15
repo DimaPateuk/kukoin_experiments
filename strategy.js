@@ -10,10 +10,11 @@ const { processNumber } = require('./processNumber');
 const {
   ordersSubject,
   symbolsOrderBookInfoMap,
-  balancesSubject
+  balancesSubject,
+  MYbaseFee
 } = require('./resources');
 
-const MYbaseFee = 0.01;
+
 let oneStrategyInProgress = false;
 let count = 0;
 
@@ -128,9 +129,9 @@ function makeCalculation() {
     return;
   }
 
-  startStrategy([ 'BTC-USDT', 'PEEL-BTC', 'PEEL-USDT' ]);
+//   startStrategy([ 'BTC-USDT', 'PEEL-BTC', 'PEEL-USDT' ]);
 
-  return;
+//   return;
   const strategiesArray = Object.keys(strategies);
 
   strategiesArray
@@ -157,6 +158,11 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
+      if (prices.some(p => p < 0.001)) {
+        return;
+      }
+
+
       const spend = prices[0];
       const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1], 1 + MYbaseFee));
       const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
@@ -165,18 +171,19 @@ function makeCalculation() {
         return;
       }
 
-      console.log(prices);
       if(buy.split('-')[1] !== 'USDT') {
-        console.log(currentStrategy);
-        console.log('----');
+        // console.log(currentStrategy);
+        // console.log('----');
         return;
       }
+      console.log(prices);
+      console.log(currentStrategy, receive - spend);
 
       if (oneStrategyInProgress) {
         return;
       }
 
-      //startStrategy(currentStrategy);
+    //   startStrategy(currentStrategy);
     });
 }
 

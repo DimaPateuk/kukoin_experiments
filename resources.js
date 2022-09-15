@@ -2,6 +2,8 @@ require('dotenv').config()
 const kucoin = require('./kucoin')
 const { Subject } = require('rxjs')
 
+
+const MYbaseFee = 0.005;
 const symbolsInfo = {};
 kucoin.getSymbols()
   .then(response => {
@@ -13,18 +15,18 @@ kucoin.getSymbols()
   });
 
 function updateSubjectsInfo() {
-  // return kucoin.getAllTickers()
-  //   .then(response => {
-  //     response
-  //       .data
-  //       .ticker
-  //       .forEach(item => {
-  //         symbolsOrderBookInfoMap[item.symbol] = {
-  //           bestAsk: item.buy,
-  //           bestBid: item.sell,
-  //         }
-  //       });
-  //   });
+  return kucoin.getAllTickers()
+    .then(response => {
+      response
+        .data
+        .ticker
+        .forEach(item => {
+          symbolsOrderBookInfoMap[item.symbol] = {
+            bestAsk: item.buy,
+            bestBid: item.sell,
+          }
+        });
+    });
 }
 updateSubjectsInfo();
 
@@ -80,5 +82,6 @@ module.exports = {
   ordersSubject,
   symbolsOrderBookInfoMap,
   updateSubjectsInfo,
-  balancesSubject
+  balancesSubject,
+  MYbaseFee
 }
