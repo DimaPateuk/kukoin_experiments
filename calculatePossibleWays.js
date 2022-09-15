@@ -1,4 +1,4 @@
-const kucoin = require('./kucoin')
+const kucoin = require('./kucoin');
 
 kucoin.init({
   apiKey: process.env.apiKey,
@@ -7,11 +7,11 @@ kucoin.init({
   environment: 'live'
 });
 
-let subjectsMap = {
+let symbolsOrderBookInfoMap = {
 };
 
 function getSubjects() {
-  return Object.keys(subjectsMap.data);
+  return Object.keys(symbolsOrderBookInfoMap.data);
 }
 
 
@@ -66,7 +66,7 @@ function makeCalculation() {
 kucoin.getSymbols()
   .then((response) => {
 
-    subjectsMap.data = response
+    symbolsOrderBookInfoMap.data = response
       .data
       .reduce((res, item) => {
 
@@ -79,14 +79,3 @@ kucoin.getSymbols()
     makeCalculation();
 
   });
-
-// kucoin.initSocket({ topic: "allTicker" }, (msg) => {
-//   const parsedMessage = JSON.parse(msg);
-
-//   subjectsMap[parsedMessage.subject] = parsedMessage.data;
-
-//   makeCalculation();
-
-// });
-
-

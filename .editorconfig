@@ -1,0 +1,23 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# http://editorconfig.org
+
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{md,jade,pug}]
+trim_trailing_whitespace = false
+
+[*.{html,scss,css,js,mjs,pug,ts,tsx}]
+indent_size = 4
+# non-standard properites of prettier for it not to accidentally break something.Usage of prettier is discouraged
+# max_line_length = off won't work because it'll use its default config
+max_line_length = 10000
+quote_type = single

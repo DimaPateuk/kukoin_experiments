@@ -1,3 +1,4 @@
+require('dotenv').config();
 const qs = require('querystring')
 const crypto = require('crypto')
 
@@ -54,5 +55,12 @@ const Kucoin = {
     }
   }
 }
+
+Kucoin.init({
+  apiKey: process.env.apiKey,
+  secretKey: process.env.secretKey,
+  passphrase: process.env.passphrase,
+  environment: 'live'
+});
 
 module.exports = Kucoin
