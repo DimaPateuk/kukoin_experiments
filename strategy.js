@@ -1,5 +1,4 @@
 const exactMath = require('exact-math');
-const strategies = require('./pairs');
 const { placeOrder } = require('./placeOrder');
 const {
   takeWhile,
@@ -11,8 +10,10 @@ const {
   ordersSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
-  MYbaseFee
+  MYbaseFee,
+  strategies,
 } = require('./resources');
+const { calcProfit } = require('./calcProfit');
 
 
 let oneStrategyInProgress = false;
@@ -124,19 +125,22 @@ function startStrategy(currentStrategy) {
     .subscribe();
 }
 
+
 function makeCalculation() {
   if (oneStrategyInProgress) {
     return;
   }
 
+//   [ 0.99999, 0.4963, 0.5271 ]
+// [ 'USDC-USDT', 'TXA-USDC', 'TXA-USDT' ] 0.04624402732458999
+
+
 //   startStrategy([ 'BTC-USDT', 'PEEL-BTC', 'PEEL-USDT' ]);
 
 //   return;
-  const strategiesArray = Object.keys(strategies);
 
-  strategiesArray
-    .forEach((strategyName) => {
-      const currentStrategy = strategies[strategyName];
+  strategies
+    .forEach((currentStrategy) => {
       const [buy, buy2, sell] = currentStrategy;
 
       if (
@@ -158,16 +162,27 @@ function makeCalculation() {
         pricesFlow[2]
       ];
 
-      if (prices.some(p => p < 0.001)) {
-        return;
-      }
+      const {
+        spend,
+        spend2,
+        receive,
+      } = calcProfit(prices, MYbaseFee);
 
-
-      const spend = prices[0];
-      const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1], 1 + MYbaseFee));
-      const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
+      console.log(prices);
+      console.log(currentStrategy, receive - spend);
 
       if (receive - spend < 0) {
+        const someCalc = calcProfit(prices, 0.001);
+        const someCalc2 = calcProfit(prices, 0);
+
+        // if (someCalc[0] - someCalc[2] > 0) {
+        //     console.log('someCalc-----', currentStrategy, someCalc[0] - someCalc[2]);
+        // }
+
+        // if (someCalc2[0] - someCalc2[2] > 0) {
+        //     console.log('someCalc2-----', currentStrategy, someCalc2[0] - someCalc2[2]);
+        // }
+
         return;
       }
 
@@ -176,6 +191,7 @@ function makeCalculation() {
         // console.log('----');
         return;
       }
+
       console.log(prices);
       console.log(currentStrategy, receive - spend);
 
@@ -183,7 +199,7 @@ function makeCalculation() {
         return;
       }
 
-    //   startStrategy(currentStrategy);
+      startStrategy(currentStrategy);
     });
 }
 

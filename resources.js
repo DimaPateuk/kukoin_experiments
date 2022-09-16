@@ -1,9 +1,41 @@
 require('dotenv').config()
 const kucoin = require('./kucoin')
 const { Subject } = require('rxjs')
+const calculatedStrategies = require('./pairs');
+const strategies = Object
+  .entries(calculatedStrategies)
+  .filter(([key, value]) => {
+    console.log(key, value);
+    return value[0].split('-')[1] === 'USDT';
+  })
 
+  .filter(([key]) => {
+    return key.indexOf('ETH') === -1;
+  })
+  .filter(([key]) => {
+    return key.indexOf('KCS') === -1;
+  })
+  .filter(([key]) => {
+    return key.indexOf('BTC') === -1;
+  })
+  .map(entry => entry[1]);
 
-const MYbaseFee = 0.005;
+const symbolsToTrack = Object.keys(
+  strategies
+  .reduce((res, pairs) => {
+    if (Object.keys(res).length + 3 > 110) {
+      return res;
+    }
+    pairs
+      .forEach(pair => {
+        res[pair] = true;
+      });
+    return res;
+  }, {})
+);
+console.log(symbolsToTrack, symbolsToTrack.length);
+
+const MYbaseFee = 0.001;
 const symbolsInfo = {};
 kucoin.getSymbols()
   .then(response => {
@@ -14,21 +46,22 @@ kucoin.getSymbols()
       });
   });
 
-function updateSubjectsInfo() {
+function getAllTickersInfo() {
   return kucoin.getAllTickers()
     .then(response => {
       response
         .data
         .ticker
         .forEach(item => {
+
           symbolsOrderBookInfoMap[item.symbol] = {
-            bestAsk: item.buy,
-            bestBid: item.sell,
+            bestAsk: item.sell,
+            bestBid: item.buy,
           }
         });
     });
 }
-updateSubjectsInfo();
+//getAllTickersInfo();
 
 const symbolsOrderBookInfoMap = {};
 const ordersSubject = new Subject();
@@ -75,13 +108,16 @@ kucoin.getAccounts()
   });
 
 
+
 module.exports = {
   symbolsInfo,
   accountsInfo,
   currenciesMap,
   ordersSubject,
   symbolsOrderBookInfoMap,
-  updateSubjectsInfo,
+  getAllTickersInfo,
   balancesSubject,
-  MYbaseFee
+  MYbaseFee,
+  strategies,
+  symbolsToTrack
 }

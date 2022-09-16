@@ -1,17 +1,39 @@
-require('dotenv').config()
 const kucoin = require('./kucoin');
 const {
   ordersSubject,
   symbolsOrderBookInfoMap,
-  updateSubjectsInfo,
   balancesSubject,
+  symbolsToTrack,
+  getAllTickersInfo,
 } = require('./resources');
 const { makeCalculation } = require('./strategy');
 
 setTimeout(() => {
-  kucoin.initSocket({ topic: "allTicker" }, (msg) => {
+  // kucoin.initSocket({ topic: "allTicker" }, (msg) => {
+  //   const parsedMessage = JSON.parse(msg);
+  //   symbolsOrderBookInfoMap[parsedMessage.subject] = parsedMessage.data;
+
+  //   makeCalculation();
+
+  // }, () => {
+  //   Object
+  //     .keys(symbolsOrderBookInfoMap)
+  //     .forEach(key => {
+  //       delete symbolsOrderBookInfoMap[key];
+  //     });
+  // });
+
+  kucoin.initSocket({ topic: "ticker", symbols: symbolsToTrack }, (msg) => {
     const parsedMessage = JSON.parse(msg);
-    symbolsOrderBookInfoMap[parsedMessage.subject] = parsedMessage.data;
+
+    const symbol = parsedMessage?.topic?.split(':')[1];
+    if (!symbol) {
+      console.log(parsedMessage);
+      return;
+    }
+    symbolsOrderBookInfoMap[symbol] = parsedMessage.data;
+
+
     makeCalculation();
 
   }, () => {
@@ -21,9 +43,10 @@ setTimeout(() => {
         delete symbolsOrderBookInfoMap[key];
       });
   }, () => {
-    updateSubjectsInfo();
+    //getAllTickersInfo();
   });
 }, 1000);
+
 
 kucoin.initSocket({ topic: "orders" }, (msg) => {
   const parsedMessage = JSON.parse(msg);
