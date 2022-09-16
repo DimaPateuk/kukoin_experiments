@@ -16,11 +16,11 @@ const {
 const { calcProfit } = require('./calcProfit');
 
 
-let oneStrategyInProgress = false;
+let oneStrategyInProgress = null;
 let count = 0;
 
 function startStrategy(currentStrategy) {
-  oneStrategyInProgress = true;
+  oneStrategyInProgress = currentStrategy;
 
   const [buy, buy2, sell] = currentStrategy;
 
@@ -126,82 +126,66 @@ function startStrategy(currentStrategy) {
 }
 
 
+function checkStrategy (currentStrategy) {
+  const [buy, buy2, sell] = currentStrategy;
+
+  if (
+    !symbolsOrderBookInfoMap[buy]?.bestBid ||
+    !symbolsOrderBookInfoMap[buy2]?.bestBid ||
+    !symbolsOrderBookInfoMap[sell]?.bestAsk
+  ) {
+    return;
+  }
+  const pricesFlow = [
+    symbolsOrderBookInfoMap[buy].bestAsk,
+    symbolsOrderBookInfoMap[buy2].bestAsk,
+    symbolsOrderBookInfoMap[sell].bestBid
+  ].map(num => parseFloat(num));
+
+  const realPrices = [
+    pricesFlow[0],
+    pricesFlow[1],
+    pricesFlow[2]
+  ];
+
+  const predictablePrices = [
+    exactMath.mul(pricesFlow[0], 0.995),
+    pricesFlow[1],
+    pricesFlow[2]
+  ];
+
+  if (oneStrategyInProgress) {
+    return;
+  }
+
+  doStrategy(currentStrategy, realPrices, 'real');
+  doStrategy(currentStrategy, predictablePrices, 'predict');
+}
+
+function doStrategy(currentStrategy, prices, description) {
+  const {
+    spend,
+    spend2,
+    receive,
+  } = calcProfit(prices, MYbaseFee);
+
+  console.log('---', description);
+  console.log(prices);
+  console.log(currentStrategy, receive - spend);
+  if (receive - spend > 0) {
+    oneStrategyInProgress = currentStrategy;
+  }
+}
+
+
 function makeCalculation() {
   if (oneStrategyInProgress) {
     return;
   }
 
-//   [ 0.99999, 0.4963, 0.5271 ]
-// [ 'USDC-USDT', 'TXA-USDC', 'TXA-USDT' ] 0.04624402732458999
-
-
-//   startStrategy([ 'BTC-USDT', 'PEEL-BTC', 'PEEL-USDT' ]);
-
-//   return;
-
-  strategies
-    .forEach((currentStrategy) => {
-      const [buy, buy2, sell] = currentStrategy;
-
-      if (
-        !symbolsOrderBookInfoMap[buy]?.bestBid ||
-        !symbolsOrderBookInfoMap[buy2]?.bestBid ||
-        !symbolsOrderBookInfoMap[sell]?.bestAsk
-      ) {
-        return;
-      }
-      const pricesFlow = [
-        symbolsOrderBookInfoMap[buy].bestAsk,
-        symbolsOrderBookInfoMap[buy2].bestAsk,
-        symbolsOrderBookInfoMap[sell].bestBid
-      ].map(num => parseFloat(num));
-
-      const prices = [
-        pricesFlow[0],
-        pricesFlow[1],
-        pricesFlow[2]
-      ];
-
-      const {
-        spend,
-        spend2,
-        receive,
-      } = calcProfit(prices, MYbaseFee);
-
-      console.log(prices);
-      console.log(currentStrategy, receive - spend);
-
-      if (receive - spend < 0) {
-        const someCalc = calcProfit(prices, 0.001);
-        const someCalc2 = calcProfit(prices, 0);
-
-        // if (someCalc[0] - someCalc[2] > 0) {
-        //     console.log('someCalc-----', currentStrategy, someCalc[0] - someCalc[2]);
-        // }
-
-        // if (someCalc2[0] - someCalc2[2] > 0) {
-        //     console.log('someCalc2-----', currentStrategy, someCalc2[0] - someCalc2[2]);
-        // }
-
-        return;
-      }
-
-      if(buy.split('-')[1] !== 'USDT') {
-        // console.log(currentStrategy);
-        // console.log('----');
-        return;
-      }
-
-      console.log(prices);
-      console.log(currentStrategy, receive - spend);
-
-      if (oneStrategyInProgress) {
-        return;
-      }
-
-      startStrategy(currentStrategy);
-    });
+  strategies.forEach(checkStrategy);
 }
+// implement profitable strategies
 
 module.exports = {
   makeCalculation,

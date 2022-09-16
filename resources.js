@@ -9,16 +9,24 @@ const strategies = Object
     return value[0].split('-')[1] === 'USDT';
   })
 
-  .filter(([key]) => {
-    return key.indexOf('ETH') === -1;
+  .filter(([key, value]) => {
+    console.log(key, value);
+    return value[0].split('-')[0] !== 'USDC';
   })
-  .filter(([key]) => {
-    return key.indexOf('KCS') === -1;
-  })
-  .filter(([key]) => {
-    return key.indexOf('BTC') === -1;
-  })
-  .map(entry => entry[1]);
+
+
+  // .filter(([key]) => {
+  //   return key.indexOf('ETH') === -1;
+  // })
+  // .filter(([key]) => {
+  //   return key.indexOf('KCS') === -1;
+  // })
+  // .filter(([key]) => {
+  //   return key.indexOf('BTC') === -1;
+  // })
+  .map(entry => entry[1])
+  // .splice(0, 1);
+
 
 const symbolsToTrack = Object.keys(
   strategies
