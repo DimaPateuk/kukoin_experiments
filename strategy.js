@@ -16,11 +16,11 @@ const {
 const { calcProfit } = require('./calcProfit');
 
 
-let oneStrategyInProgress = null;
+let oneStrategyInProgress = false;
 let count = 0;
 
 function startStrategy(currentStrategy) {
-  oneStrategyInProgress = currentStrategy;
+  oneStrategyInProgress = true;
 
   const [buy, buy2, sell] = currentStrategy;
 
@@ -67,12 +67,12 @@ function startStrategy(currentStrategy) {
 
         step++;
 
-        console.log('price', order.price);
-        console.log('buy2', processNumber(order.filledSize, buy2, 'buy'));
+        const buyAmount = processNumber(available.toString(), buy2, 'buy');
+        console.log('buy2', buy2, available, buyAmount);
         placeOrder({
           side: 'buy',
           symbol: buy2,
-          funds: processNumber(order.filledSize, buy2, 'buy'),
+          funds: buyAmount,
         });
       }),
       tap(() => {
@@ -95,12 +95,12 @@ function startStrategy(currentStrategy) {
 
         step++;
 
-        console.log('price', order.price);
-        console.log('sell', processNumber(order.filledSize, sell, 'sell'));
+        const sellAmount = processNumber(available.toString(), sell, 'sell');
+        console.log('sell', sell, available, sellAmount);
         placeOrder({
           side: 'sell',
           symbol: sell,
-          size: processNumber(order.filledSize, sell, 'sell'),
+          size: sellAmount,
         });
       }),
       tap(() => {
@@ -108,14 +108,15 @@ function startStrategy(currentStrategy) {
           return;
         }
 
-        console.log('price', doneOrder[2].price);
         step++;
         console.log('strategy end', currentStrategy);
 
-        // count++;
-        // if (count < 5) {
-        //   oneStrategyInProgress = false;
-        // }
+        count++;
+        if (count < 5) {
+          oneStrategyInProgress = false;
+        } else {
+          console.log(count, 'times really ?');
+        }
 
       }),
       takeWhile(() => {
@@ -149,7 +150,7 @@ function checkStrategy (currentStrategy) {
   ];
 
   const predictablePrices = [
-    exactMath.mul(pricesFlow[0], 0.995),
+    exactMath.mul(pricesFlow[0], 0.998),
     pricesFlow[1],
     pricesFlow[2]
   ];
@@ -158,22 +159,19 @@ function checkStrategy (currentStrategy) {
     return;
   }
 
-  doStrategy(currentStrategy, realPrices, 'real');
-  doStrategy(currentStrategy, predictablePrices, 'predict');
+  doRealStrategy(currentStrategy, realPrices);
+  // doPredictedStrategy(currentStrategy, predictablePrices);
 }
 
-function doStrategy(currentStrategy, prices, description) {
+
+function doRealStrategy(currentStrategy, prices) {
   const {
     spend,
-    spend2,
     receive,
-  } = calcProfit(prices, MYbaseFee);
+  } = calcProfit(prices, currentStrategy);
 
-  console.log('---', description);
-  console.log(prices);
-  console.log(currentStrategy, receive - spend);
   if (receive - spend > 0) {
-    oneStrategyInProgress = currentStrategy;
+    startStrategy(currentStrategy);
   }
 }
 
@@ -183,9 +181,10 @@ function makeCalculation() {
     return;
   }
 
+  //startStrategy([ 'TRX-USDT', 'WIN-TRX', 'WIN-USDT' ]);
+
   strategies.forEach(checkStrategy);
 }
-// implement profitable strategies
 
 module.exports = {
   makeCalculation,

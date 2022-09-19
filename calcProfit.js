@@ -1,17 +1,25 @@
 const exactMath = require('exact-math');
+const tradeFees = require('./tradeFees');
 
-function calcProfit(prices, MYbaseFee) {
-    const spend = prices[0];
-    const spend2 = exactMath.div(1 - MYbaseFee, exactMath.mul(prices[1], 1 + MYbaseFee));
-    const receive = exactMath.mul(exactMath.mul(spend2, 1 - MYbaseFee), prices[2]);
+function calcProfit(prices, currentStrategy) {
+    const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
+    const spend = exactMath.mul(prices[0], fees[0] + 1);
+    const spend2 = exactMath.div(
+      1,
+      exactMath.mul(prices[1], fees[1] + 1)
+      );
+    const receive = exactMath.mul(
+      spend2,
+      exactMath.mul(prices[2], fees[2] + 1)
+    );
 
     return {
-        spend,
-        spend2,
-        receive,
+      spend,
+      spend2,
+      receive,
     };
 }
 
 module.exports = {
-    calcProfit,
+  calcProfit,
 };

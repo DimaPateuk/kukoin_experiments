@@ -5,12 +5,10 @@ const calculatedStrategies = require('./pairs');
 const strategies = Object
   .entries(calculatedStrategies)
   .filter(([key, value]) => {
-    console.log(key, value);
     return value[0].split('-')[1] === 'USDT';
   })
 
   .filter(([key, value]) => {
-    console.log(key, value);
     return value[0].split('-')[0] !== 'USDC';
   })
 
@@ -41,9 +39,9 @@ const symbolsToTrack = Object.keys(
     return res;
   }, {})
 );
-console.log(symbolsToTrack, symbolsToTrack.length);
+//console.log(symbolsToTrack, symbolsToTrack.length);
 
-const MYbaseFee = 0.001;
+const MYbaseFee = 0.0015;
 const symbolsInfo = {};
 kucoin.getSymbols()
   .then(response => {
@@ -114,8 +112,6 @@ kucoin.getAccounts()
       );
     });
   });
-
-
 
 module.exports = {
   symbolsInfo,

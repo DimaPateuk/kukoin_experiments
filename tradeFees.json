@@ -1,0 +1,4337 @@
+{
+    "TRX-BTC": {
+        "symbol": "TRX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WIN-TRX": {
+        "symbol": "WIN-TRX",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WIN-BTC": {
+        "symbol": "WIN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KLV-TRX": {
+        "symbol": "KLV-TRX",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "KLV-BTC": {
+        "symbol": "KLV-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TRX-USDT": {
+        "symbol": "TRX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WIN-USDT": {
+        "symbol": "WIN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KLV-USDT": {
+        "symbol": "KLV-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "NFT-TRX": {
+        "symbol": "NFT-TRX",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NFT-USDT": {
+        "symbol": "NFT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDD-TRX": {
+        "symbol": "USDD-TRX",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDD-USDT": {
+        "symbol": "USDD-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KCS-USDT": {
+        "symbol": "KCS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EOS-KCS": {
+        "symbol": "EOS-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EOS-USDT": {
+        "symbol": "EOS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LTC-KCS": {
+        "symbol": "LTC-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LTC-USDT": {
+        "symbol": "LTC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NEO-KCS": {
+        "symbol": "NEO-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NEO-USDT": {
+        "symbol": "NEO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRX-KCS": {
+        "symbol": "TRX-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATOM-KCS": {
+        "symbol": "ATOM-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATOM-USDT": {
+        "symbol": "ATOM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCH-KCS": {
+        "symbol": "BCH-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCH-USDT": {
+        "symbol": "BCH-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ADA-KCS": {
+        "symbol": "ADA-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ADA-USDT": {
+        "symbol": "ADA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCHSV-KCS": {
+        "symbol": "BCHSV-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCHSV-USDT": {
+        "symbol": "BCHSV-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOT-KCS": {
+        "symbol": "DOT-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOT-USDT": {
+        "symbol": "DOT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LINK-KCS": {
+        "symbol": "LINK-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LINK-USDT": {
+        "symbol": "LINK-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MIR-KCS": {
+        "symbol": "MIR-KCS",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MIR-USDT": {
+        "symbol": "MIR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "BNB-KCS": {
+        "symbol": "BNB-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNB-USDT": {
+        "symbol": "BNB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XLM-KCS": {
+        "symbol": "XLM-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XLM-USDT": {
+        "symbol": "XLM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VET-KCS": {
+        "symbol": "VET-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VET-USDT": {
+        "symbol": "VET-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DASH-KCS": {
+        "symbol": "DASH-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DASH-USDT": {
+        "symbol": "DASH-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UNI-KCS": {
+        "symbol": "UNI-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UNI-USDT": {
+        "symbol": "UNI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AAVE-KCS": {
+        "symbol": "AAVE-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AAVE-USDT": {
+        "symbol": "AAVE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOGE-KCS": {
+        "symbol": "DOGE-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOGE-USDT": {
+        "symbol": "DOGE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZEC-KCS": {
+        "symbol": "ZEC-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZEC-USDT": {
+        "symbol": "ZEC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XTZ-KCS": {
+        "symbol": "XTZ-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XTZ-USDT": {
+        "symbol": "XTZ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GRT-KCS": {
+        "symbol": "GRT-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GRT-USDT": {
+        "symbol": "GRT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALGO-KCS": {
+        "symbol": "ALGO-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALGO-USDT": {
+        "symbol": "ALGO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EWT-KCS": {
+        "symbol": "EWT-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EWT-USDT": {
+        "symbol": "EWT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TOKO-KCS": {
+        "symbol": "TOKO-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TOKO-USDT": {
+        "symbol": "TOKO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MJT-KCS": {
+        "symbol": "MJT-KCS",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MJT-USDT": {
+        "symbol": "MJT-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XRP-KCS": {
+        "symbol": "XRP-KCS",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XRP-USDT": {
+        "symbol": "XRP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KCS-ETH": {
+        "symbol": "KCS-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EOS-ETH": {
+        "symbol": "EOS-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LTC-ETH": {
+        "symbol": "LTC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NEO-ETH": {
+        "symbol": "NEO-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRX-ETH": {
+        "symbol": "TRX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATOM-ETH": {
+        "symbol": "ATOM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCHSV-ETH": {
+        "symbol": "BCHSV-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XLM-ETH": {
+        "symbol": "XLM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VET-ETH": {
+        "symbol": "VET-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DASH-ETH": {
+        "symbol": "DASH-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALGO-ETH": {
+        "symbol": "ALGO-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XRP-ETH": {
+        "symbol": "XRP-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KCS-BTC": {
+        "symbol": "KCS-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EOS-BTC": {
+        "symbol": "EOS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LTC-BTC": {
+        "symbol": "LTC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NEO-BTC": {
+        "symbol": "NEO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATOM-BTC": {
+        "symbol": "ATOM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCH-BTC": {
+        "symbol": "BCH-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ADA-BTC": {
+        "symbol": "ADA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCHSV-BTC": {
+        "symbol": "BCHSV-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOT-BTC": {
+        "symbol": "DOT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LINK-BTC": {
+        "symbol": "LINK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNB-BTC": {
+        "symbol": "BNB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XLM-BTC": {
+        "symbol": "XLM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VET-BTC": {
+        "symbol": "VET-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DASH-BTC": {
+        "symbol": "DASH-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AAVE-BTC": {
+        "symbol": "AAVE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOGE-BTC": {
+        "symbol": "DOGE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZEC-BTC": {
+        "symbol": "ZEC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XTZ-BTC": {
+        "symbol": "XTZ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALGO-BTC": {
+        "symbol": "ALGO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EWT-BTC": {
+        "symbol": "EWT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TOKO-BTC": {
+        "symbol": "TOKO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XRP-BTC": {
+        "symbol": "XRP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDT-TUSD": {
+        "symbol": "USDT-TUSD",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETH-USDT": {
+        "symbol": "ETH-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETH-TUSD": {
+        "symbol": "ETH-TUSD",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BTC-USDT": {
+        "symbol": "BTC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BTC-TUSD": {
+        "symbol": "BTC-TUSD",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XRP-TUSD": {
+        "symbol": "XRP-TUSD",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDT-USDC": {
+        "symbol": "USDT-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EOS-USDC": {
+        "symbol": "EOS-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETC-USDT": {
+        "symbol": "ETC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETC-USDC": {
+        "symbol": "ETC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LTC-USDC": {
+        "symbol": "LTC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRX-USDC": {
+        "symbol": "TRX-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCHSV-USDC": {
+        "symbol": "BCHSV-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KCS-USDC": {
+        "symbol": "KCS-USDC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "BCH-USDC": {
+        "symbol": "BCH-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETH-USDC": {
+        "symbol": "ETH-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BTC-USDC": {
+        "symbol": "BTC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATOM-USDC": {
+        "symbol": "ATOM-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FTM-USDT": {
+        "symbol": "FTM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FTM-USDC": {
+        "symbol": "FTM-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNB-USDC": {
+        "symbol": "BNB-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALGO-USDC": {
+        "symbol": "ALGO-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ADA-USDC": {
+        "symbol": "ADA-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LUNA-USDT": {
+        "symbol": "LUNA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LUNA-USDC": {
+        "symbol": "LUNA-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VRA-USDT": {
+        "symbol": "VRA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VRA-USDC": {
+        "symbol": "VRA-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LINK-USDC": {
+        "symbol": "LINK-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOT-USDC": {
+        "symbol": "DOT-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOGE-USDC": {
+        "symbol": "DOGE-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AVAX-USDT": {
+        "symbol": "AVAX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AVAX-USDC": {
+        "symbol": "AVAX-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZIL-USDT": {
+        "symbol": "ZIL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZIL-USDC": {
+        "symbol": "ZIL-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHIB-USDT": {
+        "symbol": "SHIB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHIB-USDC": {
+        "symbol": "SHIB-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KDA-USDT": {
+        "symbol": "KDA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "KDA-USDC": {
+        "symbol": "KDA-USDC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MATIC-USDT": {
+        "symbol": "MATIC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MATIC-USDC": {
+        "symbol": "MATIC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NEAR-USDT": {
+        "symbol": "NEAR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NEAR-USDC": {
+        "symbol": "NEAR-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOL-USDT": {
+        "symbol": "SOL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOL-USDC": {
+        "symbol": "SOL-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TXA-USDT": {
+        "symbol": "TXA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TXA-USDC": {
+        "symbol": "TXA-USDC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RUNE-USDT": {
+        "symbol": "RUNE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "RUNE-USDC": {
+        "symbol": "RUNE-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NTVRK-USDT": {
+        "symbol": "NTVRK-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "NTVRK-USDC": {
+        "symbol": "NTVRK-USDC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "JASMY-USDT": {
+        "symbol": "JASMY-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "JASMY-USDC": {
+        "symbol": "JASMY-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "APE-USDT": {
+        "symbol": "APE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "APE-USDC": {
+        "symbol": "APE-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GMT-USDT": {
+        "symbol": "GMT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GMT-USDC": {
+        "symbol": "GMT-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XCN-USDT": {
+        "symbol": "XCN-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XCN-USDC": {
+        "symbol": "XCN-USDC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SWFTC-USDT": {
+        "symbol": "SWFTC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SWFTC-USDC": {
+        "symbol": "SWFTC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FITFI-USDT": {
+        "symbol": "FITFI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FITFI-USDC": {
+        "symbol": "FITFI-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDD-USDC": {
+        "symbol": "USDD-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AFK-USDT": {
+        "symbol": "AFK-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "AFK-USDC": {
+        "symbol": "AFK-USDC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LUNC-USDT": {
+        "symbol": "LUNC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LUNC-USDC": {
+        "symbol": "LUNC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USTC-USDT": {
+        "symbol": "USTC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USTC-USDC": {
+        "symbol": "USTC-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OP-USDT": {
+        "symbol": "OP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OP-USDC": {
+        "symbol": "OP-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LDO-USDT": {
+        "symbol": "LDO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LDO-USDC": {
+        "symbol": "LDO-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BUSD-USDT": {
+        "symbol": "BUSD-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BUSD-USDC": {
+        "symbol": "BUSD-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XRP-USDC": {
+        "symbol": "XRP-USDC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETC-ETH": {
+        "symbol": "ETC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZIL-ETH": {
+        "symbol": "ZIL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FTM-ETH": {
+        "symbol": "FTM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETH-BTC": {
+        "symbol": "ETH-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "REQ-ETH": {
+        "symbol": "REQ-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "REQ-USDT": {
+        "symbol": "REQ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "POWR-ETH": {
+        "symbol": "POWR-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "POWR-USDT": {
+        "symbol": "POWR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KNC-ETH": {
+        "symbol": "KNC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KNC-USDT": {
+        "symbol": "KNC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OMG-ETH": {
+        "symbol": "OMG-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OMG-USDT": {
+        "symbol": "OMG-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MANA-ETH": {
+        "symbol": "MANA-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MANA-USDT": {
+        "symbol": "MANA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DGB-ETH": {
+        "symbol": "DGB-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DGB-USDT": {
+        "symbol": "DGB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ENJ-ETH": {
+        "symbol": "ENJ-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ENJ-USDT": {
+        "symbol": "ENJ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SNX-ETH": {
+        "symbol": "SNX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SNX-USDT": {
+        "symbol": "SNX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TIME-ETH": {
+        "symbol": "TIME-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TIME-USDT": {
+        "symbol": "TIME-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOST-ETH": {
+        "symbol": "IOST-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOST-USDT": {
+        "symbol": "IOST-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TEL-ETH": {
+        "symbol": "TEL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TEL-USDT": {
+        "symbol": "TEL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAX-ETH": {
+        "symbol": "WAX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAX-USDT": {
+        "symbol": "WAX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "COV-ETH": {
+        "symbol": "COV-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "COV-USDT": {
+        "symbol": "COV-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TOMO-ETH": {
+        "symbol": "TOMO-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TOMO-USDT": {
+        "symbol": "TOMO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAX-ETH": {
+        "symbol": "BAX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAX-USDT": {
+        "symbol": "BAX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LYM-ETH": {
+        "symbol": "LYM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LYM-USDT": {
+        "symbol": "LYM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOTX-ETH": {
+        "symbol": "IOTX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOTX-USDT": {
+        "symbol": "IOTX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ONT-ETH": {
+        "symbol": "ONT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ONT-USDT": {
+        "symbol": "ONT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GO-ETH": {
+        "symbol": "GO-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GO-USDT": {
+        "symbol": "GO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOUL-ETH": {
+        "symbol": "SOUL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOUL-USDT": {
+        "symbol": "SOUL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETN-ETH": {
+        "symbol": "ETN-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETN-USDT": {
+        "symbol": "ETN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DAG-ETH": {
+        "symbol": "DAG-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DAG-USDT": {
+        "symbol": "DAG-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ELA-ETH": {
+        "symbol": "ELA-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ELA-USDT": {
+        "symbol": "ELA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CRPT-ETH": {
+        "symbol": "CRPT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CRPT-USDT": {
+        "symbol": "CRPT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MHC-ETH": {
+        "symbol": "MHC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MHC-USDT": {
+        "symbol": "MHC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LOKI-ETH": {
+        "symbol": "LOKI-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LOKI-USDT": {
+        "symbol": "LOKI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XMR-ETH": {
+        "symbol": "XMR-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XMR-USDT": {
+        "symbol": "XMR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MTV-ETH": {
+        "symbol": "MTV-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MTV-USDT": {
+        "symbol": "MTV-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OCEAN-ETH": {
+        "symbol": "OCEAN-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OCEAN-USDT": {
+        "symbol": "OCEAN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NIM-ETH": {
+        "symbol": "NIM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NIM-USDT": {
+        "symbol": "NIM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LYXE-ETH": {
+        "symbol": "LYXE-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LYXE-USDT": {
+        "symbol": "LYXE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AMPL-ETH": {
+        "symbol": "AMPL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AMPL-USDT": {
+        "symbol": "AMPL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KAI-ETH": {
+        "symbol": "KAI-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KAI-USDT": {
+        "symbol": "KAI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DEGO-ETH": {
+        "symbol": "DEGO-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DEGO-USDT": {
+        "symbol": "DEGO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UBX-ETH": {
+        "symbol": "UBX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UBX-USDT": {
+        "symbol": "UBX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TONE-ETH": {
+        "symbol": "TONE-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TONE-USDT": {
+        "symbol": "TONE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OPCT-ETH": {
+        "symbol": "OPCT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OPCT-USDT": {
+        "symbol": "OPCT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CTI-ETH": {
+        "symbol": "CTI-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CTI-USDT": {
+        "symbol": "CTI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PHA-ETH": {
+        "symbol": "PHA-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PHA-USDT": {
+        "symbol": "PHA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TARA-ETH": {
+        "symbol": "TARA-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TARA-USDT": {
+        "symbol": "TARA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DYP-ETH": {
+        "symbol": "DYP-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DYP-USDT": {
+        "symbol": "DYP-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "BOSON-ETH": {
+        "symbol": "BOSON-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "BOSON-USDT": {
+        "symbol": "BOSON-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LABS-ETH": {
+        "symbol": "LABS-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LABS-USDT": {
+        "symbol": "LABS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "STND-ETH": {
+        "symbol": "STND-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "STND-USDT": {
+        "symbol": "STND-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XDC-ETH": {
+        "symbol": "XDC-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XDC-USDT": {
+        "symbol": "XDC-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "YOP-ETH": {
+        "symbol": "YOP-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "YOP-USDT": {
+        "symbol": "YOP-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ALBT-ETH": {
+        "symbol": "ALBT-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ALBT-USDT": {
+        "symbol": "ALBT-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "FCL-ETH": {
+        "symbol": "FCL-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "FCL-USDT": {
+        "symbol": "FCL-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "JUP-ETH": {
+        "symbol": "JUP-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "JUP-USDT": {
+        "symbol": "JUP-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "AGIX-ETH": {
+        "symbol": "AGIX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AGIX-USDT": {
+        "symbol": "AGIX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LITH-ETH": {
+        "symbol": "LITH-ETH",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "LITH-USDT": {
+        "symbol": "LITH-USDT",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "MOVR-ETH": {
+        "symbol": "MOVR-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MOVR-USDT": {
+        "symbol": "MOVR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "QRDO-ETH": {
+        "symbol": "QRDO-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "QRDO-USDT": {
+        "symbol": "QRDO-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SDN-ETH": {
+        "symbol": "SDN-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SDN-USDT": {
+        "symbol": "SDN-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "REP-ETH": {
+        "symbol": "REP-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "REP-USDT": {
+        "symbol": "REP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNT-ETH": {
+        "symbol": "BNT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNT-USDT": {
+        "symbol": "BNT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OXT-ETH": {
+        "symbol": "OXT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OXT-USDT": {
+        "symbol": "OXT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAL-ETH": {
+        "symbol": "BAL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAL-USDT": {
+        "symbol": "BAL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STORJ-ETH": {
+        "symbol": "STORJ-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STORJ-USDT": {
+        "symbol": "STORJ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SDAO-ETH": {
+        "symbol": "SDAO-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SDAO-USDT": {
+        "symbol": "SDAO-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ALICE-ETH": {
+        "symbol": "ALICE-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALICE-USDT": {
+        "symbol": "ALICE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TLM-ETH": {
+        "symbol": "TLM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TLM-USDT": {
+        "symbol": "TLM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DEXE-ETH": {
+        "symbol": "DEXE-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DEXE-USDT": {
+        "symbol": "DEXE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FORM-ETH": {
+        "symbol": "FORM-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "FORM-USDT": {
+        "symbol": "FORM-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "VEGA-ETH": {
+        "symbol": "VEGA-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "VEGA-USDT": {
+        "symbol": "VEGA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LRC-ETH": {
+        "symbol": "LRC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LRC-USDT": {
+        "symbol": "LRC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAKE-ETH": {
+        "symbol": "BAKE-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAKE-USDT": {
+        "symbol": "BAKE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CIRUS-ETH": {
+        "symbol": "CIRUS-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CIRUS-USDT": {
+        "symbol": "CIRUS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LACE-ETH": {
+        "symbol": "LACE-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LACE-USDT": {
+        "symbol": "LACE-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "BONDLY-ETH": {
+        "symbol": "BONDLY-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "BONDLY-USDT": {
+        "symbol": "BONDLY-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "KOL-ETH": {
+        "symbol": "KOL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KOL-USDT": {
+        "symbol": "KOL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "JAM-ETH": {
+        "symbol": "JAM-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "JAM-USDT": {
+        "symbol": "JAM-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RPC-ETH": {
+        "symbol": "RPC-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RPC-USDT": {
+        "symbol": "RPC-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "VOXEL-ETH": {
+        "symbol": "VOXEL-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VOXEL-USDT": {
+        "symbol": "VOXEL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SPA-ETH": {
+        "symbol": "SPA-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SPA-USDT": {
+        "symbol": "SPA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STORE-ETH": {
+        "symbol": "STORE-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STORE-USDT": {
+        "symbol": "STORE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ICX-ETH": {
+        "symbol": "ICX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ICX-USDT": {
+        "symbol": "ICX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CSPR-ETH": {
+        "symbol": "CSPR-ETH",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CSPR-USDT": {
+        "symbol": "CSPR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XYO-ETH": {
+        "symbol": "XYO-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XYO-USDT": {
+        "symbol": "XYO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GMB-ETH": {
+        "symbol": "GMB-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GMB-USDT": {
+        "symbol": "GMB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AVA-ETH": {
+        "symbol": "AVA-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AVA-USDT": {
+        "symbol": "AVA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MKR-ETH": {
+        "symbol": "MKR-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MKR-USDT": {
+        "symbol": "MKR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "REQ-BTC": {
+        "symbol": "REQ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "POWR-BTC": {
+        "symbol": "POWR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KNC-BTC": {
+        "symbol": "KNC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OMG-BTC": {
+        "symbol": "OMG-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MANA-BTC": {
+        "symbol": "MANA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETN-BTC": {
+        "symbol": "ETN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DGB-BTC": {
+        "symbol": "DGB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ENJ-BTC": {
+        "symbol": "ENJ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SNX-BTC": {
+        "symbol": "SNX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TIME-BTC": {
+        "symbol": "TIME-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETC-BTC": {
+        "symbol": "ETC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GAS-BTC": {
+        "symbol": "GAS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GAS-USDT": {
+        "symbol": "GAS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOST-BTC": {
+        "symbol": "IOST-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TEL-BTC": {
+        "symbol": "TEL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAX-BTC": {
+        "symbol": "WAX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZIL-BTC": {
+        "symbol": "ZIL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MAN-BTC": {
+        "symbol": "MAN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MAN-USDT": {
+        "symbol": "MAN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "COV-BTC": {
+        "symbol": "COV-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ONT-BTC": {
+        "symbol": "ONT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GO-BTC": {
+        "symbol": "GO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TOMO-BTC": {
+        "symbol": "TOMO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOUL-BTC": {
+        "symbol": "SOUL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOTX-BTC": {
+        "symbol": "IOTX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAX-BTC": {
+        "symbol": "BAX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LYM-BTC": {
+        "symbol": "LYM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AOA-BTC": {
+        "symbol": "AOA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AOA-USDT": {
+        "symbol": "AOA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ELA-BTC": {
+        "symbol": "ELA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CBC-BTC": {
+        "symbol": "CBC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CBC-USDT": {
+        "symbol": "CBC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DAG-BTC": {
+        "symbol": "DAG-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CRPT-BTC": {
+        "symbol": "CRPT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MHC-BTC": {
+        "symbol": "MHC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LOKI-BTC": {
+        "symbol": "LOKI-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ANKR-BTC": {
+        "symbol": "ANKR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ANKR-USDT": {
+        "symbol": "ANKR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XMR-BTC": {
+        "symbol": "XMR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MTV-BTC": {
+        "symbol": "MTV-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CRO-BTC": {
+        "symbol": "CRO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CRO-USDT": {
+        "symbol": "CRO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KMD-BTC": {
+        "symbol": "KMD-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KMD-USDT": {
+        "symbol": "KMD-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OCEAN-BTC": {
+        "symbol": "OCEAN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CHR-BTC": {
+        "symbol": "CHR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CHR-USDT": {
+        "symbol": "CHR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NIM-BTC": {
+        "symbol": "NIM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "COTI-BTC": {
+        "symbol": "COTI-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "COTI-USDT": {
+        "symbol": "COTI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "JAR-BTC": {
+        "symbol": "JAR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "JAR-USDT": {
+        "symbol": "JAR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XEM-BTC": {
+        "symbol": "XEM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XEM-USDT": {
+        "symbol": "XEM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WXT-BTC": {
+        "symbol": "WXT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WXT-USDT": {
+        "symbol": "WXT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FORESTPLUS-BTC": {
+        "symbol": "FORESTPLUS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FORESTPLUS-USDT": {
+        "symbol": "FORESTPLUS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BOLT-BTC": {
+        "symbol": "BOLT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BOLT-USDT": {
+        "symbol": "BOLT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CHZ-BTC": {
+        "symbol": "CHZ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CHZ-USDT": {
+        "symbol": "CHZ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DAPPT-BTC": {
+        "symbol": "DAPPT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DAPPT-USDT": {
+        "symbol": "DAPPT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NOIA-BTC": {
+        "symbol": "NOIA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NOIA-USDT": {
+        "symbol": "NOIA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DERO-BTC": {
+        "symbol": "DERO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DERO-USDT": {
+        "symbol": "DERO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ENQ-BTC": {
+        "symbol": "ENQ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ENQ-USDT": {
+        "symbol": "ENQ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ONE-BTC": {
+        "symbol": "ONE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ONE-USDT": {
+        "symbol": "ONE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VID-BTC": {
+        "symbol": "VID-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VID-USDT": {
+        "symbol": "VID-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SXP-BTC": {
+        "symbol": "SXP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SXP-USDT": {
+        "symbol": "SXP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VIDT-BTC": {
+        "symbol": "VIDT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VIDT-USDT": {
+        "symbol": "VIDT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AKRO-BTC": {
+        "symbol": "AKRO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AKRO-USDT": {
+        "symbol": "AKRO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MAP-BTC": {
+        "symbol": "MAP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MAP-USDT": {
+        "symbol": "MAP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AMPL-BTC": {
+        "symbol": "AMPL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NWC-BTC": {
+        "symbol": "NWC-BTC",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "NWC-USDT": {
+        "symbol": "NWC-USDT",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "BEPRO-BTC": {
+        "symbol": "BEPRO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BEPRO-USDT": {
+        "symbol": "BEPRO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VRA-BTC": {
+        "symbol": "VRA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KSM-BTC": {
+        "symbol": "KSM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KSM-USDT": {
+        "symbol": "KSM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SUTER-BTC": {
+        "symbol": "SUTER-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SUTER-USDT": {
+        "symbol": "SUTER-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PRE-BTC": {
+        "symbol": "PRE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PRE-USDT": {
+        "symbol": "PRE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SENSO-BTC": {
+        "symbol": "SENSO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SENSO-USDT": {
+        "symbol": "SENSO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XDB-BTC": {
+        "symbol": "XDB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XDB-USDT": {
+        "symbol": "XDB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STX-BTC": {
+        "symbol": "STX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STX-USDT": {
+        "symbol": "STX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KAI-BTC": {
+        "symbol": "KAI-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WEST-BTC": {
+        "symbol": "WEST-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WEST-USDT": {
+        "symbol": "WEST-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAVES-BTC": {
+        "symbol": "WAVES-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAVES-USDT": {
+        "symbol": "WAVES-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNS-BTC": {
+        "symbol": "BNS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNS-USDT": {
+        "symbol": "BNS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SUKU-BTC": {
+        "symbol": "SUKU-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SUKU-USDT": {
+        "symbol": "SUKU-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MLK-BTC": {
+        "symbol": "MLK-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MLK-USDT": {
+        "symbol": "MLK-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DIA-BTC": {
+        "symbol": "DIA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DIA-USDT": {
+        "symbol": "DIA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHA-BTC": {
+        "symbol": "SHA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHA-USDT": {
+        "symbol": "SHA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EFX-BTC": {
+        "symbol": "EFX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EFX-USDT": {
+        "symbol": "EFX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CKB-BTC": {
+        "symbol": "CKB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CKB-USDT": {
+        "symbol": "CKB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UOS-BTC": {
+        "symbol": "UOS-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "UOS-USDT": {
+        "symbol": "UOS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TONE-BTC": {
+        "symbol": "TONE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OPCT-BTC": {
+        "symbol": "OPCT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHR-BTC": {
+        "symbol": "SHR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHR-USDT": {
+        "symbol": "SHR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BUX-BTC": {
+        "symbol": "BUX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BUX-USDT": {
+        "symbol": "BUX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CAS-BTC": {
+        "symbol": "CAS-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CAS-USDT": {
+        "symbol": "CAS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MSWAP-BTC": {
+        "symbol": "MSWAP-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MSWAP-USDT": {
+        "symbol": "MSWAP-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GOM2-BTC": {
+        "symbol": "GOM2-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GOM2-USDT": {
+        "symbol": "GOM2-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "REVV-BTC": {
+        "symbol": "REVV-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "REVV-USDT": {
+        "symbol": "REVV-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "FRONT-BTC": {
+        "symbol": "FRONT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FRONT-USDT": {
+        "symbol": "FRONT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DFI-BTC": {
+        "symbol": "DFI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DFI-USDT": {
+        "symbol": "DFI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TRIAS-BTC": {
+        "symbol": "TRIAS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRIAS-USDT": {
+        "symbol": "TRIAS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MITX-BTC": {
+        "symbol": "MITX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MITX-USDT": {
+        "symbol": "MITX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LTX-BTC": {
+        "symbol": "LTX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LTX-USDT": {
+        "symbol": "LTX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SRK-BTC": {
+        "symbol": "SRK-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SRK-USDT": {
+        "symbol": "SRK-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HTR-BTC": {
+        "symbol": "HTR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HTR-USDT": {
+        "symbol": "HTR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SWINGBY-BTC": {
+        "symbol": "SWINGBY-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SWINGBY-USDT": {
+        "symbol": "SWINGBY-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XHV-BTC": {
+        "symbol": "XHV-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XHV-USDT": {
+        "symbol": "XHV-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "AVAX-BTC": {
+        "symbol": "AVAX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KRL-BTC": {
+        "symbol": "KRL-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "KRL-USDT": {
+        "symbol": "KRL-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "POLK-BTC": {
+        "symbol": "POLK-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "POLK-USDT": {
+        "symbol": "POLK-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RNDR-BTC": {
+        "symbol": "RNDR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RNDR-USDT": {
+        "symbol": "RNDR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XYM-BTC": {
+        "symbol": "XYM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XYM-USDT": {
+        "symbol": "XYM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PCX-BTC": {
+        "symbol": "PCX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PCX-USDT": {
+        "symbol": "PCX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ORBS-BTC": {
+        "symbol": "ORBS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ORBS-USDT": {
+        "symbol": "ORBS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DSLA-BTC": {
+        "symbol": "DSLA-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DSLA-USDT": {
+        "symbol": "DSLA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XCUR-BTC": {
+        "symbol": "XCUR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XCUR-USDT": {
+        "symbol": "XCUR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PUNDIX-BTC": {
+        "symbol": "PUNDIX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PUNDIX-USDT": {
+        "symbol": "PUNDIX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PHNX-BTC": {
+        "symbol": "PHNX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PHNX-USDT": {
+        "symbol": "PHNX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TOWER-BTC": {
+        "symbol": "TOWER-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TOWER-USDT": {
+        "symbol": "TOWER-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "KDA-BTC": {
+        "symbol": "KDA-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ICP-BTC": {
+        "symbol": "ICP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ICP-USDT": {
+        "symbol": "ICP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STC-BTC": {
+        "symbol": "STC-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "STC-USDT": {
+        "symbol": "STC-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GOVI-BTC": {
+        "symbol": "GOVI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GOVI-USDT": {
+        "symbol": "GOVI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CELO-BTC": {
+        "symbol": "CELO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CELO-USDT": {
+        "symbol": "CELO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CUSD-BTC": {
+        "symbol": "CUSD-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CUSD-USDT": {
+        "symbol": "CUSD-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MATIC-BTC": {
+        "symbol": "MATIC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OGN-BTC": {
+        "symbol": "OGN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OGN-USDT": {
+        "symbol": "OGN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OUSD-BTC": {
+        "symbol": "OUSD-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "OUSD-USDT": {
+        "symbol": "OUSD-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TLOS-BTC": {
+        "symbol": "TLOS-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TLOS-USDT": {
+        "symbol": "TLOS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GLQ-BTC": {
+        "symbol": "GLQ-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GLQ-USDT": {
+        "symbol": "GLQ-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HYVE-BTC": {
+        "symbol": "HYVE-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HYVE-USDT": {
+        "symbol": "HYVE-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MAHA-BTC": {
+        "symbol": "MAHA-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MAHA-USDT": {
+        "symbol": "MAHA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PYR-BTC": {
+        "symbol": "PYR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PYR-USDT": {
+        "symbol": "PYR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PROM-BTC": {
+        "symbol": "PROM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PROM-USDT": {
+        "symbol": "PROM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "APL-BTC": {
+        "symbol": "APL-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "APL-USDT": {
+        "symbol": "APL-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "VEED-BTC": {
+        "symbol": "VEED-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "VEED-USDT": {
+        "symbol": "VEED-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PDEX-BTC": {
+        "symbol": "PDEX-BTC",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "PDEX-USDT": {
+        "symbol": "PDEX-USDT",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "POLS-BTC": {
+        "symbol": "POLS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "POLS-USDT": {
+        "symbol": "POLS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LPOOL-BTC": {
+        "symbol": "LPOOL-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LPOOL-USDT": {
+        "symbol": "LPOOL-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ETHO-BTC": {
+        "symbol": "ETHO-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ETHO-USDT": {
+        "symbol": "ETHO-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ABBC-BTC": {
+        "symbol": "ABBC-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ABBC-USDT": {
+        "symbol": "ABBC-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DORA-BTC": {
+        "symbol": "DORA-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DORA-USDT": {
+        "symbol": "DORA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ZCX-BTC": {
+        "symbol": "ZCX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ZCX-USDT": {
+        "symbol": "ZCX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "AGIX-BTC": {
+        "symbol": "AGIX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MODEFI-BTC": {
+        "symbol": "MODEFI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MODEFI-USDT": {
+        "symbol": "MODEFI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "YFDAI-BTC": {
+        "symbol": "YFDAI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "YFDAI-USDT": {
+        "symbol": "YFDAI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ARRR-BTC": {
+        "symbol": "ARRR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ARRR-USDT": {
+        "symbol": "ARRR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CEUR-BTC": {
+        "symbol": "CEUR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CEUR-USDT": {
+        "symbol": "CEUR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HAI-BTC": {
+        "symbol": "HAI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HAI-USDT": {
+        "symbol": "HAI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "NEAR-BTC": {
+        "symbol": "NEAR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CFG-BTC": {
+        "symbol": "CFG-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CFG-USDT": {
+        "symbol": "CFG-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XDC-BTC": {
+        "symbol": "XDC-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ERG-BTC": {
+        "symbol": "ERG-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ERG-USDT": {
+        "symbol": "ERG-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LAYER-BTC": {
+        "symbol": "LAYER-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LAYER-USDT": {
+        "symbol": "LAYER-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MTL-BTC": {
+        "symbol": "MTL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MTL-USDT": {
+        "symbol": "MTL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "QI-BTC": {
+        "symbol": "QI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "QI-USDT": {
+        "symbol": "QI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PNT-BTC": {
+        "symbol": "PNT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PNT-USDT": {
+        "symbol": "PNT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XPR-BTC": {
+        "symbol": "XPR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XPR-USDT": {
+        "symbol": "XPR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SHFT-BTC": {
+        "symbol": "SHFT-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SHFT-USDT": {
+        "symbol": "SHFT-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MAKI-BTC": {
+        "symbol": "MAKI-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MAKI-USDT": {
+        "symbol": "MAKI-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "REP-BTC": {
+        "symbol": "REP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BNT-BTC": {
+        "symbol": "BNT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OXT-BTC": {
+        "symbol": "OXT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAL-BTC": {
+        "symbol": "BAL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STORJ-BTC": {
+        "symbol": "STORJ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SKL-BTC": {
+        "symbol": "SKL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SKL-USDT": {
+        "symbol": "SKL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NMR-BTC": {
+        "symbol": "NMR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NMR-USDT": {
+        "symbol": "NMR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRB-BTC": {
+        "symbol": "TRB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRB-USDT": {
+        "symbol": "TRB-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GTC-BTC": {
+        "symbol": "GTC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GTC-USDT": {
+        "symbol": "GTC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EQX-BTC": {
+        "symbol": "EQX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EQX-USDT": {
+        "symbol": "EQX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RLC-BTC": {
+        "symbol": "RLC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "RLC-USDT": {
+        "symbol": "RLC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EGLD-BTC": {
+        "symbol": "EGLD-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EGLD-USDT": {
+        "symbol": "EGLD-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "HBAR-BTC": {
+        "symbol": "HBAR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "HBAR-USDT": {
+        "symbol": "HBAR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FLOW-BTC": {
+        "symbol": "FLOW-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FLOW-USDT": {
+        "symbol": "FLOW-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NKN-BTC": {
+        "symbol": "NKN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NKN-USDT": {
+        "symbol": "NKN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MLN-BTC": {
+        "symbol": "MLN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MLN-USDT": {
+        "symbol": "MLN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WNCG-BTC": {
+        "symbol": "WNCG-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WNCG-USDT": {
+        "symbol": "WNCG-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CTSI-BTC": {
+        "symbol": "CTSI-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CTSI-USDT": {
+        "symbol": "CTSI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALICE-BTC": {
+        "symbol": "ALICE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAND-BTC": {
+        "symbol": "BAND-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAND-USDT": {
+        "symbol": "BAND-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FTT-BTC": {
+        "symbol": "FTT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FTT-USDT": {
+        "symbol": "FTT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SKU-BTC": {
+        "symbol": "SKU-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SKU-USDT": {
+        "symbol": "SKU-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TLM-BTC": {
+        "symbol": "TLM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DEXE-BTC": {
+        "symbol": "DEXE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CUDOS-BTC": {
+        "symbol": "CUDOS-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CUDOS-USDT": {
+        "symbol": "CUDOS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "RUNE-BTC": {
+        "symbol": "RUNE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PUSH-BTC": {
+        "symbol": "PUSH-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PUSH-USDT": {
+        "symbol": "PUSH-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "REEF-BTC": {
+        "symbol": "REEF-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "REEF-USDT": {
+        "symbol": "REEF-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TVK-BTC": {
+        "symbol": "TVK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TVK-USDT": {
+        "symbol": "TVK-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "INJ-BTC": {
+        "symbol": "INJ-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "INJ-USDT": {
+        "symbol": "INJ-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALPHA-BTC": {
+        "symbol": "ALPHA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ALPHA-USDT": {
+        "symbol": "ALPHA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BADGER-BTC": {
+        "symbol": "BADGER-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BADGER-USDT": {
+        "symbol": "BADGER-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UNO-BTC": {
+        "symbol": "UNO-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "UNO-USDT": {
+        "symbol": "UNO-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "AR-BTC": {
+        "symbol": "AR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AR-USDT": {
+        "symbol": "AR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XVS-BTC": {
+        "symbol": "XVS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XVS-USDT": {
+        "symbol": "XVS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PERP-BTC": {
+        "symbol": "PERP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PERP-USDT": {
+        "symbol": "PERP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GHST-BTC": {
+        "symbol": "GHST-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GHST-USDT": {
+        "symbol": "GHST-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SCLP-BTC": {
+        "symbol": "SCLP-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SCLP-USDT": {
+        "symbol": "SCLP-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SUPER-BTC": {
+        "symbol": "SUPER-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SUPER-USDT": {
+        "symbol": "SUPER-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XED-BTC": {
+        "symbol": "XED-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XED-USDT": {
+        "symbol": "XED-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "LTO-BTC": {
+        "symbol": "LTO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LTO-USDT": {
+        "symbol": "LTO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "QUICK-BTC": {
+        "symbol": "QUICK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "QUICK-USDT": {
+        "symbol": "QUICK-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRU-BTC": {
+        "symbol": "TRU-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRU-USDT": {
+        "symbol": "TRU-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WRX-BTC": {
+        "symbol": "WRX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WRX-USDT": {
+        "symbol": "WRX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TKO-BTC": {
+        "symbol": "TKO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TKO-USDT": {
+        "symbol": "TKO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DATA-BTC": {
+        "symbol": "DATA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DATA-USDT": {
+        "symbol": "DATA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NORD-BTC": {
+        "symbol": "NORD-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "NORD-USDT": {
+        "symbol": "NORD-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HEGIC-BTC": {
+        "symbol": "HEGIC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "HEGIC-USDT": {
+        "symbol": "HEGIC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ERN-BTC": {
+        "symbol": "ERN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ERN-USDT": {
+        "symbol": "ERN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PAXG-BTC": {
+        "symbol": "PAXG-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "PAXG-USDT": {
+        "symbol": "PAXG-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AUDIO-BTC": {
+        "symbol": "AUDIO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AUDIO-USDT": {
+        "symbol": "AUDIO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FXS-BTC": {
+        "symbol": "FXS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FXS-USDT": {
+        "symbol": "FXS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATA-BTC": {
+        "symbol": "ATA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ATA-USDT": {
+        "symbol": "ATA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LRC-BTC": {
+        "symbol": "LRC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CWAR-BTC": {
+        "symbol": "CWAR-BTC",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "CWAR-USDT": {
+        "symbol": "CWAR-USDT",
+        "takerFeeRate": "0.003",
+        "makerFeeRate": "0.003"
+    },
+    "FLUX-BTC": {
+        "symbol": "FLUX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FLUX-USDT": {
+        "symbol": "FLUX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EDG-BTC": {
+        "symbol": "EDG-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EDG-USDT": {
+        "symbol": "EDG-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "WNXM-BTC": {
+        "symbol": "WNXM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WNXM-USDT": {
+        "symbol": "WNXM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ANT-BTC": {
+        "symbol": "ANT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ANT-USDT": {
+        "symbol": "ANT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TWT-BTC": {
+        "symbol": "TWT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TWT-USDT": {
+        "symbol": "TWT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OM-BTC": {
+        "symbol": "OM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OM-USDT": {
+        "symbol": "OM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GLM-BTC": {
+        "symbol": "GLM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GLM-USDT": {
+        "symbol": "GLM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BAKE-BTC": {
+        "symbol": "BAKE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VLX-BTC": {
+        "symbol": "VLX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "VLX-USDT": {
+        "symbol": "VLX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TRADE-BTC": {
+        "symbol": "TRADE-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TRADE-USDT": {
+        "symbol": "TRADE-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "MFT-BTC": {
+        "symbol": "MFT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MFT-USDT": {
+        "symbol": "MFT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LIT-BTC": {
+        "symbol": "LIT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LIT-USDT": {
+        "symbol": "LIT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SFP-BTC": {
+        "symbol": "SFP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SFP-USDT": {
+        "symbol": "SFP-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BURGER-BTC": {
+        "symbol": "BURGER-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BURGER-USDT": {
+        "symbol": "BURGER-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CREAM-BTC": {
+        "symbol": "CREAM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CREAM-USDT": {
+        "symbol": "CREAM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "RSR-BTC": {
+        "symbol": "RSR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "RSR-USDT": {
+        "symbol": "RSR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BUY-BTC": {
+        "symbol": "BUY-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BUY-USDT": {
+        "symbol": "BUY-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SRM-BTC": {
+        "symbol": "SRM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SRM-USDT": {
+        "symbol": "SRM-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "POND-BTC": {
+        "symbol": "POND-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "POND-USDT": {
+        "symbol": "POND-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NGL-BTC": {
+        "symbol": "NGL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NGL-USDT": {
+        "symbol": "NGL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LINA-BTC": {
+        "symbol": "LINA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LINA-USDT": {
+        "symbol": "LINA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KLAY-BTC": {
+        "symbol": "KLAY-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KLAY-USDT": {
+        "symbol": "KLAY-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "HEART-BTC": {
+        "symbol": "HEART-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "HEART-USDT": {
+        "symbol": "HEART-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ADS-BTC": {
+        "symbol": "ADS-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ADS-USDT": {
+        "symbol": "ADS-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "IOTA-BTC": {
+        "symbol": "IOTA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "IOTA-USDT": {
+        "symbol": "IOTA-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OOKI-BTC": {
+        "symbol": "OOKI-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OOKI-USDT": {
+        "symbol": "OOKI-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "HNT-BTC": {
+        "symbol": "HNT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "HNT-USDT": {
+        "symbol": "HNT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GLMR-BTC": {
+        "symbol": "GLMR-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "GLMR-USDT": {
+        "symbol": "GLMR-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "CTC-BTC": {
+        "symbol": "CTC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CTC-USDT": {
+        "symbol": "CTC-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ASTR-BTC": {
+        "symbol": "ASTR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ASTR-USDT": {
+        "symbol": "ASTR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ACA-BTC": {
+        "symbol": "ACA-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "ACA-USDT": {
+        "symbol": "ACA-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SHX-BTC": {
+        "symbol": "SHX-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SHX-USDT": {
+        "symbol": "SHX-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "XNO-BTC": {
+        "symbol": "XNO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XNO-USDT": {
+        "symbol": "XNO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TFUEL-BTC": {
+        "symbol": "TFUEL-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TFUEL-USDT": {
+        "symbol": "TFUEL-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LMR-BTC": {
+        "symbol": "LMR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LMR-USDT": {
+        "symbol": "LMR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XCN-BTC": {
+        "symbol": "XCN-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "DAR-BTC": {
+        "symbol": "DAR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DAR-USDT": {
+        "symbol": "DAR-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRVL-BTC": {
+        "symbol": "TRVL-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "TRVL-USDT": {
+        "symbol": "TRVL-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "SYS-BTC": {
+        "symbol": "SYS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SYS-USDT": {
+        "symbol": "SYS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MBOX-BTC": {
+        "symbol": "MBOX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MBOX-USDT": {
+        "symbol": "MBOX-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SCRT-BTC": {
+        "symbol": "SCRT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SCRT-USDT": {
+        "symbol": "SCRT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "EGAME-BTC": {
+        "symbol": "EGAME-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "EGAME-USDT": {
+        "symbol": "EGAME-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PEEL-BTC": {
+        "symbol": "PEEL-BTC",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "PEEL-USDT": {
+        "symbol": "PEEL-USDT",
+        "takerFeeRate": "0.002",
+        "makerFeeRate": "0.002"
+    },
+    "AERGO-BTC": {
+        "symbol": "AERGO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AERGO-USDT": {
+        "symbol": "AERGO-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GMB-BTC": {
+        "symbol": "GMB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MKR-BTC": {
+        "symbol": "MKR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KAT-BTC": {
+        "symbol": "KAT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KAT-USDT": {
+        "symbol": "KAT-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "XYO-BTC": {
+        "symbol": "XYO-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AVA-BTC": {
+        "symbol": "AVA-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FTM-BTC": {
+        "symbol": "FTM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VSYS-BTC": {
+        "symbol": "VSYS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "VSYS-USDT": {
+        "symbol": "VSYS-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOLVE-BTC": {
+        "symbol": "SOLVE-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SOLVE-USDT": {
+        "symbol": "SOLVE-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GRIN-BTC": {
+        "symbol": "GRIN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "GRIN-USDT": {
+        "symbol": "GRIN-USDT",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NULS-ETH": {
+        "symbol": "NULS-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NULS-BTC": {
+        "symbol": "NULS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SNT-ETH": {
+        "symbol": "SNT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "SNT-BTC": {
+        "symbol": "SNT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCD-ETH": {
+        "symbol": "BCD-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BCD-BTC": {
+        "symbol": "BCD-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AMB-ETH": {
+        "symbol": "AMB-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AMB-BTC": {
+        "symbol": "AMB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AION-ETH": {
+        "symbol": "AION-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AION-BTC": {
+        "symbol": "AION-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UTK-ETH": {
+        "symbol": "UTK-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UTK-BTC": {
+        "symbol": "UTK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AXPR-ETH": {
+        "symbol": "AXPR-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "AXPR-BTC": {
+        "symbol": "AXPR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DENT-ETH": {
+        "symbol": "DENT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DENT-BTC": {
+        "symbol": "DENT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DRGN-ETH": {
+        "symbol": "DRGN-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DRGN-BTC": {
+        "symbol": "DRGN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CV-ETH": {
+        "symbol": "CV-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CV-BTC": {
+        "symbol": "CV-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KEY-ETH": {
+        "symbol": "KEY-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "KEY-BTC": {
+        "symbol": "KEY-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ADB-ETH": {
+        "symbol": "ADB-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ADB-BTC": {
+        "symbol": "ADB-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CAPP-ETH": {
+        "symbol": "CAPP-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CAPP-BTC": {
+        "symbol": "CAPP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ELF-ETH": {
+        "symbol": "ELF-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ELF-BTC": {
+        "symbol": "ELF-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRAC-ETH": {
+        "symbol": "TRAC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "TRAC-BTC": {
+        "symbol": "TRAC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LOOM-ETH": {
+        "symbol": "LOOM-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LOOM-BTC": {
+        "symbol": "LOOM-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "QKC-ETH": {
+        "symbol": "QKC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "QKC-BTC": {
+        "symbol": "QKC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAN-ETH": {
+        "symbol": "WAN-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WAN-BTC": {
+        "symbol": "WAN-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOCK-ETH": {
+        "symbol": "DOCK-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DOCK-BTC": {
+        "symbol": "DOCK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CS-ETH": {
+        "symbol": "CS-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CS-BTC": {
+        "symbol": "CS-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CPC-ETH": {
+        "symbol": "CPC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "CPC-BTC": {
+        "symbol": "CPC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZRX-ETH": {
+        "symbol": "ZRX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ZRX-BTC": {
+        "symbol": "ZRX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MVP-ETH": {
+        "symbol": "MVP-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MVP-BTC": {
+        "symbol": "MVP-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OLT-ETH": {
+        "symbol": "OLT-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "OLT-BTC": {
+        "symbol": "OLT-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DCR-ETH": {
+        "symbol": "DCR-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "DCR-BTC": {
+        "symbol": "DCR-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FET-ETH": {
+        "symbol": "FET-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FET-BTC": {
+        "symbol": "FET-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FX-ETH": {
+        "symbol": "FX-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "FX-BTC": {
+        "symbol": "FX-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NRG-ETH": {
+        "symbol": "NRG-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "NRG-BTC": {
+        "symbol": "NRG-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UQC-ETH": {
+        "symbol": "UQC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "UQC-BTC": {
+        "symbol": "UQC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WBTC-ETH": {
+        "symbol": "WBTC-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "WBTC-BTC": {
+        "symbol": "WBTC-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STRK-ETH": {
+        "symbol": "STRK-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "STRK-BTC": {
+        "symbol": "STRK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LSK-ETH": {
+        "symbol": "LSK-ETH",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "LSK-BTC": {
+        "symbol": "LSK-BTC",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDC-USDT": {
+        "symbol": "USDC-USDT",
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
+    },
+    "SHIB-DOGE": {
+        "symbol": "SHIB-DOGE",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BTC-BRL": {
+        "symbol": "BTC-BRL",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETH-BRL": {
+        "symbol": "ETH-BRL",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDT-BRL": {
+        "symbol": "USDT-BRL",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "ETH-DAI": {
+        "symbol": "ETH-DAI",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "MKR-DAI": {
+        "symbol": "MKR-DAI",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "USDT-DAI": {
+        "symbol": "USDT-DAI",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    },
+    "BTC-DAI": {
+        "symbol": "BTC-DAI",
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
+    }
+}
