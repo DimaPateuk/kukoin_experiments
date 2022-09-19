@@ -2,8 +2,12 @@ require('dotenv').config()
 const kucoin = require('./kucoin')
 const { Subject } = require('rxjs')
 const calculatedStrategies = require('./pairs');
+const baseFirstStepAmount = 1;
 const strategies = Object
   .entries(calculatedStrategies)
+  .filter(([key, value]) => {
+    return key.indexOf('KCS') === -1;
+  })
   .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
@@ -41,7 +45,6 @@ const symbolsToTrack = Object.keys(
 );
 //console.log(symbolsToTrack, symbolsToTrack.length);
 
-const MYbaseFee = 0.0015;
 const symbolsInfo = {};
 kucoin.getSymbols()
   .then(response => {
@@ -121,7 +124,7 @@ module.exports = {
   symbolsOrderBookInfoMap,
   getAllTickersInfo,
   balancesSubject,
-  MYbaseFee,
   strategies,
-  symbolsToTrack
+  symbolsToTrack,
+  baseFirstStepAmount
 }

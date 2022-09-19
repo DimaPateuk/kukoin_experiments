@@ -10,8 +10,8 @@ const {
   ordersSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
-  MYbaseFee,
   strategies,
+  baseFirstStepAmount,
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 
@@ -29,7 +29,7 @@ function startStrategy(currentStrategy) {
   placeOrder({
     side: 'buy',
     symbol: buy,
-    funds: '1',
+    funds: baseFirstStepAmount.toString(),
   });
 
   const doneOrder = [];
@@ -149,18 +149,11 @@ function checkStrategy (currentStrategy) {
     pricesFlow[2]
   ];
 
-  const predictablePrices = [
-    exactMath.mul(pricesFlow[0], 0.998),
-    pricesFlow[1],
-    pricesFlow[2]
-  ];
-
   if (oneStrategyInProgress) {
     return;
   }
 
   doRealStrategy(currentStrategy, realPrices);
-  // doPredictedStrategy(currentStrategy, predictablePrices);
 }
 
 
