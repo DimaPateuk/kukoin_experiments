@@ -4,7 +4,7 @@ const {
   symbolsOrderBookInfoMap,
   balancesSubject,
   symbolsToTrack,
-  getAllTickersInfo,
+  socketCloseSubject,
 } = require('./resources');
 const { makeCalculation } = require('./strategy');
 
@@ -42,8 +42,9 @@ setTimeout(() => {
       .forEach(key => {
         delete symbolsOrderBookInfoMap[key];
       });
+      socketCloseSubject.next();
   }, () => {
-    //getAllTickersInfo();
+    // open socket
   });
 }, 1000);
 

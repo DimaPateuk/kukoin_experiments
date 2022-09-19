@@ -2,7 +2,7 @@ require('dotenv').config()
 const kucoin = require('./kucoin')
 const { Subject } = require('rxjs')
 const calculatedStrategies = require('./pairs');
-const baseFirstStepAmount = 1;
+const baseFirstStepAmount = 1.5;
 const strategies = Object
   .entries(calculatedStrategies)
   .filter(([key, value]) => {
@@ -15,20 +15,7 @@ const strategies = Object
   .filter(([key, value]) => {
     return value[0].split('-')[0] !== 'USDC';
   })
-
-
-  // .filter(([key]) => {
-  //   return key.indexOf('ETH') === -1;
-  // })
-  // .filter(([key]) => {
-  //   return key.indexOf('KCS') === -1;
-  // })
-  // .filter(([key]) => {
-  //   return key.indexOf('BTC') === -1;
-  // })
   .map(entry => entry[1])
-  // .splice(0, 1);
-
 
 const symbolsToTrack = Object.keys(
   strategies
@@ -43,7 +30,6 @@ const symbolsToTrack = Object.keys(
     return res;
   }, {})
 );
-//console.log(symbolsToTrack, symbolsToTrack.length);
 
 const symbolsInfo = {};
 kucoin.getSymbols()
@@ -55,26 +41,11 @@ kucoin.getSymbols()
       });
   });
 
-function getAllTickersInfo() {
-  return kucoin.getAllTickers()
-    .then(response => {
-      response
-        .data
-        .ticker
-        .forEach(item => {
-
-          symbolsOrderBookInfoMap[item.symbol] = {
-            bestAsk: item.sell,
-            bestBid: item.buy,
-          }
-        });
-    });
-}
-//getAllTickersInfo();
-
 const symbolsOrderBookInfoMap = {};
 const ordersSubject = new Subject();
 const balancesSubject = new Subject();
+const socketCloseSubject = new Subject();
+const strategyEndSubject = new Subject();
 balancesSubject
   .subscribe(({balance}) => {
     if (balance.currency !== 'USDT') {
@@ -122,9 +93,10 @@ module.exports = {
   currenciesMap,
   ordersSubject,
   symbolsOrderBookInfoMap,
-  getAllTickersInfo,
   balancesSubject,
   strategies,
   symbolsToTrack,
-  baseFirstStepAmount
+  baseFirstStepAmount,
+  socketCloseSubject,
+  strategyEndSubject
 }

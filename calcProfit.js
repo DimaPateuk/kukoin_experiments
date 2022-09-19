@@ -1,22 +1,31 @@
 const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
-const { baseFirstStepAmount } = require('./resources');
 
 function calcProfit(prices, currentStrategy) {
     const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
-    const spend = exactMath.mul(prices[0], fees[0] + 1);
-    const spend2 = exactMath.div(
-      baseFirstStepAmount,
-      exactMath.mul(prices[1], fees[1] + 1)
-      );
+    let spend = exactMath.mul(
+      exactMath.mul(prices[0], fees[0] + 1),
+      1
+    );
+    'TRX-USDT'
+    const buy2 = exactMath.div(
+      exactMath.add(1, -fees[1]),
+      prices[1]
+    );
+    'WIN-TRX'
     const receive = exactMath.mul(
-      spend2,
-      exactMath.mul(prices[2], fees[2] + 1)
+      buy2,
+      prices[2],
+
+    );
+    'WIN-USDT'
+    spend = exactMath.add(
+      spend,
+      exactMath.mul(receive, fees[2]),
     );
 
     return {
       spend,
-      spend2,
       receive,
     };
 }

@@ -1,7 +1,7 @@
 const exactMath = require('exact-math');
 const { placeOrder } = require('./placeOrder');
 const {
-  takeWhile,
+  takeUntil,
   tap,
   merge,
 } = require('rxjs');
@@ -12,6 +12,8 @@ const {
   balancesSubject,
   strategies,
   baseFirstStepAmount,
+  socketCloseSubject,
+  strategyEndSubject,
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 
@@ -110,22 +112,35 @@ function startStrategy(currentStrategy) {
 
         step++;
         console.log('strategy end', currentStrategy);
-
-        count++;
-        if (count < 5) {
-          oneStrategyInProgress = false;
-        } else {
-          console.log(count, 'times really ?');
-        }
-
+        strategyEndSubject.next({currentStrategy});
       }),
-      takeWhile(() => {
-        return step < 4;
-      }),
+      takeUntil(
+        merge(
+          socketCloseSubject
+          .pipe(
+            tap(() => {
+              console.log('By some reason strategy was in progress while socket was closed.');
+              if (count < 3) {
+                oneStrategyInProgress = false;
+              }
+            })
+          ),
+          strategyEndSubject
+            .pipe(
+              tap(() => {
+                count++;
+                if (count < 3) {
+                  oneStrategyInProgress = false;
+                } else {
+                  console.log(count, 'times really ?');
+                }
+              })
+            )
+        )
+      ),
     )
     .subscribe();
 }
-
 
 function checkStrategy (currentStrategy) {
   const [buy, buy2, sell] = currentStrategy;
@@ -156,18 +171,17 @@ function checkStrategy (currentStrategy) {
   doRealStrategy(currentStrategy, realPrices);
 }
 
-
 function doRealStrategy(currentStrategy, prices) {
   const {
     spend,
     receive,
   } = calcProfit(prices, currentStrategy);
 
-  if (receive - spend > 0) {
+  if (receive / spend >= 1.001) {
+    console.log(currentStrategy, prices, receive - spend);
     startStrategy(currentStrategy);
   }
 }
-
 
 function makeCalculation() {
   if (oneStrategyInProgress) {
