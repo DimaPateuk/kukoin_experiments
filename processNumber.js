@@ -4,7 +4,7 @@ const exactMath = require('exact-math');
 
 function processNumber(strNumber, pair, type) {
   const isUSDT = pair.split('-')[1] === 'USDT';
-  const fee = isUSDT ? 0 : parseFloat(tradeFees[pair].takerFeeRate);
+  const fee = isUSDT ? 0 : parseFloat(tradeFees[pair].takerFeeRate) + 0.00002;// i do not know why
   const floatNumber = parseFloat(strNumber);
 
   const num = exactMath.mul(floatNumber, exactMath.add(1, -fee));
