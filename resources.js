@@ -9,6 +9,9 @@ const strategies = Object
     return key.indexOf('KCS') === -1;
   })
   .filter(([key, value]) => {
+    return key.indexOf('KNC') === -1;
+  })
+  .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
 

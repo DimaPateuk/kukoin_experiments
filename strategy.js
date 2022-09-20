@@ -1,5 +1,5 @@
 const exactMath = require('exact-math');
-const { placeOrder } = require('./placeOrder');
+const { placeOrder, placeOrderErrorSubject } = require('./placeOrder');
 const {
   takeUntil,
   tap,
@@ -116,15 +116,21 @@ function startStrategy(currentStrategy) {
       }),
       takeUntil(
         merge(
+          placeOrderErrorSubject
+            .pipe(
+              tap((e) => {
+                console.log('some error with order', JSON.stringify(e, null, 4));
+              })
+            ),
           socketCloseSubject
-          .pipe(
-            tap(() => {
-              console.log('By some reason strategy was in progress while socket was closed.');
-              if (count < 3) {
-                oneStrategyInProgress = false;
-              }
-            })
-          ),
+            .pipe(
+              tap(() => {
+                console.log('By some reason strategy was in progress while socket was closed.');
+                if (count < 3) {
+                  oneStrategyInProgress = false;
+                }
+              })
+            ),
           strategyEndSubject
             .pipe(
               tap(() => {
@@ -143,43 +149,29 @@ function startStrategy(currentStrategy) {
 }
 
 function checkStrategy (currentStrategy) {
-  const [buy, buy2, sell] = currentStrategy;
 
-  if (
-    !symbolsOrderBookInfoMap[buy]?.bestBid ||
-    !symbolsOrderBookInfoMap[buy2]?.bestBid ||
-    !symbolsOrderBookInfoMap[sell]?.bestAsk
-  ) {
-    return;
-  }
-  const pricesFlow = [
-    symbolsOrderBookInfoMap[buy].bestAsk,
-    symbolsOrderBookInfoMap[buy2].bestAsk,
-    symbolsOrderBookInfoMap[sell].bestBid
-  ].map(num => parseFloat(num));
-
-  const realPrices = [
-    pricesFlow[0],
-    pricesFlow[1],
-    pricesFlow[2]
-  ];
 
   if (oneStrategyInProgress) {
     return;
   }
 
-  doRealStrategy(currentStrategy, realPrices);
+  doRealStrategy(currentStrategy, 4);
+  doRealStrategy(currentStrategy, 3);
+  doRealStrategy(currentStrategy, 2);
+  doRealStrategy(currentStrategy, 1);
+  doRealStrategy(currentStrategy, 0);
 }
 
-function doRealStrategy(currentStrategy, prices) {
+function doRealStrategy(currentStrategy, orderBookDepth) {
   const {
     spend,
     receive,
-  } = calcProfit(prices, currentStrategy);
+    prices,
+  } = calcProfit(currentStrategy, orderBookDepth);
 
-  if (receive / spend >= 1.001) {
-    console.log(currentStrategy, prices, receive - spend);
-    startStrategy(currentStrategy);
+  if (receive > spend) {
+    console.log(orderBookDepth, currentStrategy, prices, receive - spend);
+    //startStrategy(currentStrategy);
   }
 }
 

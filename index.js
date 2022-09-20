@@ -23,7 +23,7 @@ setTimeout(() => {
   //     });
   // });
 
-  kucoin.initSocket({ topic: "ticker", symbols: symbolsToTrack }, (msg) => {
+  kucoin.initSocket({ topic: "depth5", symbols: symbolsToTrack }, (msg) => {
     const parsedMessage = JSON.parse(msg);
 
     const symbol = parsedMessage?.topic?.split(':')[1];
@@ -31,6 +31,7 @@ setTimeout(() => {
       console.log(parsedMessage);
       return;
     }
+
     symbolsOrderBookInfoMap[symbol] = parsedMessage.data;
 
 

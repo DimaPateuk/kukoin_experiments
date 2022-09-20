@@ -1,20 +1,47 @@
 const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
+const { symbolsOrderBookInfoMap } = require('./resources');
 
-function calcProfit(prices, currentStrategy) {
+function canCalc(currentStrategy) {
+  const [buy, buy2, sell] = currentStrategy;
+  if (
+    !symbolsOrderBookInfoMap[buy] ||
+    !symbolsOrderBookInfoMap[buy2] ||
+    !symbolsOrderBookInfoMap[sell]
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function parsePrices (currentStrategy, depth) {
+  const [buy, buy2, sell] = currentStrategy;
+  return [
+    symbolsOrderBookInfoMap[buy].asks[depth][0],
+    symbolsOrderBookInfoMap[buy2].asks[depth][0],
+    symbolsOrderBookInfoMap[sell].bids[depth][0]
+  ].map(num => parseFloat(num));
+}
+
+function calcProfit(currentStrategy, orderBookDepth) {
+    if (!canCalc(currentStrategy)) {
+      return {};
+    }
+
+    const prices = parsePrices(currentStrategy, orderBookDepth);
     const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
     let spend = exactMath.mul(
       exactMath.mul(prices[0], fees[0] + 1),
       1
     );
     'TRX-USDT'
-    const buy2 = exactMath.div(
+    const buy2Action = exactMath.div(
       exactMath.add(1, -fees[1]),
       prices[1]
     );
     'WIN-TRX'
     const receive = exactMath.mul(
-      buy2,
+      buy2Action,
       prices[2],
 
     );
@@ -24,7 +51,12 @@ function calcProfit(prices, currentStrategy) {
       exactMath.mul(receive, fees[2]),
     );
 
+    if (receive / spend > 1.001) {
+      console.log(prices, prices, receive - spend)
+    }
+
     return {
+      prices,
       spend,
       receive,
     };
