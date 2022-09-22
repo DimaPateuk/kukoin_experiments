@@ -1,6 +1,15 @@
 require('dotenv').config();
 const qs = require('querystring')
-const crypto = require('crypto')
+const crypto = require('crypto');
+
+function K () {
+  this.init({
+    apiKey: process.env.apiKey,
+    secretKey: process.env.secretKey,
+    passphrase: process.env.passphrase,
+    environment: 'live'
+  });
+}
 
 const Kucoin = {
   init: function(config) {
@@ -18,7 +27,7 @@ const Kucoin = {
     const User = require('./lib/user')
     const Market = require('./lib/market')
     const Trade = require('./lib/trade')
-    const Sockets = require('./lib/websockets')
+    const Sockets = require('./lib/websockets')()
     Object.assign(this, User, Market, Trade, Sockets)
   },
   sign: function(endpoint, params, method) {
@@ -53,14 +62,19 @@ const Kucoin = {
     } else {
       return ''
     }
-  }
+  },
+
+  create: () => new K()
+
 }
 
-Kucoin.init({
-  apiKey: process.env.apiKey,
-  secretKey: process.env.secretKey,
-  passphrase: process.env.passphrase,
-  environment: 'live'
-});
+K.prototype = Object.create(Kucoin);
 
-module.exports = Kucoin
+// Kucoin.init({
+//   apiKey: process.env.apiKey,
+//   secretKey: process.env.secretKey,
+//   passphrase: process.env.passphrase,
+//   environment: 'live'
+// });
+
+module.exports = new K();

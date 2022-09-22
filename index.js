@@ -3,50 +3,33 @@ const {
   ordersSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
-  symbolsToTrack,
+  symbolsByTrackers,
   socketCloseSubject,
+  allSymbols,
 } = require('./resources');
 const { makeCalculation } = require('./strategy');
 
 setTimeout(() => {
-  // kucoin.initSocket({ topic: "allTicker" }, (msg) => {
-  //   const parsedMessage = JSON.parse(msg);
-  //   symbolsOrderBookInfoMap[parsedMessage.subject] = parsedMessage.data;
-
-  //   makeCalculation();
-
-  // }, () => {
-  //   Object
-  //     .keys(symbolsOrderBookInfoMap)
-  //     .forEach(key => {
-  //       delete symbolsOrderBookInfoMap[key];
-  //     });
-  // });
-
-  kucoin.initSocket({ topic: "depth5", symbols: symbolsToTrack }, (msg) => {
-    const parsedMessage = JSON.parse(msg);
-
-    const symbol = parsedMessage?.topic?.split(':')[1];
-    if (!symbol) {
-      console.log(parsedMessage);
-      return;
-    }
-
-    symbolsOrderBookInfoMap[symbol] = parsedMessage.data;
-
-
-    makeCalculation();
-
-  }, () => {
-    Object
-      .keys(symbolsOrderBookInfoMap)
-      .forEach(key => {
-        delete symbolsOrderBookInfoMap[key];
+  symbolsByTrackers
+    .forEach((symbols) => {
+      kucoin.create().initSocket({ topic: "depth5", symbols }, (msg) => {
+        const parsedMessage = JSON.parse(msg);
+        const symbol = parsedMessage?.topic?.split(':')[1];
+        if (!symbol) {
+          //console.log(parsedMessage);
+          return;
+        }
+        symbolsOrderBookInfoMap[symbol] = parsedMessage.data;
+      }, () => {
+          socketCloseSubject.next();
+      }, () => {
+        // open socket
       });
-      socketCloseSubject.next();
-  }, () => {
-    // open socket
-  });
+    });
+
+    setInterval(() => {
+      makeCalculation();
+    }, 50);
 }, 1000);
 
 
@@ -62,6 +45,8 @@ kucoin.initSocket({ topic: "orders" }, (msg) => {
   if (data.status === 'done') {
     ordersSubject.next({ order: data });
   }
+}, () => {
+  socketCloseSubject.next();
 });
 
 kucoin.initSocket({ topic: "balances" }, (msg) => {
@@ -73,4 +58,6 @@ kucoin.initSocket({ topic: "balances" }, (msg) => {
 
   const { data } = parsedMessage;
   balancesSubject.next({ balance: data });
+}, () => {
+  socketCloseSubject.next();
 });

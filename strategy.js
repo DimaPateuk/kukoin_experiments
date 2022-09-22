@@ -1,4 +1,3 @@
-const exactMath = require('exact-math');
 const { placeOrder, placeOrderErrorSubject } = require('./placeOrder');
 const {
   takeUntil,
@@ -8,7 +7,6 @@ const {
 const { processNumber } = require('./processNumber');
 const {
   ordersSubject,
-  symbolsOrderBookInfoMap,
   balancesSubject,
   strategies,
   baseFirstStepAmount,
@@ -18,11 +16,17 @@ const {
 const { calcProfit } = require('./calcProfit');
 
 
+const maxTries = 5;
 let oneStrategyInProgress = false;
 let count = 0;
 
 function startStrategy(currentStrategy) {
+  if (oneStrategyInProgress) {
+    return;
+  }
+
   oneStrategyInProgress = true;
+
 
   const [buy, buy2, sell] = currentStrategy;
 
@@ -126,7 +130,7 @@ function startStrategy(currentStrategy) {
             .pipe(
               tap(() => {
                 console.log('By some reason strategy was in progress while socket was closed.');
-                if (count < 3) {
+                if (count < maxTries) {
                   oneStrategyInProgress = false;
                 }
               })
@@ -135,7 +139,7 @@ function startStrategy(currentStrategy) {
             .pipe(
               tap(() => {
                 count++;
-                if (count < 3) {
+                if (count < maxTries) {
                   oneStrategyInProgress = false;
                 } else {
                   console.log(count, 'times really ?');
@@ -161,7 +165,7 @@ function checkStrategy (currentStrategy) {
   doRealStrategy(currentStrategy, 1);
   doRealStrategy(currentStrategy, 0);
 }
-
+let countCalc = 0;
 function doRealStrategy(currentStrategy, orderBookDepth) {
   const {
     spend,
@@ -170,8 +174,10 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
   } = calcProfit(currentStrategy, orderBookDepth);
 
   if (receive > spend) {
-    console.log(orderBookDepth, currentStrategy, prices, receive - spend);
-    //startStrategy(currentStrategy);
+    console.log(countCalc++, orderBookDepth, currentStrategy, prices, receive - spend);
+    if (orderBookDepth > 0) {
+      startStrategy(currentStrategy);
+    }
   }
 }
 
@@ -180,10 +186,12 @@ function makeCalculation() {
     return;
   }
 
-  //startStrategy([ 'TRX-USDT', 'WIN-TRX', 'WIN-USDT' ]);
+  // startStrategy([ 'TRX-USDT', 'WIN-TRX', 'WIN-USDT' ]);
 
   strategies.forEach(checkStrategy);
 }
+
+
 
 module.exports = {
   makeCalculation,

@@ -3,7 +3,7 @@ const kucoin = require('./kucoin')
 const calculatedStrategies = require('./pairs');
 const strategies = Object.values(calculatedStrategies);
 
-const symbolsToTrack = Object.keys(
+const allSymbols = Object.keys(
   strategies
   .reduce((res, pairs) => {
     pairs
@@ -15,7 +15,7 @@ const symbolsToTrack = Object.keys(
 );
 
 const mapTradeFee = {};
-symbolsToTrack
+allSymbols
   .reduce((res, item) => {
     if (res[res.length -1].length === 10) {
       res.push([]);

@@ -2,15 +2,16 @@ const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
 const { symbolsOrderBookInfoMap } = require('./resources');
 
-function canCalc(currentStrategy) {
+function canCalc(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
   if (
-    !symbolsOrderBookInfoMap[buy] ||
-    !symbolsOrderBookInfoMap[buy2] ||
-    !symbolsOrderBookInfoMap[sell]
+    !symbolsOrderBookInfoMap[buy]?.asks[depth] ||
+    !symbolsOrderBookInfoMap[buy2]?.asks[depth] ||
+    !symbolsOrderBookInfoMap[sell]?.bids[depth]
   ) {
     return false;
   }
+
   return true;
 }
 
@@ -24,7 +25,7 @@ function parsePrices (currentStrategy, depth) {
 }
 
 function calcProfit(currentStrategy, orderBookDepth) {
-    if (!canCalc(currentStrategy)) {
+    if (!canCalc(currentStrategy, orderBookDepth)) {
       return {};
     }
 
@@ -50,10 +51,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
       spend,
       exactMath.mul(receive, fees[2]),
     );
-
-    if (receive / spend > 1.001) {
-      console.log(prices, prices, receive - spend)
-    }
 
     return {
       prices,

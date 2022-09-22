@@ -9,23 +9,14 @@ const strategies = Object
     return key.indexOf('KCS') === -1;
   })
   .filter(([key, value]) => {
-    return key.indexOf('KNC') === -1;
-  })
-  .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
 
-  .filter(([key, value]) => {
-    return value[0].split('-')[0] !== 'USDC';
-  })
   .map(entry => entry[1])
 
-const symbolsToTrack = Object.keys(
+const allSymbols = Object.keys(
   strategies
   .reduce((res, pairs) => {
-    if (Object.keys(res).length + 3 > 110) {
-      return res;
-    }
     pairs
       .forEach(pair => {
         res[pair] = true;
@@ -33,6 +24,16 @@ const symbolsToTrack = Object.keys(
     return res;
   }, {})
 );
+
+const symbolsByTrackers = allSymbols.reduce((res, item) => {
+  if (res[res.length -1].length === 120) {
+    res.push([]);
+  }
+
+  res[res.length -1].push(item);
+
+  return res;
+}, [[]])
 
 const symbolsInfo = {};
 kucoin.getSymbols()
@@ -49,14 +50,47 @@ const ordersSubject = new Subject();
 const balancesSubject = new Subject();
 const socketCloseSubject = new Subject();
 const strategyEndSubject = new Subject();
+
 balancesSubject
   .subscribe(({balance}) => {
     if (balance.currency !== 'USDT') {
       return;
     }
 
-    console.log('USDT', balance.available);
+    console.log('USDT', balance.available, balance.available - initialBalance.available);
   });
+
+socketCloseSubject
+  .subscribe(() => {
+    Object
+      .keys(symbolsOrderBookInfoMap)
+      .forEach(key => {
+        delete symbolsOrderBookInfoMap[key];
+      });
+  });
+
+setInterval(() => {
+  populateOrderBook();
+}, 100);
+function populateOrderBook() {
+    let count = 0;
+
+    while (symbolsOrderBookInfoMap[allSymbols[count]]) {
+      count++;
+    }
+
+    if (count === allSymbols.length) {
+      return;
+    }
+
+    const symbol = allSymbols[count];
+    kucoin.getPartOrderBook({ amount: 20, symbol })
+      .then((res) => {
+        if (!symbolsOrderBookInfoMap[symbol]) {
+          symbolsOrderBookInfoMap[symbol] = res.data;
+        }
+      });
+}
 
 
 const currenciesMap = {};
@@ -69,6 +103,10 @@ kucoin.getCurrencies()
   });
 
 const accountsInfo = {};
+const initialBalance = {
+  balance: 0,
+  available: 0,
+};
 kucoin.getAccounts()
   .then(response => {
     accountsInfo.data = response.data;
@@ -80,6 +118,9 @@ kucoin.getAccounts()
       if (item.currency !== 'USDT') {
         return;
       }
+
+      initialBalance.balance = item.balance;
+      initialBalance.available = item.available;
 
       console.log(
         'balance',
@@ -98,8 +139,10 @@ module.exports = {
   symbolsOrderBookInfoMap,
   balancesSubject,
   strategies,
-  symbolsToTrack,
+  allSymbols,
   baseFirstStepAmount,
   socketCloseSubject,
-  strategyEndSubject
+  strategyEndSubject,
+  symbolsByTrackers,
+  initialBalance
 }
