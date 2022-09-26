@@ -1,11 +1,12 @@
 const kucoin = require('./kucoin');
 const {
-  ordersSubject,
+  ordersDoneSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
   symbolsByTrackers,
   socketCloseSubject,
   allSymbols,
+  ordersSubject,
 } = require('./resources');
 const { makeCalculation } = require('./strategy');
 
@@ -29,9 +30,8 @@ setTimeout(() => {
 
     setInterval(() => {
       makeCalculation();
-    }, 50);
+    }, 10);
 }, 1000);
-
 
 kucoin.initSocket({ topic: "orders" }, (msg) => {
   const parsedMessage = JSON.parse(msg);
@@ -42,8 +42,11 @@ kucoin.initSocket({ topic: "orders" }, (msg) => {
 
   const { data } = parsedMessage;
 
+  ordersSubject.next(data);
+
+
   if (data.status === 'done') {
-    ordersSubject.next({ order: data });
+    ordersDoneSubject.next({ order: data });
   }
 }, () => {
   socketCloseSubject.next();

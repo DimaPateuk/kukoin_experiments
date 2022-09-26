@@ -1,6 +1,6 @@
 const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
-const { symbolsOrderBookInfoMap, baseFirstStepAmount } = require('./resources');
+const { symbolsOrderBookInfoMap } = require('./resources');
 
 function canCalc(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
@@ -11,6 +11,17 @@ function canCalc(currentStrategy, depth) {
   ) {
     return false;
   }
+
+  const prices = parsePrices(currentStrategy, depth);
+  const size = parseSizes(currentStrategy, depth);
+
+  console.log(prices);
+  console.log(size);
+
+
+  const f = prices[0] * size[0];
+  const s = prices[1] * f;
+  const t = s / prices[0];
 
   return true;
 }
@@ -23,7 +34,6 @@ function parsePrices (currentStrategy, depth) {
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ].map(num => parseFloat(num));
 }
-
 function parseSizes (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
   return [
@@ -37,46 +47,36 @@ function calcProfit(currentStrategy, orderBookDepth) {
     if (!canCalc(currentStrategy, orderBookDepth)) {
       return {};
     }
-    const spend = baseFirstStepAmount;
-    const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate) * 1);
     const prices = parsePrices(currentStrategy, orderBookDepth);
-    const sizes = parseSizes(currentStrategy, orderBookDepth);
+    const size = parseSizes(currentStrategy, orderBookDepth);
 
-    const feeFirstStep = exactMath.mul(spend, fees[0]);
-    const buyCoins = exactMath.div(spend, prices[0]);
 
-    if (buyCoins > sizes[0]) {
-      return {};
-    }
 
-    const availableToSell = exactMath.mul(buyCoins, 1 - fees[1]); // here fee calculated, no need to remove it from receive
-    const buy2Coins = exactMath.div(availableToSell, prices[1]);
+    const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
+    let spend = exactMath.mul(
+      exactMath.mul(prices[0], fees[0] + 1),
+      1
+    );
+    'TRX-USDT'
+    const buy2Action = exactMath.div(
+      exactMath.add(1, -fees[1]),
+      prices[1]
+    );
+    'WIN-TRX'
+    const receive = exactMath.mul(
+      buy2Action,
+      prices[2],
 
-    if (buy2Coins > sizes[1]) {
-      return {};
-    }
-
-    if (buy2Coins > sizes[2]) {
-      return {};
-    }
-
-    const receiveWithoutFee = exactMath.mul(buy2Coins, prices[2]);
-    const feeThirdStep =  exactMath.mul(receiveWithoutFee, fees[2]);
-    const totalFee = exactMath.add(feeFirstStep, feeThirdStep);
-    const receive = exactMath.add(receiveWithoutFee, -totalFee);
+    );
+    'WIN-USDT'
+    spend = exactMath.add(
+      spend,
+      exactMath.mul(receive, fees[2]),
+    );
 
     return {
-      spend,
-      fees,
       prices,
-      sizes,
-      feeFirstStep,
-      buyCoins,
-      availableToSell,
-      buy2Coins,
-      receiveWithoutFee,
-      feeThirdStep,
-      totalFee,
+      spend,
       receive,
     };
 }

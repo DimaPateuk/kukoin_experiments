@@ -11,8 +11,6 @@ function placeOrder(params) {
       ...params
     })
     .then((res) => {
-      console.log(params.symbol, res);
-
       if (res.code !== '200000') {
         placeOrderErrorSubject.next({
           params,

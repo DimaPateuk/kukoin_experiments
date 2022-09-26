@@ -46,6 +46,7 @@ kucoin.getSymbols()
   });
 
 const symbolsOrderBookInfoMap = {};
+const ordersDoneSubject = new Subject();
 const ordersSubject = new Subject();
 const balancesSubject = new Subject();
 const socketCloseSubject = new Subject();
@@ -135,7 +136,7 @@ module.exports = {
   symbolsInfo,
   accountsInfo,
   currenciesMap,
-  ordersSubject,
+  ordersDoneSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
   strategies,
@@ -144,5 +145,6 @@ module.exports = {
   socketCloseSubject,
   strategyEndSubject,
   symbolsByTrackers,
-  initialBalance
+  initialBalance,
+  ordersSubject
 }

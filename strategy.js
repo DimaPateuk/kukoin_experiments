@@ -6,21 +6,23 @@ const {
 } = require('rxjs');
 const { processNumber } = require('./processNumber');
 const {
-  ordersSubject,
+  ordersDoneSubject,
   balancesSubject,
   strategies,
   baseFirstStepAmount,
   socketCloseSubject,
   strategyEndSubject,
+  ordersSubject,
+  symbolsOrderBookInfoMap,
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 
 
-const maxTries = 5;
+const maxTries = 1;
 let oneStrategyInProgress = false;
 let count = 0;
 
-function startStrategy(currentStrategy) {
+function startStrategy(currentStrategy, profitInfo) {
   if (oneStrategyInProgress) {
     return;
   }
@@ -31,18 +33,53 @@ function startStrategy(currentStrategy) {
   const [buy, buy2, sell] = currentStrategy;
 
   console.log(currentStrategy, '---- started');
+  console.log(currentStrategy, '----');
+  console.log(JSON.stringify(profitInfo, null, 4));
+  console.log(currentStrategy, '----');
 
   placeOrder({
     side: 'buy',
     symbol: buy,
-    funds: baseFirstStepAmount.toString(),
+    size: baseFirstStepAmount.toString(),
   });
 
   const doneOrder = [];
   const availableMap = {};
   let step = 1;
 
-  merge(ordersSubject, balancesSubject)
+  ordersSubject
+    .pipe(
+      tap((data) => {
+        if (!data.matchPrice) {
+          return;
+        }
+
+        const { symbol, matchPrice, matchSize } = data;
+        const floatMathPrice = parseFloat(matchPrice);
+        const floatMathSize = parseFloat(matchSize);
+        const bestAsk = parseFloat(symbolsOrderBookInfoMap[symbol].asks[0][0]);
+        const bestBid = parseFloat(symbolsOrderBookInfoMap[symbol].bids[0][0]);
+        const stepIndex = currentStrategy.indexOf(symbol);
+
+        console.log('matchPrice', symbol, floatMathPrice, floatMathSize);
+        if (stepIndex === 2) {
+          console.log('diff Bids', floatMathPrice >= bestBid, bestBid, floatMathPrice / bestBid, floatMathPrice - bestBid);
+        } else {
+          console.log('diff Ask', floatMathPrice <= bestAsk, bestAsk, floatMathPrice / bestAsk, floatMathPrice - bestAsk);
+        }
+
+        console.log('--------');
+      }),
+      takeUntil(
+        merge(
+          placeOrderErrorSubject,
+          socketCloseSubject,
+          strategyEndSubject
+        )
+      )
+    ).subscribe();
+
+  merge(ordersDoneSubject, balancesSubject)
     .pipe(
       tap(event => {
         if (event.order) {
@@ -78,7 +115,7 @@ function startStrategy(currentStrategy) {
         placeOrder({
           side: 'buy',
           symbol: buy2,
-          funds: buyAmount,
+          size: buyAmount,
         });
       }),
       tap(() => {
@@ -154,10 +191,10 @@ function startStrategy(currentStrategy) {
 
 function checkStrategy (currentStrategy) {
 
-
   if (oneStrategyInProgress) {
     return;
   }
+
 
   doRealStrategy(currentStrategy, 4);
   doRealStrategy(currentStrategy, 3);
@@ -167,16 +204,15 @@ function checkStrategy (currentStrategy) {
 }
 let countCalc = 0;
 function doRealStrategy(currentStrategy, orderBookDepth) {
+  const profitInfo = calcProfit(currentStrategy, orderBookDepth);
   const {
     spend,
     receive,
-    prices,
-  } = calcProfit(currentStrategy, orderBookDepth);
+  } = profitInfo;
 
-  if (receive > spend) {
-    console.log(countCalc++, orderBookDepth, currentStrategy, prices, receive - spend);
-    if (orderBookDepth > 0) {
-      startStrategy(currentStrategy);
+  if (receive / spend > 1.001) {
+    if (orderBookDepth > -1) {
+      startStrategy(currentStrategy, profitInfo);
     }
   }
 }
@@ -186,7 +222,7 @@ function makeCalculation() {
     return;
   }
 
-  // startStrategy([ 'TRX-USDT', 'WIN-TRX', 'WIN-USDT' ]);
+  // doRealStrategy([ 'TRX-USDT', 'WIN-TRX', 'WIN-USDT' ], 0);
 
   strategies.forEach(checkStrategy);
 }
