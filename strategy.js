@@ -18,7 +18,7 @@ const {
 const { calcProfit } = require('./calcProfit');
 
 
-const maxTries = 1;
+const maxTries = 10;
 let oneStrategyInProgress = false;
 let count = 0;
 
@@ -29,7 +29,6 @@ function startStrategy(currentStrategy, profitInfo) {
 
   oneStrategyInProgress = true;
 
-
   const [buy, buy2, sell] = currentStrategy;
 
   console.log(currentStrategy, '---- started');
@@ -37,10 +36,12 @@ function startStrategy(currentStrategy, profitInfo) {
   console.log(JSON.stringify(profitInfo, null, 4));
   console.log(currentStrategy, '----');
 
+
   placeOrder({
     side: 'buy',
     symbol: buy,
-    size: baseFirstStepAmount.toString(),
+    price: profitInfo.stringPrices[0].toString(),
+    size: processNumber((profitInfo.buyCoins).toString(), buy, 'buy'),
   });
 
   const doneOrder = [];
@@ -50,6 +51,8 @@ function startStrategy(currentStrategy, profitInfo) {
   ordersSubject
     .pipe(
       tap((data) => {
+        console.log(data);
+
         if (!data.matchPrice) {
           return;
         }
@@ -61,12 +64,10 @@ function startStrategy(currentStrategy, profitInfo) {
         const bestBid = parseFloat(symbolsOrderBookInfoMap[symbol].bids[0][0]);
         const stepIndex = currentStrategy.indexOf(symbol);
 
-        console.log('matchPrice', symbol, floatMathPrice, floatMathSize);
-        if (stepIndex === 2) {
-          console.log('diff Bids', floatMathPrice >= bestBid, bestBid, floatMathPrice / bestBid, floatMathPrice - bestBid);
-        } else {
-          console.log('diff Ask', floatMathPrice <= bestAsk, bestAsk, floatMathPrice / bestAsk, floatMathPrice - bestAsk);
-        }
+        console.log('--------', symbol);
+        console.log(symbol, 'matchPrice', floatMathPrice, 'mathSize', floatMathSize);
+        console.log(symbol, 'required price', profitInfo.stringPrices[stepIndex], 'required size', profitInfo.sizes[stepIndex]);
+        console.log(symbol, 'bestAsk', bestAsk, 'bestBid', bestBid);
 
         console.log('--------');
       }),
@@ -110,11 +111,13 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const buyAmount = processNumber(available.toString(), buy2, 'buy');
+        const buyAmount = processNumber((profitInfo.buy2Coins).toString(), buy2, 'buy');
         console.log('buy2', buy2, available, buyAmount);
+
         placeOrder({
           side: 'buy',
           symbol: buy2,
+          price: profitInfo.stringPrices[1].toString(),
           size: buyAmount,
         });
       }),
@@ -138,11 +141,13 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const sellAmount = processNumber(available.toString(), sell, 'sell');
+        const sellAmount = processNumber((available).toString(), sell, 'sell');
         console.log('sell', sell, available, sellAmount);
+
         placeOrder({
           side: 'sell',
           symbol: sell,
+          price: profitInfo.stringPrices[2].toString(),
           size: sellAmount,
         });
       }),
@@ -195,22 +200,30 @@ function checkStrategy (currentStrategy) {
     return;
   }
 
+  // for(let i = 20; i >= 3; i--) {
+  //   doRealStrategy(currentStrategy, i);
+  // }
+    doRealStrategy(currentStrategy, 2);
+    doRealStrategy(currentStrategy, 1);
+    doRealStrategy(currentStrategy, 0);
 
-  doRealStrategy(currentStrategy, 4);
-  doRealStrategy(currentStrategy, 3);
-  doRealStrategy(currentStrategy, 2);
-  doRealStrategy(currentStrategy, 1);
-  doRealStrategy(currentStrategy, 0);
 }
-let countCalc = 0;
+
 function doRealStrategy(currentStrategy, orderBookDepth) {
+  if (oneStrategyInProgress) {
+    return;
+  }
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
   const {
     spend,
     receive,
   } = profitInfo;
 
-  if (receive / spend > 1.001) {
+
+  // console.log(profitInfo.strategy, receive - spend);
+
+  if (receive - spend > 0) {
+
     if (orderBookDepth > -1) {
       startStrategy(currentStrategy, profitInfo);
     }

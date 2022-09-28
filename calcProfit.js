@@ -32,14 +32,24 @@ function parseSizes (currentStrategy, depth) {
     symbolsOrderBookInfoMap[sell].bids[depth][1]
   ].map(num => parseFloat(num));
 }
+function getStringPrices (currentStrategy, depth) {
+  const [buy, buy2, sell] = currentStrategy;
+  return [
+    symbolsOrderBookInfoMap[buy].asks[depth][0],
+    symbolsOrderBookInfoMap[buy2].asks[depth][0],
+    symbolsOrderBookInfoMap[sell].bids[depth][0]
+  ];
+}
 
 function calcProfit(currentStrategy, orderBookDepth) {
     if (!canCalc(currentStrategy, orderBookDepth)) {
       return {};
     }
+    const [buy, buy2, sell] = currentStrategy;
     const spend = baseFirstStepAmount;
-    const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate) * 1);
+    const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate) * 2);
     const prices = parsePrices(currentStrategy, orderBookDepth);
+    const stringPrices = getStringPrices(currentStrategy, orderBookDepth);
     const sizes = parseSizes(currentStrategy, orderBookDepth);
 
     const feeFirstStep = exactMath.mul(spend, fees[0]);
@@ -66,9 +76,12 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const receive = exactMath.add(receiveWithoutFee, -totalFee);
 
     return {
+      strategy: currentStrategy,
+      orderBookDepth,
       spend,
       fees,
       prices,
+      stringPrices,
       sizes,
       feeFirstStep,
       buyCoins,
@@ -78,6 +91,9 @@ function calcProfit(currentStrategy, orderBookDepth) {
       feeThirdStep,
       totalFee,
       receive,
+      buyOrderBookInfo: symbolsOrderBookInfoMap[buy].asks[orderBookDepth][0],
+      buy2OrderBookInfo: symbolsOrderBookInfoMap[buy2].asks[orderBookDepth][0],
+      sellOrderBookInfo: symbolsOrderBookInfoMap[sell].bids[orderBookDepth][0]
     };
 }
 

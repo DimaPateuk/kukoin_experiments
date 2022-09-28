@@ -4,19 +4,34 @@ const { Subject } = require('rxjs');
 
 const placeOrderErrorSubject = new Subject();
 function placeOrder(params) {
-
-  return kucoin.placeOrder({
+  let promise;
+  if (params.stopPrice) {
+    promise = kucoin.placeStopOrder({
       clientOid: v4(),
       type: 'market',
       ...params
     })
-    .then((res) => {
+  } if (params.price) {
+    promise = kucoin.placeOrder({
+      clientOid: v4(),
+      ...params
+    })
+  } else {
+    promise = kucoin.placeOrder({
+      clientOid: v4(),
+      type: 'market',
+      ...params
+    });
+  }
+
+  return promise.then((res) => {
       if (res.code !== '200000') {
         placeOrderErrorSubject.next({
           params,
           res
         });
       }
+      console.log(res);
 
       return res;
 

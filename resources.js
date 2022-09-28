@@ -85,7 +85,7 @@ function populateOrderBook() {
     }
 
     const symbol = allSymbols[count];
-    kucoin.getPartOrderBook({ amount: 20, symbol })
+    kucoin.getPartOrderBook({ amount: 100, symbol })
       .then((res) => {
         if (!symbolsOrderBookInfoMap[symbol]) {
           symbolsOrderBookInfoMap[symbol] = res.data;
@@ -101,6 +101,8 @@ kucoin.getCurrencies()
       .forEach(item => {
         currenciesMap[item.currency] = item;
       });
+
+      //console.log(JSON.stringify(currenciesMap, null, 4));
   });
 
 const accountsInfo = {};
