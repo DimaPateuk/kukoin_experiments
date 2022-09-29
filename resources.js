@@ -8,12 +8,21 @@ const strategies = Object
   .filter(([key, value]) => {
     return key.indexOf('KCS') === -1;
   })
+  // .filter(([key, value]) => {
+  //   return key.indexOf('BTC') === -1;
+  // })
+  // .filter(([key, value]) => {
+  //   return key.indexOf('ETH') === -1;
+  // })
+  // .filter(([key, value]) => {
+  //   return key.indexOf('USDC') === -1;
+  // })
   .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
 
-  .map(entry => entry[1])
 
+  .map(entry => entry[1])
 const allSymbols = Object.keys(
   strategies
   .reduce((res, pairs) => {
@@ -63,16 +72,17 @@ balancesSubject
 
 socketCloseSubject
   .subscribe(() => {
-    Object
-      .keys(symbolsOrderBookInfoMap)
-      .forEach(key => {
-        delete symbolsOrderBookInfoMap[key];
-      });
+    // Object
+    //   .keys(symbolsOrderBookInfoMap)
+    //   .forEach(key => {
+    //     delete symbolsOrderBookInfoMap[key];
+    //   });
   });
 
 setInterval(() => {
   populateOrderBook();
 }, 100);
+
 function populateOrderBook() {
     let count = 0;
 
@@ -85,12 +95,19 @@ function populateOrderBook() {
     }
 
     const symbol = allSymbols[count];
+
     kucoin.getPartOrderBook({ amount: 100, symbol })
       .then((res) => {
-        if (!symbolsOrderBookInfoMap[symbol]) {
-          symbolsOrderBookInfoMap[symbol] = res.data;
+        if (symbolsOrderBookInfoMap[symbol]) {
+          return;
         }
-      });
+
+        symbolsOrderBookInfoMap[symbol] = res.data;
+      },
+      (err) => {
+        console.log('getPartOrderBook', err?.data);
+      }
+    );
 }
 
 

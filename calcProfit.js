@@ -4,6 +4,7 @@ const { symbolsOrderBookInfoMap, baseFirstStepAmount } = require('./resources');
 
 function canCalc(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
+
   if (
     !symbolsOrderBookInfoMap[buy]?.asks[depth] ||
     !symbolsOrderBookInfoMap[buy2]?.asks[depth] ||
@@ -17,6 +18,7 @@ function canCalc(currentStrategy, depth) {
 
 function parsePrices (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
+
   return [
     symbolsOrderBookInfoMap[buy].asks[depth][0],
     symbolsOrderBookInfoMap[buy2].asks[depth][0],
@@ -26,11 +28,12 @@ function parsePrices (currentStrategy, depth) {
 
 function parseSizes (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
+
   return [
-    symbolsOrderBookInfoMap[buy].asks[depth][1],
-    symbolsOrderBookInfoMap[buy2].asks[depth][1],
-    symbolsOrderBookInfoMap[sell].bids[depth][1]
-  ].map(num => parseFloat(num));
+    symbolsOrderBookInfoMap[buy].asks.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0),
+    symbolsOrderBookInfoMap[buy2].asks.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0),
+    symbolsOrderBookInfoMap[sell].bids.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0)
+  ];
 }
 function getStringPrices (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
@@ -51,22 +54,24 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const prices = parsePrices(currentStrategy, orderBookDepth);
     const stringPrices = getStringPrices(currentStrategy, orderBookDepth);
     const sizes = parseSizes(currentStrategy, orderBookDepth);
-
     const feeFirstStep = exactMath.mul(spend, fees[0]);
     const buyCoins = exactMath.div(spend, prices[0]);
 
-    if (buyCoins > sizes[0]) {
+    if (buyCoins * 100 > sizes[0]) {
+      //console.log(currentStrategy, buy,'rejected by size', buyCoins, sizes[0]);
       return {};
     }
 
     const availableToSell = exactMath.mul(buyCoins, 1 - fees[1]); // here fee calculated, no need to remove it from receive
     const buy2Coins = exactMath.div(availableToSell, prices[1]);
 
-    if (buy2Coins > sizes[1]) {
+    if (buy2Coins * 100 > sizes[1]) {
+      //console.log(currentStrategy, buy2,'rejected by size', buy2Coins, sizes[1]);
       return {};
     }
 
-    if (buy2Coins > sizes[2]) {
+    if (buy2Coins * 100 > sizes[2]) {
+      //console.log(currentStrategy, sell, 'rejected by size', buyCoins, sizes[2]);
       return {};
     }
 
