@@ -1,13 +1,8 @@
-const {processNumber} = require('./processNumber');
-
-const available = 0.00007841103957572875;
-
-
-setTimeout(() => {
-const t = processNumber(available.toString(), 'CUDOS-BTC', 'buy')
-
-
-console.log(t);
-
-}, 3000)
-
+const { placeOrder } = require('./placeOrder');
+const { v4 } = require('uuid');
+placeOrder({
+  clientOid: v4(),
+  side: 'sell',
+  symbol: 'TARA-USDT',
+  funds: '1.508',
+});

@@ -16,11 +16,14 @@ const {
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 const { v4 } = require('uuid');
+const { priceDiff } = require('./priceDiff');
 
 
-const maxTries = 1;
+const maxTries = 10;
 let oneStrategyInProgress = false;
 let count = 0;
+
+
 
 function startStrategy(currentStrategy, profitInfo) {
   if (oneStrategyInProgress) {
@@ -43,7 +46,8 @@ function startStrategy(currentStrategy, profitInfo) {
     side: 'buy',
     symbol: buy,
     //price: profitInfo.stringPrices[0].toString(),
-    size: processNumber((profitInfo.buyCoins).toString(), buy, 'buy'),
+    // size: processNumber((profitInfo.buyCoins).toString(), buy, 'buy'),
+    funds: profitInfo.baseFirstStepAmount.toString(),
   });
 
   const doneOrder = [];
@@ -68,13 +72,13 @@ function startStrategy(currentStrategy, profitInfo) {
 
         console.log('--------', symbol);
         console.log(symbol, 'matchPrice', floatMathPrice);
-        console.log(symbol, 'required price', profitInfo.stringPrices[stepIndex]);
+        console.log(symbol, 'required price', profitInfo.fakePrices[stepIndex]);
         console.log(symbol, 'bestAsk', bestAsk, 'bestBid', bestBid);
 
         if (stepIndex == 2) {
-          console.log(symbol, floatMathPrice > profitInfo.stringPrices[stepIndex]);
+          console.log(symbol, floatMathPrice > profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
         } else {
-          console.log(symbol, floatMathPrice < profitInfo.stringPrices[stepIndex]);
+          console.log(symbol, floatMathPrice < profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
         }
 
         console.log('--------');
@@ -119,15 +123,16 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const buyAmount = processNumber((profitInfo.buy2Coins).toString(), buy2, 'buy');
-        console.log('buy2', buy2, available, buyAmount);
+        const buyAmount = processNumber((profitInfo.buyCoins).toString(), buy2, 'buy');
+        console.log('buy2 !!!!!!', buy2, available, buyAmount);
 
         placeOrder({
           clientOid: clientOidBuy2,
           side: 'buy',
           symbol: buy2,
           //price: profitInfo.stringPrices[1].toString(),
-          size: buyAmount,
+          //size: buyAmount,
+          funds: buyAmount,
         });
       }),
       tap(() => {
@@ -150,15 +155,16 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const sellAmount = processNumber((available).toString(), sell, 'sell');
-        console.log('sell', sell, available, sellAmount);
+        const sellAmount = processNumber((profitInfo.receive).toString(), sell, 'sell');
+        console.log('sell !!!!!', sell, available, sellAmount);
 
         placeOrder({
           clientOid: clientOidSell,
           side: 'sell',
           symbol: sell,
           //price: profitInfo.stringPrices[2].toString(),
-          size: sellAmount,
+          // size: sellAmount,
+          funds: sellAmount,
         });
       }),
       tap(() => {
@@ -193,13 +199,15 @@ function startStrategy(currentStrategy, profitInfo) {
                 count++;
                 if (count < maxTries) {
                   oneStrategyInProgress = false;
-                } else {
-                  console.log(count, 'times really ?');
+
                   const profitInfoAfter = calcProfit(currentStrategy, profitInfo.orderBookDepth);
                   const profitInfoReversStrategy = calcProfit(currentStrategy.reverse(), profitInfo.orderBookDepth);
 
                   console.log('profitInfoAfter', JSON.stringify(profitInfoAfter, null, 4));
                   console.log('profitInfoReversStrategy', JSON.stringify(profitInfoReversStrategy, null, 4));
+
+                } else {
+                  console.log(count, 'times really ?');
 
                 }
               })
@@ -216,9 +224,9 @@ function checkStrategy (currentStrategy) {
     return;
   }
 
-  doRealStrategy(currentStrategy, 2);
-  doRealStrategy(currentStrategy, 1);
-  doRealStrategy(currentStrategy, 0);
+  for(let i = 19; i >=0; i--) {
+    doRealStrategy(currentStrategy, i);
+  }
 
 }
 
