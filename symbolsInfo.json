@@ -2917,7 +2917,7 @@
         "quoteMinSize": "0.00001",
         "baseMaxSize": "10000000000",
         "quoteMaxSize": "999999999",
-        "baseIncrement": "0.0000001",
+        "baseIncrement":  "0.0000001",
         "quoteIncrement": "0.00000001",
         "priceIncrement": "0.000001",
         "priceLimitRate": "0.1",

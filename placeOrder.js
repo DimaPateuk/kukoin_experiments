@@ -31,12 +31,11 @@ function placeOrder(params) {
           res
         });
       }
-      console.log(res);
+      console.log(res, params);
 
       return res;
 
     }, (err) => {
-      console.log(err);
       placeOrderErrorSubject.next({
         params,
         err,

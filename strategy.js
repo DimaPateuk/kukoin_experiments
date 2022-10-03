@@ -33,6 +33,10 @@ function startStrategy(currentStrategy, profitInfo) {
   oneStrategyInProgress = true;
 
   const [buy, buy2, sell] = currentStrategy;
+
+  if (buy.split('-')[0] === buy2.split('-')[0]) {
+    throw new Error(currentStrategy);
+  }
   const ordersClientIds = [v4(), v4(), v4()];
   const [clientOidBuy, clientOidBuy2, clientOidSell] = [v4(), v4(), v4()];
 
@@ -45,9 +49,8 @@ function startStrategy(currentStrategy, profitInfo) {
     clientOid: clientOidBuy,
     side: 'buy',
     symbol: buy,
-    //price: profitInfo.stringPrices[0].toString(),
-    // size: processNumber((profitInfo.buyCoins).toString(), buy, 'buy'),
-    funds: profitInfo.baseFirstStepAmount.toString(),
+    price: profitInfo.stringPrices[0].toString(),
+    size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
   });
 
   const doneOrder = [];
@@ -57,9 +60,6 @@ function startStrategy(currentStrategy, profitInfo) {
   ordersSubject
     .pipe(
       tap((data) => {
-        // console.log(ordersClientIds, data.clientOid, ordersClientIds.includes(data.clientOid));
-        // console.log(data);
-
         if (!data.matchPrice) {
           return;
         }
@@ -71,14 +71,14 @@ function startStrategy(currentStrategy, profitInfo) {
         const stepIndex = currentStrategy.indexOf(symbol);
 
         console.log('--------', symbol);
-        console.log(symbol, 'matchPrice', floatMathPrice);
-        console.log(symbol, 'required price', profitInfo.fakePrices[stepIndex]);
-        console.log(symbol, 'bestAsk', bestAsk, 'bestBid', bestBid);
+        // console.log(symbol, 'matchPrice', floatMathPrice);
+        // console.log(symbol, 'required price', profitInfo.fakePrices[stepIndex]);
+        // console.log(symbol, 'bestAsk', bestAsk, 'bestBid', bestBid);
 
         if (stepIndex == 2) {
-          console.log(symbol, floatMathPrice > profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
+          console.log(symbol, floatMathPrice >= profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
         } else {
-          console.log(symbol, floatMathPrice < profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
+          console.log(symbol, floatMathPrice <= profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
         }
 
         console.log('--------');
@@ -123,16 +123,15 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const buyAmount = processNumber((profitInfo.buyCoins).toString(), buy2, 'buy');
+        const buyAmount = processNumber((profitInfo.buy2Coins).toString(), buy2, 'asks');
         console.log('buy2 !!!!!!', buy2, available, buyAmount);
 
         placeOrder({
           clientOid: clientOidBuy2,
           side: 'buy',
           symbol: buy2,
-          //price: profitInfo.stringPrices[1].toString(),
-          //size: buyAmount,
-          funds: buyAmount,
+          price: profitInfo.stringPrices[1].toString(),
+          size: buyAmount,
         });
       }),
       tap(() => {
@@ -155,17 +154,17 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const sellAmount = processNumber((profitInfo.receive).toString(), sell, 'sell');
+        const sellAmount = processNumber((available).toString(), sell, 'bids');
         console.log('sell !!!!!', sell, available, sellAmount);
 
         placeOrder({
           clientOid: clientOidSell,
           side: 'sell',
           symbol: sell,
-          //price: profitInfo.stringPrices[2].toString(),
-          // size: sellAmount,
-          funds: sellAmount,
+          price: profitInfo.stringPrices[2].toString(),
+          size: sellAmount,
         });
+
       }),
       tap(() => {
         if (doneOrder.length !== 3 || step !== 3) {
@@ -188,9 +187,6 @@ function startStrategy(currentStrategy, profitInfo) {
             .pipe(
               tap(() => {
                 console.log('By some reason strategy was in progress while socket was closed.');
-                if (count < maxTries) {
-                  oneStrategyInProgress = false;
-                }
               })
             ),
           strategyEndSubject
@@ -198,13 +194,9 @@ function startStrategy(currentStrategy, profitInfo) {
               tap(() => {
                 count++;
                 if (count < maxTries) {
-                  oneStrategyInProgress = false;
-
-                  const profitInfoAfter = calcProfit(currentStrategy, profitInfo.orderBookDepth);
-                  const profitInfoReversStrategy = calcProfit(currentStrategy.reverse(), profitInfo.orderBookDepth);
-
-                  console.log('profitInfoAfter', JSON.stringify(profitInfoAfter, null, 4));
-                  console.log('profitInfoReversStrategy', JSON.stringify(profitInfoReversStrategy, null, 4));
+                  setTimeout(() => {
+                    oneStrategyInProgress = false;
+                  }, 1000);
 
                 } else {
                   console.log(count, 'times really ?');
@@ -218,19 +210,25 @@ function startStrategy(currentStrategy, profitInfo) {
     .subscribe();
 }
 
-function checkStrategy (currentStrategy) {
+function checkStrategy (currentStrategy, index) {
 
-  if (oneStrategyInProgress) {
-    return;
+  if (currentStrategy.join() === [ 'ATOM-USDT', 'ATOM-ETH', 'ETH-USDT' ].join()) {
+    throw new Error('ss');
   }
 
-  for(let i = 19; i >=0; i--) {
-    doRealStrategy(currentStrategy, i);
-  }
+  console.log(currentStrategy);
+
+  // if (oneStrategyInProgress) {
+  //   return;
+  // }
+
+  // for(let i = 3; i >=0; i--) {
+  //   doRealStrategy(currentStrategy, i, index);
+  // }
 
 }
 
-function doRealStrategy(currentStrategy, orderBookDepth) {
+function doRealStrategy(currentStrategy, orderBookDepth, index) {
   if (oneStrategyInProgress) {
     return;
   }
@@ -243,7 +241,7 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
   if (!profitInfo.strategy) {
     return;
   }
-  //console.log(profitInfo.strategy, receive - spend);
+  // console.log(index, profitInfo.strategy, receive - spend);
 
   if (receive - spend > 0) {
 
@@ -257,8 +255,6 @@ function makeCalculation() {
   if (oneStrategyInProgress) {
     return;
   }
-
-  // doRealStrategy([ 'TRX-USDT', 'WIN-TRX', 'WIN-USDT' ], 0);
 
   strategies.forEach(checkStrategy);
 }

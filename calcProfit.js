@@ -52,24 +52,24 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const spend = baseFirstStepAmount;
     const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
     const prices = parsePrices(currentStrategy, orderBookDepth);
-    const fakePrices = [prices[0] * 1.002, prices[1] * 1.002, prices[2] * 0.998];
+    const fakePrices = [prices[0] * 1, prices[1] * 1, prices[2] * 1];
     const stringPrices = getStringPrices(currentStrategy, orderBookDepth);
     const sizes = parseSizes(currentStrategy, orderBookDepth);
     const buyCoins = exactMath.div(spend, fakePrices[0]);
 
-    if (buyCoins * 2 > sizes[0]) {
+    if (buyCoins * 1 > sizes[0]) {
       //console.log(currentStrategy, buy,'rejected by size', buyCoins, sizes[0]);
       return {};
     }
 
     const buy2Coins = exactMath.div(buyCoins, fakePrices[1]);
 
-    if (buy2Coins * 2 > sizes[1]) {
+    if (buy2Coins * 1 > sizes[1]) {
       //console.log(currentStrategy, buy2,'rejected by size', buy2Coins, sizes[1]);
       return {};
     }
 
-    if (buy2Coins * 2 > sizes[2]) {
+    if (buy2Coins * 1 > sizes[2]) {
       //console.log(currentStrategy, sell, 'rejected by size', buyCoins, sizes[2]);
       return {};
     }

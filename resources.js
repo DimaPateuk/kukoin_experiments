@@ -20,10 +20,13 @@ const strategies = Object
   .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
+  .map(entry => entry[1]);
 
 
-  .map(entry => entry[1])
-const allSymbols = Object.keys(
+  console.log(JSON.stringify(strategies.map(item => item.join()), null, 4));
+const allSymbols = [
+  // 'TRX-USDT', 'WIN-TRX', 'WIN-USDT'
+].concat(Object.keys(
   strategies
   .reduce((res, pairs) => {
     pairs
@@ -32,7 +35,7 @@ const allSymbols = Object.keys(
       });
     return res;
   }, {})
-);
+));
 
 const symbolsByTrackers = allSymbols.reduce((res, item) => {
   if (res[res.length -1].length === 120) {
@@ -63,11 +66,10 @@ const strategyEndSubject = new Subject();
 
 balancesSubject
   .subscribe(({balance}) => {
-    if (balance.currency !== 'USDT') {
-      return;
+    if (balance.currency === 'USDT') {
+      console.log('USDT', balance.available, balance.available - initialBalance.available);
     }
 
-    console.log('USDT', balance.available, balance.available - initialBalance.available);
   });
 
 socketCloseSubject
