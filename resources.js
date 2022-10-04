@@ -23,7 +23,6 @@ const strategies = Object
   .map(entry => entry[1]);
 
 
-  console.log(JSON.stringify(strategies.map(item => item.join()), null, 4));
 const allSymbols = [
   // 'TRX-USDT', 'WIN-TRX', 'WIN-USDT'
 ].concat(Object.keys(
@@ -58,7 +57,7 @@ kucoin.getSymbols()
   });
 
 const symbolsOrderBookInfoMap = {};
-const ordersDoneSubject = new Subject();
+
 const ordersSubject = new Subject();
 const balancesSubject = new Subject();
 const socketCloseSubject = new Subject();
@@ -67,7 +66,7 @@ const strategyEndSubject = new Subject();
 balancesSubject
   .subscribe(({balance}) => {
     if (balance.currency === 'USDT') {
-      console.log('USDT', balance.available, balance.available - initialBalance.available);
+      balanceInfo.current = balance.available;
     }
 
   });
@@ -125,9 +124,10 @@ kucoin.getCurrencies()
   });
 
 const accountsInfo = {};
-const initialBalance = {
+const balanceInfo = {
   balance: 0,
   available: 0,
+  current: 0,
 };
 kucoin.getAccounts()
   .then(response => {
@@ -141,8 +141,9 @@ kucoin.getAccounts()
         return;
       }
 
-      initialBalance.balance = item.balance;
-      initialBalance.available = item.available;
+      balanceInfo.balance = item.balance;
+      balanceInfo.available = item.available;
+      balanceInfo.current = item.available;
 
       console.log(
         'balance',
@@ -157,7 +158,6 @@ module.exports = {
   symbolsInfo,
   accountsInfo,
   currenciesMap,
-  ordersDoneSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
   strategies,
@@ -166,6 +166,6 @@ module.exports = {
   socketCloseSubject,
   strategyEndSubject,
   symbolsByTrackers,
-  initialBalance,
+  balanceInfo,
   ordersSubject
 }

@@ -3,16 +3,18 @@ const {
   takeUntil,
   tap,
   merge,
+  filter,
+  Subject,
 } = require('rxjs');
 const { processNumber } = require('./processNumber');
 const {
-  ordersDoneSubject,
   balancesSubject,
   strategies,
   socketCloseSubject,
   strategyEndSubject,
   ordersSubject,
   symbolsOrderBookInfoMap,
+  balanceInfo,
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 const { v4 } = require('uuid');
@@ -21,14 +23,15 @@ const { priceDiff } = require('./priceDiff');
 
 const maxTries = 10;
 let oneStrategyInProgress = false;
+const strategiesInProgress = Map();
 let count = 0;
-
-
 
 function startStrategy(currentStrategy, profitInfo) {
   if (oneStrategyInProgress) {
     return;
   }
+
+  strategiesInProgress.add(currentStrategy.join(), currentStrategy);
 
   oneStrategyInProgress = true;
 
@@ -37,8 +40,9 @@ function startStrategy(currentStrategy, profitInfo) {
   if (buy.split('-')[0] === buy2.split('-')[0]) {
     throw new Error(currentStrategy);
   }
+
   const ordersClientIds = [v4(), v4(), v4()];
-  const [clientOidBuy, clientOidBuy2, clientOidSell] = [v4(), v4(), v4()];
+  const [clientOidBuy, clientOidBuy2, clientOidSell] = ordersClientIds;
 
   console.log(currentStrategy, '---- started');
   console.log(currentStrategy, '----', ordersClientIds);
@@ -56,10 +60,18 @@ function startStrategy(currentStrategy, profitInfo) {
   const doneOrder = [];
   const availableMap = {};
   let step = 1;
+  const ordersDoneSubject = new Subject();
 
   ordersSubject
     .pipe(
+      filter((data) => {
+        return ordersClientIds.includes(data.clientOid);
+      }),
       tap((data) => {
+        if (data.status === 'done') {
+          ordersDoneSubject.next({ order: data });
+        }
+
         if (!data.matchPrice) {
           return;
         }
@@ -124,7 +136,7 @@ function startStrategy(currentStrategy, profitInfo) {
         step++;
 
         const buyAmount = processNumber((profitInfo.buy2Coins).toString(), buy2, 'asks');
-        console.log('buy2 !!!!!!', buy2, available, buyAmount);
+        console.log('buy2 !!!!!!', buy2, profitInfo.buy2Coins, buyAmount);
 
         placeOrder({
           clientOid: clientOidBuy2,
@@ -154,8 +166,8 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const sellAmount = processNumber((available).toString(), sell, 'bids');
-        console.log('sell !!!!!', sell, available, sellAmount);
+        const sellAmount = processNumber((filledSize).toString(), sell, 'bids');
+        console.log('sell !!!!!', sell, filledSize, sellAmount, 'available', available);
 
         placeOrder({
           clientOid: clientOidSell,
@@ -196,11 +208,11 @@ function startStrategy(currentStrategy, profitInfo) {
                 if (count < maxTries) {
                   setTimeout(() => {
                     oneStrategyInProgress = false;
-                  }, 1000);
+                    strategiesInProgress.remove(currentStrategy.join());
+                  }, 5000);
 
                 } else {
                   console.log(count, 'times really ?');
-
                 }
               })
             )
@@ -212,19 +224,14 @@ function startStrategy(currentStrategy, profitInfo) {
 
 function checkStrategy (currentStrategy, index) {
 
-  if (currentStrategy.join() === [ 'ATOM-USDT', 'ATOM-ETH', 'ETH-USDT' ].join()) {
-    throw new Error('ss');
+
+  if (oneStrategyInProgress) {
+    return;
   }
 
-  console.log(currentStrategy);
-
-  // if (oneStrategyInProgress) {
-  //   return;
-  // }
-
-  // for(let i = 3; i >=0; i--) {
-  //   doRealStrategy(currentStrategy, i, index);
-  // }
+  for(let i = 5; i >=0; i--) {
+    doRealStrategy(currentStrategy, i, index);
+  }
 
 }
 
@@ -243,7 +250,7 @@ function doRealStrategy(currentStrategy, orderBookDepth, index) {
   }
   // console.log(index, profitInfo.strategy, receive - spend);
 
-  if (receive - spend > 0) {
+  if (receive - spend > 0.003) {
 
     if (orderBookDepth > -1) {
       startStrategy(currentStrategy, profitInfo);

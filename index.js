@@ -1,5 +1,4 @@
 const {
-  ordersDoneSubject,
   symbolsOrderBookInfoMap,
   balancesSubject,
   symbolsByTrackers,
@@ -38,10 +37,6 @@ infinitySocket({ topic: "orders" }, (msg) => {
 
   ordersSubject.next(data);
 
-
-  if (data.status === 'done') {
-    ordersDoneSubject.next({ order: data });
-  }
 });
 
 infinitySocket({ topic: "balances" }, (msg) => {
