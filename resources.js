@@ -2,7 +2,6 @@ require('dotenv').config()
 const kucoin = require('./kucoin')
 const { Subject } = require('rxjs')
 const calculatedStrategies = require('./pairs');
-const baseFirstStepAmount = 1.5;
 const strategies = Object
   .entries(calculatedStrategies)
   .filter(([key, value]) => {
@@ -151,7 +150,6 @@ module.exports = {
   balancesSubject,
   strategies,
   allSymbols,
-  baseFirstStepAmount,
   symbolsByTrackers,
   balanceInfo,
   ordersSubject

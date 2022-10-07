@@ -1,6 +1,6 @@
 const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
-const { symbolsOrderBookInfoMap, baseFirstStepAmount } = require('./resources');
+const { symbolsOrderBookInfoMap } = require('./resources');
 
 function canCalc(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
@@ -43,6 +43,7 @@ function getStringPrices (currentStrategy, depth) {
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
 }
+const baseFirstStepAmount = 1.5;
 const magicProfitRation = 0;
 // const magicProfitRation = 0;
 function calcProfit(currentStrategy, orderBookDepth) {
@@ -65,19 +66,19 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const sizes = parseSizes(currentStrategy, orderBookDepth);
     const buyCoins = exactMath.div(spend, fakePrices[0]);
 
-    if (buyCoins * 2 > sizes[0]) {
+    if (buyCoins * 5 > sizes[0]) {
       //console.log(currentStrategy, buy,'rejected by size', buyCoins, sizes[0]);
       return {};
     }
 
     const buy2Coins = exactMath.div(buyCoins, fakePrices[1]);
 
-    if (buy2Coins * 2 > sizes[1]) {
+    if (buy2Coins * 5 > sizes[1]) {
       //console.log(currentStrategy, buy2,'rejected by size', buy2Coins, sizes[1]);
       return {};
     }
 
-    if (buy2Coins * 2 > sizes[2]) {
+    if (buy2Coins * 5 > sizes[2]) {
       //console.log(currentStrategy, sell, 'rejected by size', buyCoins, sizes[2]);
       return {};
     }
