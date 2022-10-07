@@ -60,8 +60,6 @@ const symbolsOrderBookInfoMap = {};
 
 const ordersSubject = new Subject();
 const balancesSubject = new Subject();
-const socketCloseSubject = new Subject();
-const strategyEndSubject = new Subject();
 
 balancesSubject
   .subscribe(({balance}) => {
@@ -71,44 +69,35 @@ balancesSubject
 
   });
 
-socketCloseSubject
-  .subscribe(() => {
-    // Object
-    //   .keys(symbolsOrderBookInfoMap)
-    //   .forEach(key => {
-    //     delete symbolsOrderBookInfoMap[key];
-    //   });
-  });
-
 setInterval(() => {
-  populateOrderBook();
+  // populateOrderBook();
 }, 100);
 
 function populateOrderBook() {
-    let count = 0;
+    // let count = 0;
 
-    while (symbolsOrderBookInfoMap[allSymbols[count]]) {
-      count++;
-    }
+    // while (symbolsOrderBookInfoMap[allSymbols[count]]) {
+    //   count++;
+    // }
 
-    if (count === allSymbols.length) {
-      return;
-    }
+    // if (count === allSymbols.length) {
+    //   return;
+    // }
 
-    const symbol = allSymbols[count];
+    // const symbol = allSymbols[count];
 
-    kucoin.getPartOrderBook({ amount: 100, symbol })
-      .then((res) => {
-        if (symbolsOrderBookInfoMap[symbol]) {
-          return;
-        }
+    // kucoin.getPartOrderBook({ amount: 100, symbol })
+    //   .then((res) => {
+    //     if (symbolsOrderBookInfoMap[symbol]) {
+    //       return;
+    //     }
 
-        symbolsOrderBookInfoMap[symbol] = res.data;
-      },
-      (err) => {
-        console.log('getPartOrderBook', err?.data);
-      }
-    );
+    //     symbolsOrderBookInfoMap[symbol] = res.data;
+    //   },
+    //   (err) => {
+    //     console.log('getPartOrderBook', err?.data);
+    //   }
+    // );
 }
 
 
@@ -163,8 +152,6 @@ module.exports = {
   strategies,
   allSymbols,
   baseFirstStepAmount,
-  socketCloseSubject,
-  strategyEndSubject,
   symbolsByTrackers,
   balanceInfo,
   ordersSubject

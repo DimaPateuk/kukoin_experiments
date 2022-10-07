@@ -9,18 +9,23 @@ const { processNumber } = require('./processNumber');
 const {
   balancesSubject,
   strategies,
-  strategyEndSubject,
   ordersSubject,
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
 
-const maxStrategyTries = 20;
-const maxStrategiesInParallel = 2;
+let count = 0;
+const maxStrategyTries = 2;
+const maxStrategiesInParallel = 20;
 const strategiesInProgress = new Map();
+const executedStrategies = [];
 
 function shouldWait(currentStrategy) {
+  if (count >= maxStrategyTries) {
+    return true;
+  }
+
   if(strategiesInProgress.has(currentStrategy.join())) {
     return true;
   }
@@ -28,21 +33,21 @@ function shouldWait(currentStrategy) {
   return strategiesInProgress.size >= maxStrategiesInParallel;
 }
 
-let count = 0;
 
 function startStrategy(currentStrategy, profitInfo) {
   if (shouldWait(currentStrategy)) {
     return;
   }
-
+  count++;
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
   const [buy, buy2, sell] = currentStrategy;
-  const ordersClientIds = [v4(), v4(), v4()];
+  const ordersClientIds = Array(3).fill(0).map(() => {
+    return `${v4()}`;
+  });
   const [clientOidBuy, clientOidBuy2, clientOidSell] = ordersClientIds;
 
   console.log(currentStrategy, '---- started');
-
   console.log(currentStrategy, '----', ordersClientIds);
   console.log(JSON.stringify(profitInfo, null, 4));
   console.log(currentStrategy, '----');
@@ -59,6 +64,7 @@ function startStrategy(currentStrategy, profitInfo) {
   const availableMap = {};
   let step = 1;
   const ordersDoneSubject = new Subject();
+  const strategyEndSubject = new Subject();
 
   ordersSubject
     .pipe(
@@ -106,7 +112,6 @@ function startStrategy(currentStrategy, profitInfo) {
 
         if (event.balance) {
           availableMap[event.balance.currency] = parseFloat(event.balance.available);
-          console.log(JSON.stringify(availableMap, null, 4));
         }
       }),
       tap(() => {
@@ -192,14 +197,18 @@ function startStrategy(currentStrategy, profitInfo) {
           strategyEndSubject
             .pipe(
               tap(() => {
-                count++;
-                if (count < maxStrategyTries) {
-                  setTimeout(() => {
-                    strategiesInProgress.delete(currentStrategy.join());
-                  }, 5000);
-                } else {
-                  console.log(count, 'times really ?');
-                }
+                executedStrategies.push({
+                  currentStrategy,
+                  profitInfo,
+                });
+                setTimeout(() => {
+                  strategiesInProgress.delete(currentStrategy.join());
+
+                  if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
+                    console.log(count, 'times really ?');
+                    console.log(JSON.stringify(executedStrategies, null, 4));
+                  }
+                }, 5000);
               })
             )
         )
@@ -228,7 +237,7 @@ function doRealStrategy(currentStrategy, orderBookDepth, index) {
     return;
   }
 
-  if (receive - spend > 0.0001) {
+  if (receive - spend >= 0.003) {
 
     if (orderBookDepth > -1) {
       startStrategy(currentStrategy, profitInfo);
