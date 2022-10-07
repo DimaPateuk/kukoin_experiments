@@ -45,7 +45,7 @@ function getStringPrices (currentStrategy, depth) {
 }
 const baseFirstStepAmount = 2;
 const magicProfitRation = 0;
-// const magicProfitRation = 0;
+
 function calcProfit(currentStrategy, orderBookDepth) {
 
     if (!canCalc(currentStrategy, orderBookDepth)) {
