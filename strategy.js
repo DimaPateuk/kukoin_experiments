@@ -218,37 +218,26 @@ function startStrategy(currentStrategy, profitInfo) {
 }
 
 function checkStrategy (currentStrategy, index) {
-
-  for(let i = 5; i >= 0; i--) {
+  for(let i = 10; i >= 0; i--) {
     doRealStrategy(currentStrategy, i, index);
   }
-
 }
 
 function doRealStrategy(currentStrategy, orderBookDepth, index) {
-
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
-  const {
-    spend,
-    receive,
-  } = profitInfo;
 
   if (!profitInfo.strategy) {
     return;
   }
 
-  if (receive - spend >= 0.003) {
-
-    if (orderBookDepth > -1) {
-      startStrategy(currentStrategy, profitInfo);
-    }
+  if (profitInfo.profit > 0) {
+    startStrategy(currentStrategy, profitInfo);
   }
 }
 
 function makeCalculation() {
   strategies.forEach(checkStrategy);
 }
-
 
 module.exports = {
   makeCalculation,

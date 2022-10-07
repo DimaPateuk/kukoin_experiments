@@ -54,6 +54,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const [buy, buy2, sell] = currentStrategy;
     const spend = baseFirstStepAmount;
     const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
+    const approximateFeeFroThreeSteps = fees.reduce((res, fee) => res + (fee * baseFirstStepAmount), 0);
     const prices = parsePrices(currentStrategy, orderBookDepth);
     const fakePrices = [
       prices[0] * (1 + magicProfitRation),
@@ -82,6 +83,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     }
 
     const receive = exactMath.mul(buy2Coins, fakePrices[2]);
+    const profit = receive - (spend + approximateFeeFroThreeSteps);
 
     return {
       strategy: currentStrategy,
@@ -96,6 +98,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
       buyCoins,
       buy2Coins,
       receive,
+      approximateFeeFroThreeSteps,
+      profit,
       buyOrderBookInfo: symbolsOrderBookInfoMap[buy].asks[orderBookDepth][0],
       buy2OrderBookInfo: symbolsOrderBookInfoMap[buy2].asks[orderBookDepth][0],
       sellOrderBookInfo: symbolsOrderBookInfoMap[sell].bids[orderBookDepth][0]
