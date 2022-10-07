@@ -43,7 +43,7 @@ function getStringPrices (currentStrategy, depth) {
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
 }
-const baseFirstStepAmount = 1.5;
+const baseFirstStepAmount = 2;
 const magicProfitRation = 0;
 // const magicProfitRation = 0;
 function calcProfit(currentStrategy, orderBookDepth) {
