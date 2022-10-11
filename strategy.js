@@ -232,7 +232,7 @@ function doRealStrategy(currentStrategy, orderBookDepth, index) {
     return;
   }
 
-  if (profitInfo.profit > 0.01) {
+  if (profitInfo.profit > 0) {
     startStrategy(currentStrategy, profitInfo);
   }
 }
