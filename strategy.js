@@ -136,7 +136,7 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const buyAmount = processNumber((filledSize).toString(), buy2, 'asks');
+        const buyAmount = processNumber((filledSize).toString(), buy2, 'asks', true);
         console.log('buy2 !!!!!!', buy2, filledSize, buyAmount);
 
         placeOrder({
