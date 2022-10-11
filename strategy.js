@@ -16,8 +16,8 @@ const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
 
 let count = 0;
-const maxStrategyTries = 5000;
-const maxStrategiesInParallel = 5;
+const maxStrategyTries = 2000;
+const maxStrategiesInParallel = 7;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
 
@@ -183,7 +183,7 @@ function startStrategy(currentStrategy, profitInfo) {
         }
 
         step++;
-        console.log(count, 'strategy end', currentStrategy);
+        console.log(count - strategiesInProgress.size, 'strategy end', currentStrategy);
         strategyEndSubject.next({currentStrategy});
       }),
       takeUntil(
@@ -208,7 +208,7 @@ function startStrategy(currentStrategy, profitInfo) {
                     console.log(count, 'times really ?');
                     console.log(JSON.stringify(executedStrategies, null, 4));
                   }
-                }, 30000);
+                }, 15000);
               })
             )
         )
@@ -230,7 +230,7 @@ function doRealStrategy(currentStrategy, orderBookDepth, index) {
     return;
   }
 
-  if (profitInfo.profit > 0) {
+  if (profitInfo.profit > 0.01) {
     startStrategy(currentStrategy, profitInfo);
   }
 }
