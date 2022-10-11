@@ -16,7 +16,7 @@ const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
 
 let count = 0;
-const maxStrategyTries = 5;
+const maxStrategyTries = 100;
 const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
@@ -210,7 +210,7 @@ function startStrategy(currentStrategy, profitInfo) {
                     console.log(count, 'times really ?');
                     console.log(JSON.stringify(executedStrategies, null, 4));
                   }
-                }, 15000);
+                }, 5000);
               })
             )
         )
