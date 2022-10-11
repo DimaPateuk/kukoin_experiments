@@ -101,8 +101,8 @@ function startStrategy(currentStrategy, profitInfo) {
     clientOid: clientOidBuy,
     side: 'buy',
     symbol: buy,
-    price: profitInfo.stringPrices[0].toString(),
-    // size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
+    // price: profitInfo.stringPrices[0].toString(),
+    size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
   });
 
   merge(ordersDoneSubject, balancesSubject)
