@@ -16,8 +16,8 @@ const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
 
 let count = 0;
-const maxStrategyTries = 10;
-const maxStrategiesInParallel = 7;
+const maxStrategyTries = 5;
+const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
 
