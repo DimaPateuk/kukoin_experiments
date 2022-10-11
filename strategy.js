@@ -16,7 +16,7 @@ const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
 
 let count = 0;
-const maxStrategyTries = 2000;
+const maxStrategyTries = 10;
 const maxStrategiesInParallel = 7;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
@@ -52,13 +52,6 @@ function startStrategy(currentStrategy, profitInfo) {
   console.log(JSON.stringify(profitInfo, null, 4));
   console.log(currentStrategy, '----');
 
-  placeOrder({
-    clientOid: clientOidBuy,
-    side: 'buy',
-    symbol: buy,
-    price: profitInfo.stringPrices[0].toString(),
-    size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
-  });
 
   const doneOrder = [];
   const availableMap = {};
@@ -103,6 +96,15 @@ function startStrategy(currentStrategy, profitInfo) {
       )
     ).subscribe();
 
+
+  placeOrder({
+    clientOid: clientOidBuy,
+    side: 'buy',
+    symbol: buy,
+    price: profitInfo.stringPrices[0].toString(),
+    // size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
+  });
+
   merge(ordersDoneSubject, balancesSubject)
     .pipe(
       tap(event => {
@@ -141,7 +143,7 @@ function startStrategy(currentStrategy, profitInfo) {
           clientOid: clientOidBuy2,
           side: 'buy',
           symbol: buy2,
-          price: profitInfo.stringPrices[1].toString(),
+          // price: profitInfo.stringPrices[1].toString(),
           size: buyAmount,
         });
       }),
@@ -172,7 +174,7 @@ function startStrategy(currentStrategy, profitInfo) {
           clientOid: clientOidSell,
           side: 'sell',
           symbol: sell,
-          price: profitInfo.stringPrices[2].toString(),
+          //price: profitInfo.stringPrices[2].toString(),
           size: sellAmount,
         });
 
