@@ -136,15 +136,15 @@ function startStrategy(currentStrategy, profitInfo) {
 
         step++;
 
-        const buyAmount = processNumber((profitInfo.buy2Coins).toString(), buy2, 'asks');
-        console.log('buy2 !!!!!!', buy2, profitInfo.buy2Coins, buyAmount);
+        const buyAmount = processNumber((filledSize).toString(), buy2, 'asks');
+        console.log('buy2 !!!!!!', buy2, filledSize, buyAmount);
 
         placeOrder({
           clientOid: clientOidBuy2,
           side: 'buy',
           symbol: buy2,
           // price: profitInfo.stringPrices[1].toString(),
-          size: buyAmount,
+          funds: buyAmount,
         });
       }),
       tap(() => {
