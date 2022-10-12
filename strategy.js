@@ -48,7 +48,7 @@ function startStrategy(currentStrategy, profitInfo) {
   const [clientOidBuy, clientOidBuy2, clientOidSell] = ordersClientIds;
 
   console.log(currentStrategy, '---- started');
-  console.log(JSON.stringify(profitInfo, null, 4));
+  //console.log(JSON.stringify(profitInfo, null, 4));
 
   const doneOrder = [];
   const availableMap = {};
@@ -200,8 +200,18 @@ function startStrategy(currentStrategy, profitInfo) {
                   currentStrategy,
                   profitInfo,
                 });
+                const profitInfoAfter = calcProfit(currentStrategy, profitInfo.orderBookDepth);
                 console.log('---- after strategyEndProfitinfo');
-                console.log(JSON.stringify(calcProfit(currentStrategy, profitInfo.orderBookDepth), null, 4));
+                //console.log(JSON.stringify(profitInfoAfter, null, 4));
+
+                if (profitInfoAfter.strategy) {
+                  profitInfoAfter.prices.forEach((item, index) => {
+                    console.log(currentStrategy[index], item - profitInfo.prices[index]);
+                  })
+                } else {
+                  cnosle.log('no way');
+                }
+
                 console.log();
                 console.log();
 
