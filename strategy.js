@@ -48,10 +48,7 @@ function startStrategy(currentStrategy, profitInfo) {
   const [clientOidBuy, clientOidBuy2, clientOidSell] = ordersClientIds;
 
   console.log(currentStrategy, '---- started');
-  console.log(currentStrategy, '----', ordersClientIds);
   console.log(JSON.stringify(profitInfo, null, 4));
-  console.log(currentStrategy, '----');
-
 
   const doneOrder = [];
   const availableMap = {};
@@ -78,14 +75,14 @@ function startStrategy(currentStrategy, profitInfo) {
         const floatMathPrice = parseFloat(matchPrice);
         const stepIndex = currentStrategy.indexOf(symbol);
 
-        console.log('--------', symbol);
+        //console.log('--------', symbol);
 
         if (stepIndex == 2) {
-          console.log(symbol, floatMathPrice >= profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
+          //console.log(symbol, floatMathPrice >= profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
         } else {
-          console.log(symbol, floatMathPrice <= profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
+          //console.log(symbol, floatMathPrice <= profitInfo.fakePrices[stepIndex], priceDiff(floatMathPrice, profitInfo.fakePrices[stepIndex]));
         }
-        console.log('--------');
+        //console.log('--------');
 
       }),
       takeUntil(
@@ -137,7 +134,7 @@ function startStrategy(currentStrategy, profitInfo) {
         step++;
 
         const buyAmount = processNumber((filledSize).toString(), buy2, 'asks', true);
-        console.log('buy2 !!!!!!', buy2, filledSize, buyAmount);
+        //console.log('buy2 !!!!!!', buy2, filledSize, buyAmount);
 
         placeOrder({
           clientOid: clientOidBuy2,
@@ -168,7 +165,7 @@ function startStrategy(currentStrategy, profitInfo) {
         step++;
 
         const sellAmount = processNumber((filledSize).toString(), sell, 'bids');
-        console.log('sell !!!!!', sell, filledSize, sellAmount, 'available', available);
+        //console.log('sell !!!!!', sell, filledSize, sellAmount, 'available', available);
 
         placeOrder({
           clientOid: clientOidSell,
@@ -203,12 +200,17 @@ function startStrategy(currentStrategy, profitInfo) {
                   currentStrategy,
                   profitInfo,
                 });
+                console.log('---- after strategyEndProfitinfo');
+                console.log(JSON.stringify(calcProfit(currentStrategy, profitInfo.orderBookDepth), null, 4);
+                console.log();
+                console.log();
+
                 setTimeout(() => {
                   strategiesInProgress.delete(currentStrategy.join());
 
                   if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
                     console.log(count, 'times really ?');
-                    console.log(JSON.stringify(executedStrategies, null, 4));
+                    //console.log(JSON.stringify(executedStrategies, null, 4));
                   }
                 }, 5000);
               })
