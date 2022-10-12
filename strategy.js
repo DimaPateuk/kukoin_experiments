@@ -201,7 +201,7 @@ function startStrategy(currentStrategy, profitInfo) {
                   profitInfo,
                 });
                 console.log('---- after strategyEndProfitinfo');
-                console.log(JSON.stringify(calcProfit(currentStrategy, profitInfo.orderBookDepth), null, 4);
+                console.log(JSON.stringify(calcProfit(currentStrategy, profitInfo.orderBookDepth), null, 4));
                 console.log();
                 console.log();
 
