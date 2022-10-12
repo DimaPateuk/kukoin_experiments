@@ -206,10 +206,10 @@ function startStrategy(currentStrategy, profitInfo) {
 
                 if (profitInfoAfter.strategy) {
                   profitInfoAfter.prices.forEach((item, index) => {
-                    console.log(currentStrategy[index], item - profitInfo.prices[index]);
+                    console.log(currentStrategy[index], item / profitInfo.prices[index]);
                   })
                 } else {
-                  cnosle.log('no way');
+                  console.log('no way');
                 }
 
                 console.log();
