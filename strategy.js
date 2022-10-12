@@ -10,14 +10,16 @@ const {
   balancesSubject,
   strategies,
   ordersSubject,
+  ord
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
+const kucoin = require('./kucoin');
 
 let count = 0;
 const maxStrategyTries = 10;
-const maxStrategiesInParallel = 7;
+const maxStrategiesInParallel = 5;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
 
@@ -50,16 +52,123 @@ function startStrategy(currentStrategy, profitInfo) {
   console.log(currentStrategy, '---- started');
   //console.log(JSON.stringify(profitInfo, null, 4));
 
-  const doneOrder = [];
+  const doneOrders = [];
+  const openOrder = [];
   const availableMap = {};
   let step = 1;
   const ordersDoneSubject = new Subject();
   const strategyEndSubject = new Subject();
 
+  interval(10)
+    .pipe(
+      tap(() => {
+        if (openOrder.length !== 1) {
+          return;
+        }
+
+        const order = openOrder[0];
+        const fee = profitInfo.fees[0];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+
+        if (currentPrice / profitInfo.fakePrices < 1 + fee) {
+          return;
+        }
+
+        kucoin.cancelOrder({ id: order.orderId })
+          .then(() => {
+            strategyEndSubject.next();
+          })
+          .catch((e) => {
+            console.log(e, 'error on the canceling first step of the strategy', currentStrategy);
+            strategyEndSubject.next();
+          });
+
+      }),
+
+      tap(() => {
+        if (openOrder.length !== 2) {
+          return;
+        }
+
+        const order = openOrder[1];
+        const fee = profitInfo.fees[1];
+        const doneOrder = doneOrders[0];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+
+        if (currentPrice / profitInfo.fakePrices < 1 + fee) {
+          return;
+        }
+
+        kucoin.cancelOrder({ id: order.orderId })
+          .then(() => {
+            const sellAmount = processNumber((doneOrder.filledSize).toString(), buy, 'bids', true);
+
+            return placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: buy,
+              funds: sellAmount,
+            });
+          })
+          .then(() => {
+            strategyEndSubject.next();
+          })
+          .catch((e) => {
+            console.log(e, 'error on the canceling SECOND step of the strategy', currentStrategy);
+            strategyEndSubject.next();
+          });
+      }),
+
+      tap(() => {
+        if (openOrder.length !== 3) {
+          return;
+        }
+
+        const order = openOrder[2];
+        const fee = profitInfo.fees[2];
+        const doneOrder = doneOrders[1];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].bids[0][0]);
+
+        if (currentPrice / profitInfo.fakePrices > 1 - fee) {
+          return;
+        }
+
+        kucoin.cancelOrder({ id: order.orderId })
+          .then(() => {
+            const sellAmount = processNumber((doneOrder.filledSize).toString(), sell, 'bids', true);
+
+            return placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: buy,
+              funds: sellAmount,
+            });
+          })
+          .then(() => {
+            strategyEndSubject.next();
+          })
+          .catch((e) => {
+            console.log(e, 'error on the canceling THIRD step of the strategy', currentStrategy);
+            strategyEndSubject.next();
+          });
+      }),
+      takeUntil(
+        merge(
+          placeOrderErrorSubject,
+          strategyEndSubject
+        )
+      )
+  ).subscribe();
+
   ordersSubject
     .pipe(
       tap((data) => {
         if (!ordersClientIds.includes(data.clientOid)) {
+          return;
+        }
+
+        if (data.status === 'open') {
+          openOrder.push(data);
           return;
         }
 
@@ -106,7 +215,7 @@ function startStrategy(currentStrategy, profitInfo) {
     .pipe(
       tap(event => {
         if (event.order) {
-          doneOrder.push(event.order);
+          doneOrders.push(event.order);
         }
 
         if (event.balance) {
@@ -114,11 +223,11 @@ function startStrategy(currentStrategy, profitInfo) {
         }
       }),
       tap(() => {
-        if (doneOrder.length !== 1 || step !== 1) {
+        if (doneOrders.length !== 1 || step !== 1) {
           return;
         }
 
-        const order = doneOrder[0];
+        const order = doneOrders[0];
         const filledSize = parseFloat(order.filledSize);
         const currency = order.symbol.split('-')[0];
         const available = availableMap[currency];
@@ -135,7 +244,6 @@ function startStrategy(currentStrategy, profitInfo) {
 
         //const buyFundsAmount = processNumber((filledSize).toString(), buy2, 'asks', true);
         const buyAmount = processNumber((profitInfo.buy2Coins).toString(), buy2, 'asks', false);
-        //console.log('buy2 !!!!!!', buy2, filledSize, buyAmount);
 
         placeOrder({
           clientOid: clientOidBuy2,
@@ -147,11 +255,11 @@ function startStrategy(currentStrategy, profitInfo) {
         });
       }),
       tap(() => {
-        if (doneOrder.length !== 2 || step !== 2) {
+        if (doneOrders.length !== 2 || step !== 2) {
           return;
         }
 
-        const order = doneOrder[1];
+        const order = doneOrders[1];
         const filledSize = parseFloat(order.filledSize);
         const currency = order.symbol.split('-')[0];
         const available = availableMap[currency];
@@ -167,7 +275,6 @@ function startStrategy(currentStrategy, profitInfo) {
         step++;
 
         const sellAmount = processNumber((filledSize).toString(), sell, 'bids');
-        //console.log('sell !!!!!', sell, filledSize, sellAmount, 'available', available);
 
         placeOrder({
           clientOid: clientOidSell,
@@ -179,7 +286,7 @@ function startStrategy(currentStrategy, profitInfo) {
 
       }),
       tap(() => {
-        if (doneOrder.length !== 3 || step !== 3) {
+        if (doneOrders.length !== 3 || step !== 3) {
           return;
         }
 

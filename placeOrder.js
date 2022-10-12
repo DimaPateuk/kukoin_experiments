@@ -1,4 +1,4 @@
-const kucoin = require('./kucoin')
+const kucoin = require('./kucoin');
 const { Subject } = require('rxjs');
 
 const placeOrderErrorSubject = new Subject();
