@@ -241,11 +241,12 @@ class Strategy {
     const order = this.trackOrderMap[this.buySymbol].current;
     console.log(kucoin);
     console.log('cancelFirstStep');
+    this.strategyEndSubject.next();
+
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
         console.log(e);
-        this.strategyEndSubject.next();
         console.log('cancel', order.symbol);
       });
   }
