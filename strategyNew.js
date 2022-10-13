@@ -73,7 +73,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0],//this.profitInfo.stringPrices[0].toString(),
+      price: symbolsOrderBookInfoMap[this.buySymbol].bids[20][0],//this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
@@ -243,7 +243,7 @@ class Strategy {
     kucoin
       .cancelOrder({ id: order.orderId })
       .catch((e) => {
-        // console.log(e);
+        console.log(e);
         this.strategyEndSubject.next();
         console.log('cancel', order.symbol);
       });
