@@ -63,6 +63,7 @@ function startStrategy(currentStrategy, profitInfo) {
   interval(10)
     .pipe(
       tap(() => {
+        console.log('1');
         if (openOrders.length !== 1) {
           return;
         }
@@ -181,8 +182,6 @@ function startStrategy(currentStrategy, profitInfo) {
         if (!ordersClientIds.includes(data.clientOid)) {
           return;
         }
-
-        console.log(data);
 
         if (data.status === 'open' || data.status === 'match') {
           openOrders.push(data);
