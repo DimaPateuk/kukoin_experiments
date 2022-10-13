@@ -100,8 +100,8 @@ function startStrategy(currentStrategy, profitInfo) {
         const order = openOrdersResponses[1];
         const fee = profitInfo.fees[1];
         const doneOrder = doneOrders[0];
-        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
-        const requiredPrice = profitInfo.fakePrices[0];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[buy2].asks[0][0]);
+        const requiredPrice = profitInfo.fakePrices[1];
         console.log('-----', buy2, currentStrategy);
         console.log(openOrdersResponses);
         console.log(order);
@@ -141,8 +141,8 @@ function startStrategy(currentStrategy, profitInfo) {
         const order = openOrdersResponses[2];
         const fee = profitInfo.fees[2];
         const doneOrder = doneOrders[1];
-        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
-        const requiredPrice = profitInfo.fakePrices[0];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[sell].bids[0][0]);
+        const requiredPrice = profitInfo.fakePrices[2];
         console.log('-----', buy2, currentStrategy);
         console.log(openOrdersResponses);
         console.log(order);
