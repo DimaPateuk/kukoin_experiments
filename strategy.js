@@ -11,7 +11,7 @@ const {
   balancesSubject,
   strategies,
   ordersSubject,
-  ord
+  symbolsOrderBookInfoMap,
 } = require('./resources');
 const { calcProfit } = require('./calcProfit');
 const { v4 } = require('uuid');
@@ -54,7 +54,7 @@ function startStrategy(currentStrategy, profitInfo) {
   //console.log(JSON.stringify(profitInfo, null, 4));
 
   const doneOrders = [];
-  const openOrder = [];
+  const openOrders = [];
   const availableMap = {};
   let step = 1;
   const ordersDoneSubject = new Subject();
@@ -63,11 +63,11 @@ function startStrategy(currentStrategy, profitInfo) {
   interval(10)
     .pipe(
       tap(() => {
-        if (openOrder.length !== 1) {
+        if (openOrders.length !== 1) {
           return;
         }
 
-        const order = openOrder[0];
+        const order = openOrders[0];
         const fee = profitInfo.fees[0];
         const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
 
@@ -89,11 +89,11 @@ function startStrategy(currentStrategy, profitInfo) {
       }),
 
       tap(() => {
-        if (openOrder.length !== 2) {
+        if (openOrders.length !== 2) {
           return;
         }
 
-        const order = openOrder[1];
+        const order = openOrders[1];
         const fee = profitInfo.fees[1];
         const doneOrder = doneOrders[0];
         const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
@@ -125,11 +125,11 @@ function startStrategy(currentStrategy, profitInfo) {
       }),
 
       tap(() => {
-        if (openOrder.length !== 3) {
+        if (openOrders.length !== 3) {
           return;
         }
 
-        const order = openOrder[2];
+        const order = openOrders[2];
         const fee = profitInfo.fees[2];
         const doneOrder = doneOrders[1];
         const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].bids[0][0]);
@@ -175,7 +175,7 @@ function startStrategy(currentStrategy, profitInfo) {
         }
 
         if (data.status === 'open') {
-          openOrder.push(data);
+          openOrders.push(data);
           return;
         }
 
