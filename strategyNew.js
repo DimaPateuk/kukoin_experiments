@@ -58,6 +58,7 @@ class Strategy {
     );
 
     this.trackOrders();
+    this.trackRelevance();
     this.doFirstStep();
   }
 
@@ -158,7 +159,7 @@ class Strategy {
         takeUntil(
           this.endOrPlaceOrderError$
         )
-      );
+      ).subscribe();
   }
 
   isFirstStepStillRelevant () {
