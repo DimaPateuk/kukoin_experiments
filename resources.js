@@ -68,36 +68,6 @@ balancesSubject
 
   });
 
-setInterval(() => {
-  // populateOrderBook();
-}, 100);
-
-function populateOrderBook() {
-    // let count = 0;
-
-    // while (symbolsOrderBookInfoMap[allSymbols[count]]) {
-    //   count++;
-    // }
-
-    // if (count === allSymbols.length) {
-    //   return;
-    // }
-
-    // const symbol = allSymbols[count];
-
-    // kucoin.getPartOrderBook({ amount: 100, symbol })
-    //   .then((res) => {
-    //     if (symbolsOrderBookInfoMap[symbol]) {
-    //       return;
-    //     }
-
-    //     symbolsOrderBookInfoMap[symbol] = res.data;
-    //   },
-    //   (err) => {
-    //     console.log('getPartOrderBook', err?.data);
-    //   }
-    // );
-}
 
 
 const currenciesMap = {};

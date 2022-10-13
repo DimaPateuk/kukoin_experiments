@@ -63,19 +63,23 @@ function startStrategy(currentStrategy, profitInfo) {
   interval(10)
     .pipe(
       tap(() => {
-        console.log('1');
-        if (openOrders.length !== 1) {
+        // if (openOrders.length !== 1) {
+        //   console.log('1');
+        //   return;
+        // }
+
+        if (!openOrders[0]) {
           return;
         }
 
         const order = openOrders[0];
         const fee = profitInfo.fees[0];
-        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[buy].asks[0][0]);
         const requiredPrice = profitInfo.fakePrices[0];
         console.log('-----', buy, currentStrategy);
         console.log(openOrders);
         console.log(order);
-        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+        console.log(symbolsOrderBookInfoMap[buy].asks[0]);
         console.log(currentPrice, requiredPrice);
         console.log(currentPrice / requiredPrice, 1 + fee);
 
@@ -95,25 +99,25 @@ function startStrategy(currentStrategy, profitInfo) {
 
       tap(() => {
 
-        if (openOrders.length !== 2) {
-          return;
-        }
+        // if (openOrders.length !== 2) {
+        //   return;
+        // }
 
-        const order = openOrders[1];
-        const fee = profitInfo.fees[1];
-        const doneOrder = doneOrders[0];
-        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
-        const requiredPrice = profitInfo.fakePrices[0];
-        console.log('-----', buy2, currentStrategy);
-        console.log(openOrders);
-        console.log(order);
-        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
-        console.log(currentPrice, requiredPrice);
-        console.log(currentPrice / requiredPrice, 1 + fee);
+        // const order = openOrders[1];
+        // const fee = profitInfo.fees[1];
+        // const doneOrder = doneOrders[0];
+        // const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+        // const requiredPrice = profitInfo.fakePrices[0];
+        // console.log('-----', buy2, currentStrategy);
+        // console.log(openOrders);
+        // console.log(order);
+        // console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+        // console.log(currentPrice, requiredPrice);
+        // console.log(currentPrice / requiredPrice, 1 + fee);
 
-        if (currentPrice / requiredPrice < 1 + fee) {
-          return;
-        }
+        // if (currentPrice / requiredPrice < 1 + fee) {
+        //   return;
+        // }
 
         // console.log(currentStrategy, 'remove BEFORE second step', currentPrice, profitInfo.fakePrices);
 
@@ -183,11 +187,6 @@ function startStrategy(currentStrategy, profitInfo) {
           return;
         }
 
-        if (data.status === 'open' || data.status === 'match') {
-          openOrders.push(data);
-          return;
-        }
-
         if (data.status === 'done') {
           ordersDoneSubject.next({ order: data });
         }
@@ -225,6 +224,9 @@ function startStrategy(currentStrategy, profitInfo) {
     symbol: buy,
     price: profitInfo.stringPrices[0].toString(),
     size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
+  })
+  .then((data) => {
+    doneOrders.push(data);
   });
 
   merge(ordersDoneSubject, balancesSubject)
