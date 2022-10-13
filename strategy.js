@@ -54,7 +54,7 @@ function startStrategy(currentStrategy, profitInfo) {
   //console.log(JSON.stringify(profitInfo, null, 4));
 
   const doneOrders = [];
-  const openOrders = [];
+  const openOrdersResponses = [];
   const availableMap = {};
   let step = 1;
   const ordersDoneSubject = new Subject();
@@ -63,21 +63,16 @@ function startStrategy(currentStrategy, profitInfo) {
   interval(10)
     .pipe(
       tap(() => {
-        // if (openOrders.length !== 1) {
-        //   console.log('1');
-        //   return;
-        // }
-
-        if (!openOrders[0]) {
+        if (openOrdersResponses.length !== 1) {
           return;
         }
 
-        const order = openOrders[0];
+        const order = openOrdersResponses[0];
         const fee = profitInfo.fees[0];
         const currentPrice = parseFloat(symbolsOrderBookInfoMap[buy].asks[0][0]);
         const requiredPrice = profitInfo.fakePrices[0];
         console.log('-----', buy, currentStrategy);
-        console.log(openOrders);
+        console.log(openOrdersResponses);
         console.log(order);
         console.log(symbolsOrderBookInfoMap[buy].asks[0]);
         console.log(currentPrice, requiredPrice);
@@ -87,90 +82,97 @@ function startStrategy(currentStrategy, profitInfo) {
           return;
         }
 
-        // console.log(currentStrategy, 'remove BEFORE first step', currentPrice, requiredPrice);
-        // strategyEndSubject.next();
-
-        // kucoin.cancelOrder({ id: order.orderId })
-        //   .catch((e) => {
-        //     console.log(e, 'error on the canceling first step of the strategy', currentStrategy);
-        //   });
+        console.log(currentStrategy, 'remove BEFORE first step');
+        strategyEndSubject.next();
+        kucoin.cancelOrder({ id: order.orderId })
+          .catch((e) => {
+            console.log(e, 'error on the canceling first step of the strategy', currentStrategy);
+          });
 
       }),
 
       tap(() => {
 
-        // if (openOrders.length !== 2) {
-        //   return;
-        // }
+        if (openOrdersResponses.length !== 2) {
+          return;
+        }
 
-        // const order = openOrders[1];
-        // const fee = profitInfo.fees[1];
-        // const doneOrder = doneOrders[0];
-        // const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
-        // const requiredPrice = profitInfo.fakePrices[0];
-        // console.log('-----', buy2, currentStrategy);
-        // console.log(openOrders);
-        // console.log(order);
-        // console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
-        // console.log(currentPrice, requiredPrice);
-        // console.log(currentPrice / requiredPrice, 1 + fee);
+        const order = openOrdersResponses[1];
+        const fee = profitInfo.fees[1];
+        const doneOrder = doneOrders[0];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+        const requiredPrice = profitInfo.fakePrices[0];
+        console.log('-----', buy2, currentStrategy);
+        console.log(openOrdersResponses);
+        console.log(order);
+        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+        console.log(currentPrice, requiredPrice);
+        console.log(currentPrice / requiredPrice, 1 + fee);
 
-        // if (currentPrice / requiredPrice < 1 + fee) {
-        //   return;
-        // }
+        if (currentPrice / requiredPrice < 1 + fee) {
+          return;
+        }
 
-        // console.log(currentStrategy, 'remove BEFORE second step', currentPrice, profitInfo.fakePrices);
+        console.log(currentStrategy, 'remove BEFORE second step');
 
-        // strategyEndSubject.next();
+        strategyEndSubject.next();
 
-        // kucoin.cancelOrder({ id: order.orderId })
-        //   .then(() => {
-        //     const sellAmount = processNumber((doneOrder.filledSize).toString(), buy, 'bids', true);
+        kucoin.cancelOrder({ id: order.orderId })
+          .then(() => {
+            const sellAmount = processNumber((doneOrder.filledSize).toString(), buy, 'bids', true);
 
-        //     return placeOrder({
-        //       clientOid: v4(),
-        //       side: 'sell',
-        //       symbol: buy,
-        //       funds: sellAmount,
-        //     });
-        //   })
-        //   .catch((e) => {
-        //     console.log(e, 'error on the canceling SECOND step of the strategy', currentStrategy);
-        //   });
+            return placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: buy,
+              funds: sellAmount,
+            });
+          })
+          .catch((e) => {
+            console.log(e, 'error on the canceling SECOND step of the strategy', currentStrategy);
+          });
       }),
 
       tap(() => {
-        // if (openOrders.length !== 3) {
-        //   return;
-        // }
+        if (openOrdersResponses.length !== 3) {
+          return;
+        }
 
-        // const order = openOrders[2];
-        // const fee = profitInfo.fees[2];
-        // const doneOrder = doneOrders[1];
-        // const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].bids[0][0]);
 
-        // if (currentPrice / profitInfo.fakePrices > 1 - fee) {
-        //   return;
-        // }
+        const order = openOrdersResponses[2];
+        const fee = profitInfo.fees[2];
+        const doneOrder = doneOrders[1];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+        const requiredPrice = profitInfo.fakePrices[0];
+        console.log('-----', buy2, currentStrategy);
+        console.log(openOrdersResponses);
+        console.log(order);
+        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+        console.log(currentPrice, requiredPrice);
+        console.log(currentPrice / requiredPrice, 1 + fee);
 
-        // console.log(currentStrategy, 'remove before third step', currentPrice, profitInfo.fakePrices);
+        if (currentPrice / requiredPrice > 1 - fee) {
+          return;
+        }
 
-        // strategyEndSubject.next();
+        console.log(currentStrategy, 'remove before THIRD step');
 
-        // kucoin.cancelOrder({ id: order.orderId })
-        //   .then(() => {
-        //     const sellAmount = processNumber((doneOrder.filledSize).toString(), sell, 'bids', true);
+        strategyEndSubject.next();
 
-        //     return placeOrder({
-        //       clientOid: v4(),
-        //       side: 'sell',
-        //       symbol: buy,
-        //       funds: sellAmount,
-        //     });
-        //   })
-        //   .catch((e) => {
-        //     console.log(e, 'error on the canceling THIRD step of the strategy', currentStrategy);
-        //   });
+        kucoin.cancelOrder({ id: order.orderId })
+          .then(() => {
+            const sellAmount = processNumber((doneOrder.filledSize).toString(), sell, 'bids', true);
+
+            return placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: buy,
+              funds: sellAmount,
+            });
+          })
+          .catch((e) => {
+            console.log(e, 'error on the canceling THIRD step of the strategy', currentStrategy);
+          });
       }),
       takeUntil(
         merge(
@@ -226,7 +228,7 @@ function startStrategy(currentStrategy, profitInfo) {
     size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
   })
   .then((data) => {
-    openOrders.push(data.data);
+    openOrdersResponses.push(data.data);
   });
 
   merge(ordersDoneSubject, balancesSubject)
