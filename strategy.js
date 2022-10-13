@@ -140,18 +140,18 @@ function startStrategy(currentStrategy, profitInfo) {
       }),
 
       tap(() => {
-        if (openOrders.length !== 3) {
-          return;
-        }
+        // if (openOrders.length !== 3) {
+        //   return;
+        // }
 
-        const order = openOrders[2];
-        const fee = profitInfo.fees[2];
-        const doneOrder = doneOrders[1];
-        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].bids[0][0]);
+        // const order = openOrders[2];
+        // const fee = profitInfo.fees[2];
+        // const doneOrder = doneOrders[1];
+        // const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].bids[0][0]);
 
-        if (currentPrice / profitInfo.fakePrices > 1 - fee) {
-          return;
-        }
+        // if (currentPrice / profitInfo.fakePrices > 1 - fee) {
+        //   return;
+        // }
 
         // console.log(currentStrategy, 'remove before third step', currentPrice, profitInfo.fakePrices);
 
@@ -226,7 +226,7 @@ function startStrategy(currentStrategy, profitInfo) {
     size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
   })
   .then((data) => {
-    doneOrders.push(data);
+    openOrders.push(data);
   });
 
   merge(ordersDoneSubject, balancesSubject)
