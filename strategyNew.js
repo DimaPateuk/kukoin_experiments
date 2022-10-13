@@ -73,7 +73,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: symbolsOrderBookInfoMap[this.buySymbol].bids[20][0],//this.profitInfo.stringPrices[0].toString(),
+      price: this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
@@ -115,6 +115,7 @@ class Strategy {
     }
 
     if (order.symbol === this.sellSymbol) {
+      console.log('call strategyEndSubject from doneOrderAction');
       this.strategyEndSubject.next();
     }
   }
@@ -179,7 +180,7 @@ class Strategy {
 
     const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
     const requireAsk = this.profitInfo.fakePrices[0];
-    const fee = this.profitInfo.fees[0] * 1;
+    const fee = this.profitInfo.fees[0] * 10;
 
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
@@ -239,8 +240,8 @@ class Strategy {
 
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
-    console.log(kucoin);
     console.log('cancelFirstStep');
+    console.log('call strategyEndSubject from cancelFirstStep');
     this.strategyEndSubject.next();
 
     kucoin
