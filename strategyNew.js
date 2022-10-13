@@ -239,7 +239,8 @@ class Strategy {
 
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
-
+    console.log(kucoin);
+    console.log('cancelFirstStep');
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
