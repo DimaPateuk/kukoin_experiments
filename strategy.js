@@ -19,7 +19,7 @@ const { priceDiff } = require('./priceDiff');
 const kucoin = require('./kucoin');
 
 let count = 0;
-const maxStrategyTries = 10;
+const maxStrategyTries = 100;
 const maxStrategiesInParallel = 5;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
@@ -75,6 +75,8 @@ function startStrategy(currentStrategy, profitInfo) {
           return;
         }
 
+        console.log(currentStrategy, 'remove BEFORE first step', currentPrice, profitInfo.fakePrices);
+
         kucoin.cancelOrder({ id: order.orderId })
           .then(() => {
             strategyEndSubject.next();
@@ -99,6 +101,8 @@ function startStrategy(currentStrategy, profitInfo) {
         if (currentPrice / profitInfo.fakePrices < 1 + fee) {
           return;
         }
+
+        console.log(currentStrategy, 'remove BEFORE second step', currentPrice, profitInfo.fakePrices);
 
         kucoin.cancelOrder({ id: order.orderId })
           .then(() => {
@@ -133,6 +137,8 @@ function startStrategy(currentStrategy, profitInfo) {
         if (currentPrice / profitInfo.fakePrices > 1 - fee) {
           return;
         }
+
+        console.log(currentStrategy, 'remove before third step', currentPrice, profitInfo.fakePrices);
 
         kucoin.cancelOrder({ id: order.orderId })
           .then(() => {
@@ -316,7 +322,7 @@ function startStrategy(currentStrategy, profitInfo) {
 
                 if (profitInfoAfter.strategy) {
                   profitInfoAfter.prices.forEach((item, index) => {
-                    console.log(currentStrategy[index], item / profitInfo.prices[index]);
+                    //console.log(currentStrategy[index], item / profitInfo.prices[index]);
                   })
                 } else {
                   console.log('no way');
