@@ -226,7 +226,7 @@ function startStrategy(currentStrategy, profitInfo) {
     size: processNumber((profitInfo.buyCoins).toString(), buy, 'asks'),
   })
   .then((data) => {
-    openOrders.push(data);
+    openOrders.push(data.data);
   });
 
   merge(ordersDoneSubject, balancesSubject)
