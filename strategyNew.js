@@ -98,6 +98,7 @@ class Strategy {
   }
 
   doneOrderAction(order) {
+    console.log('---', this.currentStrategy, order.symbol);
     if (order.symbol === this.buySymbol) {
       this.doSecondStep();
     }
