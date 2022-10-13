@@ -136,6 +136,79 @@ class Strategy {
       ).subscribe();
   }
 
+  trackRelevance () {
+    interval(10)
+      .pipe(
+        tap(() => {
+          if (!this.isFirstStepStillRelevant()) {
+            console.log('The first step is not relevant');
+            return;
+          }
+
+          if (!this.isSecondStepStillRelevant()) {
+            console.log('The second step is not relevant');
+            return;
+          }
+
+          if (!this.isThirdStepStillRelevant()) {
+            console.log('The third step is not relevant');
+            return;
+          }
+        }),
+        takeUntil(
+          this.endOrPlaceOrderError$
+        )
+      );
+  }
+
+  isFirstStepStillRelevant () {
+    if (this.trackOrderMap[this.buySymbol].current?.status === 'done') {
+      return true;
+    }
+
+    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
+    const requireAsk = this.profitInfo.fakePrices[0];
+    const fee = this.profitInfo.fees[0];
+
+    if (bestAsk / requireAsk < 1 + fee) {
+      return true;
+    }
+
+    return false;
+  }
+
+  isSecondStepStillRelevant () {
+    if (this.trackOrderMap[this.buy2Symbol].current?.status === 'done') {
+      return true;
+    }
+
+    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buy2Symbol].asks[0][0]);
+    const requireAsk = this.profitInfo.fakePrices[1];
+    const fee = this.profitInfo.fees[1];
+
+    if (bestAsk / requireAsk < 1 + fee) {
+      return true;
+    }
+
+    return false;
+  }
+
+  isThirdStepStillRelevant () {
+    if (this.trackOrderMap[this.sellSymbol].current?.status === 'done') {
+      return true;
+    }
+
+    const bestBids = parseFloat(symbolsOrderBookInfoMap[this.sellSymbol].bids[0][0]);
+    const requireBids = this.profitInfo.fakePrices[2];
+    const fee = this.profitInfo.fees[2];
+
+    if (bestBids / requireBids > 1 - fee) {
+      return true;
+    }
+
+    return false;
+  }
+
 }
 
 
