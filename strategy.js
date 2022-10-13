@@ -63,23 +63,21 @@ function startStrategy(currentStrategy, profitInfo) {
   interval(50)
     .pipe(
       tap(() => {
-        if (openOrders.length !== 1) {
-          return;
-        }
+        if (openOrders.length === 1) {
+          const order = openOrders[0];
+          const fee = profitInfo.fees[0];
+          const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+          const requiredPrice = profitInfo.fakePrices[0];
+          console.log('-----', currentStrategy);
+          console.log(openOrders);
+          console.log(order, buy);
+          console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+          console.log(currentPrice, requiredPrice);
+          console.log(currentPrice / requiredPrice, 1 + fee);
 
-        const order = openOrders[0];
-        const fee = profitInfo.fees[0];
-        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
-        const requiredPrice = profitInfo.fakePrices[0];
-        console.log('-----', currentStrategy);
-        console.log(openOrders);
-        console.log(order);
-        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
-        console.log(currentPrice, requiredPrice);
-        console.log(currentPrice / requiredPrice, 1 + fee);
-
-        if (currentPrice / requiredPrice < 1 + fee) {
-          return;
+          if (currentPrice / requiredPrice < 1 + fee) {
+            return;
+          }
         }
 
         // console.log(currentStrategy, 'remove BEFORE first step', currentPrice, requiredPrice);
