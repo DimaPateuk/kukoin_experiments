@@ -169,6 +169,10 @@ class Strategy {
   }
 
   isFirstStepStillRelevant () {
+    if (this.trackOrderMap[this.buySymbol].current === null) {
+      return true;
+    }
+
     if (this.trackOrderMap[this.buySymbol].current?.status === 'done') {
       return true;
     }
@@ -187,7 +191,11 @@ class Strategy {
   }
 
   isSecondStepStillRelevant () {
-    if (this.trackOrderMap[this.buy2Symbol].current?.status === 'done') {
+    if (this.trackOrderMap[this.buy2Symbol].current === null) {
+      return true;
+    }
+
+    if (this.trackOrderMap[this.buy2Symbol].current.status === 'done') {
       return true;
     }
 
@@ -207,6 +215,10 @@ class Strategy {
   }
 
   isThirdStepStillRelevant () {
+    if (this.trackOrderMap[this.sellSymbol].current === null) {
+      return true;
+    }
+
     if (this.trackOrderMap[this.sellSymbol].current?.status === 'done') {
       return true;
     }
