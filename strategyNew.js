@@ -228,14 +228,13 @@ class Strategy {
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
 
-    this.strategyEndSubject.next();
-    console.log('cancel', order.symbol);
-
-    // kucoin
-    //   .cancelOrder({ id: order.orderId })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .catch((e) => {
+        // console.log(e);
+        this.strategyEndSubject.next();
+        console.log('cancel', order.symbol);
+      });
   }
 
   cancelSecondStep() {
