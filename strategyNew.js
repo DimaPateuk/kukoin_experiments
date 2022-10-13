@@ -180,7 +180,7 @@ class Strategy {
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
     }
-
+    console.log(bestAsk, requireAsk, bestAsk / requireAsk);
     this.cancelFirstStep();
 
     return false;
@@ -198,6 +198,8 @@ class Strategy {
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
     }
+
+    console.log(bestAsk, requireAsk, bestAsk / requireAsk);
 
     this.cancelSecondStep();
 
@@ -217,6 +219,7 @@ class Strategy {
       return true;
     }
 
+    console.log(bestBids, requireBids, bestBids / requireBids);
     this.cancelThirdStep();
 
     return false;
@@ -228,11 +231,11 @@ class Strategy {
     this.strategyEndSubject.next();
     console.log('cancel', order.symbol);
 
-    kucoin
-      .cancelOrder({ id: order.orderId })
-      .catch((e) => {
-        console.log(e);
-      });
+    // kucoin
+    //   .cancelOrder({ id: order.orderId })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   }
 
   cancelSecondStep() {
@@ -242,21 +245,21 @@ class Strategy {
     this.strategyEndSubject.next();
 
     console.log('cancel', order.symbol);
-    kucoin
-      .cancelOrder({ id: order.orderId })
-      .then(() => {
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', true);
-        return placeOrder({
-          clientOid: v4(),
-          side: 'sell',
-          symbol: this.buySymbol,
-          funds: sellAmount,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
+    // kucoin
+    //   .cancelOrder({ id: order.orderId })
+    //   .then(() => {
+    //     const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', true);
+    //     return placeOrder({
+    //       clientOid: v4(),
+    //       side: 'sell',
+    //       symbol: this.buySymbol,
+    //       funds: sellAmount,
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
 
-      });
+    //   });
   }
 
   cancelThirdStep() {
@@ -266,22 +269,22 @@ class Strategy {
     this.strategyEndSubject.next();
 
     console.log('cancel', order.symbol);
-    kucoin
-      .cancelOrder({ id: order.orderId })
-      .then(() => {
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids', true);
+    // kucoin
+    //   .cancelOrder({ id: order.orderId })
+    //   .then(() => {
+    //     const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids', true);
 
-        return placeOrder({
-          clientOid: v4(),
-          side: 'sell',
-          symbol: this.sellSymbol,
-          funds: sellAmount,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
+    //     return placeOrder({
+    //       clientOid: v4(),
+    //       side: 'sell',
+    //       symbol: this.sellSymbol,
+    //       funds: sellAmount,
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
 
-      });
+    //   });
   }
 }
 
