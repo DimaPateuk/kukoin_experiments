@@ -242,7 +242,7 @@ class Strategy {
 
     kucoin
       .cancelOrder({ id: order.orderId })
-      .catch((e) => {
+      .then((e) => {
         console.log(e);
         this.strategyEndSubject.next();
         console.log('cancel', order.symbol);
