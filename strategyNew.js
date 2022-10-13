@@ -125,7 +125,7 @@ class Strategy {
           orderInfo.sequence.push(order);
 
           if (order.status === 'done') {
-            doneOrderAction(order);
+            this.doneOrderAction(order);
           }
 
         }),
