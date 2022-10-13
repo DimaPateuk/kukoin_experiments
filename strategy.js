@@ -60,24 +60,26 @@ function startStrategy(currentStrategy, profitInfo) {
   const ordersDoneSubject = new Subject();
   const strategyEndSubject = new Subject();
 
-  interval(50)
+  interval(10)
     .pipe(
       tap(() => {
-        if (openOrders.length === 1) {
-          const order = openOrders[0];
-          const fee = profitInfo.fees[0];
-          const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
-          const requiredPrice = profitInfo.fakePrices[0];
-          console.log('-----', currentStrategy);
-          console.log(openOrders);
-          console.log(order, buy);
-          console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
-          console.log(currentPrice, requiredPrice);
-          console.log(currentPrice / requiredPrice, 1 + fee);
+        if (openOrders.length !== 1) {
+          return;
+        }
 
-          if (currentPrice / requiredPrice < 1 + fee) {
-            return;
-          }
+        const order = openOrders[0];
+        const fee = profitInfo.fees[0];
+        const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+        const requiredPrice = profitInfo.fakePrices[0];
+        console.log('-----', buy, currentStrategy);
+        console.log(openOrders);
+        console.log(order);
+        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+        console.log(currentPrice, requiredPrice);
+        console.log(currentPrice / requiredPrice, 1 + fee);
+
+        if (currentPrice / requiredPrice < 1 + fee) {
+          return;
         }
 
         // console.log(currentStrategy, 'remove BEFORE first step', currentPrice, requiredPrice);
@@ -91,6 +93,7 @@ function startStrategy(currentStrategy, profitInfo) {
       }),
 
       tap(() => {
+
         if (openOrders.length !== 2) {
           return;
         }
@@ -99,8 +102,15 @@ function startStrategy(currentStrategy, profitInfo) {
         const fee = profitInfo.fees[1];
         const doneOrder = doneOrders[0];
         const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
+        const requiredPrice = profitInfo.fakePrices[0];
+        console.log('-----', buy2, currentStrategy);
+        console.log(openOrders);
+        console.log(order);
+        console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
+        console.log(currentPrice, requiredPrice);
+        console.log(currentPrice / requiredPrice, 1 + fee);
 
-        if (currentPrice / profitInfo.fakePrices < 1 + fee) {
+        if (currentPrice / requiredPrice < 1 + fee) {
           return;
         }
 
@@ -174,7 +184,7 @@ function startStrategy(currentStrategy, profitInfo) {
 
         console.log(data);
 
-        if (data.status === 'open') {
+        if (data.status === 'open' || data.status === 'match') {
           openOrders.push(data);
           return;
         }
