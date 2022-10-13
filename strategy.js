@@ -60,7 +60,7 @@ function startStrategy(currentStrategy, profitInfo) {
   const ordersDoneSubject = new Subject();
   const strategyEndSubject = new Subject();
 
-  interval(10)
+  interval(5000)
     .pipe(
       tap(() => {
         if (openOrdersResponses.length !== 1) {
@@ -137,7 +137,6 @@ function startStrategy(currentStrategy, profitInfo) {
         if (openOrdersResponses.length !== 3) {
           return;
         }
-
 
         const order = openOrdersResponses[2];
         const fee = profitInfo.fees[2];
@@ -272,6 +271,8 @@ function startStrategy(currentStrategy, profitInfo) {
           price: profitInfo.stringPrices[1].toString(),
           size: buyAmount,
           // funds: buyFundsAmount,
+        }).then((data) => {
+          openOrdersResponses.push(data.data);
         });
       }),
       tap(() => {
@@ -302,6 +303,9 @@ function startStrategy(currentStrategy, profitInfo) {
           symbol: sell,
           price: profitInfo.stringPrices[2].toString(),
           size: sellAmount,
+        })
+        .then((data) => {
+          openOrdersResponses.push(data.data);
         });
 
       }),
