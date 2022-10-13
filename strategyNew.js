@@ -67,7 +67,7 @@ class Strategy {
       side: 'buy',
       symbol: this.buySymbol,
       price: this.profitInfo.stringPrices[0].toString(),
-      size: processNumber((this.profitInfo.buyCoins).toString(), buy, 'asks'),
+      size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
 
