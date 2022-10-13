@@ -73,7 +73,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.stringPrices[0].toString(),
+      price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0],//this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
