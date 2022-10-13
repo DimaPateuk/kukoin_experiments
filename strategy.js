@@ -21,7 +21,7 @@ const { Strategy } =require('./strategyNew');
 
 
 let count = 0;
-const maxStrategyTries = 1;
+const maxStrategyTries = 5;
 const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
@@ -45,9 +45,17 @@ function startStrategy(currentStrategy, profitInfo) {
   }
 
   count++;
+  strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
+  new Strategy({ currentStrategy, profitInfo, onEnd: () => {
+    setTimeout(() => {
+      strategiesInProgress.delete(currentStrategy.join());
 
-  new Strategy({ currentStrategy, profitInfo });
+      if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
+        console.log(count, 'times really ?');
+      }
+    }, 5000);
+  } });
 }
 
 function checkStrategy (currentStrategy, index) {
