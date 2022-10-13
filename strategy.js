@@ -60,7 +60,7 @@ function startStrategy(currentStrategy, profitInfo) {
   const ordersDoneSubject = new Subject();
   const strategyEndSubject = new Subject();
 
-  interval(10)
+  interval(50)
     .pipe(
       tap(() => {
         if (openOrders.length !== 1) {
@@ -71,7 +71,8 @@ function startStrategy(currentStrategy, profitInfo) {
         const fee = profitInfo.fees[0];
         const currentPrice = parseFloat(symbolsOrderBookInfoMap[order.symbol].asks[0][0]);
         const requiredPrice = profitInfo.fakePrices[0];
-        console.log('-----');
+        console.log('-----', currentStrategy);
+        console.log(openOrders);
         console.log(order);
         console.log(symbolsOrderBookInfoMap[order.symbol].asks[0]);
         console.log(currentPrice, requiredPrice);
@@ -139,7 +140,7 @@ function startStrategy(currentStrategy, profitInfo) {
           return;
         }
 
-        console.log(currentStrategy, 'remove before third step', currentPrice, profitInfo.fakePrices);
+        // console.log(currentStrategy, 'remove before third step', currentPrice, profitInfo.fakePrices);
 
         // strategyEndSubject.next();
 

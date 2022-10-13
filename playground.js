@@ -5,3 +5,5 @@ const { v4 } = require('uuid');
 const { infinitySocket } = require('./infinitySocket');
 
 
+interval(10)
+  .subscribe(console.log);
