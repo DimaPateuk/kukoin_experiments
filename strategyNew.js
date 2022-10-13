@@ -241,7 +241,7 @@ class Strategy {
     const doneOrder = this.trackOrderMap[this.buySymbol].current;
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
-    this.strategyEndSubject.next();
+    //this.strategyEndSubject.next();
 
     console.log('cancel', order.symbol);
     // kucoin
@@ -265,7 +265,7 @@ class Strategy {
     const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
     const order = this.trackOrderMap[this.sellSymbol].current;
 
-    this.strategyEndSubject.next();
+    //this.strategyEndSubject.next();
 
     console.log('cancel', order.symbol);
     // kucoin
