@@ -172,6 +172,8 @@ function startStrategy(currentStrategy, profitInfo) {
           return;
         }
 
+        console.log(data);
+
         if (data.status === 'open') {
           openOrders.push(data);
           return;
