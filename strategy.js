@@ -19,7 +19,7 @@ const { priceDiff } = require('./priceDiff');
 const kucoin = require('./kucoin');
 
 let count = 0;
-const maxStrategyTries = 1;
+const maxStrategyTries = 20;
 const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
