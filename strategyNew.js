@@ -99,7 +99,7 @@ class Strategy {
       clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-      price: symbolsOrderBookInfoMap[this.buy2Symbol].bids[45][0],//this.profitInfo.stringPrices[1].toString(),
+      price: symbolsOrderBookInfoMap[this.buy2Symbol].bids[10][0],//this.profitInfo.stringPrices[1].toString(),
       size: buyAmount,
     });
   }
@@ -279,7 +279,7 @@ class Strategy {
           side: 'sell',
           symbol: this.buySymbol,
           size: sellAmount,
-          price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0]
+          //price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0]
         });
       })
       .catch((e) => {
