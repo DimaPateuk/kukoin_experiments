@@ -212,7 +212,7 @@ class Strategy {
 
     const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
     const requireAsk = this.profitInfo.fakePrices[0];
-    const fee = this.profitInfo.fees[0] * 10;
+    const fee = this.profitInfo.fees[0] * 50;
 
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
@@ -228,7 +228,7 @@ class Strategy {
 
     const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buy2Symbol].asks[0][0]);
     const requireAsk = this.profitInfo.fakePrices[1];
-    const fee = this.profitInfo.fees[1] * 10;
+    const fee = this.profitInfo.fees[1] * 50;
 
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
@@ -244,7 +244,7 @@ class Strategy {
 
     const bestBids = parseFloat(symbolsOrderBookInfoMap[this.sellSymbol].bids[0][0]);
     const requireBids = this.profitInfo.fakePrices[2];
-    const fee = this.profitInfo.fees[2] * 10;
+    const fee = this.profitInfo.fees[2] * 50;
 
     if (bestBids / requireBids > 1 - fee) {
       return true;
