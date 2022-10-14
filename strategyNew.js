@@ -83,13 +83,11 @@ class Strategy {
   }
 
   doFirstStep() {
-    console.log(this.buySymbol, symbolsOrderBookInfoMap[this.buySymbol].bids[20][0], this.profitInfo.stringPrices[0].toString());
-
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: parseFloat(symbolsOrderBookInfoMap[this.buySymbol].bids[20][0]),//this.profitInfo.stringPrices[0].toString(),
+      price: parseFloat(symbolsOrderBookInfoMap[this.buySymbol].bids[45][0]),//this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
