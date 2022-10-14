@@ -58,11 +58,11 @@ function startStrategy(currentStrategy, profitInfo) {
   } });
 }
 
-function checkStrategy (currentStrategy, index) {
-  doRealStrategy(currentStrategy, i, 0);
+function checkStrategy (currentStrategy) {
+    doRealStrategy(currentStrategy, 0);
 }
 
-function doRealStrategy(currentStrategy, orderBookDepth, index) {
+function doRealStrategy(currentStrategy, orderBookDepth) {
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
 
   if (!profitInfo.strategy) {
