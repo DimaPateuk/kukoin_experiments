@@ -60,7 +60,7 @@ class Strategy {
       }
     };
 
-    strategyEndSubject
+    this.strategyEndSubject
       .pipe(
         take(1)
       )
