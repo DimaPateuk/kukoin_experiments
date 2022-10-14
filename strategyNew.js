@@ -272,14 +272,14 @@ class Strategy {
       .then((r) => {
         console.log('----trying to cancel seconds step');
         console.log(r)
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buy2Symbol, 'bids', false);
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
 
         return placeOrder({
           clientOid: v4(),
           side: 'sell',
           symbol: this.buySymbol,
           size: sellAmount,
-          price: symbolsOrderBookInfoMap[this.buy2Symbol].asks[20][0]
+          price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0]
         });
       })
       .catch((e) => {
