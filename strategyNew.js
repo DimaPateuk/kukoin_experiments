@@ -115,7 +115,7 @@ class Strategy {
       clientOid: this.clientOidSell,
       side: 'sell',
       symbol: this.sellSymbol,
-      price: symbolsOrderBookInfoMap[this.buy2Symbol].asks[10][0],//this.profitInfo.stringPrices[2].toString(),
+      price: this.profitInfo.stringPrices[2].toString(),
       size: sellAmount,
     });
   }
@@ -176,25 +176,26 @@ class Strategy {
   }
 
   checkRelevance() {
-    // if (this.isFirstStepStillRelevant() &&
-    //     this.isSecondStepStillRelevant() &&
-    //     this.isThirdStepStillRelevant()
-    // ) {
-    //   return;
-    // }
-    // if (this.trackOrderMap[this.buySymbol].current !== null &&
-    //     this.trackOrderMap[this.buySymbol].current.status !== 'done'
-    // ) {
-    //   this.cancelFirstStep();
-    //   return;
-    // }
+    if (this.isFirstStepStillRelevant() &&
+        this.isSecondStepStillRelevant() &&
+        this.isThirdStepStillRelevant()
+    ) {
+      return;
+    }
 
-    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
-    // ) {
-    //   this.cancelSecondStep();
-    //   return;
-    // }
+    if (this.trackOrderMap[this.buySymbol].current !== null &&
+        this.trackOrderMap[this.buySymbol].current.status !== 'done'
+    ) {
+      this.cancelFirstStep();
+      return;
+    }
+
+    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    ) {
+      this.cancelSecondStep();
+      return;
+    }
 
     if (this.trackOrderMap[this.sellSymbol].current !== null &&
         this.trackOrderMap[this.sellSymbol].current.status !== 'done'
@@ -202,7 +203,6 @@ class Strategy {
       this.cancelThirdStep();
       return;
     }
-
   }
 
   isFirstStepStillRelevant () {
