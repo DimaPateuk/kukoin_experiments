@@ -59,9 +59,7 @@ function startStrategy(currentStrategy, profitInfo) {
 }
 
 function checkStrategy (currentStrategy, index) {
-  for(let i = 10; i >= 0; i--) {
-    doRealStrategy(currentStrategy, i, index);
-  }
+  doRealStrategy(currentStrategy, i, 0);
 }
 
 function doRealStrategy(currentStrategy, orderBookDepth, index) {
