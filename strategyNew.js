@@ -87,7 +87,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: parseFloat(symbolsOrderBookInfoMap[this.buySymbol].bids[45][0]),//this.profitInfo.stringPrices[0].toString(),
+      price: this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
@@ -99,7 +99,7 @@ class Strategy {
       clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-      price: this.profitInfo.stringPrices[1].toString(),
+      price: symbolsOrderBookInfoMap[this.buy2Symbol].bids[45][0],//this.profitInfo.stringPrices[1].toString(),
       size: buyAmount,
     });
   }
@@ -177,20 +177,19 @@ class Strategy {
     // ) {
     //   return;
     // }
-    this.isFirstStepStillRelevant();
-    if (this.trackOrderMap[this.buySymbol].current !== null &&
-        this.trackOrderMap[this.buySymbol].current.status !== 'done'
-    ) {
-      this.cancelFirstStep();
-      return;
-    }
-
-    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    // if (this.trackOrderMap[this.buySymbol].current !== null &&
+    //     this.trackOrderMap[this.buySymbol].current.status !== 'done'
     // ) {
-    //   this.cancelSecondStep();
+    //   this.cancelFirstStep();
     //   return;
     // }
+
+    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    ) {
+      this.cancelSecondStep();
+      return;
+    }
 
     // if (this.trackOrderMap[this.sellSymbol].current !== null &&
     //     this.trackOrderMap[this.sellSymbol].current.status !== 'done'
@@ -206,11 +205,9 @@ class Strategy {
       return true;
     }
 
-    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].bids[45][0]);
+    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
     const requireAsk = this.profitInfo.fakePrices[0];
     const fee = this.profitInfo.fees[0] * 10;
-
-    console.log(bestAsk, requireAsk, bestAsk / requireAsk, 1 + fee);
 
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
@@ -267,24 +264,25 @@ class Strategy {
     const doneOrder = this.trackOrderMap[this.buySymbol].current;
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
-    //this.strategyEndSubject.next();
+    this.strategyEndSubject.next();
 
     console.log('cancel', order.symbol);
-    // kucoin
-    //   .cancelOrder({ id: order.orderId })
-    //   .then(() => {
-    //     const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', true);
-    //     return placeOrder({
-    //       clientOid: v4(),
-    //       side: 'sell',
-    //       symbol: this.buySymbol,
-    //       funds: sellAmount,
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .then(() => {
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
 
-    //   });
+        return placeOrder({
+          clientOid: v4(),
+          side: 'sell',
+          symbol: this.buySymbol,
+          size: sellAmount,
+          price: symbolsOrderBookInfoMap[this.buy2Symbol].asks[20][0]
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   cancelThirdStep() {
