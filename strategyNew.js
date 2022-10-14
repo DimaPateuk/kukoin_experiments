@@ -5,6 +5,7 @@ const {
   merge,
   Subject,
   interval,
+  take,
 } = require('rxjs');
 const { processNumber } = require('./processNumber');
 const {
@@ -26,18 +27,24 @@ class Strategy {
     onEnd,
   }) {
     this.currentStrategy = currentStrategy;
+
     this.profitInfo = profitInfo;
+
     this.buySymbol = this.currentStrategy[0];
     this.buy2Symbol = this.currentStrategy[1];
     this.sellSymbol = this.currentStrategy[2];
+
     this.positiveOrdersClientIds = Array(3).fill(0).map(() => {
       return `${v4()}`;
     });
+
     this.clientOidBuy = this.positiveOrdersClientIds[0];
     this.clientOidBuy2 = this.positiveOrdersClientIds[1];
     this.clientOidSell = this.positiveOrdersClientIds[2];
+
     this.strategyEndSubject = new Subject();
     this.ordersDoneSubject = new Subject();
+
     this.trackOrderMap = {
       [this.buySymbol]: {
         current: null,
@@ -53,27 +60,36 @@ class Strategy {
       }
     };
 
+    strategyEndSubject
+      .pipe(
+        take(1)
+      )
+      .subscribe(() => {
+        console.log('---strategy END', this.currentStrategy);
+        onEnd();
+      });
+
     this.endOrPlaceOrderError$ = merge(
       placeOrderErrorSubject,
       this.strategyEndSubject
-    ).pipe(
-      tap(() => {
-        console.log('---strategy END', this.currentStrategy);
-        onEnd();
-      })
     );
 
     this.trackOrders();
     this.trackRelevance();
+
+    console.log('---strategy START', this.currentStrategy);
+
     this.doFirstStep();
   }
 
   doFirstStep() {
+    console.log(this.buySymbol, symbolsOrderBookInfoMap[this.buySymbol].asks[20][0], this.profitInfo.stringPrices[0].toString());
+
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.stringPrices[0].toString(),
+      price: parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[20][0]),//this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
@@ -148,20 +164,7 @@ class Strategy {
     interval(10)
       .pipe(
         tap(() => {
-          if (!this.isFirstStepStillRelevant()) {
-            console.log('The first step is not relevant');
-            return;
-          }
-
-          if (!this.isSecondStepStillRelevant()) {
-            console.log('The second step is not relevant');
-            return;
-          }
-
-          if (!this.isThirdStepStillRelevant()) {
-            console.log('The third step is not relevant');
-            return;
-          }
+          this.checkRelevance();
         }),
         takeUntil(
           this.endOrPlaceOrderError$
@@ -169,11 +172,38 @@ class Strategy {
       ).subscribe();
   }
 
-  isFirstStepStillRelevant () {
-    if (this.trackOrderMap[this.buySymbol].current === null) {
-      return true;
+  checkRelevance() {
+    // if (this.isFirstStepStillRelevant() &&
+    //     this.isSecondStepStillRelevant() &&
+    //     this.isThirdStepStillRelevant()
+    // ) {
+    //   return;
+    // }
+
+    if (this.trackOrderMap[this.buySymbol].current !== null &&
+        this.trackOrderMap[this.buySymbol].current.status !== 'done'
+    ) {
+      this.cancelFirstStep();
+      return;
     }
 
+    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    // ) {
+    //   this.cancelSecondStep();
+    //   return;
+    // }
+
+    // if (this.trackOrderMap[this.sellSymbol].current !== null &&
+    //     this.trackOrderMap[this.sellSymbol].current.status !== 'done'
+    // ) {
+    //   this.cancelThirdStep();
+    //   return;
+    // }
+
+  }
+
+  isFirstStepStillRelevant () {
     if (this.trackOrderMap[this.buySymbol].current?.status === 'done') {
       return true;
     }
@@ -185,17 +215,11 @@ class Strategy {
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
     }
-    console.log(bestAsk, requireAsk, bestAsk / requireAsk);
-    this.cancelFirstStep();
 
     return false;
   }
 
   isSecondStepStillRelevant () {
-    if (this.trackOrderMap[this.buy2Symbol].current === null) {
-      return true;
-    }
-
     if (this.trackOrderMap[this.buy2Symbol].current.status === 'done') {
       return true;
     }
@@ -208,18 +232,10 @@ class Strategy {
       return true;
     }
 
-    console.log(bestAsk, requireAsk, bestAsk / requireAsk);
-
-    this.cancelSecondStep();
-
     return false;
   }
 
   isThirdStepStillRelevant () {
-    if (this.trackOrderMap[this.sellSymbol].current === null) {
-      return true;
-    }
-
     if (this.trackOrderMap[this.sellSymbol].current?.status === 'done') {
       return true;
     }
@@ -232,16 +248,11 @@ class Strategy {
       return true;
     }
 
-    console.log(bestBids, requireBids, bestBids / requireBids);
-    this.cancelThirdStep();
-
     return false;
   }
 
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
-    console.log('cancelFirstStep');
-    console.log('call strategyEndSubject from cancelFirstStep');
     this.strategyEndSubject.next();
 
     kucoin
