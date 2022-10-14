@@ -75,7 +75,6 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
 }
 
 function makeCalculation() {
-  console.log(1);
   strategies.forEach(checkStrategy);
 }
 
