@@ -44,6 +44,8 @@ class Strategy {
 
     this.strategyEndSubject = new Subject();
     this.ordersDoneSubject = new Subject();
+    this.cancelStrategySubject = new Subject();
+
 
     this.trackOrderMap = {
       [this.buySymbol]: {
@@ -165,7 +167,10 @@ class Strategy {
           this.checkRelevance();
         }),
         takeUntil(
-          this.endOrPlaceOrderError$
+          merge(
+            this.endOrPlaceOrderError$,
+            this.cancelStrategySubject
+          )
         )
       ).subscribe();
   }
@@ -250,13 +255,15 @@ class Strategy {
 
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
-    this.strategyEndSubject.next();
+    this.cancelStrategySubject.next();
 
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
         console.log(e);
         console.log('cancel', order.symbol);
+
+        this.strategyEndSubject.next();
       });
   }
 
@@ -264,7 +271,7 @@ class Strategy {
     const doneOrder = this.trackOrderMap[this.buySymbol].current;
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
-    this.strategyEndSubject.next();
+    this.cancelStrategySubject.next();
 
     console.log('cancel', order.symbol);
     kucoin
@@ -281,6 +288,9 @@ class Strategy {
           size: sellAmount,
           //price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0]
         });
+      })
+      .then(() => {
+        this.strategyEndSubject.next();
       })
       .catch((e) => {
         console.log(e);
