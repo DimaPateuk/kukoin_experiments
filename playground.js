@@ -6,4 +6,9 @@ const { infinitySocket } = require('./infinitySocket');
 
 
 interval(10)
-  .subscribe(console.log);
+  .subscribe(() => {
+    console.log(1);
+  });
+setInterval(() => {
+  console.log(2);
+}, 10)
