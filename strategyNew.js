@@ -210,7 +210,7 @@ class Strategy {
     const requireAsk = this.profitInfo.fakePrices[0];
     const fee = this.profitInfo.fees[0] * 10;
 
-    console.log(bestAsk / requireAsk, 1 + fee);
+    console.log(bestAsk, requireAsk, bestAsk / requireAsk, 1 + fee);
 
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
