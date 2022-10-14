@@ -27,7 +27,7 @@ function placeOrder(params) {
           res
         });
       }
-      // console.log(res, params);
+      console.log(res, params);
 
       return res;
 

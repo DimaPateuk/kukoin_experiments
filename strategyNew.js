@@ -269,7 +269,9 @@ class Strategy {
     console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
-      .then(() => {
+      .then((r) => {
+        console.log('----trying to cancel seconds step');
+        console.log(r)
         const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
 
         return placeOrder({
