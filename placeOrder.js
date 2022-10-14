@@ -32,6 +32,7 @@ function placeOrder(params) {
       return res;
 
     }, (err) => {
+      console.log(err, params);
       placeOrderErrorSubject.next({
         params,
         err,
