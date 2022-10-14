@@ -177,7 +177,7 @@ class Strategy {
     // ) {
     //   return;
     // }
-
+    this.isFirstStepStillRelevant();
     if (this.trackOrderMap[this.buySymbol].current !== null &&
         this.trackOrderMap[this.buySymbol].current.status !== 'done'
     ) {
@@ -206,9 +206,11 @@ class Strategy {
       return true;
     }
 
-    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
+    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].bids[45][0]);
     const requireAsk = this.profitInfo.fakePrices[0];
     const fee = this.profitInfo.fees[0] * 10;
+
+    console.log(bestAsk / requireAsk, 1 + fee);
 
     if (bestAsk / requireAsk < 1 + fee) {
       return true;
