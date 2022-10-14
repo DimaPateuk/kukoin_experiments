@@ -222,7 +222,7 @@ class Strategy {
   }
 
   isSecondStepStillRelevant () {
-    if (this.trackOrderMap[this.buy2Symbol].current.status === 'done') {
+    if (this.trackOrderMap[this.buy2Symbol].current?.status === 'done') {
       return true;
     }
 
