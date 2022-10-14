@@ -83,7 +83,7 @@ class Strategy {
   }
 
   doFirstStep() {
-    console.log(this.buySymbol, symbolsOrderBookInfoMap[this.buySymbol].asks[20][0], this.profitInfo.stringPrices[0].toString());
+    console.log(this.buySymbol, symbolsOrderBookInfoMap[this.buySymbol].bids[20][0], this.profitInfo.stringPrices[0].toString());
 
     placeOrder({
       clientOid: this.clientOidBuy,
