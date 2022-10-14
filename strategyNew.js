@@ -101,7 +101,7 @@ class Strategy {
       clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-      price: symbolsOrderBookInfoMap[this.buy2Symbol].bids[10][0],//this.profitInfo.stringPrices[1].toString(),
+      price: this.profitInfo.stringPrices[1].toString(),
       size: buyAmount,
     });
   }
@@ -115,7 +115,7 @@ class Strategy {
       clientOid: this.clientOidSell,
       side: 'sell',
       symbol: this.sellSymbol,
-      price: this.profitInfo.stringPrices[2].toString(),
+      price: symbolsOrderBookInfoMap[this.buy2Symbol].asks[10][0],//this.profitInfo.stringPrices[2].toString(),
       size: sellAmount,
     });
   }
@@ -189,19 +189,19 @@ class Strategy {
     //   return;
     // }
 
-    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
-    ) {
-      this.cancelSecondStep();
-      return;
-    }
-
-    // if (this.trackOrderMap[this.sellSymbol].current !== null &&
-    //     this.trackOrderMap[this.sellSymbol].current.status !== 'done'
+    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
     // ) {
-    //   this.cancelThirdStep();
+    //   this.cancelSecondStep();
     //   return;
     // }
+
+    if (this.trackOrderMap[this.sellSymbol].current !== null &&
+        this.trackOrderMap[this.sellSymbol].current.status !== 'done'
+    ) {
+      this.cancelThirdStep();
+      return;
+    }
 
   }
 
@@ -278,7 +278,6 @@ class Strategy {
       .cancelOrder({ id: order.orderId })
       .then((r) => {
         console.log('----trying to cancel seconds step');
-        console.log(r, doneOrder)
         const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
 
         return placeOrder({
@@ -286,7 +285,6 @@ class Strategy {
           side: 'sell',
           symbol: this.buySymbol,
           size: sellAmount,
-          //price: symbolsOrderBookInfoMap[this.buySymbol].asks[20][0]
         });
       })
       .then((e) => {
@@ -302,25 +300,30 @@ class Strategy {
     const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
     const order = this.trackOrderMap[this.sellSymbol].current;
 
-    //this.strategyEndSubject.next();
+    this.cancelStrategySubject.next();
 
     console.log('cancel', order.symbol);
-    // kucoin
-    //   .cancelOrder({ id: order.orderId })
-    //   .then(() => {
-    //     const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids', true);
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .then((r) => {
+        console.log('----trying to cancel third step');
+        console.log(r, doneOrder);
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
 
-    //     return placeOrder({
-    //       clientOid: v4(),
-    //       side: 'sell',
-    //       symbol: this.sellSymbol,
-    //       funds: sellAmount,
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-
-    //   });
+        return placeOrder({
+          clientOid: v4(),
+          side: 'sell',
+          symbol: this.sellSymbol,
+          size: sellAmount,
+        });
+      })
+      .then((e) => {
+        console.log('---', e);
+        this.strategyEndSubject.next();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 }
 
