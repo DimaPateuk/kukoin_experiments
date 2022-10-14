@@ -272,7 +272,7 @@ class Strategy {
       .then((r) => {
         console.log('----trying to cancel seconds step');
         console.log(r)
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buy2Symbol, 'bids', false);
 
         return placeOrder({
           clientOid: v4(),
