@@ -21,7 +21,7 @@ const kucoin = require('./kucoin');
 
 
 class Strategy {
-  feeMultiplier = 50;
+  feeMultiplier = 100;
   constructor({
     currentStrategy,
     profitInfo,
@@ -106,7 +106,7 @@ class Strategy {
     const requireAsk = this.profitInfo.fakePrices[1];
     const fee = this.profitInfo.fees[1] * this.feeMultiplier;
 
-    console.log(this.buySymbol, 'will be canceled when price: ' , requireAsk * (1 + fee));
+    console.log(this.buy2Symbol, 'will be canceled when price: ' , requireAsk * (1 + fee));
 
     placeOrder({
       clientOid: this.clientOidBuy2,
@@ -125,7 +125,7 @@ class Strategy {
     const requireAsk = this.profitInfo.fakePrices[2];
     const fee = this.profitInfo.fees[2] * this.feeMultiplier;
 
-    console.log(this.buySymbol, 'will be canceled when price: ' , requireAsk * (1 - fee));
+    console.log(this.sellSymbol, 'will be canceled when price: ' , requireAsk * (1 - fee));
 
     placeOrder({
       clientOid: this.clientOidSell,
