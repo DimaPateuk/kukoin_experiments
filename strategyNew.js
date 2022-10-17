@@ -49,7 +49,6 @@ class Strategy {
     this.ordersDoneSubject = new Subject();
     this.cancelStrategySubject = new Subject();
 
-
     this.trackOrderMap = {
       [this.buySymbol]: {
         current: null,
@@ -73,11 +72,6 @@ class Strategy {
         console.log('---strategy END', this.currentStrategy);
         onEnd();
       });
-
-    this.endOrPlaceOrderError$ = merge(
-      placeOrderErrorSubject,
-      this.strategyEndSubject
-    );
 
     this.trackOrders();
     this.trackRelevance();
@@ -173,7 +167,11 @@ class Strategy {
 
         }),
         takeUntil(
-          this.endOrPlaceOrderError$
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+            this.cancelStrategySubject
+          )
         )
       ).subscribe();
   }
@@ -186,7 +184,8 @@ class Strategy {
         }),
         takeUntil(
           merge(
-            this.endOrPlaceOrderError$,
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
             this.cancelStrategySubject
           )
         )
@@ -278,13 +277,15 @@ class Strategy {
 
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
+
     this.cancelStrategySubject.next();
 
+    console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
         console.log(e);
-        console.log('cancel', order.symbol);
+
 
         this.strategyEndSubject.next();
       });
