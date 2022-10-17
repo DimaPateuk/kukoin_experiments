@@ -300,7 +300,20 @@ class Strategy {
     console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
-      .then((r) => {
+      .then(e => {
+        console.log('trying to cancel seconds step', e);
+      })
+      .catch((e) => {
+        console.log('trying to cancel seconds step issue', e);
+      });
+
+    const order$ = ordersSubject
+      .subscribe((canceledOrder) => {
+        if (!canceledOrder.clientOid !== order.clientOid) {
+          return;
+        }
+
+        order$.unsubscribe();
         console.log('----trying to cancel seconds step');
         const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
 
@@ -309,15 +322,11 @@ class Strategy {
           side: 'sell',
           symbol: this.buySymbol,
           size: sellAmount,
+        }).then(() => {
+          this.strategyEndSubject.next();
         });
-      })
-      .then((e) => {
-        console.log('---', e);
-        this.strategyEndSubject.next();
-      })
-      .catch((e) => {
-        console.log(e);
       });
+
   }
 
   cancelThirdStep() {
@@ -329,9 +338,21 @@ class Strategy {
     console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
-      .then((r) => {
+      .then(e => {
+        console.log('trying to cancel third step', e);
+      })
+      .catch((e) => {
+        console.log('trying to cancel third step issue', e);
+      });
+
+    const order$ = ordersSubject
+      .subscribe((canceledOrder) => {
+        if (!canceledOrder.clientOid !== order.clientOid) {
+          return;
+        }
+
+        order$.unsubscribe();
         console.log('----trying to cancel third step');
-        console.log(r, doneOrder);
         const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
 
         return placeOrder({
@@ -339,14 +360,9 @@ class Strategy {
           side: 'sell',
           symbol: this.sellSymbol,
           size: sellAmount,
+        }).then(() => {
+          this.strategyEndSubject.next();
         });
-      })
-      .then((e) => {
-        console.log('---', e);
-        this.strategyEndSubject.next();
-      })
-      .catch((e) => {
-        console.log(e);
       });
   }
 }
