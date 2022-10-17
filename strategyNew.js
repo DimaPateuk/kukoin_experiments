@@ -20,7 +20,7 @@ const { priceDiff } = require('./priceDiff');
 const kucoin = require('./kucoin');
 
 
-const maxTimeStrategyAlive = 5 * 60 * 1000;
+const maxTimeStrategyAlive = 1 * 60 * 1000;
 
 class Strategy {
   constructor({
