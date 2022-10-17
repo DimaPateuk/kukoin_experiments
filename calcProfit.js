@@ -87,6 +87,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const profit = receive - (spend + approximateFeeFroThreeSteps);
 
     return {
+      cancelPrices: [fakePrices[0] * 1.02, fakePrices[1] * 1.02, fakePrices[1] * 0.998],
       strategy: currentStrategy,
       orderBookDepth,
       baseFirstStepAmount,

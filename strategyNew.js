@@ -21,7 +21,6 @@ const kucoin = require('./kucoin');
 
 
 class Strategy {
-  feeMultiplier = 100;
   constructor({
     currentStrategy,
     profitInfo,
@@ -89,7 +88,7 @@ class Strategy {
     const requireAsk = this.profitInfo.fakePrices[0];
     const fee = this.profitInfo.fees[0] * this.feeMultiplier;
 
-    console.log(this.buySymbol, 'will be canceled when price: ' , requireAsk * (1 + fee));
+    console.log(this.buySymbol, 'will be canceled when price: ' , this.profitInfo.cancelPrices[0]);
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
@@ -106,7 +105,7 @@ class Strategy {
     const requireAsk = this.profitInfo.fakePrices[1];
     const fee = this.profitInfo.fees[1] * this.feeMultiplier;
 
-    console.log(this.buy2Symbol, 'will be canceled when price: ' , requireAsk * (1 + fee));
+    console.log(this.buy2Symbol, 'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
 
     placeOrder({
       clientOid: this.clientOidBuy2,
@@ -122,10 +121,10 @@ class Strategy {
     const filledSize = parseFloat(order.filledSize);
     const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
-    const requireAsk = this.profitInfo.fakePrices[2];
+    const requireBid = this.profitInfo.fakePrices[2];
     const fee = this.profitInfo.fees[2] * this.feeMultiplier;
 
-    console.log(this.sellSymbol, 'will be canceled when price: ' , requireAsk * (1 - fee));
+    console.log(this.sellSymbol, 'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
 
     placeOrder({
       clientOid: this.clientOidSell,
@@ -227,10 +226,8 @@ class Strategy {
     }
 
     const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
-    const requireAsk = this.profitInfo.fakePrices[0];
-    const fee = this.profitInfo.fees[0] * this.feeMultiplier;
 
-    if (bestAsk / requireAsk < 1 + fee) {
+    if (bestAsk < this.profitInfo.cancelPrices[0]) {
       return true;
     }
 
@@ -243,10 +240,8 @@ class Strategy {
     }
 
     const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buy2Symbol].asks[0][0]);
-    const requireAsk = this.profitInfo.fakePrices[1];
-    const fee = this.profitInfo.fees[1] * this.feeMultiplier;
 
-    if (bestAsk / requireAsk < 1 + fee) {
+    if (bestAsk < this.profitInfo.cancelPrices[1]) {
       return true;
     }
 
@@ -258,11 +253,9 @@ class Strategy {
       return true;
     }
 
-    const bestBids = parseFloat(symbolsOrderBookInfoMap[this.sellSymbol].bids[0][0]);
-    const requireBids = this.profitInfo.fakePrices[2];
-    const fee = this.profitInfo.fees[2] * this.feeMultiplier;
+    const bestBid = parseFloat(symbolsOrderBookInfoMap[this.sellSymbol].bids[0][0]);
 
-    if (bestBids / requireBids > 1 - fee) {
+    if (bestBid > this.profitInfo.cancelPrices[2]) {
       return true;
     }
 
