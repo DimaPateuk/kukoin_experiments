@@ -95,6 +95,9 @@ function calcProfit(currentStrategy, orderBookDepth) {
       fees,
       prices,
       fakePrices,
+      getActualPrices: () => {
+        return parsePrices(currentStrategy, orderBookDepth);
+      },
       stringPrices,
       sizes,
       buyCoins,

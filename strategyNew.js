@@ -70,6 +70,14 @@ class Strategy {
       )
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
+        const actualPrices = this.profitInfo.getActualPrices();
+        this.currentStrategy.forEach((item, index) => {
+          console.log(item);
+          console.log('when started', this.profitInfo.prices[index]);
+          console.log('when ended', actualPrices[index]);
+          console.log('diff', this.profitInfo.prices[index] - actualPrices[index]);
+        });
+        console.log('-----');
         onEnd();
       });
 
@@ -82,10 +90,8 @@ class Strategy {
   }
 
   doFirstStep() {
-    const requireAsk = this.profitInfo.fakePrices[0];
-    const fee = this.profitInfo.fees[0] * this.feeMultiplier;
-
     console.log(this.buySymbol, 'will be canceled when price: ' , this.profitInfo.cancelPrices[0]);
+
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
@@ -97,10 +103,6 @@ class Strategy {
 
   doSecondStep () {
     const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
-
-
-    const requireAsk = this.profitInfo.fakePrices[1];
-    const fee = this.profitInfo.fees[1] * this.feeMultiplier;
 
     console.log(this.buy2Symbol, 'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
 
@@ -117,9 +119,6 @@ class Strategy {
     const order = this.trackOrderMap[this.buy2Symbol].current;
     const filledSize = parseFloat(order.filledSize);
     const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
-
-    const requireBid = this.profitInfo.fakePrices[2];
-    const fee = this.profitInfo.fees[2] * this.feeMultiplier;
 
     console.log(this.sellSymbol, 'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
 
