@@ -21,7 +21,7 @@ const { Strategy } =require('./strategyNew');
 
 
 let count = 0;
-const maxStrategyTries = 100;
+const maxStrategyTries = 3;
 const maxStrategiesInParallel = 3;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
