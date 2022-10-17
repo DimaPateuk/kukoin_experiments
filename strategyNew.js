@@ -309,7 +309,7 @@ class Strategy {
 
     const order$ = ordersSubject
       .subscribe((canceledOrder) => {
-        if (!canceledOrder.clientOid !== order.clientOid) {
+        if (canceledOrder.clientOid !== order.clientOid) {
           return;
         }
 
@@ -347,7 +347,7 @@ class Strategy {
 
     const order$ = ordersSubject
       .subscribe((canceledOrder) => {
-        if (!canceledOrder.clientOid !== order.clientOid) {
+        if (canceledOrder.clientOid !== order.clientOid) {
           return;
         }
 
