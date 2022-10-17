@@ -20,12 +20,15 @@ const { priceDiff } = require('./priceDiff');
 const kucoin = require('./kucoin');
 
 
+const maxTimeStrategyAlive = 5 * 60 * 1000;
+
 class Strategy {
   constructor({
     currentStrategy,
     profitInfo,
     onEnd,
   }) {
+    this.startedAt = +new Date();
     this.currentStrategy = currentStrategy;
 
     this.profitInfo = profitInfo;
@@ -193,7 +196,8 @@ class Strategy {
   checkRelevance() {
     if (this.isFirstStepStillRelevant() &&
         this.isSecondStepStillRelevant() &&
-        this.isThirdStepStillRelevant()
+        this.isThirdStepStillRelevant() &&
+        this.isStrategyRelevantByTime()
     ) {
       return;
     }
@@ -220,6 +224,15 @@ class Strategy {
     }
   }
 
+  isStrategyRelevantByTime() {
+    if (+new Date() - this.startedAt < maxTimeStrategyAlive) {
+      return true;
+    }
+
+    console.log(this.currentStrategy, 'Should be canceled because Time!!! step not relevant');
+    return false;
+  }
+
   isFirstStepStillRelevant () {
     if (this.trackOrderMap[this.buySymbol].current?.status === 'done') {
       return true;
@@ -230,7 +243,7 @@ class Strategy {
     if (bestAsk < this.profitInfo.cancelPrices[0]) {
       return true;
     }
-
+    console.log(this.currentStrategy, 'Should be canceled because first step not relevant');
     return false;
   }
 
@@ -244,7 +257,7 @@ class Strategy {
     if (bestAsk < this.profitInfo.cancelPrices[1]) {
       return true;
     }
-
+    console.log(this.currentStrategy, 'Should be canceled because Second step not relevant');
     return false;
   }
 
@@ -259,6 +272,7 @@ class Strategy {
       return true;
     }
 
+    console.log(this.currentStrategy, 'Should be canceled because Third step not relevant');
     return false;
   }
 
