@@ -283,10 +283,13 @@ class Strategy {
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
-        console.log(e);
+        console.log('trying to cancel first step', e);
 
 
         this.strategyEndSubject.next();
+      })
+      .catch((e) => {
+        console.log('trying to cancel first step issue', e);
       });
   }
 

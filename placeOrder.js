@@ -22,6 +22,7 @@ function placeOrder(params) {
 
   return promise.then((res) => {
       if (res.code !== '200000') {
+
         placeOrderErrorSubject.next({
           params,
           res
