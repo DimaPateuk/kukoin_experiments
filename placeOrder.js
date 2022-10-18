@@ -22,11 +22,12 @@ function placeOrder(params) {
 
   return promise.then((res) => {
       if (res.code !== '200000') {
-
         placeOrderErrorSubject.next({
           params,
           res
         });
+        process.exit(1);
+
       }
       return res;
 
@@ -36,6 +37,8 @@ function placeOrder(params) {
         params,
         err,
       });
+
+      process.exit(1);
     });
 }
 

@@ -53,6 +53,7 @@ function startStrategy(currentStrategy, profitInfo) {
 
       if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
         console.log(count, 'times really ?');
+        process.exit(1);
       }
     }, 5000);
   } });
