@@ -86,6 +86,10 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const receive = exactMath.mul(buy2Coins, fakePrices[2]);
     const profit = receive - (spend + approximateFeeFroThreeSteps);
 
+    const getActualPrices = () => {
+      return parsePrices(currentStrategy, orderBookDepth);
+    };
+
     return {
       cancelPrices: [fakePrices[0] * 1.02, fakePrices[1] * 1.02, fakePrices[1] * 0.998],
       strategy: currentStrategy,
@@ -95,8 +99,17 @@ function calcProfit(currentStrategy, orderBookDepth) {
       fees,
       prices,
       fakePrices,
-      getActualPrices: () => {
-        return parsePrices(currentStrategy, orderBookDepth);
+      getActualPrices,
+      printPricesInfo: () => {
+        const actualPrices = getActualPrices();
+        currentStrategy.forEach((item, index) => {
+          console.log(item);
+          console.log('when started', prices[index]);
+          console.log('when ended', actualPrices[index]);
+
+          console.log('%',  actualPrices[index] / prices[index]);
+          console.log('diff',  actualPrices[index] - prices[index]);
+        });
       },
       stringPrices,
       sizes,

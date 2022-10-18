@@ -70,13 +70,7 @@ class Strategy {
       )
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
-        const actualPrices = this.profitInfo.getActualPrices();
-        this.currentStrategy.forEach((item, index) => {
-          console.log(item);
-          console.log('when started', this.profitInfo.prices[index]);
-          console.log('when ended', actualPrices[index]);
-          console.log('diff', this.profitInfo.prices[index] - actualPrices[index]);
-        });
+        this.profitInfo.printPricesInfo();
         console.log('-----');
         onEnd();
       });
@@ -175,10 +169,16 @@ class Strategy {
       ).subscribe();
   }
 
+  checkPricesWhileStrategyInProgress() {
+        this.profitInfo.printPricesInfo();
+        console.log('-----');
+  }
+
   trackRelevance () {
     interval(10)
       .pipe(
         tap(() => {
+          this.checkPricesWhileStrategyInProgress();
           this.checkRelevance();
         }),
         takeUntil(
