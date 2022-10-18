@@ -172,6 +172,8 @@ class Strategy {
   checkPricesWhileStrategyInProgress() {
         this.profitInfo.printPricesInfo();
         console.log('-----');
+        console.log(calcProfit(this.currentStrategy, this.profitInfo.orderBookDepth));
+        console.log('-----');
   }
 
   trackRelevance () {
@@ -179,7 +181,7 @@ class Strategy {
       .pipe(
         tap(() => {
           this.checkPricesWhileStrategyInProgress();
-          this.checkRelevance();
+          this.checkIfStrategyIsNotRelevant();
         }),
         takeUntil(
           merge(
@@ -191,7 +193,7 @@ class Strategy {
       ).subscribe();
   }
 
-  checkRelevance() {
+  checkIfStrategyIsNotRelevant() {
     if (this.isFirstStepStillRelevant() &&
         this.isSecondStepStillRelevant() &&
         this.isThirdStepStillRelevant() &&
