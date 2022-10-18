@@ -65,10 +65,7 @@ balancesSubject
     if (balance.currency === 'USDT') {
       balanceInfo.current = balance.available;
     }
-
   });
-
-
 
 const currenciesMap = {};
 kucoin.getCurrencies()

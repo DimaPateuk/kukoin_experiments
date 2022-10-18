@@ -16,6 +16,26 @@ function canCalc(currentStrategy, depth) {
   return true;
 }
 
+function parseAsks (currentStrategy, depth) {
+  const [buy, buy2, sell] = currentStrategy;
+
+  return [
+    symbolsOrderBookInfoMap[buy].asks[depth][0],
+    symbolsOrderBookInfoMap[buy2].asks[depth][0],
+    symbolsOrderBookInfoMap[sell].asks[depth][0]
+  ].map(num => parseFloat(num));
+}
+
+function parseBids (currentStrategy, depth) {
+  const [buy, buy2, sell] = currentStrategy;
+
+  return [
+    symbolsOrderBookInfoMap[buy].bids[depth][0],
+    symbolsOrderBookInfoMap[buy2].bids[depth][0],
+    symbolsOrderBookInfoMap[sell].bids[depth][0]
+  ].map(num => parseFloat(num));
+}
+
 function parsePrices (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
 
@@ -93,12 +113,23 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const profit = receive - (spend + approximateFeeForThreeSteps);
 
     const getFirstStepInfo = () => {
-      const actualPrices = getActualPrices();
-      console.log('profit first step', buyCoins * actualPrices[0] - approximateFees[0]);
+      const actualPrices = parseBids(currentStrategy, orderBookDepth);
+      console.log('profit first step', buyCoins * actualPrices[0] - approximateFees[0] - spend);
+    }
+    const getSecondStepInfo = () => {
+      const actualPrices = parseBids(currentStrategy, orderBookDepth);
+      console.log('profit second step', buy2Coins * actualPrices[1] * actualPrices[0] - approximateFees[0] - approximateFees[1] - spend);
     }
 
+    const multipliedFees = fees.map( fee => fee * 10);
+    const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
+
     return {
-      cancelPrices: [fakePrices[0] * 1.02, fakePrices[1] * 1.02, fakePrices[1] * 0.998],
+      cancelPrices: [
+        fakePrices[0] * cancelMultipliers[0],
+        fakePrices[1] * cancelMultipliers[1],
+        fakePrices[2] * cancelMultipliers[2]
+      ],
       strategy: currentStrategy,
       orderBookDepth,
       baseFirstStepAmount,
@@ -119,6 +150,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
         });
       },
       getFirstStepInfo,
+      getSecondStepInfo,
       stringPrices,
       sizes,
       buyCoins,
