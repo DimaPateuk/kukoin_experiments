@@ -172,6 +172,7 @@ class Strategy {
 
   checkPricesWhileStrategyInProgress() {
         this.profitInfo.printPricesInfo();
+        this.profitInfo.getFirstStepInfo();
         console.log('-----');
   }
 

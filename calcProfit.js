@@ -93,7 +93,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const profit = receive - (spend + approximateFeeForThreeSteps);
 
     const getFirstStepInfo = () => {
-
+      const actualPrices = getActualPrices();
+      console.log('profit first step', buyCoins * actualPrices[0] - approximateFees[0]);
     }
 
     return {
@@ -117,6 +118,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
           console.log('diff',  actualPrices[index] - prices[index]);
         });
       },
+      getFirstStepInfo,
       stringPrices,
       sizes,
       buyCoins,
