@@ -70,6 +70,7 @@ class Strategy {
       )
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
+        console.log(this.profitInfo);
         this.profitInfo.printPricesInfo();
         console.log('-----');
         onEnd();
@@ -171,8 +172,6 @@ class Strategy {
 
   checkPricesWhileStrategyInProgress() {
         this.profitInfo.printPricesInfo();
-        console.log('-----');
-        console.log(calcProfit(this.currentStrategy, this.profitInfo.orderBookDepth));
         console.log('-----');
   }
 
