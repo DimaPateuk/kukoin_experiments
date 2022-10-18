@@ -1,6 +1,6 @@
 const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
-const { symbolsOrderBookInfoMap } = require('./resources');
+const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 
 function canCalc(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
@@ -116,10 +116,19 @@ function calcProfit(currentStrategy, orderBookDepth) {
       const actualPrices = parseBids(currentStrategy, orderBookDepth);
       console.log('profit first step', buyCoins * actualPrices[0] - approximateFees[0] - spend);
     }
-    const getSecondStepInfo = () => {
-      const actualPrices = parseBids(currentStrategy, orderBookDepth);
-      console.log('profit second step', buy2Coins * actualPrices[1] * actualPrices[0] - approximateFees[0] - approximateFees[1] - spend);
-    }
+    const [buyCoinsId] = buy.split('-');
+    const [buy2CoinsId] = buy2.split('-');
+
+    const possibleBuyCoinsIdSymbols = Object
+      .keys(symbolsInfo)
+      .filter(key => {
+        return key.split('-')[0] === buyCoinsId;
+      });
+    const possibleBuy2CoinsIdSymbols = Object
+      .keys(symbolsInfo)
+      .filter(key => {
+        return key.split('-')[0] === buy2CoinsId;
+      });
 
     const multipliedFees = fees.map( fee => fee * 10);
     const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
@@ -138,6 +147,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
       prices,
       fakePrices,
       getActualPrices,
+      possibleBuyCoinsIdSymbols,
+      possibleBuy2CoinsIdSymbols,
       printPricesInfo: () => {
         const actualPrices = getActualPrices();
         currentStrategy.forEach((item, index) => {
@@ -149,8 +160,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
           console.log('diff',  actualPrices[index] - prices[index]);
         });
       },
-      getFirstStepInfo,
-      getSecondStepInfo,
+      getSecondToFirstStepInfo,
       stringPrices,
       sizes,
       buyCoins,

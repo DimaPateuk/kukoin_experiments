@@ -73,9 +73,15 @@ class Strategy {
         console.log(this.profitInfo);
         console.log('maybe profit', calcProfit(this.profitInfo.strategy, this.profitInfo.orderBookDepth).profit);
         console.log('cancel prices', this.profitInfo.cancelPrices);
+        console.log(
+          this.profitInfo.possibleBuyCoinsIdSymbols.length,
+          this.profitInfo.possibleBuyCoinsIdSymbols,
+        );
+        console.log(
+          this.profitInfo.possibleBuy2CoinsIdSymbols.length,
+          this.profitInfo.possibleBuy2CoinsIdSymbols,
+        );
         this.profitInfo.printPricesInfo();
-        this.profitInfo.getFirstStepInfo();
-        this.profitInfo.getSecondStepInfo();
         console.log('-----');
         onEnd();
       });
@@ -175,13 +181,13 @@ class Strategy {
   }
 
   checkPricesWhileStrategyInProgress() {
-    console.log('-----');
-    console.log('maybe profit', calcProfit(this.profitInfo.strategy, this.profitInfo.orderBookDepth).profit);
-    console.log('cancel prices', this.profitInfo.cancelPrices);
-    this.profitInfo.printPricesInfo();
-    this.profitInfo.getFirstStepInfo();
-    this.profitInfo.getSecondStepInfo();
-    console.log('-----');
+    // console.log('-----');
+    // console.clear()
+    // console.log('maybe profit', calcProfit(this.profitInfo.strategy, this.profitInfo.orderBookDepth).profit);
+    // console.log('cancel prices', this.profitInfo.cancelPrices);
+    // console.log('fees', this.profitInfo.fees);
+    // this.profitInfo.printPricesInfo();
+    // console.log('-----');
   }
 
   trackRelevance () {
@@ -294,7 +300,6 @@ class Strategy {
       .cancelOrder({ id: order.orderId })
       .then((e) => {
         console.log('trying to cancel first step', e);
-
 
         this.strategyEndSubject.next();
       })
