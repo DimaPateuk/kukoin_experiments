@@ -70,7 +70,7 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
     return;
   }
 
-  if (profitInfo.profit > 0) {
+  if (profitInfo.profit > 0.005) {
     startStrategy(currentStrategy, profitInfo);
   }
 }
