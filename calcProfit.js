@@ -219,8 +219,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
       prices,
       fakePrices,
       getActualPrices,
-      calcPossibleBuyCoinsCancelStrategy,
-      calcPossibleBuy2CoinsCancelStrategy,
+      subProfitBuyCoins: calcPossibleBuyCoinsCancelStrategy(),
+      subProfitBuy2Coins: calcPossibleBuy2CoinsCancelStrategy(),
       printPricesInfo: () => {
         const actualPrices = getActualPrices();
         currentStrategy.forEach((item, index) => {

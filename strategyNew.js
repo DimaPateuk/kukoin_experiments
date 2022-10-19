@@ -186,8 +186,15 @@ class Strategy {
     console.log('cancel prices', this.profitInfo.cancelPrices);
     console.log('fees', this.profitInfo.fees);
     this.profitInfo.printPricesInfo();
-    console.log('---- calcPossibleBuyCoinsCancelStrategy', this.profitInfo.calcPossibleBuyCoinsCancelStrategy());
-    console.log('---- calcPossibleBuy2CoinsCancelStrategy', this.profitInfo.calcPossibleBuy2CoinsCancelStrategy());
+
+    console.log('---- subProfitBuyCoins');
+    console.log(this.profitInfo.subProfitBuyCoins.possibleCoinsIdSymbols);
+    console.log(this.profitInfo.subProfitBuyCoins.calcPossibleCoinsCancelStrategy());
+
+    console.log('---- subProfitBuy2Coins');
+    console.log(this.profitInfo.subProfitBuy2Coins.possibleCoinsIdSymbols);
+    console.log(this.profitInfo.subProfitBuy2Coins.calcPossibleCoinsCancelStrategy());
+
     console.log('-----');
   }
 
