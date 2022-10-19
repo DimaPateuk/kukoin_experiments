@@ -313,54 +313,28 @@ class Strategy {
     const doneOrder = this.trackOrderMap[this.buySymbol].current;
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
-    this.cancelStrategySubject.next();
-
-    console.log('cancel', order.symbol);
-    kucoin
-      .cancelOrder({ id: order.orderId })
-      .then(e => {
-        console.log('trying to cancel seconds step', e);
-      })
-      .catch((e) => {
-        console.log('trying to cancel seconds step issue', e);
-      });
-
-    const order$ = ordersSubject
-      .subscribe((canceledOrder) => {
-        if (canceledOrder.clientOid !== order.clientOid) {
-          return;
-        }
-
-        order$.unsubscribe();
-        console.log('----trying to cancel seconds step');
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
-
-        return placeOrder({
-          clientOid: v4(),
-          side: 'sell',
-          symbol: this.buySymbol,
-          size: sellAmount,
-        }).then(() => {
-          this.strategyEndSubject.next();
-        });
-      });
-
+    this.cancelStepOfPositiveStrategy(doneOrder, order, this.buySymbol);
   }
 
   cancelThirdStep() {
     const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
     const order = this.trackOrderMap[this.sellSymbol].current;
 
+    this.cancelStepOfPositiveStrategy(doneOrder, order, this.sellSymbol);
+  }
+
+  cancelStepOfPositiveStrategy(doneOrder, order, sellSymbol) {
     this.cancelStrategySubject.next();
+    const sellSymbolIndex = this.currentStrategy.indexOf(sellSymbol);
 
     console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then(e => {
-        console.log('trying to cancel third step', e);
+        console.log(`trying to cancel ${sellSymbol} step ${sellSymbolIndex}`, e);
       })
       .catch((e) => {
-        console.log('trying to cancel third step issue', e);
+        console.log(`trying to cancel ${sellSymbol} step ${sellSymbolIndex} issue`, e);
       });
 
     const order$ = ordersSubject
@@ -370,13 +344,13 @@ class Strategy {
         }
 
         order$.unsubscribe();
-        console.log('----trying to cancel third step');
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
+        console.log(`----trying to cancel ${sellSymbol} step ${sellSymbolIndex}`);
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), sellSymbol, 'bids');
 
         return placeOrder({
           clientOid: v4(),
           side: 'sell',
-          symbol: this.sellSymbol,
+          symbol: sellSymbol,
           size: sellAmount,
         }).then(() => {
           this.strategyEndSubject.next();

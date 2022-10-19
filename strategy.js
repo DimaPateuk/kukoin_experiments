@@ -71,6 +71,8 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
     return;
   }
 
+  console.log(profitInfo.strategy, profitInfo.profit);
+
   if (profitInfo.profit > 0) {
     startStrategy(currentStrategy, profitInfo);
   }
