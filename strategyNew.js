@@ -325,16 +325,16 @@ class Strategy {
 
   cancelStepOfPositiveStrategy(doneOrder, order, sellSymbol) {
     this.cancelStrategySubject.next();
-    const sellSymbolIndex = this.currentStrategy.indexOf(sellSymbol);
+    const orderSymbolIndex = this.currentStrategy.indexOf(order.symbol);
 
     console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then(e => {
-        console.log(`trying to cancel ${sellSymbol} step ${sellSymbolIndex}`, e);
+        console.log(`trying to cancel ${sellSymbol} step ${orderSymbolIndex}`, e);
       })
       .catch((e) => {
-        console.log(`trying to cancel ${sellSymbol} step ${sellSymbolIndex} issue`, e);
+        console.log(`trying to cancel ${sellSymbol} step ${orderSymbolIndex} issue`, e);
       });
 
     const order$ = ordersSubject
@@ -344,7 +344,7 @@ class Strategy {
         }
 
         order$.unsubscribe();
-        console.log(`----trying to cancel ${sellSymbol} step ${sellSymbolIndex}`);
+        console.log(`----trying to cancel ${sellSymbol} step ${orderSymbolIndex}`);
         const sellAmount = processNumber((doneOrder.filledSize).toString(), sellSymbol, 'bids');
 
         return placeOrder({

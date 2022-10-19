@@ -143,7 +143,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
       });
     }
 
-    function calcCancelStrategy (symbols) {
+    function calcCancelStrategy (symbols, initialCoins) {
       return symbols.forEach((cancelStrategy) => {
         if(!canCalc(cancelStrategy, orderBookDepth)) {
           return;
@@ -160,17 +160,17 @@ function calcProfit(currentStrategy, orderBookDepth) {
             res.coins = res.coins * bestBidSymbol;
             res.fee = res.fee + feeSymbol * spend;
 
-            return res * bestBidSymbol;
+            return res;
 
           }, {
-            coins: buyCoins,
+            coins: initialCoins,
             fee: 0,
           });
 
         const result = coins - fee;
         const profit = result - spend;
 
-        console.log('---- ', result, 'profit', );
+        console.log('---- ', result, 'profit', profit);
 
         return {
           result,
@@ -181,10 +181,11 @@ function calcProfit(currentStrategy, orderBookDepth) {
     }
 
     function calcPossibleBuyCoinsCancelStrategy() {
-      calcCancelStrategy(possibleBuyCoinsIdSymbols);
+      calcCancelStrategy(possibleBuyCoinsIdSymbols, buyCoins);
     }
+
     function calcPossibleBuy2CoinsCancelStrategy() {
-      calcCancelStrategy(possibleBuy2CoinsIdSymbols);
+      calcCancelStrategy(possibleBuy2CoinsIdSymbols, buy2Coins);
     }
 
     const multipliedFees = fees.map(fee => fee * 10);
