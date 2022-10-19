@@ -186,8 +186,8 @@ class Strategy {
     console.log('cancel prices', this.profitInfo.cancelPrices);
     console.log('fees', this.profitInfo.fees);
     this.profitInfo.printPricesInfo();
-    this.profitInfo.calcPossibleBuyCoinsCancelStrategy();
-    this.profitInfo.calcPossibleBuy2CoinsCancelStrategy();
+    console.log('---- calcPossibleBuyCoinsCancelStrategy', this.profitInfo.calcPossibleBuyCoinsCancelStrategy());
+    console.log('---- calcPossibleBuy2CoinsCancelStrategy', this.profitInfo.calcPossibleBuy2CoinsCancelStrategy());
     console.log('-----');
   }
 

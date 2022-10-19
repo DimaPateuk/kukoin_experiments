@@ -148,14 +148,12 @@ function calcProfit(currentStrategy, orderBookDepth) {
         if(!canCalc(cancelStrategy, orderBookDepth)) {
           return;
         }
-        console.log('---- cancelStrategy', cancelStrategy);
 
         const { coins, fee } = cancelStrategy
           .reduce((res, symbol) => {
             const bestBidSymbol = getBestBid(symbol, orderBookDepth);
             const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
 
-            console.log(symbol, 'bestBid', bestBidSymbol, 'fee', feeSymbol);
 
             res.coins = res.coins * bestBidSymbol;
             res.fee = res.fee + feeSymbol * spend;
@@ -170,22 +168,23 @@ function calcProfit(currentStrategy, orderBookDepth) {
         const result = coins - fee;
         const profit = result - spend;
 
-        console.log('---- ', result, 'profit', profit);
-
         return {
           result,
           profit,
           cancelStrategy,
         };
+      })
+      .filter(info => {
+        return info.profit > 0;
       });
     }
 
     function calcPossibleBuyCoinsCancelStrategy() {
-      calcCancelStrategy(possibleBuyCoinsIdSymbols, buyCoins);
+      return calcCancelStrategy(possibleBuyCoinsIdSymbols, buyCoins);
     }
 
     function calcPossibleBuy2CoinsCancelStrategy() {
-      calcCancelStrategy(possibleBuy2CoinsIdSymbols, buy2Coins);
+      return calcCancelStrategy(possibleBuy2CoinsIdSymbols, buy2Coins);
     }
 
     const multipliedFees = fees.map(fee => fee * 10);
