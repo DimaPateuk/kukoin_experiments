@@ -248,4 +248,5 @@ function calcProfit(currentStrategy, orderBookDepth) {
 
 module.exports = {
   calcProfit,
+  calcSubProfit,
 };

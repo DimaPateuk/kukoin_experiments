@@ -71,16 +71,6 @@ class Strategy {
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
         console.log(this.profitInfo);
-        console.log('maybe profit', calcProfit(this.profitInfo.strategy, this.profitInfo.orderBookDepth).profit);
-        console.log('cancel prices', this.profitInfo.cancelPrices);
-        console.log(
-          this.profitInfo.possibleBuyCoinsIdSymbols.length,
-          this.profitInfo.possibleBuyCoinsIdSymbols,
-        );
-        console.log(
-          this.profitInfo.possibleBuy2CoinsIdSymbols.length,
-          this.profitInfo.possibleBuy2CoinsIdSymbols,
-        );
         this.profitInfo.printPricesInfo();
         console.log('-----');
         onEnd();
