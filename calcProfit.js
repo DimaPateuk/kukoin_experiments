@@ -98,7 +98,7 @@ function calcSubProfit(coinId, orderBookDepth, initialCoins) {
   }
 
   function calcCancelStrategy (symbols, initialCoins) {
-    return symbols.forEach((cancelStrategy) => {
+    return symbols.map((cancelStrategy) => {
       if(!canCalc(cancelStrategy, orderBookDepth)) {
         return;
       }
