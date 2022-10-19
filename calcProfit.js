@@ -160,7 +160,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
           console.log('diff',  actualPrices[index] - prices[index]);
         });
       },
-      getSecondToFirstStepInfo,
       stringPrices,
       sizes,
       buyCoins,

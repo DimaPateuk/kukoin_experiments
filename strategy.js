@@ -21,8 +21,8 @@ const { Strategy } =require('./strategyNew');
 
 
 let count = 0;
-const maxStrategyTries = 100;
-const maxStrategiesInParallel = 3;
+const maxStrategyTries = 1;
+const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
 
@@ -51,6 +51,7 @@ function startStrategy(currentStrategy, profitInfo) {
     setTimeout(() => {
       strategiesInProgress.delete(currentStrategy.join());
 
+      console.log('totalCount', count);
       if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
         console.log(count, 'times really ?');
         process.exit(1);
