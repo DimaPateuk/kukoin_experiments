@@ -111,7 +111,7 @@ function calcSubProfit(coinId, orderBookDepth, initialCoins) {
 
           res.prices.push(bestBidSymbol);
           res.resultCoins = res.resultCoins * bestBidSymbol;
-          res.fee = res.fee + feeSymbol * spend;
+          res.fee = res.fee + feeSymbol * baseFirstStepAmount;
 
           return res;
 
@@ -123,7 +123,7 @@ function calcSubProfit(coinId, orderBookDepth, initialCoins) {
         });
 
       const result = resultCoins - fee;
-      const profit = result - spend;
+      const profit = result - baseFirstStepAmount;
 
       return {
         result,
