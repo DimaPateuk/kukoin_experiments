@@ -1,24 +1,6 @@
-const { placeOrder, placeOrderErrorSubject } = require('./placeOrder');
-const {
-  takeUntil,
-  tap,
-  merge,
-  Subject,
-  interval,
-} = require('rxjs');
-const { processNumber } = require('./processNumber');
-const {
-  balancesSubject,
-  strategies,
-  ordersSubject,
-  symbolsOrderBookInfoMap,
-} = require('./resources');
+const { strategies } = require('./resources');
 const { calcProfit } = require('./calcProfit');
-const { v4 } = require('uuid');
-const { priceDiff } = require('./priceDiff');
-const kucoin = require('./kucoin');
 const { Strategy } =require('./strategyNew');
-
 
 let count = 0;
 const maxStrategyTries = 1;

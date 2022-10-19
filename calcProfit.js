@@ -123,7 +123,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const possibleBuy2CoinsIdSymbols = getPossibleCancelSymbols(buy2CoinsId);
 
     function getPossibleCancelSymbols(coinId) {
-      allSymbolsArr.map(key => {
+      return allSymbolsArr.map(key => {
         const [first, second] = key.split('-');
         if (first !== coinId) {
           return false;
@@ -144,7 +144,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     }
 
     function calcCancelStrategy (symbols) {
-      symbols.forEach((cancelStrategy) => {
+      return symbols.forEach((cancelStrategy) => {
         if(!canCalc(cancelStrategy, orderBookDepth)) {
           return;
         }
@@ -168,8 +168,15 @@ function calcProfit(currentStrategy, orderBookDepth) {
           });
 
         const result = coins - fee;
+        const profit = result - spend;
 
-        console.log('---- ', result, 'profit', result - spend);
+        console.log('---- ', result, 'profit', );
+
+        return {
+          result,
+          profit,
+          cancelStrategy,
+        };
       });
     }
 
