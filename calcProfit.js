@@ -212,6 +212,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
       fees,
       prices,
       fakePrices,
+      approximateFees,
       subProfitOfBuyCoins: calcSubProfit(buyCoinsId, orderBookDepth),
       subProfitOfBuy2Coins: calcSubProfit(buy2CoinsId, orderBookDepth),
       getActualPrices,
