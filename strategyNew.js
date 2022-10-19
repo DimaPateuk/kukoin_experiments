@@ -234,6 +234,8 @@ class Strategy {
       this.cancelThirdStep();
       return;
     }
+
+    console.log(this.trackOrderMap);
   }
 
   isStrategyRelevantByTime() {

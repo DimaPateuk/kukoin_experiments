@@ -98,42 +98,43 @@ function calcSubProfit(coinId, orderBookDepth, initialCoins) {
   }
 
   function calcCancelStrategy (symbols, initialCoins) {
-    return symbols.map((cancelStrategy) => {
-      if(!canCalc(cancelStrategy, orderBookDepth)) {
-        return;
-      }
+    return symbols
+      .map((cancelStrategy) => {
+        if(!canCalc(cancelStrategy, orderBookDepth)) {
+          return;
+        }
 
-      const { resultCoins, fee } = cancelStrategy
-        .reduce((res, symbol) => {
-          const bestBidSymbol = getBestBid(symbol, orderBookDepth);
-          const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
+        const { resultCoins, fee } = cancelStrategy
+          .reduce((res, symbol) => {
+            const bestBidSymbol = getBestBid(symbol, orderBookDepth);
+            const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
 
 
-          res.prices.push(bestBidSymbol);
-          res.resultCoins = res.resultCoins * bestBidSymbol;
-          res.fee = res.fee + feeSymbol * baseFirstStepAmount;
+            res.prices.push(bestBidSymbol);
+            res.resultCoins = res.resultCoins * bestBidSymbol;
+            res.fee = res.fee + feeSymbol * baseFirstStepAmount;
 
-          return res;
+            return res;
 
-        }, {
-          initialCoins,
-          resultCoins: initialCoins,
-          prices: [],
-          fee: 0,
-        });
+          }, {
+            initialCoins,
+            resultCoins: initialCoins,
+            prices: [],
+            fee: 0,
+          });
 
-      const result = resultCoins - fee;
-      const profit = result - baseFirstStepAmount;
+        const result = resultCoins - fee;
+        const profit = result - baseFirstStepAmount;
 
-      return {
-        result,
-        profit,
-        cancelStrategy,
-      };
-    })
-    .filter(info => {
-      return info.profit > 0;
-    });
+        return {
+          result,
+          profit,
+          cancelStrategy,
+        };
+      })
+      .filter(info => {
+        return info.profit > 0;
+      });
   }
 
   function calcPossibleCoinsCancelStrategy() {
