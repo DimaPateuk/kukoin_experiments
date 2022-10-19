@@ -6,6 +6,7 @@ const {
   Subject,
   interval,
   take,
+  first,
 } = require('rxjs');
 const { processNumber } = require('./processNumber');
 const {
@@ -200,8 +201,59 @@ class Strategy {
       ).subscribe();
   }
 
-  cancelAndTakeSubProfit() {
+  cancelAndTakeSubProfit(orderToCancel, variant) {
+    if (!orderToCancel) {
+      return;
+    }
 
+    this.cancelStrategySubject.next();
+    const { cancelStrategy, initialCoins } = variant;
+    const clientOids = cancelStrategy.map(() => v4());
+    console.log('sub profit cancel', orderToCancel.symbol);
+    kucoin
+      .cancelOrder({ id: orderToCancel.orderId })
+      .then(e => {
+        console.log(`sub profit trying to cancel ${orderToCancel.symbol}`, e);
+      })
+      .catch((e) => {
+        console.log(`sub profit trying to cancel ${orderToCancel.symbol} issue`, e);
+      });
+
+    const doneOrder = [];
+
+    const order$ = ordersSubject
+      .subscribe((someOrder) => {
+        if (someOrder.clientOid === orderToCancel.clientOid ) {
+          const sellAmount = processNumber((initialCoins).toString(), cancelStrategy[doneOrder.length], 'bids');
+
+          return placeOrder({
+            clientOid: clientOids[doneOrder.length],
+            side: 'sell',
+            symbol: cancelStrategy[doneOrder.length],
+            size: sellAmount,
+          });
+        }
+
+        if (clientOids.includes(someOrder.clientOid) && someOrder.status === 'done') {
+          doneOrder.push(someOrder);
+          const nextClientOid = clientOids[doneOrder.length];
+          if (nextClientOid) {
+            const sellAmount = processNumber((doneOrder.filledSize).toString(), cancelStrategy[doneOrder.length], 'bids');
+
+            return placeOrder({
+              clientOid: clientOids[doneOrder.length],
+              side: 'sell',
+              symbol: cancelStrategy[doneOrder.length],
+              size: sellAmount,
+            });
+          }
+        }
+
+        if (doneOrder.length === clientOids.length) {
+          order$.unsubscribe();
+          this.strategyEndSubject.next();
+        }
+      });
   }
 
   checkIfStrategyIsNotRelevant() {
@@ -216,6 +268,7 @@ class Strategy {
         this.profitInfo.spend + this.profitInfo.approximateFees[0] + this.profitInfo.approximateFees[1]
       );
       console.log('subProfitOfBuy2Coins', variant);
+      this.cancelAndTakeSubProfit(this.trackOrderMap[this.sellSymbol].current, variant);
     } else if (this.trackOrderMap[this.buySymbol].current !== null &&
         this.trackOrderMap[this.buySymbol].current.status === 'done'
       ) {
@@ -227,6 +280,7 @@ class Strategy {
           this.profitInfo.spend + this.profitInfo.approximateFees[0]
         );
         console.log('subProfitOfBuyCoins', variant);
+        this.cancelAndTakeSubProfit(this.trackOrderMap[this.buy2Symbol].current, variant);
       }
 
     if (this.isFirstStepStillRelevant() &&
