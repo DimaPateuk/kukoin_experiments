@@ -359,6 +359,10 @@ class Strategy {
   }
 }
 
+class SubStrategy {
+
+}
+
 module.exports = {
   Strategy,
 };

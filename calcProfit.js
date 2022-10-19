@@ -69,6 +69,83 @@ function getStringPrices (currentStrategy, depth) {
 const baseFirstStepAmount = 2;
 const magicProfitRation = 0;
 
+
+
+function calcSubProfit(coinId, orderBookDepth) {
+  const allSymbolsArr = Object.keys(symbolsInfo);
+
+  const possibleCoinsIdSymbols = getPossibleCancelSymbols(coinId);
+
+  function getPossibleCancelSymbols(coinId) {
+    return allSymbolsArr.map(key => {
+      const [first, second] = key.split('-');
+      if (first !== coinId) {
+        return false;
+      }
+
+      if (second === 'USDT') {
+        return [key];
+      }
+
+      if (!symbolsInfo[`${second}-USDT`]) {
+        return false;
+      }
+      return [key, `${second}-USDT`];
+    })
+    .filter(symbol => {
+      return symbol;
+    });
+  }
+
+  function calcCancelStrategy (symbols, initialCoins) {
+    return symbols.forEach((cancelStrategy) => {
+      if(!canCalc(cancelStrategy, orderBookDepth)) {
+        return;
+      }
+
+      const { resultCoins, fee } = cancelStrategy
+        .reduce((res, symbol) => {
+          const bestBidSymbol = getBestBid(symbol, orderBookDepth);
+          const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
+
+
+          res.prices.push(bestBidSymbol);
+          res.resultCoins = res.resultCoins * bestBidSymbol;
+          res.fee = res.fee + feeSymbol * spend;
+
+          return res;
+
+        }, {
+          initialCoins,
+          resultCoins: initialCoins,
+          prices: [],
+          fee: 0,
+        });
+
+      const result = resultCoins - fee;
+      const profit = result - spend;
+
+      return {
+        result,
+        profit,
+        cancelStrategy,
+      };
+    })
+    .filter(info => {
+      return info.profit > 0;
+    });
+  }
+
+  function calcPossibleCoinsCancelStrategy() {
+    return calcCancelStrategy(possibleCoinsIdSymbols, buyCoins);
+  }
+
+  return {
+    possibleCoinsIdSymbols,
+    calcPossibleCoinsCancelStrategy,
+  };
+}
+
 function calcProfit(currentStrategy, orderBookDepth) {
 
     if (!canCalc(currentStrategy, orderBookDepth)) {
@@ -114,77 +191,15 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const receive = exactMath.mul(buy2Coins, fakePrices[2]);
     const profit = receive - (spend + approximateFeeForThreeSteps);
 
-
     const [buyCoinsId] = buy.split('-');
     const [buy2CoinsId] = buy2.split('-');
-    const allSymbolsArr = Object.keys(symbolsInfo);
-
-    const possibleBuyCoinsIdSymbols = getPossibleCancelSymbols(buyCoinsId);
-    const possibleBuy2CoinsIdSymbols = getPossibleCancelSymbols(buy2CoinsId);
-
-    function getPossibleCancelSymbols(coinId) {
-      return allSymbolsArr.map(key => {
-        const [first, second] = key.split('-');
-        if (first !== coinId) {
-          return false;
-        }
-
-        if (second === 'USDT') {
-          return [key];
-        }
-
-        if (!symbolsInfo[`${second}-USDT`]) {
-          return false;
-        }
-        return [key, `${second}-USDT`];
-      })
-      .filter(symbol => {
-        return symbol;
-      });
-    }
-
-    function calcCancelStrategy (symbols, initialCoins) {
-      return symbols.forEach((cancelStrategy) => {
-        if(!canCalc(cancelStrategy, orderBookDepth)) {
-          return;
-        }
-
-        const { coins, fee } = cancelStrategy
-          .reduce((res, symbol) => {
-            const bestBidSymbol = getBestBid(symbol, orderBookDepth);
-            const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
-
-
-            res.coins = res.coins * bestBidSymbol;
-            res.fee = res.fee + feeSymbol * spend;
-
-            return res;
-
-          }, {
-            coins: initialCoins,
-            fee: 0,
-          });
-
-        const result = coins - fee;
-        const profit = result - spend;
-
-        return {
-          result,
-          profit,
-          cancelStrategy,
-        };
-      })
-      .filter(info => {
-        return info.profit > 0;
-      });
-    }
 
     function calcPossibleBuyCoinsCancelStrategy() {
-      return calcCancelStrategy(possibleBuyCoinsIdSymbols, buyCoins);
+      return calcSubProfit(buyCoinsId, buyCoins);
     }
 
     function calcPossibleBuy2CoinsCancelStrategy() {
-      return calcCancelStrategy(possibleBuy2CoinsIdSymbols, buy2Coins);
+      return calcSubProfit(buy2CoinsId, buy2Coins);
     }
 
     const multipliedFees = fees.map(fee => fee * 10);
@@ -204,8 +219,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
       prices,
       fakePrices,
       getActualPrices,
-      possibleBuyCoinsIdSymbols,
-      possibleBuy2CoinsIdSymbols,
       calcPossibleBuyCoinsCancelStrategy,
       calcPossibleBuy2CoinsCancelStrategy,
       printPricesInfo: () => {
@@ -231,6 +244,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
       sellOrderBookInfo: symbolsOrderBookInfoMap[sell].bids[orderBookDepth][0]
     };
 }
+
 
 module.exports = {
   calcProfit,
