@@ -181,13 +181,14 @@ class Strategy {
   }
 
   checkPricesWhileStrategyInProgress() {
-    // console.log('-----');
-    // console.clear()
-    // console.log('maybe profit', calcProfit(this.profitInfo.strategy, this.profitInfo.orderBookDepth).profit);
-    // console.log('cancel prices', this.profitInfo.cancelPrices);
-    // console.log('fees', this.profitInfo.fees);
-    // this.profitInfo.printPricesInfo();
-    // console.log('-----');
+    console.log('-----');
+    console.clear()
+    console.log('cancel prices', this.profitInfo.cancelPrices);
+    console.log('fees', this.profitInfo.fees);
+    this.profitInfo.printPricesInfo();
+    this.profitInfo.calcPossibleBuyCoinsCancelStrategy();
+    this.profitInfo.calcPossibleBuy2CoinsCancelStrategy();
+    console.log('-----');
   }
 
   trackRelevance () {

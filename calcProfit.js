@@ -2,19 +2,21 @@ const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
 const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 
+
 function canCalc(currentStrategy, depth) {
-  const [buy, buy2, sell] = currentStrategy;
-
-  if (
-    !symbolsOrderBookInfoMap[buy]?.asks[depth] ||
-    !symbolsOrderBookInfoMap[buy2]?.asks[depth] ||
-    !symbolsOrderBookInfoMap[sell]?.bids[depth]
-  ) {
-    return false;
-  }
-
-  return true;
+  return currentStrategy.every(symbol => {
+    return Boolean(symbolsOrderBookInfoMap[symbol]?.asks[depth]) && Boolean(symbolsOrderBookInfoMap[symbol]?.bids[depth]);
+  });
 }
+
+function getBestAsk(symbol, depth) {
+  return parseFloat(symbolsOrderBookInfoMap[symbol].asks[depth][0]);
+}
+function getBestBid(symbol, depth) {
+  return parseFloat(symbolsOrderBookInfoMap[symbol].bids[depth][0]);
+}
+
+
 
 function parseAsks (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
@@ -112,25 +114,73 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const receive = exactMath.mul(buy2Coins, fakePrices[2]);
     const profit = receive - (spend + approximateFeeForThreeSteps);
 
-    const getFirstStepInfo = () => {
-      const actualPrices = parseBids(currentStrategy, orderBookDepth);
-      console.log('profit first step', buyCoins * actualPrices[0] - approximateFees[0] - spend);
-    }
+
     const [buyCoinsId] = buy.split('-');
     const [buy2CoinsId] = buy2.split('-');
+    const allSymbolsArr = Object.keys(symbolsInfo);
 
-    const possibleBuyCoinsIdSymbols = Object
-      .keys(symbolsInfo)
-      .filter(key => {
-        return key.split('-')[0] === buyCoinsId;
-      });
-    const possibleBuy2CoinsIdSymbols = Object
-      .keys(symbolsInfo)
-      .filter(key => {
-        return key.split('-')[0] === buy2CoinsId;
-      });
+    const possibleBuyCoinsIdSymbols = getPossibleCancelSymbols(buyCoinsId);
+    const possibleBuy2CoinsIdSymbols = getPossibleCancelSymbols(buy2CoinsId);
 
-    const multipliedFees = fees.map( fee => fee * 10);
+    function getPossibleCancelSymbols(coinId) {
+      allSymbolsArr.map(key => {
+        const [first, second] = key.split('-');
+        if (first !== coinId) {
+          return false;
+        }
+
+        if (second === 'USDT') {
+          return [key];
+        }
+
+        if (!symbolsInfo[`${second}-USDT`]) {
+          return false;
+        }
+        return [key, `${second}-USDT`];
+      })
+      .filter(symbol => {
+        return symbol;
+      });
+    }
+
+    function calcCancelStrategy (symbols) {
+      symbols.forEach((cancelStrategy) => {
+        if(!canCalc(cancelStrategy, orderBookDepth)) {
+          return;
+        }
+        console.log('---- cancelStrategy', cancelStrategy);
+
+        const { coins, fee } = cancelStrategy
+          .reduce((res, symbol) => {
+            const bestBidSymbol = getBestBid(symbol, orderBookDepth);
+            const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
+
+            console.log(symbol, 'bestBid', bestBidSymbol, 'fee', feeSymbol);
+
+            res.coins = res.coins * bestBidSymbol;
+            res.fee = res.fee + feeSymbol * spend;
+
+            return res * bestBidSymbol;
+
+          }, {
+            coins: buyCoins,
+            fee: 0,
+          });
+
+        const result = coins - fee;
+
+        console.log('---- ', result, 'profit', result - spend);
+      });
+    }
+
+    function calcPossibleBuyCoinsCancelStrategy() {
+      calcCancelStrategy(possibleBuyCoinsIdSymbols);
+    }
+    function calcPossibleBuy2CoinsCancelStrategy() {
+      calcCancelStrategy(possibleBuy2CoinsIdSymbols);
+    }
+
+    const multipliedFees = fees.map(fee => fee * 10);
     const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
 
     return {
@@ -149,6 +199,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
       getActualPrices,
       possibleBuyCoinsIdSymbols,
       possibleBuy2CoinsIdSymbols,
+      calcPossibleBuyCoinsCancelStrategy,
+      calcPossibleBuy2CoinsCancelStrategy,
       printPricesInfo: () => {
         const actualPrices = getActualPrices();
         currentStrategy.forEach((item, index) => {
