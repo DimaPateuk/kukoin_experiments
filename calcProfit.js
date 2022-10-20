@@ -2,6 +2,13 @@ const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
 const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 
+Object
+  .keys(tradeFees)
+  forEach(key => {
+    tradeFees[key].takerFeeRate = '0.003';
+    tradeFees[key].makerFeeRate = '0.003';
+  });
+
 
 function canCalc(currentStrategy, depth) {
   return currentStrategy.every(symbol => {
@@ -14,28 +21,6 @@ function getBestAsk(symbol, depth) {
 }
 function getBestBid(symbol, depth) {
   return parseFloat(symbolsOrderBookInfoMap[symbol].bids[depth][0]);
-}
-
-
-
-function parseAsks (currentStrategy, depth) {
-  const [buy, buy2, sell] = currentStrategy;
-
-  return [
-    symbolsOrderBookInfoMap[buy].asks[depth][0],
-    symbolsOrderBookInfoMap[buy2].asks[depth][0],
-    symbolsOrderBookInfoMap[sell].asks[depth][0]
-  ].map(num => parseFloat(num));
-}
-
-function parseBids (currentStrategy, depth) {
-  const [buy, buy2, sell] = currentStrategy;
-
-  return [
-    symbolsOrderBookInfoMap[buy].bids[depth][0],
-    symbolsOrderBookInfoMap[buy2].bids[depth][0],
-    symbolsOrderBookInfoMap[sell].bids[depth][0]
-  ].map(num => parseFloat(num));
 }
 
 function parsePrices (currentStrategy, depth) {

@@ -71,9 +71,9 @@ class Strategy {
       )
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
-        // console.log(this.profitInfo);
-        // this.profitInfo.printPricesInfo();
-        // console.log('-----');
+        console.log(this.profitInfo);
+        this.profitInfo.printPricesInfo();
+        console.log('-----');
         onEnd();
       });
 
@@ -218,26 +218,25 @@ class Strategy {
         }
 
         if (clientOids.includes(someOrder.clientOid) && someOrder.status === 'done') {
+          doneOrders.push(someOrder);
+
           console.log('sub profit place order done', doneOrders);
           console.log('sub profit place order clientOids', clientOids);
-          doneOrders.push(someOrder);
 
           const nextClientOid = clientOids[doneOrders.length];
 
           console.log('sub profit next client Oid', nextClientOid);
-          if (!nextClientOid) {
-            return;
+          if (nextClientOid) {
+            const nextSymbol = cancelStrategy[doneOrders.length];
+            const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids');
+
+            return placeOrder({
+              clientOid: nextClientOid,
+              side: 'sell',
+              symbol: nextSymbol,
+              size: sellAmount,
+            });
           }
-          const nextSymbol = cancelStrategy[doneOrders.length];
-          const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids');
-
-          return placeOrder({
-            clientOid: nextClientOid,
-            side: 'sell',
-            symbol: nextSymbol,
-            size: sellAmount,
-          });
-
         }
 
         console.log('sub profit should end ?', doneOrders.length, clientOids.length);

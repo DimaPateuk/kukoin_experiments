@@ -110,6 +110,7 @@ kucoin.getAccounts()
   });
 
 module.exports = {
+  tradeFees,
   symbolsInfo,
   accountsInfo,
   currenciesMap,
