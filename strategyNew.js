@@ -71,9 +71,9 @@ class Strategy {
       )
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
-        console.log(this.profitInfo);
-        this.profitInfo.printPricesInfo();
-        console.log('-----');
+        // console.log(this.profitInfo);
+        // this.profitInfo.printPricesInfo();
+        // console.log('-----');
         onEnd();
       });
 
