@@ -205,6 +205,9 @@ class Strategy {
     if (!orderToCancel) {
       return;
     }
+    if (!variant) {
+      return;
+    }
 
     this.cancelStrategySubject.next();
     const { cancelStrategy, initialCoins } = variant;
