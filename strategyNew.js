@@ -80,19 +80,6 @@ class Strategy {
     this.trackOrders();
     this.trackRelevance();
 
-
-    // const [buyCoinsId] = this.buySymbol.split('-');
-    // const [buy2CoinsId] = this.buy2Symbol.split('-');
-
-
-    // function calcPossibleBuyCoinsCancelStrategy() {
-    //   return calcSubProfit(buyCoinsId, orderBookDepth, buyCoins);
-    // }
-
-    // function calcPossibleBuy2CoinsCancelStrategy() {
-    //   return calcSubProfit(buy2CoinsId, orderBookDepth, buy2Coins);
-    // }
-
     console.log('---strategy START', this.currentStrategy);
 
     this.doFirstStep();
@@ -260,31 +247,48 @@ class Strategy {
   }
 
   checkIfStrategyIsNotRelevant() {
-    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+    console.clear();
+    console.log('----', this.currentStrategy);
+    this.profitInfo.printPricesInfo();
+    if (
+      this.trackOrderMap[this.buy2Symbol].current !== null &&
       this.trackOrderMap[this.buy2Symbol].current.status === 'done'
     ) {
       const initialCoins = parseFloat(this.trackOrderMap[this.buy2Symbol].current.filledSize);
       const subProfit = this.profitInfo.subProfitOfBuy2Coins;
-
-      const [variant] = subProfit.calcCancelStrategy(
+      const possibleVariants = subProfit.calcCancelStrategy(
         initialCoins,
         this.profitInfo.spend + this.profitInfo.approximateFees[0] + this.profitInfo.approximateFees[1]
       );
-      console.log('subProfitOfBuy2Coins', variant);
-      this.cancelAndTakeSubProfit(this.trackOrderMap[this.sellSymbol].current, variant);
-    } else if (this.trackOrderMap[this.buySymbol].current !== null &&
-        this.trackOrderMap[this.buySymbol].current.status === 'done'
-      ) {
-        const initialCoins = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
-        const subProfit = this.profitInfo.subProfitOfBuyCoins;
+      const [bestVariant] = possibleVariants;
+      const orderToCancel = this.trackOrderMap[this.sellSymbol].current;
 
-        const [variant] = subProfit.calcCancelStrategy(
-          initialCoins,
-          this.profitInfo.spend + this.profitInfo.approximateFees[0]
-        );
-        console.log('subProfitOfBuyCoins', variant);
-        this.cancelAndTakeSubProfit(this.trackOrderMap[this.buy2Symbol].current, variant);
+      if (orderToCancel && bestVariant) {
+        console.log('subProfitOfBuy2Coins', bestVariant);
+        console.log(possibleVariants);
+        this.cancelAndTakeSubProfit(orderToCancel, bestVariant);
+        return;
       }
+    } else if (
+      this.trackOrderMap[this.buySymbol].current !== null &&
+      this.trackOrderMap[this.buySymbol].current.status === 'done'
+    ) {
+      const initialCoins = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
+      const subProfit = this.profitInfo.subProfitOfBuyCoins;
+      const possibleVariants = subProfit.calcCancelStrategy(
+        initialCoins,
+        this.profitInfo.spend + this.profitInfo.approximateFees[0]
+      );
+      const [bestVariant] = possibleVariants;
+      const orderToCancel = this.trackOrderMap[this.buy2Symbol].current;
+
+      if (orderToCancel && bestVariant) {
+        console.log('subProfitOfBuyCoins', bestVariant);
+        console.log(possibleVariants);
+        this.cancelAndTakeSubProfit(orderToCancel, bestVariant);
+        return;
+      }
+    }
 
     if (this.isFirstStepStillRelevant() &&
         this.isSecondStepStillRelevant() &&
