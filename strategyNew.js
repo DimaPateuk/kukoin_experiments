@@ -202,37 +202,37 @@ class Strategy {
         console.log(`sub profit trying to cancel ${orderToCancel.symbol} issue`, e);
       });
 
-    const doneOrder = [];
+    const doneOrders = [];
 
     const order$ = ordersSubject
       .subscribe((someOrder) => {
         if (someOrder.clientOid === orderToCancel.clientOid ) {
-          const sellAmount = processNumber((initialCoins).toString(), cancelStrategy[doneOrder.length], 'bids');
+          const sellAmount = processNumber((initialCoins).toString(), cancelStrategy[doneOrders.length], 'bids');
 
           return placeOrder({
-            clientOid: clientOids[doneOrder.length],
+            clientOid: clientOids[doneOrders.length],
             side: 'sell',
-            symbol: cancelStrategy[doneOrder.length],
+            symbol: cancelStrategy[doneOrders.length],
             size: sellAmount,
           });
         }
 
         if (clientOids.includes(someOrder.clientOid) && someOrder.status === 'done') {
-          doneOrder.push(someOrder);
-          const nextClientOid = clientOids[doneOrder.length];
+          doneOrders.push(someOrder);
+          const nextClientOid = clientOids[doneOrders.length];
           if (nextClientOid) {
-            const sellAmount = processNumber((doneOrder.filledSize).toString(), cancelStrategy[doneOrder.length], 'bids');
+            const sellAmount = processNumber((someOrder.filledSize).toString(), cancelStrategy[doneOrders.length], 'bids');
 
             return placeOrder({
-              clientOid: clientOids[doneOrder.length],
+              clientOid: clientOids[doneOrders.length],
               side: 'sell',
-              symbol: cancelStrategy[doneOrder.length],
+              symbol: cancelStrategy[doneOrders.length],
               size: sellAmount,
             });
           }
         }
 
-        if (doneOrder.length === clientOids.length) {
+        if (doneOrders.length === clientOids.length) {
           order$.unsubscribe();
           this.strategyEndSubject.next();
         }
@@ -245,17 +245,17 @@ class Strategy {
     this.profitInfo.printPricesInfo();
 
 
-    const hardStop = (
+    const hardStop = !(
       this.isFirstStepStillRelevant() &&
       this.isSecondStepStillRelevant() &&
       this.isThirdStepStillRelevant() &&
       this.isStrategyRelevantByTime()
     );
+
     function shouldTakeSubProfit (variant) {
       if (hardStop) {
         return true;
       }
-
       return variant.profit > 0;
     }
 
