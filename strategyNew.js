@@ -208,7 +208,7 @@ class Strategy {
       .subscribe((someOrder) => {
         if (someOrder.clientOid === orderToCancel.clientOid ) {
           const sellAmount = processNumber((initialCoins).toString(), cancelStrategy[doneOrders.length], 'bids');
-
+          console.log('sub profit cancel existing order');
           return placeOrder({
             clientOid: clientOids[doneOrders.length],
             side: 'sell',
@@ -218,20 +218,29 @@ class Strategy {
         }
 
         if (clientOids.includes(someOrder.clientOid) && someOrder.status === 'done') {
+          console.log('sub profit place order done', doneOrders);
+          console.log('sub profit place order clientOids', clientOids);
           doneOrders.push(someOrder);
-          const nextClientOid = clientOids[doneOrders.length];
-          if (nextClientOid) {
-            const sellAmount = processNumber((someOrder.filledSize).toString(), cancelStrategy[doneOrders.length], 'bids');
 
-            return placeOrder({
-              clientOid: clientOids[doneOrders.length],
-              side: 'sell',
-              symbol: cancelStrategy[doneOrders.length],
-              size: sellAmount,
-            });
+          const nextClientOid = clientOids[doneOrders.length];
+
+          console.log('sub profit next client Oid', nextClientOid);
+          if (!nextClientOid) {
+            return;
           }
+          const nextSymbol = cancelStrategy[doneOrders.length];
+          const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids');
+
+          return placeOrder({
+            clientOid: nextClientOid,
+            side: 'sell',
+            symbol: nextSymbol,
+            size: sellAmount,
+          });
+
         }
 
+        console.log('sub profit should end ?', doneOrders.length, clientOids.length);
         if (doneOrders.length === clientOids.length) {
           order$.unsubscribe();
           this.strategyEndSubject.next();
