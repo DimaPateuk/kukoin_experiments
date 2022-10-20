@@ -137,14 +137,7 @@ function calcSubProfit(coinId, orderBookDepth) {
       })
       .sort((a, b) => b.profit - a.profit);
 
-      console.log('---');
-      console.log(JSON.stringify(res, null, 4));
-      console.log('---');
-
-      return res
-        .filter(info => {
-          return info.profit > 0;
-        });
+      return res;
   }
 
   return {
