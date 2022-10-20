@@ -271,10 +271,12 @@ class Strategy {
       );
       const [bestVariant] = possibleVariants;
       const orderToCancel = this.trackOrderMap[this.sellSymbol].current;
+      console.log('subProfitOfBuy2Coins', bestVariant);
+      console.log(orderToCancel, shouldTakeSubProfit(bestVariant));
+      console.log(possibleVariants);
 
       if (orderToCancel && shouldTakeSubProfit(bestVariant)) {
-        console.log('subProfitOfBuy2Coins', bestVariant);
-        console.log(possibleVariants);
+
         this.cancelAndTakeSubProfit(orderToCancel, bestVariant);
         return;
       }
@@ -290,10 +292,12 @@ class Strategy {
       );
       const [bestVariant] = possibleVariants;
       const orderToCancel = this.trackOrderMap[this.buy2Symbol].current;
+      console.log('subProfitOfBuyCoins', bestVariant);
+      console.log(orderToCancel, shouldTakeSubProfit(bestVariant));
+      console.log(possibleVariants);
 
       if (orderToCancel && shouldTakeSubProfit(bestVariant)) {
-        console.log('subProfitOfBuyCoins', bestVariant);
-        console.log(possibleVariants);
+
         this.cancelAndTakeSubProfit(orderToCancel, bestVariant);
         return;
       }
