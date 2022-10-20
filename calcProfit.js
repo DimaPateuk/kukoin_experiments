@@ -98,7 +98,7 @@ function calcSubProfit(coinId, orderBookDepth) {
   }
 
   function calcCancelStrategy (initialCoins, spend) {
-    return possibleCoinsIdSymbols
+    const res = possibleCoinsIdSymbols
       .map((cancelStrategy) => {
         if(!canCalc(cancelStrategy, orderBookDepth)) {
           return;
@@ -135,10 +135,16 @@ function calcSubProfit(coinId, orderBookDepth) {
           cancelStrategy,
         };
       })
-      .filter(info => {
-        return info.profit > 0;
-      })
       .sort((a, b) => b.profit - a.profit);
+
+      console.log('---');
+      console.log(JSON.stringify(res, null, 4));
+      console.log('---');
+
+      return res
+        .filter(info => {
+          return info.profit > 0;
+        });
   }
 
   return {
