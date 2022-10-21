@@ -380,6 +380,7 @@ class Strategy {
 
     this.cancelStrategySubject.next();
 
+    console.log('cancel cancelFirstStep', order);
     console.log('cancel', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
