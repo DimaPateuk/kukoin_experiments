@@ -229,13 +229,13 @@ class Strategy {
           if (nextClientOid) {
             const nextSymbol = cancelStrategy[doneOrders.length];
             console.log('nextClientOid', someOrder);
-            const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids');
+            const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids', true);
 
             return placeOrder({
               clientOid: nextClientOid,
               side: 'sell',
               symbol: nextSymbol,
-              size: sellAmount,
+              funds: sellAmount,
             });
           }
         }
