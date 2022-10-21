@@ -26,7 +26,7 @@ function placeOrder(params) {
           params,
           res
         });
-        console.log(err, params);
+        console.log(res, params);
         process.exit(1);
 
       }

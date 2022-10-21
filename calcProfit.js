@@ -4,7 +4,7 @@ const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 
 Object
   .keys(tradeFees)
-  forEach(key => {
+  .forEach(key => {
     tradeFees[key].takerFeeRate = '0.003';
     tradeFees[key].makerFeeRate = '0.003';
   });
