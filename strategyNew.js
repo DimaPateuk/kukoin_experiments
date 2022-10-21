@@ -228,6 +228,7 @@ class Strategy {
           console.log('sub profit next client Oid', nextClientOid);
           if (nextClientOid) {
             const nextSymbol = cancelStrategy[doneOrders.length];
+            console.log('nextClientOid', someOrder);
             const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids');
 
             return placeOrder({

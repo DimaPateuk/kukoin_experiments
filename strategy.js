@@ -3,7 +3,7 @@ const { calcProfit } = require('./calcProfit');
 const { Strategy } =require('./strategyNew');
 
 let count = 0;
-const maxStrategyTries = 100;
+const maxStrategyTries = 1;
 const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
@@ -43,7 +43,7 @@ function startStrategy(currentStrategy, profitInfo) {
 }
 
 function checkStrategy (currentStrategy) {
-    doRealStrategy(currentStrategy, 1);
+    doRealStrategy(currentStrategy, 0);
 }
 
 function doRealStrategy(currentStrategy, orderBookDepth) {

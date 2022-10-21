@@ -120,7 +120,8 @@ function calcSubProfit(coinId, orderBookDepth) {
           cancelStrategy,
         };
       })
-      .sort((a, b) => b.profit - a.profit);
+      .sort((a, b) => b.profit - a.profit)
+      .filter(variant => variant.cancelStrategy.length > 1)/// try!!!
 
       return res;
   }
