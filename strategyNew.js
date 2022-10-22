@@ -15,7 +15,7 @@ const {
   ordersSubject,
   symbolsOrderBookInfoMap,
 } = require('./resources');
-const { calcProfit, calcSubProfit } = require('./calcProfit');
+const { calcProfit, getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
 const { priceDiff } = require('./priceDiff');
 const kucoin = require('./kucoin');
@@ -92,7 +92,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.stringPrices[0].toString(),
+      price: this.profitInfo.profitable.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
@@ -171,7 +171,6 @@ class Strategy {
       ).subscribe();
   }
 
-
   trackRelevance () {
     interval(10)
       .pipe(
@@ -188,138 +187,42 @@ class Strategy {
       ).subscribe();
   }
 
-  cancelAndTakeSubProfit(orderToCancel, variant) {
-    this.cancelStrategySubject.next();
-    const { cancelStrategy, initialCoins } = variant;
-    const clientOids = cancelStrategy.map(() => v4());
-    console.log('sub profit cancel', orderToCancel.symbol);
-    kucoin
-      .cancelOrder({ id: orderToCancel.orderId })
-      .then(e => {
-        console.log(`sub profit trying to cancel ${orderToCancel.symbol}`, e);
-      })
-      .catch((e) => {
-        console.log(`sub profit trying to cancel ${orderToCancel.symbol} issue`, e);
-      });
-
-    const doneOrders = [];
-
-    const order$ = ordersSubject
-      .subscribe((someOrder) => {
-        if (someOrder.clientOid === orderToCancel.clientOid ) {
-          const sellAmount = processNumber((initialCoins).toString(), cancelStrategy[doneOrders.length], 'bids');
-          console.log('sub profit cancel existing order');
-          return placeOrder({
-            clientOid: clientOids[doneOrders.length],
-            side: 'sell',
-            symbol: cancelStrategy[doneOrders.length],
-            size: sellAmount,
-          });
-        }
-
-        if (clientOids.includes(someOrder.clientOid) && someOrder.status === 'done') {
-          doneOrders.push(someOrder);
-
-          console.log('sub profit place order done', doneOrders);
-          console.log('sub profit place order clientOids', clientOids);
-
-          const nextClientOid = clientOids[doneOrders.length];
-
-          console.log('sub profit next client Oid', nextClientOid);
-          if (nextClientOid) {
-            const nextSymbol = cancelStrategy[doneOrders.length];
-            console.log('nextClientOid', someOrder);
-            const sellAmount = processNumber((someOrder.filledSize).toString(), nextSymbol, 'bids', true);
-
-            return placeOrder({
-              clientOid: nextClientOid,
-              side: 'sell',
-              symbol: nextSymbol,
-              funds: sellAmount,
-            });
-          }
-        }
-
-        console.log('sub profit should end ?', doneOrders.length, clientOids.length);
-        if (doneOrders.length === clientOids.length) {
-          order$.unsubscribe();
-          this.strategyEndSubject.next();
-        }
-      });
-  }
-
   checkIfStrategyIsNotRelevant() {
     console.clear();
     console.log('----', this.currentStrategy);
     this.profitInfo.printPricesInfo();
 
-
-    const hardStop = !(
-      this.isFirstStepStillRelevant() &&
-      this.isSecondStepStillRelevant() &&
-      this.isThirdStepStillRelevant() &&
-      this.isStrategyRelevantByTime()
-    );
-
-    function shouldTakeSubProfit (variant) {
-      if (hardStop) {
-        return true;
-      }
-      return variant.profit > 0;
-    }
-
-    if (
-      this.trackOrderMap[this.buy2Symbol].current !== null &&
-      this.trackOrderMap[this.buy2Symbol].current.status === 'done'
+    if (this.isFirstStepStillRelevant() &&
+        this.isSecondStepStillRelevant() &&
+        this.isThirdStepStillRelevant() &&
+        this.isStrategyRelevantByTime()
     ) {
-      const initialCoins = parseFloat(this.trackOrderMap[this.buy2Symbol].current.filledSize);
-      const subProfit = this.profitInfo.subProfitOfBuy2Coins;
-      const possibleVariants = subProfit.calcCancelStrategy(
-        initialCoins,
-        this.profitInfo.spend + this.profitInfo.approximateFees[0] + this.profitInfo.approximateFees[1]
-      );
-      const [bestVariant] = possibleVariants;
-      const orderToCancel = this.trackOrderMap[this.sellSymbol].current;
-      console.log('subProfitOfBuy2Coins', bestVariant);
-      console.log(orderToCancel, shouldTakeSubProfit(bestVariant));
-      console.log(possibleVariants);
-
-      if (orderToCancel && shouldTakeSubProfit(bestVariant)) {
-
-        this.cancelAndTakeSubProfit(orderToCancel, bestVariant);
-        return;
-      }
-    } else if (
-      this.trackOrderMap[this.buySymbol].current !== null &&
-      this.trackOrderMap[this.buySymbol].current.status === 'done'
-    ) {
-      const initialCoins = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
-      const subProfit = this.profitInfo.subProfitOfBuyCoins;
-      const possibleVariants = subProfit.calcCancelStrategy(
-        initialCoins,
-        this.profitInfo.spend + this.profitInfo.approximateFees[0]
-      );
-      const [bestVariant] = possibleVariants;
-      const orderToCancel = this.trackOrderMap[this.buy2Symbol].current;
-      console.log('subProfitOfBuyCoins', bestVariant);
-      console.log(orderToCancel, shouldTakeSubProfit(bestVariant));
-      console.log(possibleVariants);
-
-      if (orderToCancel && shouldTakeSubProfit(bestVariant)) {
-
-        this.cancelAndTakeSubProfit(orderToCancel, bestVariant);
-        return;
-      }
+      return;
     }
 
     if (
       this.trackOrderMap[this.buySymbol].current !== null &&
-      this.trackOrderMap[this.buySymbol].current.status !== 'done' &&
-      hardStop
+      this.trackOrderMap[this.buySymbol].current.status !== 'done'
     ) {
       this.cancelFirstStep();
       return;
     }
+
+      if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    ) {
+      this.cancelSecondStep();
+      return;
+    }
+
+    if (this.trackOrderMap[this.sellSymbol].current !== null &&
+        this.trackOrderMap[this.sellSymbol].current.status !== 'done'
+    ) {
+      this.cancelThirdStep();
+      return;
+    }
+
+    console.log(this.trackOrderMap);
 
   }
 
@@ -391,6 +294,55 @@ class Strategy {
       })
       .catch((e) => {
         console.log('trying to cancel first step issue', e);
+      });
+  }
+
+  cancelSecondStep() {
+    const doneOrder = this.trackOrderMap[this.buySymbol].current;
+    const order = this.trackOrderMap[this.buy2Symbol].current;
+
+    this.cancelStepOfPositiveStrategy(doneOrder, order, this.buySymbol);
+  }
+
+  cancelThirdStep() {
+    const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
+    const order = this.trackOrderMap[this.sellSymbol].current;
+
+    this.cancelStepOfPositiveStrategy(doneOrder, order, this.sellSymbol);
+  }
+
+  cancelStepOfPositiveStrategy(doneOrder, order, sellSymbol) {
+    this.cancelStrategySubject.next();
+    const orderSymbolIndex = this.currentStrategy.indexOf(order.symbol);
+
+    console.log('cancel', order.symbol);
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .then(e => {
+        console.log(`trying to cancel ${sellSymbol} step ${orderSymbolIndex}`, e);
+      })
+      .catch((e) => {
+        console.log(`trying to cancel ${sellSymbol} step ${orderSymbolIndex} issue`, e);
+      });
+
+    const order$ = ordersSubject
+      .subscribe((canceledOrder) => {
+        if (canceledOrder.clientOid !== order.clientOid) {
+          return;
+        }
+
+        order$.unsubscribe();
+        console.log(`----trying to cancel ${sellSymbol} step ${orderSymbolIndex}`);
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), sellSymbol, 'bids');
+
+        return placeOrder({
+          clientOid: v4(),
+          side: 'sell',
+          symbol: sellSymbol,
+          size: sellAmount,
+        }).then(() => {
+          this.strategyEndSubject.next();
+        });
       });
   }
 }

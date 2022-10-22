@@ -59,84 +59,6 @@ function getStringPrices (currentStrategy, depth) {
 const baseFirstStepAmount = 2;
 const magicProfitRation = 0;
 
-
-
-function calcSubProfit(coinId, orderBookDepth) {
-  const allSymbolsArr = Object.keys(symbolsInfo);
-
-  const possibleCoinsIdSymbols = getPossibleCancelSymbols(coinId);
-
-  function getPossibleCancelSymbols(coinId) {
-    return allSymbolsArr.map(key => {
-      const [first, second] = key.split('-');
-      if (first !== coinId) {
-        return false;
-      }
-
-      if (second === 'USDT') {
-        return [key];
-      }
-
-      if (!symbolsInfo[`${second}-USDT`]) {
-        return false;
-      }
-      return [key, `${second}-USDT`];
-    })
-    .filter(symbol => {
-      return symbol;
-    });
-  }
-
-  function calcCancelStrategy (initialCoins, spend) {
-    const res = possibleCoinsIdSymbols
-      .map((cancelStrategy) => {
-        if(!canCalc(cancelStrategy, orderBookDepth)) {
-          return;
-        }
-
-        const { resultCoins, prices, fee } = cancelStrategy
-          .reduce((res, symbol) => {
-            const bestBidSymbol = getBestBid(symbol, orderBookDepth);
-            const feeSymbol = parseFloat(tradeFees[symbol].takerFeeRate);
-
-            res.prices.push(bestBidSymbol);
-            res.resultCoins = res.resultCoins * bestBidSymbol;
-            res.fee = res.fee + feeSymbol * baseFirstStepAmount;
-
-            return res;
-
-          }, {
-            initialCoins,
-            resultCoins: initialCoins,
-            prices: [],
-            fee: 0,
-          });
-
-        const result = resultCoins - fee;
-        const profit = result - spend;
-
-        return {
-          result,
-          profit,
-          resultCoins,
-          initialCoins,
-          prices,
-          fee,
-          cancelStrategy,
-        };
-      })
-      .sort((a, b) => b.profit - a.profit)
-      .filter(variant => variant.cancelStrategy.length > 1)/// try!!!
-
-      return res;
-  }
-
-  return {
-    possibleCoinsIdSymbols,
-    calcCancelStrategy,
-  };
-}
-
 function calcProfit(currentStrategy, orderBookDepth) {
 
     if (!canCalc(currentStrategy, orderBookDepth)) {
@@ -179,10 +101,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
       return {};
     }
 
-   const [buyCoinsId] = buy.split('-');
-   const [buy2CoinsId] = buy2.split('-');
-
-
     const receive = exactMath.mul(buy2Coins, fakePrices[2]);
     const profit = receive - (spend + approximateFeeForThreeSteps);
 
@@ -190,6 +108,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
 
     return {
+      profitable: calcProfit(currentStrategy, orderBookDepth + 1),
       cancelPrices: [
         fakePrices[0] * cancelMultipliers[0],
         fakePrices[1] * cancelMultipliers[1],
@@ -203,8 +122,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
       prices,
       fakePrices,
       approximateFees,
-      subProfitOfBuyCoins: calcSubProfit(buyCoinsId, orderBookDepth),
-      subProfitOfBuy2Coins: calcSubProfit(buy2CoinsId, orderBookDepth),
       getActualPrices,
       printPricesInfo: () => {
         const actualPrices = getActualPrices();
@@ -233,5 +150,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
 
 module.exports = {
   calcProfit,
-  calcSubProfit,
+  getBestBid,
+  getBestAsk,
 };
