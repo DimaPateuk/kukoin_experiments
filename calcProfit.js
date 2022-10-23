@@ -29,13 +29,8 @@ function getBestBid(symbol, depth) {
 }
 
 function parsePrices (currentStrategy, depth) {
-  const [buy, buy2, sell] = currentStrategy;
-
-  return [
-    symbolsOrderBookInfoMap[buy].asks[depth][0],
-    symbolsOrderBookInfoMap[buy2].asks[depth][0],
-    symbolsOrderBookInfoMap[sell].bids[depth][0]
-  ].map(num => parseFloat(num));
+  return getStringPrices(currentStrategy, depth)
+    .map(num => parseFloat(num));
 }
 
 function parseSizes (currentStrategy, depth) {
@@ -51,7 +46,7 @@ function parseSizes (currentStrategy, depth) {
 function getStringPrices (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
   return [
-    symbolsOrderBookInfoMap[buy].asks[depth][0],
+    symbolsOrderBookInfoMap[buy].asks[depth + 1][0], //// !!!!!
     symbolsOrderBookInfoMap[buy2].asks[depth][0],
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
@@ -108,7 +103,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
 
     return {
-      profitable: calcProfit(currentStrategy, orderBookDepth + 1),
       cancelPrices: [
         fakePrices[0] * cancelMultipliers[0],
         fakePrices[1] * cancelMultipliers[1],

@@ -47,7 +47,6 @@ class Strategy {
     this.clientOidSell = this.positiveOrdersClientIds[2];
 
     this.strategyEndSubject = new Subject();
-    this.ordersDoneSubject = new Subject();
     this.cancelStrategySubject = new Subject();
 
     this.trackOrderMap = {
@@ -74,6 +73,7 @@ class Strategy {
         console.log(this.profitInfo);
         this.profitInfo.printPricesInfo();
         console.log('-----');
+
         onEnd();
       });
 
@@ -92,7 +92,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.profitable.stringPrices[0].toString(),
+      price: this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
@@ -188,7 +188,7 @@ class Strategy {
   }
 
   checkIfStrategyIsNotRelevant() {
-    console.clear();
+    // console.clear();
     console.log('----', this.currentStrategy);
     this.profitInfo.printPricesInfo();
 
@@ -311,13 +311,14 @@ class Strategy {
     this.cancelStepOfPositiveStrategy(doneOrder, order, this.sellSymbol);
   }
 
-  cancelStepOfPositiveStrategy(doneOrder, order, sellSymbol) {
+  cancelStepOfPositiveStrategy(doneOrder, orderToCancel, sellSymbol) {
     this.cancelStrategySubject.next();
-    const orderSymbolIndex = this.currentStrategy.indexOf(order.symbol);
+    const orderSymbolIndex = this.currentStrategy.indexOf(orderToCancel.symbol);
 
-    console.log('cancel', order.symbol);
+
+    console.log('cancel', orderToCancel.symbol);
     kucoin
-      .cancelOrder({ id: order.orderId })
+      .cancelOrder({ id: orderToCancel.orderId })
       .then(e => {
         console.log(`trying to cancel ${sellSymbol} step ${orderSymbolIndex}`, e);
       })
@@ -325,24 +326,36 @@ class Strategy {
         console.log(`trying to cancel ${sellSymbol} step ${orderSymbolIndex} issue`, e);
       });
 
-    const order$ = ordersSubject
-      .subscribe((canceledOrder) => {
-        if (canceledOrder.clientOid !== order.clientOid) {
-          return;
+    const sellCanceledAmountOrderClientOid = v4();
+    ordersSubject
+      .pipe(
+        takeUntil(
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+          )
+        )
+      )
+      .subscribe((someOrder) => {
+        if (someOrder.clientOid == orderToCancel.clientOid) {
+          console.log(`----trying to cancel ${sellSymbol} step ${orderSymbolIndex}`);
+          const sellAmount = processNumber((doneOrder.filledSize).toString(), sellSymbol, 'bids');
+
+          return placeOrder({
+            clientOid: sellCanceledAmountOrderClientOid,
+            side: 'sell',
+            symbol: sellSymbol,
+            size: sellAmount,
+          }).then((e) => {
+            console.log(`----trying to cancel step ${orderSymbolIndex} res:`, e);
+          });
         }
 
-        order$.unsubscribe();
-        console.log(`----trying to cancel ${sellSymbol} step ${orderSymbolIndex}`);
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), sellSymbol, 'bids');
-
-        return placeOrder({
-          clientOid: v4(),
-          side: 'sell',
-          symbol: sellSymbol,
-          size: sellAmount,
-        }).then(() => {
+        if (someOrder.clientOid === sellCanceledAmountOrderClientOid &&
+            someOrder.status === 'done'
+        ) {
           this.strategyEndSubject.next();
-        });
+        }
       });
   }
 }
