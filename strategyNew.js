@@ -207,19 +207,19 @@ class Strategy {
     // }
 
 
-    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
-    // ) {
-    //   this.cancelSecondStep();
-    //   return;
-    // }
-    if (
-      this.trackOrderMap[this.buySymbol].current !== null &&
-      this.trackOrderMap[this.buySymbol].current.status !== 'done'
+    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
     ) {
-      this.cancelFirstStep();
+      this.cancelSecondStep();
       return;
     }
+    // if (
+    //   this.trackOrderMap[this.buySymbol].current !== null &&
+    //   this.trackOrderMap[this.buySymbol].current.status !== 'done'
+    // ) {
+    //   this.cancelFirstStep();
+    //   return;
+    // }
 
     console.log('no open order');
 
