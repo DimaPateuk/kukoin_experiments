@@ -128,11 +128,17 @@ function calcProfit(currentStrategy, orderBookDepth) {
 
         console.log('buy/sell', buySellRatio);
         console.log('sell/buy', sellBuyRatio);
-        console.log('sell everything', currentBuyCoins + currentSellCoins - 2 * (spend + approximateFees[0] + approximateFees[1]));
+        console.log('sell as bought', currentBuyCoins + currentSellCoins - 2 * (spend + approximateFees[0] + approximateFees[2]));
+
+        const transformByBuy2OfBuyToSell = buyCoins / getBestAsk(buy2, orderBookDepth);
+        const transformByBuy2OfBuyToSellResult = (transformByBuy2OfBuyToSell + sellCoins) * currentSellBestBid - approximateFees[2] * 2 - approximateFees[1];
+        const transformByBuy2OfSellToBuy = sellCoins * getBestBid(buy2, orderBookDepth);
+        const transformByBuy2OfSellToBuyResult = (transformByBuy2OfSellToBuy + buyCoins) * currentBuyBestBid - approximateFees[0] * 2 - approximateFees[1];
+
+        console.log('buy2 ask transform', transformByBuy2OfBuyToSellResult - spend * 2);
+        console.log('buy2 bid transform', transformByBuy2OfSellToBuyResult - spend * 2);
 
 
-        console.log('buy2 ask', buyCoins / getBestAsk(buy2, orderBookDepth), sellCoins);
-        console.log('buy2 bid', sellCoins * getBestBid(buy2, orderBookDepth), buyCoins);
       },
       stringPrices,
       sizes,
