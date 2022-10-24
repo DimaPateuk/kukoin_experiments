@@ -88,14 +88,11 @@ class Strategy {
   doFirstStep() {
     console.log(this.buySymbol, this.profitInfo.stringPrices[0],'will be canceled when price: ' , this.profitInfo.cancelPrices[0]);
 
-    console.log(getBestBids(this.buySymbol, 45));
-
-    return;
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: getBestAsk(this.buySymbol, 45),//this.profitInfo.stringPrices[0].toString(),
+      price: '15000',//this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }

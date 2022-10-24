@@ -19,6 +19,9 @@ const strategies = Object
   .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
+  .filter(([key, value]) => {
+    return value[0].split('-')[0] === 'BTC';
+  })
   .map(entry => entry[1]);
 
 
