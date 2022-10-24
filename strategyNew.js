@@ -176,7 +176,9 @@ class Strategy {
     interval(10)
       .pipe(
         tap(() => {
-          this.checkIfStrategyIsNotRelevant();
+          console.clear()
+          this.profitInfo.printPricesInfo();
+          // this.checkIfStrategyIsNotRelevant();
         }),
         takeUntil(
           merge(
@@ -218,8 +220,6 @@ class Strategy {
       this.cancelFirstStep();
       return;
     }
-
-    console.log();
 
   }
 
