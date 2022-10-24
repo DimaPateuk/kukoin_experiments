@@ -130,19 +130,27 @@ class Strategy {
     const orderBuyFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
     const orderSellFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
 
-    placeOrder({
-      clientOid: v4(),
-      side: 'sell',
-      symbol: this.buySymbol,
-      size: processNumber((orderBuyFilledSize).toString(), this.buySymbol, 'bids'),
-    });
+    if (orderBuyFilledSize) {
+      placeOrder({
+        clientOid: v4(),
+        side: 'sell',
+        symbol: this.buySymbol,
+        size: processNumber((orderBuyFilledSize).toString(), this.buySymbol, 'bids'),
+      });
+    } else {
+      kucoin.cancelOrder({ orderId: this.trackOrderMap[this.buySymbol].current.orderId });
+    }
 
-    placeOrder({
-      clientOid: v4(),
-      side: 'sell',
-      symbol: this.sellSymbol,
-      size: processNumber((orderSellFilledSize).toString(), this.buySymbol, 'bids'),
-    });
+    if (orderSellFilledSize) {
+      placeOrder({
+        clientOid: v4(),
+        side: 'sell',
+        symbol: this.sellSymbol,
+        size: processNumber((orderSellFilledSize).toString(), this.buySymbol, 'bids'),
+      });
+    } else {
+      kucoin.cancelOrder({ orderId: this.trackOrderMap[this.sellSymbol].current.orderId });
+    }
 
     this.strategyEndSubject.next();
   }
