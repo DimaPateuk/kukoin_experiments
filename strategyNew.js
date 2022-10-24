@@ -18,6 +18,14 @@ const {
 const { getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
 const kucoin = require('./kucoin');
+var term = require( 'terminal-kit' ).terminal ;
+
+function terminate() {
+	term.grabInput( false ) ;
+	setTimeout( function() { process.exit() } , 100 ) ;
+}
+
+term.grabInput( { mouse: 'button' } ) ;
 
 
 const maxTimeStrategyAlive = 10 * 60 * 1000;
@@ -72,9 +80,7 @@ class Strategy {
         console.log(this.profitInfo);
         this.profitInfo.printPricesInfo();
         console.log('-----');
-
-        this.stdin.off('data', this.commandHandler);
-
+        term.off('key', ternHandler);
 
         onEnd();
       });
@@ -82,11 +88,18 @@ class Strategy {
     this.trackOrders();
     this.trackRelevance();
 
+    function ternHandler( name , matches , data ) {
+      if ( name === 'CTRL_C' ) {
+        terminate() ;
+        return;
+      }
 
-    this.stdin = process.openStdin();
+      this.commandHandler(name);
 
-    this.stdin.on('data', this.commandHandler);
 
+    }
+
+    term.on( 'key' , ternHandler) ;
 
     console.log('---strategy START', this.currentStrategy);
 
@@ -94,19 +107,13 @@ class Strategy {
   }
 
   commandHandler = (chunk) => {
-    // if (chunk === 'd1'){
-    //   this.doFirstStep();
-    // }
-    if (chunk === 's1'){
+
+    if (chunk === '1'){
       this.sellFirstStep();
     }
 
-    if (chunk === 'd2'){
+    if (chunk === '2'){
       this.doSecondStep();
-    }
-
-    if (chunk === 'd3') {
-      this.doThirdStep();
     }
 
   }

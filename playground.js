@@ -1,14 +1,14 @@
-const { placeOrder } = require('./placeOrder');
-const kucoin = require('./kucoin');
-const { from, delay, switchMap, map, interval, tap } = require('rxjs');
-const { v4 } = require('uuid');
-const { infinitySocket } = require('./infinitySocket');
+var term = require( 'terminal-kit' ).terminal ;
 
+function terminate() {
+	term.grabInput( false ) ;
+	setTimeout( function() { process.exit() } , 100 ) ;
+}
 
-interval(10)
-  .subscribe(() => {
-    console.log(1);
-  });
-setInterval(() => {
-  console.log(2);
-}, 10)
+term.grabInput( { mouse: 'button' } ) ;
+
+term.on( 'key' , function( name , matches , data ) {
+	console.log( "'key' event:" , name, data ) ;
+	if ( name === 'CTRL_C' ) { terminate() ; }
+} ) ;
+
