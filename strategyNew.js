@@ -104,12 +104,11 @@ class Strategy {
 
   commandHandler = (name) => {
     if (name === '1') {
-      this.sellFirstStep();
+      this.sellAll();
     }
   }
 
   doFirstStep() {
-
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
@@ -127,7 +126,7 @@ class Strategy {
     });
   }
 
-  sellFirstStep() {
+  sellAll() {
     const orderBuyFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
     const orderSellFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
 
