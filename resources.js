@@ -19,10 +19,10 @@ const strategies = Object
   .filter(([key, value]) => {
     return value[0].split('-')[1] === 'USDT';
   })
-  // .filter(([key, value]) => {
-  //   return value[0].split('-')[0] === 'BTC' ||
-  //     value[0].split('-')[0] === 'ETH'
-  // })
+  .filter(([key, value]) => {
+    return value[0].split('-')[0] === 'BTC' ||
+      value[0].split('-')[0] === 'ETH'
+  })
   .map(entry => entry[1]);
 
 

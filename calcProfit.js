@@ -77,8 +77,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const buyCoins = exactMath.div(spend, getBestAsk(buy, orderBookDepth));
     const sellCoins = exactMath.div(spend, getBestAsk(sell, orderBookDepth))
 
-    console.log(buyCoins, sizes[0]);
-    console.log(sellCoins, sizes[1]);
     if (buyCoins * 5 > sizes[0]) {
       return {};
     }
