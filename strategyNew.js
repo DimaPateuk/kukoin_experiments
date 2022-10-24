@@ -126,7 +126,7 @@ class Strategy {
     placeOrder({
       clientOid: this.clientOidSell,
       side: 'buy',
-      symbol: this.buySymbol,
+      symbol: this.sellSymbol,
       price: this.profitInfo.initialSellBestAsk.toString(),
       size: processNumber((this.profitInfo.sellCoins).toString(), this.sellSymbol, 'asks'),
     });
