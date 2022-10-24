@@ -71,7 +71,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const spend = baseFirstStepAmount;
     const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
     const approximateFees = fees.map((fee) => (fee * baseFirstStepAmount));
-    const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 0.5;
+    const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 0.7;
     const prices = getActualPrices();
     const fakePrices = [
       prices[0] * (1 + magicProfitRation),

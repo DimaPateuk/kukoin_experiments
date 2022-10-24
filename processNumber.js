@@ -21,7 +21,7 @@ function cutNNumbersAfterDot(strNumber, countNumbersAfterDot) {
 
 function processNumber(strNumber, pair, type, isFunds) {
   const isUSDT = symbolsInfo[pair].feeCurrency === 'USDT';
-  const fee = isUSDT ? 0 : parseFloat(tradeFees[pair].makerFeeRate) * 1.5; // i do not why
+  const fee = isUSDT ? 0 : parseFloat(tradeFees[pair].makerFeeRate) * 1; // i do not why
   const amount = isFunds ? symbolsInfo[pair].quoteIncrement : symbolsInfo[pair].baseIncrement;
   const countNumbersAfterDot = amount.split('.')[1].length;
   const cutStrNumber = cutNNumbersAfterDot(strNumber, countNumbersAfterDot);
