@@ -173,7 +173,7 @@ class Strategy {
   }
 
   trackRelevance () {
-    interval(5000)
+    interval(10)
       .pipe(
         tap(() => {
           this.checkIfStrategyIsNotRelevant();
