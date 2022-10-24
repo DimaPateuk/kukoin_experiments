@@ -190,13 +190,13 @@ class Strategy {
 
   checkIfStrategyIsNotRelevant() {
 
-    // if (this.isFirstStepStillRelevant() &&
-    //     this.isSecondStepStillRelevant() &&
-    //     this.isThirdStepStillRelevant() &&
-    //     this.isStrategyRelevantByTime()
-    // ) {
-    //   return;
-    // }
+    if (this.isFirstStepStillRelevant() &&
+        this.isSecondStepStillRelevant() &&
+        this.isThirdStepStillRelevant() &&
+        this.isStrategyRelevantByTime()
+    ) {
+      return;
+    }
 
     if (this.trackOrderMap[this.sellSymbol].current !== null &&
         this.trackOrderMap[this.sellSymbol].current.status !== 'done'
@@ -205,22 +205,21 @@ class Strategy {
       return;
     }
 
+    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    ) {
+      this.cancelSecondStep();
+      return;
+    }
+    if (
+      this.trackOrderMap[this.buySymbol].current !== null &&
+      this.trackOrderMap[this.buySymbol].current.status !== 'done'
+    ) {
+      this.cancelFirstStep();
+      return;
+    }
 
-    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
-    // ) {
-    //   this.cancelSecondStep();
-    //   return;
-    // }
-    // if (
-    //   this.trackOrderMap[this.buySymbol].current !== null &&
-    //   this.trackOrderMap[this.buySymbol].current.status !== 'done'
-    // ) {
-    //   this.cancelFirstStep();
-    //   return;
-    // }
-
-    console.log('no open order');
+    console.log();
 
   }
 
@@ -238,7 +237,7 @@ class Strategy {
       return true;
     }
 
-    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buySymbol].asks[0][0]);
+    const bestAsk = getBestAsk(this.buySymbol, 0);
 
     if (bestAsk < this.profitInfo.cancelPrices[0]) {
       return true;
@@ -252,7 +251,7 @@ class Strategy {
       return true;
     }
 
-    const bestAsk = parseFloat(symbolsOrderBookInfoMap[this.buy2Symbol].asks[0][0]);
+    const bestAsk = getBestAsk(this.buy2Symbol, 0);
 
     if (bestAsk < this.profitInfo.cancelPrices[1]) {
       return true;
@@ -266,7 +265,7 @@ class Strategy {
       return true;
     }
 
-    const bestBid = parseFloat(symbolsOrderBookInfoMap[this.sellSymbol].bids[0][0]);
+    const bestBid = getBestBid(this.sellSymbol, 0);
 
     if (bestBid > this.profitInfo.cancelPrices[2]) {
       return true;
