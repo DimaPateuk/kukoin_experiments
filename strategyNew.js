@@ -15,10 +15,12 @@ const {
   ordersSubject,
   symbolsOrderBookInfoMap,
 } = require('./resources');
-const { calcProfit, getBestBid, getBestAsk } = require('./calcProfit');
+const { getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
-const { priceDiff } = require('./priceDiff');
 const kucoin = require('./kucoin');
+
+var stdin = process.openStdin();
+stdin.on('data', function(chunk) { console.log("Got chunk: " + chunk); });
 
 
 const maxTimeStrategyAlive = 10 * 60 * 1000;
@@ -73,6 +75,7 @@ class Strategy {
         console.log(this.profitInfo);
         this.profitInfo.printPricesInfo();
         console.log('-----');
+
 
         onEnd();
       });
