@@ -162,7 +162,7 @@ class Strategy {
   }
 
   sellBuyToSell() {
-    const orderBuyFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
+    const orderBuyFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
     const clientOid = v4();
     this.positiveOrdersClientIds.push(clientOid);
 
@@ -170,7 +170,7 @@ class Strategy {
       clientOid,
       side: 'sell',
       symbol: this.buy2Symbol,
-      size: processNumber((orderBuyFilledSize).toString(), this.buy2Symbol, 'asks'),
+      size: processNumber((orderBuyFilledSize).toString(), this.buy2Symbol, 'bids'),
     });
 
     ordersSubject
@@ -181,9 +181,9 @@ class Strategy {
           }
 
           if (order.status === 'done') {
-            const orderSellFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
+            const doneOrderFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
             const filledSize = parseFloat(order.filledSize);
-            const resultSize = orderSellFilledSize + filledSize;
+            const resultSize = doneOrderFilledSize + filledSize;
 
             placeOrder({
               clientOid: v4(),
