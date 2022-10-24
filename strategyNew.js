@@ -106,7 +106,7 @@ class Strategy {
       clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-      price: getBestAsk(this.buy2Symbol, 20),//this.profitInfo.stringPrices[1].toString(),
+      price: getBidsAsk(this.buy2Symbol, 20),//this.profitInfo.stringPrices[1].toString(),
       size: buyAmount,
     });
   }
