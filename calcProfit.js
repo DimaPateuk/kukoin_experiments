@@ -113,8 +113,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
 
         console.log(buy, sell);
 
-        console.log('Buy symbol', initialBuyBestAsk, currentBuyBestBid, initialBuyBestAsk - currentBuyBestBid);
-        console.log('Sell symbol', initialSellBestAsk, currentSellBestBid, initialSellBestAsk - currentSellBestBid);
+        console.log('Buy symbol', initialBuyBestAsk, currentBuyBestBid, initialBuyBestAsk / currentBuyBestBid, initialBuyBestAsk - currentBuyBestBid);
+        console.log('Sell symbol', initialSellBestAsk, currentSellBestBid, initialSellBestAsk / currentSellBestBid, initialSellBestAsk - currentSellBestBid);
         console.log('buyCoins', buyCoins);
         console.log('sellCoins', sellCoins);
         const currentBuyCoins =  currentBuyBestBid * buyCoins;

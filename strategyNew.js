@@ -106,6 +106,10 @@ class Strategy {
     if (name === '1') {
       this.sellAll();
     }
+
+    if (name == '2') {
+      this.sellBuyToSell();
+    }
   }
 
   doFirstStep() {
@@ -148,13 +152,58 @@ class Strategy {
         side: 'sell',
         symbol: this.sellSymbol,
         price: getBestBid(this.sellSymbol, this.profitInfo.orderBookDepth),
-        size: processNumber((orderSellFilledSize).toString(), this.buySymbol, 'bids'),
+        size: processNumber((orderSellFilledSize).toString(), this.sellSymbol, 'bids'),
       });
     } else {
       kucoin.cancelOrder({ orderId: this.trackOrderMap[this.sellSymbol].current.orderId });
     }
 
     this.strategyEndSubject.next();
+  }
+
+  sellBuyToSell() {
+    const orderBuyFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
+    const clientOid = v4();
+    this.positiveOrdersClientIds.push(clientOid);
+
+    placeOrder({
+      clientOid,
+      side: 'sell',
+      symbol: this.buy2Symbol,
+      size: processNumber((orderBuyFilledSize).toString(), this.buy2Symbol, 'asks'),
+    });
+
+    ordersSubject
+      .pipe(
+        tap((order) => {
+          if (!clientOid === order.clientOid) {
+            return;
+          }
+
+          if (order.status === 'done') {
+            const orderSellFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
+            const filledSize = parseFloat(order.filledSize);
+            const resultSize = orderSellFilledSize + filledSize;
+
+            placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: this.sellSymbol,
+              size: processNumber((resultSize).toString(), this.sellSymbol, 'bids'),
+            });
+
+            this.strategyEndSubject.next();
+          }
+
+        }),
+        takeUntil(
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+            this.cancelStrategySubject
+          )
+        )
+      ).subscribe();
   }
 
   doneOrderAction(order) {
