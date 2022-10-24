@@ -19,9 +19,6 @@ const { getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
 const kucoin = require('./kucoin');
 
-var stdin = process.openStdin();
-stdin.on('data', function(chunk) { console.log("Got chunk: " + chunk); });
-
 
 const maxTimeStrategyAlive = 10 * 60 * 1000;
 
@@ -76,6 +73,8 @@ class Strategy {
         this.profitInfo.printPricesInfo();
         console.log('-----');
 
+        this.stdin.off('data', this.commandHandler);
+
 
         onEnd();
       });
@@ -83,9 +82,33 @@ class Strategy {
     this.trackOrders();
     this.trackRelevance();
 
+
+    this.stdin = process.openStdin();
+
+    this.stdin.on('data', this.commandHandler);
+
+
     console.log('---strategy START', this.currentStrategy);
 
-    //this.doFirstStep();
+    this.doFirstStep();
+  }
+
+  commandHandler = (chunk) => {
+    // if (chunk === 'd1'){
+    //   this.doFirstStep();
+    // }
+    if (chunk === 's1'){
+      this.sellFirstStep();
+    }
+
+    if (chunk === 'd2'){
+      this.doSecondStep();
+    }
+
+    if (chunk === 'd3') {
+      this.doThirdStep();
+    }
+
   }
 
   doFirstStep() {
@@ -100,6 +123,25 @@ class Strategy {
     });
   }
 
+  sellFirstStep() {
+    const order = this.trackOrderMap[this.buySymbol].current;
+    const filledSize = parseFloat(order.filledSize);
+    const sellAmount = processNumber((filledSize).toString(), this.buySymbol, 'bids');
+
+    placeOrder({
+      clientOid: this.clientOidSell,
+      side: 'sell',
+      symbol: this.sellSymbol,
+      // price: this.profitInfo.stringPrices[2].toString(),
+      size: sellAmount,
+    })
+    .then(() => {
+      this.strategyEndSubject.next();
+    })
+  }
+
+
+
   doSecondStep () {
     const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
@@ -109,7 +151,7 @@ class Strategy {
       clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-     //price: getBestBid(this.buy2Symbol, 20),//this.profitInfo.stringPrices[1].toString(),
+      //price: this.profitInfo.stringPrices[1].toString(),
       size: buyAmount,
     });
   }
@@ -126,16 +168,16 @@ class Strategy {
       clientOid: this.clientOidSell,
       side: 'sell',
       symbol: this.sellSymbol,
-      price: this.profitInfo.stringPrices[2].toString(),
+      //price: this.profitInfo.stringPrices[2].toString(),
       size: sellAmount,
     });
   }
 
   doneOrderAction(order) {
     console.log('---', this.currentStrategy, order.symbol);
-    if (order.symbol === this.buySymbol) {
-      this.doSecondStep();
-    }
+    // if (order.symbol === this.buySymbol) {
+    //   this.doSecondStep();
+    // }
 
     if (order.symbol === this.buy2Symbol) {
       this.doThirdStep();
