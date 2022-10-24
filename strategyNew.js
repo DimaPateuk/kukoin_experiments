@@ -135,6 +135,7 @@ class Strategy {
         clientOid: v4(),
         side: 'sell',
         symbol: this.buySymbol,
+        price: getBestBid(this.buySymbol, this.profitInfo.orderBookDepth),
         size: processNumber((orderBuyFilledSize).toString(), this.buySymbol, 'bids'),
       });
     } else {
@@ -146,6 +147,7 @@ class Strategy {
         clientOid: v4(),
         side: 'sell',
         symbol: this.sellSymbol,
+        price: getBestBid(this.sellSymbol, this.profitInfo.orderBookDepth),
         size: processNumber((orderSellFilledSize).toString(), this.buySymbol, 'bids'),
       });
     } else {
