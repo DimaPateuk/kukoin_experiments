@@ -61,7 +61,7 @@ class Strategy {
     this.clientOidSell = this.positiveOrdersClientIds[2];
 
     this.strategyEndSubject = new Subject();
-    this.cancelStrategySubject = new Subject();
+     = new Subject();
 
     this.trackOrderMap = {
       [this.buySymbol]: {
@@ -109,6 +109,10 @@ class Strategy {
 
     if (name == '2') {
       this.sellBuyToSell();
+    }
+
+    if (name == '3') {
+      this.sellSellToBuy();
     }
   }
 
@@ -162,7 +166,7 @@ class Strategy {
   }
 
   sellBuyToSell() {
-    const orderSellFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
+    const doneFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
     const clientOid = v4();
     this.positiveOrdersClientIds.push(clientOid);
 
@@ -173,7 +177,7 @@ class Strategy {
       side: 'sell',
       symbol: this.buy2Symbol,
       price,
-      size: processNumber((orderSellFilledSize).toString(), this.buy2Symbol, 'bids'),
+      size: processNumber((doneFilledSize).toString(), this.buy2Symbol, 'bids'),
     });
 
     ordersSubject
@@ -184,8 +188,8 @@ class Strategy {
           }
 
           if (order.status === 'done') {
-            const doneOrderFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
-            const resultSize = doneOrderFilledSize + orderSellFilledSize * price;
+            const orderFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
+            const resultSize = orderFilledSize + doneFilledSize * price;
 
             placeOrder({
               clientOid: v4(),
@@ -202,7 +206,54 @@ class Strategy {
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
-            this.cancelStrategySubject
+
+          )
+        )
+      ).subscribe();
+  }
+
+  sellSellToBuy() {
+    const doneFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
+    const clientOid = v4();
+    this.positiveOrdersClientIds.push(clientOid);
+
+    const price = getBesAsk(this.buy2Symbol, this.profitInfo.orderBookDepth);
+
+    placeOrder({
+      clientOid,
+      side: 'buy',
+      symbol: this.buy2Symbol,
+      price,
+      size: processNumber((doneFilledSize).toString(), this.buy2Symbol, 'asks'),
+    });
+
+    ordersSubject
+      .pipe(
+        tap((order) => {
+          if (!clientOid === order.clientOid) {
+            return;
+          }
+
+          if (order.status === 'done') {
+            const orderFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
+            const resultSize = orderFilledSize + doneFilledSize / price;
+
+            placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: this.sellSymbol,
+              size: processNumber((resultSize).toString(), this.sellSymbol, 'bids'),
+            });
+
+            this.strategyEndSubject.next();
+          }
+
+        }),
+        takeUntil(
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+
           )
         )
       ).subscribe();
@@ -234,7 +285,7 @@ class Strategy {
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
-            this.cancelStrategySubject
+
           )
         )
       ).subscribe();
@@ -251,7 +302,7 @@ class Strategy {
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
-            this.cancelStrategySubject
+
           )
         )
       ).subscribe();
