@@ -98,33 +98,36 @@ class Strategy {
   }
 
   doSecondStep () {
-    const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
+    throw new Error('should not perform second step');
+    // const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
-    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1],'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
+    // console.log(this.buy2Symbol, this.profitInfo.stringPrices[1],'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
 
-    placeOrder({
-      clientOid: this.clientOidBuy2,
-      side: 'buy',
-      symbol: this.buy2Symbol,
-      price: '1',//this.profitInfo.stringPrices[1].toString(),
-      size: buyAmount,
-    });
+    // placeOrder({
+    //   clientOid: this.clientOidBuy2,
+    //   side: 'buy',
+    //   symbol: this.buy2Symbol,
+    //   price: this.profitInfo.stringPrices[1].toString(),
+    //   size: buyAmount,
+    // });
   }
 
   doThirdStep() {
-    const order = this.trackOrderMap[this.buy2Symbol].current;
-    const filledSize = parseFloat(order.filledSize);
-    const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
-    console.log(this.sellSymbol, this.profitInfo.stringPrices[2],'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
+    throw new Error('should not perform third step');
+    // const order = this.trackOrderMap[this.buy2Symbol].current;
+    // const filledSize = parseFloat(order.filledSize);
+    // const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
-    placeOrder({
-      clientOid: this.clientOidSell,
-      side: 'sell',
-      symbol: this.sellSymbol,
-      price: this.profitInfo.stringPrices[2].toString(),
-      size: sellAmount,
-    });
+    // console.log(this.sellSymbol, this.profitInfo.stringPrices[2],'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
+
+    // placeOrder({
+    //   clientOid: this.clientOidSell,
+    //   side: 'sell',
+    //   symbol: this.sellSymbol,
+    //   price: this.profitInfo.stringPrices[2].toString(),
+    //   size: sellAmount,
+    // });
   }
 
   doneOrderAction(order) {
