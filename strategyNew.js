@@ -119,7 +119,7 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.buyBestAsk.toString(),
+      price: this.profitInfo.initialBuyBestAsk.toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
 
@@ -127,7 +127,7 @@ class Strategy {
       clientOid: this.clientOidSell,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.sellBestAsk.toString(),
+      price: this.profitInfo.initialSellBestAsk.toString(),
       size: processNumber((this.profitInfo.sellCoins).toString(), this.sellSymbol, 'asks'),
     });
   }
