@@ -149,6 +149,8 @@ class Strategy {
       symbol: this.sellSymbol,
       size: processNumber((orderSellFilledSize).toString(), this.buySymbol, 'bids'),
     });
+
+    this.strategyEndSubject.next();
   }
 
   doneOrderAction(order) {
