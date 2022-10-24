@@ -88,6 +88,9 @@ class Strategy {
   doFirstStep() {
     console.log(this.buySymbol, this.profitInfo.stringPrices[0],'will be canceled when price: ' , this.profitInfo.cancelPrices[0]);
 
+    console.log(getBestAsk(this.buySymbol, 45));
+
+    return;
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
