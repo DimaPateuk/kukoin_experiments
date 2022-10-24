@@ -88,22 +88,22 @@ class Strategy {
     this.trackOrders();
     this.trackRelevance();
 
-    function ternHandler( name , matches , data ) {
-      if ( name === 'CTRL_C' ) {
-        terminate() ;
-        return;
-      }
-
-      this.commandHandler(name);
-
-
-    }
-
-    term.on( 'key' , ternHandler) ;
+    term.on( 'key' , this.ternHandler) ;
 
     console.log('---strategy START', this.currentStrategy);
 
     this.doFirstStep();
+  }
+
+  ternHandler = ( name , matches , data ) => {
+    if ( name === 'CTRL_C' ) {
+      terminate() ;
+      return;
+    }
+
+    this.commandHandler(name);
+
+
   }
 
   commandHandler = (chunk) => {

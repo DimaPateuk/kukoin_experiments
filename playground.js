@@ -1,14 +1,18 @@
 var term = require( 'terminal-kit' ).terminal ;
 
-function terminate() {
-	term.grabInput( false ) ;
-	setTimeout( function() { process.exit() } , 100 ) ;
-}
+var fs = require( 'fs' ) ;
 
-term.grabInput( { mouse: 'button' } ) ;
+term.cyan( 'Choose a file:\n' ) ;
 
-term.on( 'key' , function( name , matches , data ) {
-	console.log( "'key' event:" , name, data ) ;
-	if ( name === 'CTRL_C' ) { terminate() ; }
+var items = ['sell', 'buy'] ;
+
+term.gridMenu( items , function( error , response ) {
+  console.log(response);
+
+	process.exit() ;
 } ) ;
 
+setInterval(() => {
+  console.clear();
+  console.log(1);
+}, 10)
