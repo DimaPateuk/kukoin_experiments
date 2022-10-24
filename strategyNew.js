@@ -82,7 +82,7 @@ class Strategy {
 
     console.log('---strategy START', this.currentStrategy);
 
-    this.doFirstStep();
+    //this.doFirstStep();
   }
 
   doFirstStep() {
