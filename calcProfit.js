@@ -131,7 +131,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
         console.log('sell everything', currentBuyCoins + currentSellCoins - 2 * (spend + approximateFees[0] + approximateFees[1]));
 
 
-        console.log('buy2 ask', getBestAsk(buy2, orderBookDepth) * buyCoins, sellCoins); /// ????
+        console.log('buy2 ask', getBestAsk(buy2, orderBookDepth) / buyCoins, sellCoins); /// ????
         // console.log('buy2 bid', getBestBid(buy2, orderBookDepth) * sellCoins * currentSellBestBid); // ???
       },
       stringPrices,
