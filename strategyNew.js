@@ -61,7 +61,6 @@ class Strategy {
     this.clientOidSell = this.positiveOrdersClientIds[2];
 
     this.strategyEndSubject = new Subject();
-     = new Subject();
 
     this.trackOrderMap = {
       [this.buySymbol]: {
