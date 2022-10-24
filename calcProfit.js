@@ -77,11 +77,13 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const buyCoins = exactMath.div(spend, getBestAsk(buy, orderBookDepth));
     const sellCoins = exactMath.div(spend, getBestAsk(sell, orderBookDepth))
 
+    console.log(buyCoins, sizes[0]);
+    console.log(sellCoins, sizes[1]);
     if (buyCoins * 5 > sizes[0]) {
       return {};
     }
 
-    if (sell * 5 > sizes[2]) {
+    if (sell * 5 > sizes[1]) {
       return {};
     }
     const buy2Coins = exactMath.div(buyCoins, actualPrices[1]);
@@ -129,8 +131,8 @@ function calcProfit(currentStrategy, orderBookDepth) {
         console.log('sell everything', currentBuyCoins + currentSellCoins - spend * 2 - approximateFees[0] - approximateFees[1]);
 
 
-        console.log('buy2 ask', getBestAsk(buy2, orderBookDepth)); /// ????
-        console.log('buy2 bid', getBestBid(buy2, orderBookDepth)); // ???
+        console.log('buy2 ask', getBestAsk(buy2, orderBookDepth) * buyCoins); /// ????
+        console.log('buy2 bid', getBestBid(buy2, orderBookDepth) * sellCoins); // ???
       },
       stringPrices,
       sizes,

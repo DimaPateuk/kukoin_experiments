@@ -27,7 +27,14 @@ function terminate() {
 
 term.grabInput( { mouse: 'button' } ) ;
 
+term.on('key' , ( name , matches , data ) => {
+  if ( name !== 'CTRL_C' ) {
+    return;
+  }
 
+  terminate() ;
+
+}) ;
 const maxTimeStrategyAlive = 10 * 60 * 1000;
 
 class Strategy {
@@ -88,29 +95,17 @@ class Strategy {
     this.trackOrders();
     this.trackRelevance();
 
-    term.on( 'key' , this.ternHandler) ;
+    term.on( 'key' , this.commandHandler) ;
 
     console.log('---strategy START', this.currentStrategy);
 
     this.doFirstStep();
   }
 
-  ternHandler = ( name , matches , data ) => {
-    if ( name === 'CTRL_C' ) {
-      terminate() ;
-      return;
-    }
-
-    this.commandHandler(name);
-
-
-  }
-
-  commandHandler = (chunk) => {
-    if (chunk === '1') {
+  commandHandler = (name) => {
+    if (name === '1') {
       this.sellFirstStep();
     }
-
   }
 
   doFirstStep() {
