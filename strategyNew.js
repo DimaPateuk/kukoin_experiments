@@ -92,24 +92,23 @@ class Strategy {
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: '15000',//this.profitInfo.stringPrices[0].toString(),
+      price: this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
   }
 
   doSecondStep () {
-    throw new Error('should not perform second step');
-    // const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
+    const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
-    // console.log(this.buy2Symbol, this.profitInfo.stringPrices[1],'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
+    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1],'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
 
-    // placeOrder({
-    //   clientOid: this.clientOidBuy2,
-    //   side: 'buy',
-    //   symbol: this.buy2Symbol,
-    //   price: this.profitInfo.stringPrices[1].toString(),
-    //   size: buyAmount,
-    // });
+    placeOrder({
+      clientOid: this.clientOidBuy2,
+      side: 'buy',
+      symbol: this.buy2Symbol,
+      price: getBestAsk(this.buy2Symbol, 20),//this.profitInfo.stringPrices[1].toString(),
+      size: buyAmount,
+    });
   }
 
   doThirdStep() {
