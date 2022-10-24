@@ -190,8 +190,8 @@ class Strategy {
             placeOrder({
               clientOid: v4(),
               side: 'sell',
-              symbol: this.sellSymbol,
-              size: processNumber((resultSize).toString(), this.sellSymbol, 'bids'),
+              symbol: this.buySymbol,
+              size: processNumber((resultSize).toString(), this.buySymbol, 'bids'),
             });
 
             this.strategyEndSubject.next();
