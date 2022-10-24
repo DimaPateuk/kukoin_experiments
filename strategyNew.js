@@ -80,7 +80,7 @@ class Strategy {
         console.log(this.profitInfo);
         this.profitInfo.printPricesInfo();
         console.log('-----');
-        term.off('key', ternHandler);
+        term.off('key', this.ternHandler);
 
         onEnd();
       });
