@@ -106,27 +106,26 @@ class Strategy {
       clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-      price: getBestBid(this.buy2Symbol, 20),//this.profitInfo.stringPrices[1].toString(),
+     //price: getBestBid(this.buy2Symbol, 20),//this.profitInfo.stringPrices[1].toString(),
       size: buyAmount,
     });
   }
 
   doThirdStep() {
 
-    throw new Error('should not perform third step');
-    // const order = this.trackOrderMap[this.buy2Symbol].current;
-    // const filledSize = parseFloat(order.filledSize);
-    // const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
+    const order = this.trackOrderMap[this.buy2Symbol].current;
+    const filledSize = parseFloat(order.filledSize);
+    const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
-    // console.log(this.sellSymbol, this.profitInfo.stringPrices[2],'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
+    console.log(this.sellSymbol, this.profitInfo.stringPrices[2],'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
 
-    // placeOrder({
-    //   clientOid: this.clientOidSell,
-    //   side: 'sell',
-    //   symbol: this.sellSymbol,
-    //   price: this.profitInfo.stringPrices[2].toString(),
-    //   size: sellAmount,
-    // });
+    placeOrder({
+      clientOid: this.clientOidSell,
+      side: 'sell',
+      symbol: this.sellSymbol,
+      price: this.profitInfo.stringPrices[2].toString(),
+      size: sellAmount,
+    });
   }
 
   doneOrderAction(order) {
@@ -199,20 +198,20 @@ class Strategy {
     //   return;
     // }
 
-    // if (this.trackOrderMap[this.sellSymbol].current !== null &&
-    //     this.trackOrderMap[this.sellSymbol].current.status !== 'done'
-    // ) {
-    //   this.cancelThirdStep();
-    //   return;
-    // }
-
-
-    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    if (this.trackOrderMap[this.sellSymbol].current !== null &&
+        this.trackOrderMap[this.sellSymbol].current.status !== 'done'
     ) {
-      this.cancelSecondStep();
+      this.cancelThirdStep();
       return;
     }
+
+
+    // if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+    //     this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    // ) {
+    //   this.cancelSecondStep();
+    //   return;
+    // }
     // if (
     //   this.trackOrderMap[this.buySymbol].current !== null &&
     //   this.trackOrderMap[this.buySymbol].current.status !== 'done'
