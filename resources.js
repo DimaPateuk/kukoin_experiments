@@ -4,9 +4,9 @@ const { Subject } = require('rxjs')
 const calculatedStrategies = require('./pairs');
 const strategies = Object
   .entries(calculatedStrategies)
-  .filter(([key, value]) => {
-    return key.indexOf('KCS') === -1;
-  })
+  // .filter(([key, value]) => {
+  //   return key.indexOf('KCS') === -1;
+  // })
   // .filter(([key, value]) => {
   //   return key.indexOf('BTC') === -1;
   // })
@@ -20,10 +20,11 @@ const strategies = Object
     return value[0].split('-')[1] === 'USDT';
   })
   .filter(([key, value]) => {
-  const allowed = [
-    'BTC',
-    'ETH',
-  ];
+    const allowed = [
+      'BTC',
+      'ETH',
+      'KCS'
+    ];
 
     return allowed.includes(value[0].split('-')[0]);
   })
