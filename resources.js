@@ -33,7 +33,7 @@ const strategies = Object
     return allowed.includes(value[0].split('-')[0]);
   })
   .map(entry => entry[1]);
-
+console.log(strategies);
 
 const allSymbols = [
   // 'TRX-USDT', 'WIN-TRX', 'WIN-USDT'
