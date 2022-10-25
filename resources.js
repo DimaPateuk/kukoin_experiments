@@ -23,11 +23,11 @@ const strategies = Object
   const allowed = [
     'BTC',
     'ETH',
-    'XRP',
-    'LUNA',
-    'ADA',
-    'SOL',
-    'ATOM'
+    // 'XRP',
+    // 'LUNA',
+    // 'ADA',
+    // 'SOL',
+    // 'ATOM'
   ];
 
     return allowed.includes(value[0].split('-')[0]);
