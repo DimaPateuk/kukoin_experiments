@@ -194,8 +194,8 @@ class Strategy {
     interval(10)
       .pipe(
         tap(() => {
-          console.clear()
-          this.profitInfo.printPricesInfo();
+          // console.clear()
+          // this.profitInfo.printPricesInfo();
           this.checkIfStrategyIsNotRelevant();
         }),
         takeUntil(
