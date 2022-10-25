@@ -107,11 +107,11 @@ class Strategy {
     }
 
     if (name == '2') {
-      this.sellWithTransform(this.sellSymbol, this.buySymbol);
+      this.sellBuyToSell();
     }
 
     if (name == '3') {
-      this.sellWithTransform(this.buySymbol, this.sellSymbol);
+      this.sellSellToBuy();
     }
   }
 
@@ -164,8 +164,8 @@ class Strategy {
     this.strategyEndSubject.next();
   }
 
-  sellWithTransform(firstSymbol, secondSymbol) {
-    const doneFilledSize = parseFloat(this.trackOrderMap[firstSymbol].current.filledSize);
+  sellBuyToSell() {
+    const doneFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
     const clientOid = v4();
     this.positiveOrdersClientIds.push(clientOid);
 
@@ -187,17 +187,17 @@ class Strategy {
           }
 
           if (order.status === 'done') {
-            const firstDoneOrderFilledSize = parseFloat(this.trackOrderMap[secondSymbol].current.filledSize);
+            const firstDoneOrderFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
             const orderFilledSize = parseFloat(order.filledSize);
-            console.log(this.trackOrderMap[secondSymbol].current);
+            console.log(this.trackOrderMap[this.buySymbol].current);
             console.log(order);
             const resultSize = firstDoneOrderFilledSize + orderFilledSize * price * (1 - this.profitInfo.fees[1]);
 
             placeOrder({
               clientOid: v4(),
               side: 'sell',
-              symbol: secondSymbol,
-              size: processNumber((resultSize).toString(), secondSymbol, 'bids'),
+              symbol: this.buySymbol,
+              size: processNumber((resultSize).toString(), this.buySymbol, 'bids'),
             });
 
             this.strategyEndSubject.next();
@@ -215,7 +215,53 @@ class Strategy {
   }
 
   sellSellToBuy() {
+    const doneFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
+    const clientOid = v4();
+    this.positiveOrdersClientIds.push(clientOid);
 
+    const price = getBestBid(this.buy2Symbol, this.profitInfo.orderBookDepth);
+
+    placeOrder({
+      clientOid,
+      side: 'buy',
+      symbol: this.buy2Symbol,
+      price,
+      size: processNumber((doneFilledSize / price).toString(), this.buy2Symbol, 'bids'),
+    });
+
+    ordersSubject
+      .pipe(
+        tap((order) => {
+          if (!clientOid === order.clientOid) {
+            return;
+          }
+
+          if (order.status === 'done') {
+            const firstDoneOrderFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
+            const orderFilledSize = parseFloat(order.filledSize);
+            console.log(this.trackOrderMap[this.sellSymbol].current);
+            console.log(order);
+            const resultSize = firstDoneOrderFilledSize + orderFilledSize;
+
+            placeOrder({
+              clientOid: v4(),
+              side: 'sell',
+              symbol: this.sellSymbol,
+              size: processNumber((resultSize).toString(), this.sellSymbol, 'bids'),
+            });
+
+            this.strategyEndSubject.next();
+          }
+
+        }),
+        takeUntil(
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+
+          )
+        )
+      ).subscribe();
   }
 
   doneOrderAction(order) {
