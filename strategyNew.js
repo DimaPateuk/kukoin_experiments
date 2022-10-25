@@ -18,23 +18,8 @@ const {
 const { getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
 const kucoin = require('./kucoin');
-var term = require( 'terminal-kit' ).terminal ;
 
-function terminate() {
-	term.grabInput( false ) ;
-	setTimeout( function() { process.exit() } , 100 ) ;
-}
 
-term.grabInput( { mouse: 'button' } ) ;
-
-term.on('key' , ( name , matches , data ) => {
-  if ( name !== 'CTRL_C' ) {
-    return;
-  }
-
-  terminate() ;
-
-}) ;
 const maxTimeStrategyAlive = 10 * 60 * 1000;
 
 class Strategy {
@@ -61,6 +46,7 @@ class Strategy {
     this.clientOidSell = this.positiveOrdersClientIds[2];
 
     this.strategyEndSubject = new Subject();
+    this.cancelStrategySubject = new Subject();
 
     this.trackOrderMap = {
       [this.buySymbol]: {
@@ -86,7 +72,6 @@ class Strategy {
         console.log(this.profitInfo);
         this.profitInfo.printPricesInfo();
         console.log('-----');
-        term.off('key', this.ternHandler);
 
         onEnd();
       });
@@ -94,174 +79,87 @@ class Strategy {
     this.trackOrders();
     this.trackRelevance();
 
-    term.on( 'key' , this.commandHandler) ;
 
     console.log('---strategy START', this.currentStrategy);
 
     this.doFirstStep();
   }
 
-  commandHandler = (name) => {
-    if (name === '1') {
-      this.sellAll();
-    }
-
-    if (name == '2') {
-      this.sellBuyToSell();
-    }
-
-    if (name == '3') {
-      this.sellSellToBuy();
-    }
-  }
 
   doFirstStep() {
+    console.log(this.buySymbol, this.profitInfo.stringPrices[0],'will be canceled when price: ' , this.profitInfo.cancelPrices[0]);
+
     placeOrder({
       clientOid: this.clientOidBuy,
       side: 'buy',
       symbol: this.buySymbol,
-      price: this.profitInfo.initialBuyBestAsk.toString(),
+      price: this.profitInfo.stringPrices[0].toString(),
       size: processNumber((this.profitInfo.buyCoins).toString(), this.buySymbol, 'asks'),
     });
+  }
+
+  sellFirstStep() {
+    const order = this.trackOrderMap[this.buySymbol].current;
+    const filledSize = parseFloat(order.filledSize);
+    const sellAmount = processNumber((filledSize).toString(), this.buySymbol, 'bids');
 
     placeOrder({
       clientOid: this.clientOidSell,
-      side: 'buy',
-      symbol: this.sellSymbol,
-      price: this.profitInfo.initialSellBestAsk.toString(),
-      size: processNumber((this.profitInfo.sellCoins).toString(), this.sellSymbol, 'asks'),
-    });
-  }
-
-  sellAll() {
-    const orderBuyFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
-    const orderSellFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
-
-    if (orderBuyFilledSize) {
-      placeOrder({
-        clientOid: v4(),
-        side: 'sell',
-        symbol: this.buySymbol,
-        price: getBestBid(this.buySymbol, this.profitInfo.orderBookDepth),
-        size: processNumber((orderBuyFilledSize).toString(), this.buySymbol, 'bids'),
-      });
-    } else {
-      kucoin.cancelOrder({ orderId: this.trackOrderMap[this.buySymbol].current.orderId });
-    }
-
-    if (orderSellFilledSize) {
-      placeOrder({
-        clientOid: v4(),
-        side: 'sell',
-        symbol: this.sellSymbol,
-        price: getBestBid(this.sellSymbol, this.profitInfo.orderBookDepth),
-        size: processNumber((orderSellFilledSize).toString(), this.sellSymbol, 'bids'),
-      });
-    } else {
-      kucoin.cancelOrder({ orderId: this.trackOrderMap[this.sellSymbol].current.orderId });
-    }
-
-    this.strategyEndSubject.next();
-  }
-
-  sellBuyToSell() {
-    const doneFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
-    const clientOid = v4();
-    this.positiveOrdersClientIds.push(clientOid);
-
-    const price = getBestBid(this.buy2Symbol, this.profitInfo.orderBookDepth);
-
-    placeOrder({
-      clientOid,
       side: 'sell',
-      symbol: this.buy2Symbol,
-      price,
-      size: processNumber((doneFilledSize).toString(), this.buy2Symbol, 'bids'),
-    });
-
-    ordersSubject
-      .pipe(
-        tap((order) => {
-          if (!clientOid === order.clientOid) {
-            return;
-          }
-
-          if (order.status === 'done') {
-            const firstDoneOrderFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
-            const orderFilledSize = parseFloat(order.filledSize);
-            console.log(this.trackOrderMap[this.buySymbol].current);
-            console.log(order);
-            const resultSize = firstDoneOrderFilledSize + orderFilledSize * price * (1 - this.profitInfo.fees[1]);
-
-            placeOrder({
-              clientOid: v4(),
-              side: 'sell',
-              symbol: this.buySymbol,
-              size: processNumber((resultSize).toString(), this.buySymbol, 'bids'),
-            });
-
-            this.strategyEndSubject.next();
-          }
-
-        }),
-        takeUntil(
-          merge(
-            this.strategyEndSubject,
-            placeOrderErrorSubject,
-
-          )
-        )
-      ).subscribe();
+      symbol: this.sellSymbol,
+      price: this.profitInfo.stringPrices[2].toString(),
+      size: sellAmount,
+    })
+    .then(() => {
+      this.strategyEndSubject.next();
+    })
   }
 
-  sellSellToBuy() {
-    const doneFilledSize = parseFloat(this.trackOrderMap[this.buySymbol].current.filledSize);
-    const clientOid = v4();
-    this.positiveOrdersClientIds.push(clientOid);
+  doSecondStep () {
+    const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
-    const price = getBestAsk(this.buy2Symbol, this.profitInfo.orderBookDepth);
+    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1],'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
 
     placeOrder({
-      clientOid,
+      clientOid: this.clientOidBuy2,
       side: 'buy',
       symbol: this.buy2Symbol,
-      price,
-      size: processNumber((doneFilledSize / price).toString(), this.buy2Symbol, 'bids'),
+      price: this.profitInfo.stringPrices[1].toString(),
+      size: buyAmount,
     });
+  }
 
-    ordersSubject
-      .pipe(
-        tap((order) => {
-          if (!clientOid === order.clientOid) {
-            return;
-          }
+  doThirdStep() {
 
-          if (order.status === 'done') {
-            const firstDoneOrderFilledSize = parseFloat(this.trackOrderMap[this.sellSymbol].current.filledSize);
-            const orderFilledSize = parseFloat(order.filledSize);
-            console.log(this.trackOrderMap[this.sellSymbol].current);
-            console.log(order);
-            const resultSize = firstDoneOrderFilledSize + orderFilledSize;
+    const order = this.trackOrderMap[this.buy2Symbol].current;
+    const filledSize = parseFloat(order.filledSize);
+    const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
-            placeOrder({
-              clientOid: v4(),
-              side: 'sell',
-              symbol: this.sellSymbol,
-              size: processNumber((resultSize).toString(), this.sellSymbol, 'bids'),
-            });
+    console.log(this.sellSymbol, this.profitInfo.stringPrices[2],'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
 
-            this.strategyEndSubject.next();
-          }
+    placeOrder({
+      clientOid: this.clientOidSell,
+      side: 'sell',
+      symbol: this.sellSymbol,
+      price: this.profitInfo.stringPrices[2].toString(),
+      size: sellAmount,
+    });
+  }
 
-        }),
-        takeUntil(
-          merge(
-            this.strategyEndSubject,
-            placeOrderErrorSubject,
+  doneOrderAction(order) {
+    console.log('---', this.currentStrategy, order.symbol);
+    if (order.symbol === this.buySymbol) {
+      this.doSecondStep();
+    }
 
-          )
-        )
-      ).subscribe();
+    if (order.symbol === this.buy2Symbol) {
+      this.doThirdStep();
+    }
+
+    if (order.symbol === this.sellSymbol) {
+      console.log('call strategyEndSubject from doneOrderAction');
+      this.strategyEndSubject.next();
+    }
   }
 
   trackOrders() {
@@ -276,11 +174,17 @@ class Strategy {
 
           orderInfo.current = order;
           orderInfo.sequence.push(order);
+
+          if (order.status === 'done') {
+            this.doneOrderAction(order);
+          }
+
         }),
         takeUntil(
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
+            this.cancelStrategySubject
           )
         )
       ).subscribe();
@@ -292,14 +196,193 @@ class Strategy {
         tap(() => {
           console.clear()
           this.profitInfo.printPricesInfo();
+          this.checkIfStrategyIsNotRelevant();
         }),
         takeUntil(
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
+            this.cancelStrategySubject
           )
         )
       ).subscribe();
+  }
+
+  checkIfStrategyIsNotRelevant() {
+
+    if (this.isFirstStepStillRelevant() &&
+        this.isSecondStepStillRelevant() &&
+        this.isThirdStepStillRelevant() &&
+        this.isStrategyRelevantByTime()
+    ) {
+      return;
+    }
+
+    if (this.trackOrderMap[this.sellSymbol].current !== null &&
+        this.trackOrderMap[this.sellSymbol].current.status !== 'done'
+    ) {
+      this.cancelThirdStep();
+      return;
+    }
+
+    if (this.trackOrderMap[this.buy2Symbol].current !== null &&
+        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+    ) {
+      this.cancelSecondStep();
+      return;
+    }
+    if (
+      this.trackOrderMap[this.buySymbol].current !== null &&
+      this.trackOrderMap[this.buySymbol].current.status !== 'done'
+    ) {
+      this.cancelFirstStep();
+      return;
+    }
+
+  }
+
+  isStrategyRelevantByTime() {
+    if (+new Date() - this.startedAt < maxTimeStrategyAlive) {
+      return true;
+    }
+
+    console.log(this.currentStrategy, 'Should be canceled because Time!!! step not relevant');
+    return false;
+  }
+
+  isFirstStepStillRelevant () {
+    if (this.trackOrderMap[this.buySymbol].current?.status === 'done') {
+      return true;
+    }
+
+    const bestAsk = getBestAsk(this.buySymbol, 0);
+
+    if (bestAsk < this.profitInfo.cancelPrices[0]) {
+      return true;
+    }
+    console.log(this.currentStrategy, 'Should be canceled because first step not relevant');
+    return false;
+  }
+
+  isSecondStepStillRelevant () {
+    if (this.trackOrderMap[this.buy2Symbol].current?.status === 'done') {
+      return true;
+    }
+
+    const bestAsk = getBestAsk(this.buy2Symbol, 0);
+
+    if (bestAsk < this.profitInfo.cancelPrices[1]) {
+      return true;
+    }
+    console.log(this.currentStrategy, 'Should be canceled because Second step not relevant');
+    return false;
+  }
+
+  isThirdStepStillRelevant () {
+    if (this.trackOrderMap[this.sellSymbol].current?.status === 'done') {
+      return true;
+    }
+
+    const bestBid = getBestBid(this.sellSymbol, 0);
+
+    if (bestBid > this.profitInfo.cancelPrices[2]) {
+      return true;
+    }
+
+    console.log(this.currentStrategy, 'Should be canceled because Third step not relevant');
+    return false;
+  }
+
+  cancelFirstStep() {
+    const order = this.trackOrderMap[this.buySymbol].current;
+
+    this.cancelStrategySubject.next();
+
+    console.log('cancel cancelFirstStep', order);
+    console.log('cancel', order.symbol);
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .then((e) => {
+        console.log('trying to cancel first step', e);
+
+        this.strategyEndSubject.next();
+      })
+      .catch((e) => {
+        console.log('trying to cancel first step issue', e);
+      });
+  }
+
+  cancelSecondStep() {
+    const doneOrder = this.trackOrderMap[this.buySymbol].current;
+    const order = this.trackOrderMap[this.buy2Symbol].current;
+
+    this.cancelStrategySubject.next();
+
+    console.log('cancel', order.symbol);
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .then(e => {
+        console.log('trying to cancel seconds step', e);
+      })
+      .catch((e) => {
+        console.log('trying to cancel seconds step issue', e);
+      });
+
+    const order$ = ordersSubject
+      .subscribe((canceledOrder) => {
+        if (canceledOrder.clientOid !== order.clientOid) {
+          return;
+        }
+
+        order$.unsubscribe();
+        console.log('----trying to cancel seconds step');
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
+
+        return placeOrder({
+          clientOid: v4(),
+          side: 'sell',
+          symbol: this.buySymbol,
+          size: sellAmount,
+        }).then(() => {
+          this.strategyEndSubject.next();
+        });
+      });
+  }
+  cancelThirdStep() {
+    const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
+    const order = this.trackOrderMap[this.sellSymbol].current;
+
+    this.cancelStrategySubject.next();
+
+    console.log('cancel', order.symbol);
+    kucoin
+      .cancelOrder({ id: order.orderId })
+      .then(e => {
+        console.log('trying to cancel third step', e);
+      })
+      .catch((e) => {
+        console.log('trying to cancel third step issue', e);
+      });
+
+    const order$ = ordersSubject
+      .subscribe((canceledOrder) => {
+        if (canceledOrder.clientOid !== order.clientOid) {
+          return;
+        }
+
+        order$.unsubscribe();
+        console.log('----trying to cancel third step');
+        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
+
+        return placeOrder({
+          clientOid: v4(),
+          side: 'sell',
+          symbol: this.sellSymbol,
+          size: sellAmount,
+        }).then(() => {
+          this.strategyEndSubject.next();
+        });
+      });
   }
 
 }

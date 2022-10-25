@@ -38,7 +38,8 @@ function parseSizes (currentStrategy, depth) {
 
   return [
     symbolsOrderBookInfoMap[buy].asks.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0),
-    symbolsOrderBookInfoMap[sell].asks.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0),
+    symbolsOrderBookInfoMap[buy2].asks.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0),
+    symbolsOrderBookInfoMap[sell].bids.slice(0, depth + 1).reduce((res, item ) => res + parseFloat(item[1]), 0)
   ];
 }
 
@@ -70,86 +71,73 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const spend = baseFirstStepAmount;
     const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
     const approximateFees = fees.map((fee) => (fee * baseFirstStepAmount));
-    const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 0;
-    const actualPrices = getActualPrices();
+    const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 0.5;
+    const prices = getActualPrices();
+    const fakePrices = [
+      prices[0] * (1 + magicProfitRation),
+      prices[1] * (1 + magicProfitRation),
+      prices[2] * (1 - magicProfitRation)
+    ];
     const stringPrices = getStringPrices(currentStrategy, orderBookDepth);
     const sizes = getActualSizes();
-    const buyCoins = exactMath.div(spend, getBestAsk(buy, orderBookDepth));
-    const sellCoins = exactMath.div(spend, getBestAsk(sell, orderBookDepth))
+    const buyCoins = exactMath.div(spend, fakePrices[0]);
 
     if (buyCoins * 5 > sizes[0]) {
       return {};
     }
 
-    if (sell * 5 > sizes[1]) {
+    const buy2Coins = exactMath.div(buyCoins, fakePrices[1]);
+
+    if (buy2Coins * 5 > sizes[1]) {
       return {};
     }
-    const buy2Coins = exactMath.div(buyCoins, actualPrices[1]);
-    const receive = exactMath.mul(buy2Coins, actualPrices[2]);
+
+    if (buy2Coins * 5 > sizes[2]) {
+      return {};
+    }
+
+    const receive = exactMath.mul(buy2Coins, fakePrices[2]);
     const profit = receive - (spend + approximateFeeForThreeSteps);
 
     const multipliedFees = fees.map(fee => fee * 5);
     const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
 
-    const initialBuyBestAsk = getBestAsk(buy, orderBookDepth);
-    const initialSellBestAsk = getBestAsk(sell, orderBookDepth);
     return {
       cancelPrices: [
-        actualPrices[0] * cancelMultipliers[0],
-        actualPrices[1] * cancelMultipliers[1],
-        actualPrices[2] * cancelMultipliers[2]
+        fakePrices[0] * cancelMultipliers[0],
+        fakePrices[1] * cancelMultipliers[1],
+        fakePrices[2] * cancelMultipliers[2]
       ],
       strategy: currentStrategy,
       orderBookDepth,
       baseFirstStepAmount,
       spend,
       fees,
-      actualPrices,
+      prices,
+      fakePrices,
       approximateFees,
       getActualPrices,
       printPricesInfo: () => {
-        const currentBuyBestBid = getBestBid(buy, orderBookDepth);
-        const currentSellBestBid = getBestBid(sell, orderBookDepth);
+        const actualPrices = getActualPrices();
+        currentStrategy.forEach((item, index) => {
+          console.log(item);
+          console.log('when started', prices[index]);
+          console.log('current', actualPrices[index]);
 
-        console.log(buy, sell);
-
-        console.log('Buy symbol', initialBuyBestAsk, currentBuyBestBid, initialBuyBestAsk / currentBuyBestBid, initialBuyBestAsk - currentBuyBestBid);
-        console.log('Sell symbol', initialSellBestAsk, currentSellBestBid, initialSellBestAsk / currentSellBestBid, initialSellBestAsk - currentSellBestBid);
-        console.log('buyCoins', buyCoins);
-        console.log('sellCoins', sellCoins);
-        const currentBuyCoins =  currentBuyBestBid * buyCoins;
-        const currentSellCoins = currentSellBestBid * sellCoins;
-
-        console.log('coins buy, sell', currentBuyCoins, currentSellCoins);
-
-        const buySellRatio =  currentBuyCoins / currentSellCoins;
-        const sellBuyRatio =  currentSellCoins / currentBuyCoins;
-
-
-        console.log('buy/sell', buySellRatio);
-        console.log('sell/buy', sellBuyRatio);
-        console.log('sell as bought', currentBuyCoins + currentSellCoins - 2 * (spend + approximateFees[0] + approximateFees[2]));
-
-        const transformByBuy2OfBuyToSell = buyCoins / getBestAsk(buy2, orderBookDepth);
-        const transformByBuy2OfBuyToSellResult = (transformByBuy2OfBuyToSell + sellCoins) * currentSellBestBid - approximateFees[2] * 2 - approximateFees[1];
-        const transformByBuy2OfSellToBuy = sellCoins * getBestBid(buy2, orderBookDepth);
-        const transformByBuy2OfSellToBuyResult = (transformByBuy2OfSellToBuy + buyCoins) * currentBuyBestBid - approximateFees[0] * 2 - approximateFees[1];
-
-        console.log('buy2 ask transform', transformByBuy2OfBuyToSellResult - spend * 2);
-        console.log('buy2 bid transform', transformByBuy2OfSellToBuyResult - spend * 2);
-
-
+          console.log('%',  actualPrices[index] / prices[index]);
+          console.log('diff',  actualPrices[index] - prices[index]);
+        });
       },
       stringPrices,
       sizes,
       buyCoins,
-      sellCoins,
       buy2Coins,
       receive,
       approximateFeeForThreeSteps,
       profit,
-      initialBuyBestAsk,
-      initialSellBestAsk,
+      buyOrderBookInfo: symbolsOrderBookInfoMap[buy].asks[orderBookDepth][0],
+      buy2OrderBookInfo: symbolsOrderBookInfoMap[buy2].asks[orderBookDepth][0],
+      sellOrderBookInfo: symbolsOrderBookInfoMap[sell].bids[orderBookDepth][0]
     };
 }
 
