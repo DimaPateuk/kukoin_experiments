@@ -21,8 +21,8 @@ const strategies = Object
   })
   .filter(([key, value]) => {
   const allowed = [
-    'BTC',
-    'ETH',
+    // 'BTC',
+    // 'ETH',
     'KCS'
     // 'XRP',
     // 'LUNA',
