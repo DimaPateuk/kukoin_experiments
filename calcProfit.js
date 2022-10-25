@@ -123,7 +123,6 @@ function calcProfit(currentStrategy, orderBookDepth) {
       buyCoins,
       sellCoins,
       approximateFeeForThreeSteps,
-      profit,
       initialBuyBestAsk,
       initialSellBestAsk,
     };
