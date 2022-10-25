@@ -191,7 +191,7 @@ class Strategy {
             const orderFilledSize = parseFloat(order.filledSize);
             console.log(this.trackOrderMap[this.buySymbol].current);
             console.log(order);
-            const resultSize = firstDoneOrderFilledSize + orderFilledSize * price;
+            const resultSize = firstDoneOrderFilledSize + orderFilledSize * price * (1 - this.profitInfo.fees[1]);
 
             placeOrder({
               clientOid: v4(),
