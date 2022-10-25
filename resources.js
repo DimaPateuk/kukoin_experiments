@@ -23,6 +23,7 @@ const strategies = Object
   const allowed = [
     'BTC',
     'ETH',
+    'KCS'
     // 'XRP',
     // 'LUNA',
     // 'ADA',
