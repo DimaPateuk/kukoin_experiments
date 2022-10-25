@@ -20,8 +20,17 @@ const strategies = Object
     return value[0].split('-')[1] === 'USDT';
   })
   .filter(([key, value]) => {
-    return value[0].split('-')[0] === 'BTC' ||
-      value[0].split('-')[0] === 'ETH'
+  const allowed = [
+    'BTC',
+    'ETH',
+    'XRP',
+    'LUNA',
+    'ADA',
+    'SOL',
+    'ATOM'
+  ];
+
+    return allowed.includes(value[0].split('-')[0]);
   })
   .map(entry => entry[1]);
 
