@@ -219,7 +219,7 @@ class Strategy {
     const clientOid = v4();
     this.positiveOrdersClientIds.push(clientOid);
 
-    const price = getBestBid(this.buy2Symbol, this.profitInfo.orderBookDepth);
+    const price = getBestAsk(this.buy2Symbol, this.profitInfo.orderBookDepth);
 
     placeOrder({
       clientOid,
@@ -264,10 +264,6 @@ class Strategy {
       ).subscribe();
   }
 
-  doneOrderAction(order) {
-    console.log('---', this.currentStrategy, order.symbol);
-  }
-
   trackOrders() {
     ordersSubject
       .pipe(
@@ -280,17 +276,11 @@ class Strategy {
 
           orderInfo.current = order;
           orderInfo.sequence.push(order);
-
-          if (order.status === 'done') {
-            this.doneOrderAction(order);
-          }
-
         }),
         takeUntil(
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
-
           )
         )
       ).subscribe();
@@ -307,7 +297,6 @@ class Strategy {
           merge(
             this.strategyEndSubject,
             placeOrderErrorSubject,
-
           )
         )
       ).subscribe();
