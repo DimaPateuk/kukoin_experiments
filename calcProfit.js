@@ -51,8 +51,10 @@ function getStringPrices (currentStrategy, depth) {
   ];
 }
 const baseFirstStepAmount = 2;
+const magicProfitRation = 0;
 
 function calcProfit(currentStrategy, orderBookDepth) {
+
     if (!canCalc(currentStrategy, orderBookDepth)) {
       return {};
     }
@@ -75,9 +77,28 @@ function calcProfit(currentStrategy, orderBookDepth) {
     const buyCoins = exactMath.div(spend, getBestAsk(buy, orderBookDepth));
     const sellCoins = exactMath.div(spend, getBestAsk(sell, orderBookDepth))
 
+    if (buyCoins * 5 > sizes[0]) {
+      return {};
+    }
+
+    if (sell * 5 > sizes[1]) {
+      return {};
+    }
+    const buy2Coins = exactMath.div(buyCoins, actualPrices[1]);
+    const receive = exactMath.mul(buy2Coins, actualPrices[2]);
+    const profit = receive - (spend + approximateFeeForThreeSteps);
+
+    const multipliedFees = fees.map(fee => fee * 5);
+    const cancelMultipliers = [1 + multipliedFees[0], 1 + multipliedFees[1], 1 - multipliedFees[2]];
+
     const initialBuyBestAsk = getBestAsk(buy, orderBookDepth);
     const initialSellBestAsk = getBestAsk(sell, orderBookDepth);
     return {
+      cancelPrices: [
+        actualPrices[0] * cancelMultipliers[0],
+        actualPrices[1] * cancelMultipliers[1],
+        actualPrices[2] * cancelMultipliers[2]
+      ],
       strategy: currentStrategy,
       orderBookDepth,
       baseFirstStepAmount,
@@ -85,6 +106,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
       fees,
       actualPrices,
       approximateFees,
+      getActualPrices,
       printPricesInfo: () => {
         const currentBuyBestBid = getBestBid(buy, orderBookDepth);
         const currentSellBestBid = getBestBid(sell, orderBookDepth);
@@ -122,7 +144,10 @@ function calcProfit(currentStrategy, orderBookDepth) {
       sizes,
       buyCoins,
       sellCoins,
+      buy2Coins,
+      receive,
       approximateFeeForThreeSteps,
+      profit,
       initialBuyBestAsk,
       initialSellBestAsk,
     };
