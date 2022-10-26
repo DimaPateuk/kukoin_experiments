@@ -69,10 +69,6 @@ class Strategy {
       )
       .subscribe(() => {
         console.log('---strategy END', this.currentStrategy);
-        // console.log(this.profitInfo);
-        // this.profitInfo.printPricesInfo();
-        // console.log('-----');
-
         onEnd();
       });
 
@@ -194,8 +190,6 @@ class Strategy {
     interval(10)
       .pipe(
         tap(() => {
-          // console.clear()
-          // this.profitInfo.printPricesInfo();
           this.checkIfStrategyIsNotRelevant();
         }),
         takeUntil(
@@ -303,6 +297,10 @@ class Strategy {
       .cancelOrder({ id: order.orderId })
       .then((e) => {
         if (e.code === '400100') {
+
+          console.log(this.trackOrderMap[this.buySymbol]);
+
+
           console.log('issue while canceling', order);
           process.exit(1);
         }
