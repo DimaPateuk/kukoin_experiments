@@ -1,5 +1,6 @@
 const { strategies } = require('./resources');
 const { calcProfit } = require('./calcProfit');
+const { calcProfit2 } = require('./calcProfit2');
 const { Strategy } =require('./strategyNew');
 
 let count = 0;
@@ -48,15 +49,16 @@ function checkStrategy (currentStrategy) {
 
 function doRealStrategy(currentStrategy, orderBookDepth) {
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
+  const profitInfo2 = calcProfit2(currentStrategy, orderBookDepth);
 
   if (!profitInfo.strategy) {
     return;
   }
 
-  // console.log(profitInfo.strategy, profitInfo.profit);
+  console.log(profitInfo.profit, profitInfo2.profit);
 
   if (profitInfo.profit > 0) {
-    startStrategy(currentStrategy, profitInfo);
+    // startStrategy(currentStrategy, profitInfo);
   }
 }
 

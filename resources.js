@@ -20,6 +20,9 @@ const strategies = Object
     return value[0].split('-')[1] === 'USDT';
   })
   .filter(([key, value]) => {
+
+    return key === 'BTC-USDT,ETH-BTC,ETH-USDT';
+
     const allowed = [
       'BTC',
       'ETH',
