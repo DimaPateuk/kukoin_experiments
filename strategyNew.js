@@ -287,22 +287,58 @@ class Strategy {
     return false;
   }
 
+  stopButTrackDoneOrders() {
+    this.cancelStrategySubject.next();
+    ordersSubject
+      .pipe(
+        tap((order) => {
+          if (!this.positiveOrdersClientIds.includes(order.clientOid)) {
+            return;
+          }
+
+          const orderInfo = this.trackOrderMap[order.symbol];
+
+          orderInfo.current = order;
+          orderInfo.sequence.push(order);
+
+          if (order.status !== 'done') {
+            return;
+          }
+          console.log('Indeed order performed during canceling!!!!');
+
+          if (order.clientOid === this.positiveOrdersClientIds[0]) {
+            this.sellFirstStep();
+            return;
+          }
+
+          if (order.clientOid === this.positiveOrdersClientIds[1]) {
+            this.sellSecondStep();
+            return;
+          }
+
+        }),
+        takeUntil(
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+          )
+        )
+      ).subscribe();
+  }
+
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
 
-    this.cancelStrategySubject.next();
+    this.stopButTrackDoneOrders();
+
 
     console.log('cancel cancelFirstStep', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
         if (e.code === '400100') {
-
-          console.log(this.trackOrderMap[this.buySymbol]);
-
-
-          console.log('issue while canceling', order);
-          process.exit(1);
+          console.log('issue while canceling', e);
+          return;
         }
         console.log('trying to cancel first step', e);
 
@@ -313,11 +349,24 @@ class Strategy {
       });
   }
 
-  cancelSecondStep() {
+  sellFirstStep() {
     const doneOrder = this.trackOrderMap[this.buySymbol].current;
+    const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
+
+    return placeOrder({
+      clientOid: v4(),
+      side: 'sell',
+      symbol: this.buySymbol,
+      size: sellAmount,
+    }).then(() => {
+      this.strategyEndSubject.next();
+    });
+  }
+
+  cancelSecondStep() {
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
-    this.cancelStrategySubject.next();
+    this.stopButTrackDoneOrders();
 
     console.log('cancel second', order.symbol);
     kucoin
@@ -325,8 +374,8 @@ class Strategy {
       .then(e => {
 
         if (e.code === '400100') {
-          console.log('issue while canceling', order);
-          process.exit(1);
+          console.log('issue while canceling', e);
+          return;
         }
         console.log('trying to cancel seconds step', e);
       })
@@ -342,23 +391,29 @@ class Strategy {
 
         order$.unsubscribe();
         console.log('----trying to cancel seconds step');
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
+        this.sellFirstStep();
 
-        return placeOrder({
-          clientOid: v4(),
-          side: 'sell',
-          symbol: this.buySymbol,
-          size: sellAmount,
-        }).then(() => {
-          this.strategyEndSubject.next();
-        });
       });
   }
-  cancelThirdStep() {
+
+  sellSecondStep () {
     const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
+    const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
+
+    return placeOrder({
+      clientOid: v4(),
+      side: 'sell',
+      symbol: this.sellSymbol,
+      size: sellAmount,
+    }).then(() => {
+      this.strategyEndSubject.next();
+    });
+  }
+
+  cancelThirdStep() {
     const order = this.trackOrderMap[this.sellSymbol].current;
 
-    this.cancelStrategySubject.next();
+    this.stopButTrackDoneOrders();
 
     console.log('cancel third', order.symbol);
     kucoin
@@ -366,9 +421,10 @@ class Strategy {
       .then(e => {
 
         if (e.code === '400100') {
-          console.log('issue while canceling', order);
+          console.log('third step already done not possible !!!!!', this.trackOrderMap);
           process.exit(1);
         }
+
         console.log('trying to cancel third step', e);
       })
       .catch((e) => {
@@ -383,16 +439,8 @@ class Strategy {
 
         order$.unsubscribe();
         console.log('----trying to cancel third step');
-        const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
+        this.sellSecondStep();
 
-        return placeOrder({
-          clientOid: v4(),
-          side: 'sell',
-          symbol: this.sellSymbol,
-          size: sellAmount,
-        }).then(() => {
-          this.strategyEndSubject.next();
-        });
       });
   }
 
