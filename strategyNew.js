@@ -298,11 +298,14 @@ class Strategy {
 
     this.cancelStrategySubject.next();
 
-    console.log('cancel cancelFirstStep', order);
-    console.log('cancel', order.symbol);
+    console.log('cancel cancelFirstStep', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then((e) => {
+        if (e.code === '400100') {
+          console.log('issue while canceling', order);
+          process.exit(1);
+        }
         console.log('trying to cancel first step', e);
 
         this.strategyEndSubject.next();
@@ -318,10 +321,15 @@ class Strategy {
 
     this.cancelStrategySubject.next();
 
-    console.log('cancel', order.symbol);
+    console.log('cancel second', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then(e => {
+
+        if (e.code === '400100') {
+          console.log('issue while canceling', order);
+          process.exit(1);
+        }
         console.log('trying to cancel seconds step', e);
       })
       .catch((e) => {
@@ -354,10 +362,15 @@ class Strategy {
 
     this.cancelStrategySubject.next();
 
-    console.log('cancel', order.symbol);
+    console.log('cancel third', order.symbol);
     kucoin
       .cancelOrder({ id: order.orderId })
       .then(e => {
+
+        if (e.code === '400100') {
+          console.log('issue while canceling', order);
+          process.exit(1);
+        }
         console.log('trying to cancel third step', e);
       })
       .catch((e) => {
