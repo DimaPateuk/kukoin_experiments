@@ -1,11 +1,10 @@
 const { strategies } = require('./resources');
 const { calcProfit } = require('./calcProfit');
-const { calcProfit2 } = require('./calcProfit2');
 const { Strategy } =require('./strategyNew');
 
 let count = 0;
-const maxStrategyTries = 100;
-const maxStrategiesInParallel = 5;
+const maxStrategyTries = 1;
+const maxStrategiesInParallel = 1;
 const strategiesInProgress = new Map();
 const executedStrategies = [];
 
@@ -49,17 +48,13 @@ function checkStrategy (currentStrategy) {
 
 function doRealStrategy(currentStrategy, orderBookDepth) {
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
-  const profitInfo2 = calcProfit2(currentStrategy, orderBookDepth);
 
   if (!profitInfo.strategy) {
     return;
   }
 
-  console.log(profitInfo.profit, profitInfo2.profit, profitInfo.profit - profitInfo2.profit);
-  console.log(profitInfo.prices[0], profitInfo2.prices[0]);
-
   if (profitInfo.profit > 0) {
-    // startStrategy(currentStrategy, profitInfo);
+    startStrategy(currentStrategy, profitInfo);
   }
 }
 
