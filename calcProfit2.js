@@ -4,7 +4,7 @@ const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 const baseFirstStepAmount = 2;
 const magicProfitRation = 0;
 
-const firstStepDepth = 48;
+const firstStepDepth = 0;
 
 Object
   .keys(tradeFees)
@@ -50,7 +50,7 @@ function parseSizes (currentStrategy, depth) {
 function getStringPrices (currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
   return [
-    symbolsOrderBookInfoMap[buy].asks[depth + firstStepDepth][0],
+    symbolsOrderBookInfoMap[buy].bids[depth + firstStepDepth][0],
     symbolsOrderBookInfoMap[buy2].asks[depth][0],
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
