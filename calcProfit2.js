@@ -4,7 +4,7 @@ const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 const baseFirstStepAmount = 2;
 const magicProfitRation = 0;
 
-const firstStepDepth = 0;
+const firstStepDepth = 48;
 
 Object
   .keys(tradeFees)
