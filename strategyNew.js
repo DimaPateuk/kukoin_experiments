@@ -22,6 +22,9 @@ const kucoin = require('./kucoin');
 
 const maxTimeStrategyAlive = 10 * 60 * 1000;
 
+let countSuccessfulStrategy = 0;
+let countUnsuccessfulStrategy = 0;
+
 class Strategy {
   constructor({
     currentStrategy,
@@ -67,8 +70,17 @@ class Strategy {
       .pipe(
         take(1)
       )
-      .subscribe(() => {
+      .subscribe((isSuccessful) => {
         console.log('---strategy END', this.currentStrategy);
+
+        if (isSuccessful) {
+          countSuccessfulStrategy++;
+        } else {
+          countUnsuccessfulStrategy++;
+        }
+
+        console.log('countSuccessfulStrategy', countSuccessfulStrategy);
+        console.log('countUnsuccessfulStrategy', countUnsuccessfulStrategy);
         onEnd();
       });
 
@@ -154,7 +166,7 @@ class Strategy {
 
     if (order.symbol === this.sellSymbol) {
       console.log('call strategyEndSubject from doneOrderAction');
-      this.strategyEndSubject.next();
+      this.strategyEndSubject.next(true);
     }
   }
 
