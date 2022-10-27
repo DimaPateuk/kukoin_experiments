@@ -304,6 +304,9 @@ class Strategy {
           if (order.status !== 'done') {
             return;
           }
+          if (order.type !== 'filled') {
+            return;
+          }
           console.log('Indeed order performed during canceling!!!!');
 
           if (order.clientOid === this.positiveOrdersClientIds[0]) {
