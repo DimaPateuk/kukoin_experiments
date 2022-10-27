@@ -6,6 +6,8 @@ const balanceInfo = {
   available: 0,
 };
 const accountsInfo = {};
+
+console.log('start balance tracker');
 kucoin.getAccounts()
   .then(response => {
     accountsInfo.data = response.data;

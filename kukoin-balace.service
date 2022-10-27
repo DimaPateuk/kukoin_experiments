@@ -1,0 +1,12 @@
+[Unit]
+Description=test
+After=network.target
+
+[Service]
+EnvironmentFile=/root/kukoin_experiments/.env
+Type=simple
+User=root
+ExecStart=/root/.nvm/versions/node/v18.10.0/bin/node /root/kukoin_experiments/balancesTracker.js
+
+[Install]
+WantedBy=multi-user.target
