@@ -2,6 +2,8 @@ require('dotenv').config();
 const qs = require('querystring')
 const crypto = require('crypto');
 
+console.log('----', process.env);
+
 function K () {
   this.init({
     apiKey: process.env.apiKey,
