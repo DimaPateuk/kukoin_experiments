@@ -1,4 +1,7 @@
 const { v4 } = require('uuid');
 
 
-console.log(v4());
+
+setInterval(() => {
+  console.log(v4());
+}, 5000);

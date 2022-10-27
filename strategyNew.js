@@ -6,7 +6,6 @@ const {
   Subject,
   interval,
   take,
-  first,
 } = require('rxjs');
 const { processNumber } = require('./processNumber');
 const { ordersSubject } = require('./resources');
