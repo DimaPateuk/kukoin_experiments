@@ -8,6 +8,7 @@ Type=simple
 User=root
 ExecStart=/root/.nvm/versions/node/v18.10.0/bin/node /root/kukoin_experiments/balancesTracker.js
 Restart=on-failure
+StartLimitBurst=10000000000
 
 [Install]
 WantedBy=multi-user.target

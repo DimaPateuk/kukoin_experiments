@@ -8,7 +8,7 @@ setInterval(() => {
   console.log(count);
 
 
-  if (count === 10) {
+  if (count === 3) {
     process.exit(1);
   }
 
