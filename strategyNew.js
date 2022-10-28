@@ -316,6 +316,11 @@ class Strategy {
             }
 
             if (order.type === 'canceled') {
+
+              if (order.filledSize !== '0') {
+                console.log('cancelled order with filledSize', order);
+              }
+
               if (order.clientOid === this.positiveOrdersClientIds[0]) {
                 console.log('cancel first step');
                 this.strategyEndSubject.next();
