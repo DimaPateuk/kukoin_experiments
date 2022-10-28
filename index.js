@@ -9,7 +9,7 @@ setInterval(() => {
 
 
   if (count === 3) {
-    process.exit(1);
+    process.exit(0);
   }
 
 });
