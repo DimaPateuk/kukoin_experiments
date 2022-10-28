@@ -8,6 +8,7 @@ const { v4 } = require('uuid');
 function sellAll(onEnd) {
   console.log('------------------------------- sellAll');
   const balanceInfo = [];
+  kucoin.cancelAllOrders({});
   setTimeout(() => {
     kucoin.getAccounts()
       .then(response => {
@@ -38,11 +39,9 @@ function sellAll(onEnd) {
         });
 
       });
-  }, 500);
-
+  }, 5000);
 
   setTimeout(() => {
-
     balanceInfo.forEach((item, index) => {
       setTimeout(() => {
         const symbol = `${item.currency}-USDT`;
@@ -63,10 +62,8 @@ function sellAll(onEnd) {
           }, 1500)
         }
       }, index * 200);
-
     });
-
-  }, 1500);
+  }, 10000);
 }
 
 module.exports = {

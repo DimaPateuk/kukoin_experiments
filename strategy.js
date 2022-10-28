@@ -3,7 +3,7 @@ const { calcProfit } = require('./calcProfit');
 const { Strategy } =require('./strategyNew');
 
 let count = 0;
-const maxStrategyTries = 100;
+const maxStrategyTries = 10000;
 const maxStrategiesInParallel = 5;
 const strategiesInProgress = new Map();
 

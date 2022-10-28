@@ -2,7 +2,7 @@ const kucoin = require('./kucoin');
 const { Subject } = require('rxjs');
 
 const placeOrderErrorSubject = new Subject();
-function placeOrder(params) {
+function placeOrder(params, count) {
   let promise;
   if (params.stopPrice) {
     promise = kucoin.placeStopOrder({
@@ -21,14 +21,19 @@ function placeOrder(params) {
   }
 
   return promise.then((res) => {
+      if (res.code === '200004' && count > 3) {
+        console.log('-------------------- Balance insufficient');
+
+        return placeOrder(params, count + 1);
+      }
       if (res.code !== '200000') {
         placeOrderErrorSubject.next({
           params,
           res
         });
-        console.log(res, params);
-        process.exit(1);
 
+        console.log('tries', count, res, params);
+        process.exit(1);
       }
       return res;
 
