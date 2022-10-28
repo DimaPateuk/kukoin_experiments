@@ -7,6 +7,8 @@ remove logs from service
 journalctl --rotate
 journalctl --vacuum-time=1s
 
+journalctl --rotate && journalctl --vacuum-time=1s && systemctl daemon-reload
+
 show logs
 journalctl -u kukoin.service
 journalctl -u kukoin-balace.service
