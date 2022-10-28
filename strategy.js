@@ -6,7 +6,9 @@ let count = 0;
 const maxStrategyTries = 100;
 const maxStrategiesInParallel = 5;
 const strategiesInProgress = new Map();
-const executedStrategies = [];
+
+let countSuccessfulStrategy = 0;
+let countUnsuccessfulStrategy = 0;
 
 function shouldWait(currentStrategy) {
   if (count >= maxStrategyTries) {
@@ -30,11 +32,22 @@ function startStrategy(currentStrategy, profitInfo) {
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
   new Strategy({ currentStrategy, profitInfo, onEnd: () => {
-    setTimeout(() => {
+    setTimeout((isSuccessful) => {
       strategiesInProgress.delete(currentStrategy.join());
+
+
+      if (isSuccessful) {
+        countSuccessfulStrategy++;
+      } else {
+        countUnsuccessfulStrategy++;
+      }
 
       console.log('totalCount', count);
       if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
+
+        console.log('countSuccessfulStrategy', countSuccessfulStrategy);
+        console.log('countUnsuccessfulStrategy', countUnsuccessfulStrategy);
+
         console.log(count, 'times really ?');
         process.exit(1);
       }

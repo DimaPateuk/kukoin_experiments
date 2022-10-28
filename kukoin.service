@@ -7,6 +7,7 @@ EnvironmentFile=/root/kukoin_experiments/.env
 Type=simple
 User=root
 ExecStart=/root/.nvm/versions/node/v18.10.0/bin/node /root/kukoin_experiments/index.js
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

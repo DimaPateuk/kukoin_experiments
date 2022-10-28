@@ -38,7 +38,7 @@ function sellAll(onEnd) {
         });
 
       });
-  }, 2500);
+  }, 500);
 
 
   setTimeout(() => {
@@ -62,11 +62,11 @@ function sellAll(onEnd) {
             onEnd();
           }, 1500)
         }
-      }, index * 1500);
+      }, index * 200);
 
     });
 
-  }, 5000);
+  }, 1500);
 }
 
 module.exports = {
