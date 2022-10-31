@@ -21,11 +21,6 @@ function placeOrder(params, count) {
   }
 
   return promise.then((res) => {
-      if (res.code === '200004' && count > 3) {
-        console.log('-------------------- Balance insufficient');
-
-        return placeOrder(params, count + 1);
-      }
       if (res.code !== '200000') {
         placeOrderErrorSubject.next({
           params,

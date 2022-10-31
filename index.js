@@ -50,7 +50,7 @@ sellAll(() => {
     }
 
     const { data } = parsedMessage;
-    balancesSubject.next({ balance: data });
+    balancesSubject.next(data);
   });
 
 });

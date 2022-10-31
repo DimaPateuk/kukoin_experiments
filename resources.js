@@ -70,13 +70,6 @@ const symbolsOrderBookInfoMap = {};
 const ordersSubject = new Subject();
 const balancesSubject = new Subject();
 
-balancesSubject
-  .subscribe(({balance}) => {
-    if (balance.currency === 'USDT') {
-      balanceInfo.current = balance.available;
-    }
-  });
-
 const currenciesMap = {};
 kucoin.getCurrencies()
   .then(response => {
@@ -84,39 +77,12 @@ kucoin.getCurrencies()
       .forEach(item => {
         currenciesMap[item.currency] = item;
       });
-
-      //console.log(JSON.stringify(currenciesMap, null, 4));
   });
 
 const accountsInfo = {};
-const balanceInfo = {
-  balance: 0,
-  available: 0,
-  current: 0,
-};
 kucoin.getAccounts()
   .then(response => {
     accountsInfo.data = response.data;
-    accountsInfo.data.forEach(item => {
-      if (item.type !== 'trade') {
-        return;
-      }
-
-      if (item.currency !== 'USDT') {
-        return;
-      }
-
-      balanceInfo.balance = item.balance;
-      balanceInfo.available = item.available;
-      balanceInfo.current = item.available;
-
-      console.log(
-        'balance',
-        item.balance,
-        'available',
-        item.available,
-      );
-    });
   });
 
 module.exports = {
@@ -128,6 +94,5 @@ module.exports = {
   strategies,
   allSymbols,
   symbolsByTrackers,
-  balanceInfo,
   ordersSubject
 }

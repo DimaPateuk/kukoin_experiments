@@ -8,7 +8,7 @@ const {
   take,
 } = require('rxjs');
 const { processNumber } = require('./processNumber');
-const { ordersSubject } = require('./resources');
+const { ordersSubject, balancesSubject } = require('./resources');
 const { getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
 const kucoin = require('./kucoin');
@@ -25,6 +25,7 @@ class Strategy {
   }) {
     this.startedAt = +new Date();
     this.currentStrategy = currentStrategy;
+    this.balancesInfo = {};
 
     this.profitInfo = profitInfo;
 
@@ -74,8 +75,8 @@ class Strategy {
       });
 
     this.trackOrders();
+    this.trackBalance();
     this.trackRelevance();
-
 
     console.log('---strategy START', this.currentStrategy);
 
@@ -139,6 +140,93 @@ class Strategy {
       console.log('call strategyEndSubject from doneOrderAction');
       this.strategyEndSubject.next(true);
     }
+  }
+
+  async sellAll() {
+    await new Promise(res => {
+      setTimeout(() => {
+        res();
+      }, 1000);
+    });
+
+    const baseCyrrecncy = this.buySymbol.split('-')[1];
+    const availableBalancesMap = Object
+      .values(this.trackOrderMap)
+      .map(info => info.current)
+      .filter(currentOrder => currentOrder)
+      .reduce((res, item) => {
+        const balances = Object.entries(this.balancesInfo[item.orderId])
+          .forEach(([key, value]) => {
+            if (res[key]) {
+              res[key] = 0;
+            }
+            res[key] += value;
+          });
+
+
+        return res;
+      }, {});
+
+
+    Object.entries(availableBalancesMap)
+      .filter(([key]) => key !== baseCyrrecncy);
+      .map(([key, available]) => {
+        const symbol = `${currency}-${baseCyrrecncy}`;
+
+        return {
+          avaialbe,
+          symbol
+        };
+
+      })
+      .filter(item => {
+        if (!item.avaialbe) {
+          return false;
+        }
+
+        if (item.avaialbe < 0) {
+          return false;
+        }
+
+        return true;
+      })
+      .forEach(item => {
+        const sellAmount = processNumber(item.available, item.symbol, 'bids');
+
+        kucoin.placeOrder({
+          type: 'market',
+          clientOid: v4(),
+          side: 'sell',
+          symbol: item.symbol,
+          size: sellAmount,
+        })
+      });
+
+    this.strategyEndSubject.next();
+  }
+
+  trackBalance() {
+    balancesSubject
+      .pipe(
+        tap((balance) => {
+          if(!this.balancesInfo[balance.relationContext.orderId]) {
+            this.balancesInfo[balance.relationContext.orderId] = {};
+          }
+
+          if(!this.balancesInfo[balance.relationContext.orderId][balance.currency]) {
+            this.balancesInfo[balance.relationContext.orderId][balance.currency] = 0;
+          }
+
+          this.balancesInfo[balance.relationContext.orderId][balance.currency] += parseFloat(balance.availableChange);
+
+        }),
+        takeUntil(
+          merge(
+            this.strategyEndSubject,
+            placeOrderErrorSubject,
+          )
+        )
+      ).subscribe();
   }
 
   trackOrders() {
@@ -275,62 +363,23 @@ class Strategy {
     ordersSubject
       .pipe(
         tap((order) => {
-          if (order.status !== 'done') {
-            if (order.type === 'canceled') {
-              console.log('not done order with canceled type that is strange.')
-              console.log(order);
-              process.exit(1);
-            }
-            return;
-          }
-
           if (this.positiveOrdersClientIds.includes(order.clientOid)) {
+
+            const orderInfo = this.trackOrderMap[order.symbol];
+
+            orderInfo.current = order;
+            orderInfo.sequence.push(order);
+
             if (order.type === 'filled') {
-
-              const orderInfo = this.trackOrderMap[order.symbol];
-
-              orderInfo.current = order;
-              orderInfo.sequence.push(order);
 
               console.log('Indeed order performed during canceling!!!!');
 
-              if (order.clientOid === this.positiveOrdersClientIds[0]) {
-                this.sellFirstStep();
-                return;
-              }
-
-              if (order.clientOid === this.positiveOrdersClientIds[1]) {
-                this.sellSecondStep();
-                return;
-              }
+              this.sellAll();
             }
 
             if (order.type === 'canceled') {
-
-              if (order.filledSize !== '0') {
-                console.log('cancelled order with filledSize', order);
-              }
-
-              if (order.clientOid === this.positiveOrdersClientIds[0]) {
-                console.log('cancel first step');
-                this.strategyEndSubject.next();
-                // do not need to do anything
-              }
-
-              if (order.clientOid === this.positiveOrdersClientIds[1]) {
-                console.log('cancel second step');
-                this.sellFirstStep();
-              }
-
-              if (order.clientOid === this.positiveOrdersClientIds[2]) {
-                console.log('cancel third step');
-                this.sellSecondStep();
-              }
+              this.sellAll();
             }
-          }
-
-          if (this.negativeOrdersClientIds.includes(order.clientOid)) {
-            this.strategyEndSubject.next();
           }
         }),
         takeUntil(
@@ -358,18 +407,6 @@ class Strategy {
       });
   }
 
-  sellFirstStep() {
-    const doneOrder = this.trackOrderMap[this.buySymbol].current;
-    const sellAmount = processNumber((doneOrder.filledSize).toString(), this.buySymbol, 'bids', false);
-
-    return placeOrder({
-      clientOid: this.negativeClientOidBuy,
-      side: 'sell',
-      symbol: this.buySymbol,
-      size: sellAmount,
-    });
-  }
-
   cancelSecondStep() {
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
@@ -387,18 +424,6 @@ class Strategy {
 
   }
 
-  sellSecondStep() {
-    const doneOrder = this.trackOrderMap[this.buy2Symbol].current;
-    const sellAmount = processNumber((doneOrder.filledSize).toString(), this.sellSymbol, 'bids');
-
-    return placeOrder({
-      clientOid: this.negativeClientOidBuy2,
-      side: 'sell',
-      symbol: this.sellSymbol,
-      size: sellAmount,
-    });
-  }
-
   cancelThirdStep() {
     const order = this.trackOrderMap[this.sellSymbol].current;
 
@@ -413,7 +438,6 @@ class Strategy {
         process.exit(1);
       });
   }
-
 }
 
 module.exports = {
