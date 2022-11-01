@@ -85,7 +85,7 @@ class Strategy {
 
 
   doFirstStep() {
-    console.log(this.buySymbol, this.profitInfo.stringPrices[0], 'will be canceled when price: ' , this.profitInfo.cancelPrices[0]);
+    console.log(this.buySymbol, this.profitInfo.stringPrices[0], 'will be canceled when price: ', this.profitInfo.cancelPrices[0]);
 
     placeOrder({
       clientOid: this.clientOidBuy,
@@ -96,10 +96,10 @@ class Strategy {
     });
   }
 
-  doSecondStep () {
+  doSecondStep() {
     const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
-    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ' , this.profitInfo.cancelPrices[1]);
+    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ', this.profitInfo.cancelPrices[1]);
 
     placeOrder({
       clientOid: this.clientOidBuy2,
@@ -116,7 +116,7 @@ class Strategy {
     const filledSize = parseFloat(order.filledSize);
     const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
-    console.log(this.sellSymbol, this.profitInfo.stringPrices[2],'will be canceled when price: ' , this.profitInfo.cancelPrices[2]);
+    console.log(this.sellSymbol, this.profitInfo.stringPrices[2], 'will be canceled when price: ', this.profitInfo.cancelPrices[2]);
 
     placeOrder({
       clientOid: this.clientOidSell,
@@ -165,9 +165,9 @@ class Strategy {
             res[key] += value;
           });
 
-
         return res;
       }, {});
+    console.log('----', availableBalancesMap);
 
 
     Object.entries(availableBalancesMap)
@@ -211,11 +211,11 @@ class Strategy {
     balancesSubject
       .pipe(
         tap((balance) => {
-          if(!this.balancesInfo[balance.relationContext.orderId]) {
+          if (!this.balancesInfo[balance.relationContext.orderId]) {
             this.balancesInfo[balance.relationContext.orderId] = {};
           }
 
-          if(!this.balancesInfo[balance.relationContext.orderId][balance.currency]) {
+          if (!this.balancesInfo[balance.relationContext.orderId][balance.currency]) {
             this.balancesInfo[balance.relationContext.orderId][balance.currency] = 0;
           }
 
@@ -259,7 +259,7 @@ class Strategy {
       ).subscribe();
   }
 
-  trackRelevance () {
+  trackRelevance() {
     interval(10)
       .pipe(
         tap(() => {
@@ -277,22 +277,22 @@ class Strategy {
 
   checkIfStrategyIsNotRelevant() {
     if (this.isFirstStepStillRelevant() &&
-        this.isSecondStepStillRelevant() &&
-        this.isThirdStepStillRelevant() &&
-        this.isStrategyRelevantByTime()
+      this.isSecondStepStillRelevant() &&
+      this.isThirdStepStillRelevant() &&
+      this.isStrategyRelevantByTime()
     ) {
       return;
     }
 
     if (this.trackOrderMap[this.sellSymbol].current !== null &&
-        this.trackOrderMap[this.sellSymbol].current.status !== 'done'
+      this.trackOrderMap[this.sellSymbol].current.status !== 'done'
     ) {
       this.cancelThirdStep();
       return;
     }
 
     if (this.trackOrderMap[this.buy2Symbol].current !== null &&
-        this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
+      this.trackOrderMap[this.buy2Symbol].current.status !== 'done'
     ) {
       this.cancelSecondStep();
       return;
@@ -316,7 +316,7 @@ class Strategy {
     return false;
   }
 
-  isFirstStepStillRelevant () {
+  isFirstStepStillRelevant() {
     if (this.trackOrderMap[this.buySymbol].current?.status === 'done') {
       return true;
     }
@@ -330,7 +330,7 @@ class Strategy {
     return false;
   }
 
-  isSecondStepStillRelevant () {
+  isSecondStepStillRelevant() {
     if (this.trackOrderMap[this.buy2Symbol].current?.status === 'done') {
       return true;
     }
@@ -344,7 +344,7 @@ class Strategy {
     return false;
   }
 
-  isThirdStepStillRelevant () {
+  isThirdStepStillRelevant() {
     if (this.trackOrderMap[this.sellSymbol].current?.status === 'done') {
       return true;
     }
