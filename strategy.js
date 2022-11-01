@@ -1,10 +1,10 @@
 const { strategies } = require('./resources');
 const { calcProfit } = require('./calcProfit');
-const { Strategy } =require('./strategyNew');
+const { Strategy } = require('./strategyNew');
 
 let count = 0;
-const maxStrategyTries = 5;
-const maxStrategiesInParallel = 1;
+const maxStrategyTries = 5000;
+const maxStrategiesInParallel = 5;
 const strategiesInProgress = new Map();
 
 let countSuccessfulStrategy = 0;
@@ -15,7 +15,7 @@ function shouldWait(currentStrategy) {
     return true;
   }
 
-  if(strategiesInProgress.has(currentStrategy.join())) {
+  if (strategiesInProgress.has(currentStrategy.join())) {
     return true;
   }
 
@@ -31,32 +31,34 @@ function startStrategy(currentStrategy, profitInfo) {
   count++;
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
-  new Strategy({ currentStrategy, profitInfo, onEnd: () => {
-    setTimeout((isSuccessful) => {
-      strategiesInProgress.delete(currentStrategy.join());
+  new Strategy({
+    currentStrategy, profitInfo, onEnd: () => {
+      setTimeout((isSuccessful) => {
+        strategiesInProgress.delete(currentStrategy.join());
 
 
-      if (isSuccessful) {
-        countSuccessfulStrategy++;
-      } else {
-        countUnsuccessfulStrategy++;
-      }
+        if (isSuccessful) {
+          countSuccessfulStrategy++;
+        } else {
+          countUnsuccessfulStrategy++;
+        }
 
-      console.log('totalCount', count);
-      if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
+        console.log('totalCount', count);
+        if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
 
-        console.log('countSuccessfulStrategy', countSuccessfulStrategy);
-        console.log('countUnsuccessfulStrategy', countUnsuccessfulStrategy);
+          console.log('countSuccessfulStrategy', countSuccessfulStrategy);
+          console.log('countUnsuccessfulStrategy', countUnsuccessfulStrategy);
 
-        console.log(count, 'times really ?');
-        process.exit(1);
-      }
-    }, 5000);
-  } });
+          console.log(count, 'times really ?');
+          process.exit(1);
+        }
+      }, 5000);
+    }
+  });
 }
 
-function checkStrategy (currentStrategy) {
-    doRealStrategy(currentStrategy, 0);
+function checkStrategy(currentStrategy) {
+  doRealStrategy(currentStrategy, 0);
 }
 
 function doRealStrategy(currentStrategy, orderBookDepth) {
