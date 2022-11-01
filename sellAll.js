@@ -18,8 +18,13 @@ function sellAll(onEnd) {
             return;
           }
 
+          const symbol = `${item.currency}-USDT`;
+          const symbolI = symbolsInfo[symbol];
+
           if (item.currency === 'RNDR') {
             console.log(item);
+            console.log(symbolI);
+            console.log(symbol);
           }
 
           if (item.available === '0') {
@@ -29,8 +34,6 @@ function sellAll(onEnd) {
           if (['KCS', 'USDT'].includes(item.currency)) {
             return;
           }
-          const symbol = `${item.currency}-USDT`;
-          const symbolI = symbolsInfo[symbol];
           if (!symbolI) {
             console.log(symbol);
             return;
