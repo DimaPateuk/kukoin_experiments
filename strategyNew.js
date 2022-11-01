@@ -157,6 +157,7 @@ class Strategy {
       .map(info => info.current)
       .filter(currentOrder => currentOrder)
       .reduce((res, item) => {
+        console.log(item);
         const balances = Object.entries(this.balancesInfo[item.orderId])
           .forEach(([key, value]) => {
             if (res[key]) {
