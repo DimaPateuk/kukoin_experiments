@@ -182,7 +182,6 @@ class Strategy {
 
       })
       .filter(item => {
-        console.log(item);
         if (!item.available) {
           return false;
         }
@@ -195,7 +194,7 @@ class Strategy {
       })
       .forEach(item => {
         console.log(item);
-        const sellAmount = processNumber(item.available, item.symbol, 'bids');
+        const sellAmount = processNumber(item.available.toString(), item.symbol, 'bids');
 
         kucoin.placeOrder({
           type: 'market',
