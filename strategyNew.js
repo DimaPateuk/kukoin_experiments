@@ -309,7 +309,9 @@ class Strategy {
   }
 
   isStrategyRelevantByTime() {
-    if (+new Date() - this.startedAt < maxTimeStrategyAlive) {
+    const diff = +new Date() - this.startedAt;
+
+    if (diff < maxTimeStrategyAlive) {
       return true;
     }
 
