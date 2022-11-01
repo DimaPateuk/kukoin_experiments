@@ -201,6 +201,13 @@ class Strategy {
           symbol: item.symbol,
           size: sellAmount,
         })
+        .then((e) => {
+          console.log('sellAll', e);
+          console.log(item);
+          console.log(sellAmount);
+          console.log('-----');
+        });
+
       });
 
     this.strategyEndSubject.next();
