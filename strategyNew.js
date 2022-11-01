@@ -128,10 +128,8 @@ class Strategy {
   }
 
   doneOrderAction(order) {
-
     if (order.symbol === this.buySymbol) {
-      this.cancelFirstStep();
-      // this.doSecondStep();
+      this.doSecondStep();
     }
 
     if (order.symbol === this.buy2Symbol) {
