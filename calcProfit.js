@@ -52,7 +52,6 @@ function getStringPrices(currentStrategy, depth) {
   ];
 }
 const baseFirstStepAmount = 2;
-const magicProfitRation = 0;
 
 function calcProfit(currentStrategy, orderBookDepth) {
 
@@ -74,9 +73,9 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 0;
   const prices = getActualPrices();
   const fakePrices = [
-    prices[0] * (1 + magicProfitRation),
-    prices[1] * (1 + magicProfitRation),
-    prices[2] * (1 - magicProfitRation)
+    prices[0],
+    prices[1],
+    prices[2]
   ];
   const stringPrices = getStringPrices(currentStrategy, orderBookDepth);
   const sizes = getActualSizes();
