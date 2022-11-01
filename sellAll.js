@@ -12,6 +12,7 @@ function sellAll(onEnd) {
   setTimeout(() => {
     kucoin.getAccounts()
       .then(response => {
+        console.log (response);
 
         response.data.forEach(item => {
           if (item.type !== 'trade') {
