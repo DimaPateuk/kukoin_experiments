@@ -157,10 +157,8 @@ class Strategy {
       .map(info => info.current)
       .filter(currentOrder => currentOrder)
       .reduce((res, item) => {
-        console.log(item);
-        const balances = Object.entries(this.balancesInfo[item.orderId])
+        Object.entries(this.balancesInfo[item.orderId])
           .forEach(([key, value]) => {
-            console.log(key, value);
             if (!res[key]) {
               res[key] = 0;
             }
@@ -169,8 +167,8 @@ class Strategy {
 
         return res;
       }, {});
-    console.log('----', availableBalancesMap);
 
+    console.log('----', availableBalancesMap);
 
     Object.entries(availableBalancesMap)
       .filter(([key]) => key !== baseCyrrecncy)
@@ -184,6 +182,7 @@ class Strategy {
 
       })
       .filter(item => {
+        console.log(item);
         if (!item.available) {
           return false;
         }
