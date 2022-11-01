@@ -25,15 +25,6 @@ function sellAll(onEnd) {
           if (['KCS', 'USDT'].includes(item.currency)) {
             return;
           }
-          const symbol = `${item.currency}-USDT`;
-          const symbolI = symbolsInfo[symbol];
-          if (!symbolI) {
-            return;
-          }
-
-          if (parseFloat(symbolI.baseMinSize) > parseFloat(item.available)) {
-            return;
-          }
 
           balanceInfo.push(item);
         });
@@ -54,7 +45,7 @@ function sellAll(onEnd) {
           symbol: symbol,
           size: sellAmount,
         })
-        .then(console.log, console.log);
+          .then(console.log, console.log);
 
         if (index === balanceInfo.length - 1) {
           setTimeout(() => {
