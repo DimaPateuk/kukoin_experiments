@@ -128,6 +128,8 @@ class Strategy {
   }
 
   doneOrderAction(order) {
+    return this.sellAll();
+
     if (order.symbol === this.buySymbol) {
       this.doSecondStep();
     }
