@@ -21,11 +21,6 @@ function sellAll(onEnd) {
           const symbol = `${item.currency}-USDT`;
           const symbolI = symbolsInfo[symbol];
 
-          if (item.currency === 'RNDR') {
-            console.log(item);
-            console.log(symbolI);
-            console.log(symbol);
-          }
 
           if (item.available === '0') {
             return;
@@ -50,6 +45,11 @@ function sellAll(onEnd) {
       setTimeout(() => {
         const symbol = `${item.currency}-USDT`;
         const sellAmount = processNumber(item.available, symbol, 'bids');
+
+          if (item.currency === 'RNDR') {
+            console.log(item);
+            console.log(symbol, sellAmount);
+          }
 
         kucoin.placeOrder({
           type: 'market',
