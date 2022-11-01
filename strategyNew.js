@@ -161,7 +161,7 @@ class Strategy {
         const balances = Object.entries(this.balancesInfo[item.orderId])
           .forEach(([key, value]) => {
             console.log(key, value);
-            if (res[key]) {
+            if (!res[key]) {
               res[key] = 0;
             }
             res[key] += value;
