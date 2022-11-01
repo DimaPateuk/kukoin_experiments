@@ -148,7 +148,7 @@ class Strategy {
     await new Promise(res => {
       setTimeout(() => {
         res();
-      }, 1000);
+      }, 5000);
     });
 
     const baseCyrrecncy = this.buySymbol.split('-')[1];
