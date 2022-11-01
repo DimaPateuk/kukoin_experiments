@@ -18,10 +18,6 @@ function sellAll(onEnd) {
             return;
           }
 
-          const symbol = `${item.currency}-USDT`;
-          const symbolI = symbolsInfo[symbol];
-
-
           if (item.available === '0') {
             return;
           }
@@ -29,8 +25,13 @@ function sellAll(onEnd) {
           if (['KCS', 'USDT'].includes(item.currency)) {
             return;
           }
+          const symbol = `${item.currency}-USDT`;
+          const symbolI = symbolsInfo[symbol];
           if (!symbolI) {
-            console.log(symbol);
+            return;
+          }
+
+          if (parseFloat(symbolI.baseMinSize) > parseFloat(item.available)) {
             return;
           }
 
@@ -46,11 +47,6 @@ function sellAll(onEnd) {
         const symbol = `${item.currency}-USDT`;
         const sellAmount = processNumber(item.available, symbol, 'bids');
 
-          if (item.currency === 'RNDR') {
-            console.log(item);
-            console.log(symbol, sellAmount);
-          }
-
         kucoin.placeOrder({
           type: 'market',
           clientOid: v4(),
@@ -58,7 +54,11 @@ function sellAll(onEnd) {
           symbol: symbol,
           size: sellAmount,
         })
-        .then(console.log, console.log);
+        .then((e) => {
+          console.log(e);
+          console.log(symbol, sellAmount);
+
+        }, console.log);
 
         if (index === balanceInfo.length - 1) {
           setTimeout(() => {
