@@ -174,17 +174,17 @@ class Strategy {
         const symbol = `${key}-${baseCyrrecncy}`;
 
         return {
-          avaialbe,
+          available,
           symbol
         };
 
       })
       .filter(item => {
-        if (!item.avaialbe) {
+        if (!item.available) {
           return false;
         }
 
-        if (item.avaialbe < 0) {
+        if (item.available < 0) {
           return false;
         }
 

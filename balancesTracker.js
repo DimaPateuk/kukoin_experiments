@@ -2,8 +2,6 @@ require('dotenv').config()
 const {infinitySocket} = require('./infinitySocket');
 const kucoin = require('./kucoin');
 const balanceInfo = {
-  balance: 0,
-  available: 0,
 };
 const accountsInfo = {};
 
@@ -16,13 +14,19 @@ kucoin.getAccounts()
         return;
       }
 
-      if (item.currency !== 'USDT') {
+      if (item.currency === 'USDT') {
+        balanceInfo[item.currency] = { initial: item.available };
+
         return;
       }
 
-      balanceInfo.balance = item.balance;
-      balanceInfo.available = item.available;
-      balanceInfo.USDT = 0;
+      if (item.currency === 'KCS') {
+        balanceInfo[item.currency] = { initial: item.available };
+
+        return;
+      }
+
+
     });
   });
 const balancesMap = {};
@@ -37,10 +41,11 @@ infinitySocket({ topic: "balances" }, (msg) => {
   const { data } = parsedMessage;
 
   balancesMap[data.currency] = parseFloat(data.available);
-  console.clear();
-  if (data.currency === 'USDT') {
-    balanceInfo.USDT = data.available - balanceInfo.available;
+
+  if (data.currency === 'USDT' || data.currency === 'KCS') {
+    balanceInfo[data.currency].diff = data.available - balanceInfo[data.currency].initial;
   }
-  console.log(balanceInfo.USDT);
+  console.clear();
+  console.log(JSON.stringify(balanceInfo, null, 4));
   console.log(JSON.stringify(balancesMap, null, 4));
 });
