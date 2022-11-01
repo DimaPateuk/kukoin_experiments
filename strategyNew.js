@@ -171,7 +171,7 @@ class Strategy {
     Object.entries(availableBalancesMap)
       .filter(([key]) => key !== baseCyrrecncy)
       .map(([key, available]) => {
-        const symbol = `${currency}-${baseCyrrecncy}`;
+        const symbol = `${key}-${baseCyrrecncy}`;
 
         return {
           avaialbe,
