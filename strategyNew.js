@@ -194,6 +194,7 @@ class Strategy {
         return true;
       })
       .forEach(item => {
+        console.log(item);
         const sellAmount = processNumber(item.available, item.symbol, 'bids');
 
         kucoin.placeOrder({
