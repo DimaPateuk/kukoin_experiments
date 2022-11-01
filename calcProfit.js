@@ -46,7 +46,7 @@ function parseSizes(currentStrategy, depth) {
 function getStringPrices(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
   return [
-    symbolsOrderBookInfoMap[buy].bids[depth][0],
+    symbolsOrderBookInfoMap[buy].bids[depth + 10][0],
     symbolsOrderBookInfoMap[buy2].asks[depth][0],
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
@@ -71,7 +71,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const spend = baseFirstStepAmount;
   const fees = currentStrategy.map((pair) => parseFloat(tradeFees[pair].takerFeeRate));
   const approximateFees = fees.map((fee) => (fee * baseFirstStepAmount));
-  const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 0;
+  const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 1;
   const prices = getActualPrices();
   const fakePrices = [
     prices[0] * (1 + magicProfitRation),
