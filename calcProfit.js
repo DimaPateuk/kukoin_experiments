@@ -81,6 +81,10 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const sizes = getActualSizes();
   const buyCoins = exactMath.div(spend, fakePrices[0]);
 
+
+  console.log(currentStrategy, fakePrices[0], prices[0]);
+  console.log(currentStrategy, exactMath.div(spend, fakePrices[0]), exactMath.div(spend, prices[0]));
+
   if (buyCoins * 5 > sizes[0]) {
     return {};
   }
