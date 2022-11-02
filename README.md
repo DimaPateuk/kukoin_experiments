@@ -9,8 +9,8 @@ journalctl --vacuum-time=1s
 
 
 show logs
-journalctl -u kukoin.service
-journalctl -u kukoin-balace.service
+journalctl -u kukoin.service > log && vim log
+journalctl -u kukoin-balace.service > log && vim log
 
 start new service
 
