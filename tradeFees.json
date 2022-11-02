@@ -496,23 +496,23 @@
     },
     "ETH-USDT": {
         "symbol": "ETH-USDT",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "ETH-TUSD": {
         "symbol": "ETH-TUSD",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "BTC-USDT": {
         "symbol": "BTC-USDT",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "BTC-TUSD": {
         "symbol": "BTC-TUSD",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "XRP-TUSD": {
         "symbol": "XRP-TUSD",
@@ -566,13 +566,13 @@
     },
     "ETH-USDC": {
         "symbol": "ETH-USDC",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "BTC-USDC": {
         "symbol": "BTC-USDC",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "ATOM-USDC": {
         "symbol": "ATOM-USDC",
@@ -886,8 +886,8 @@
     },
     "ETH-BTC": {
         "symbol": "ETH-BTC",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "REQ-ETH": {
         "symbol": "REQ-ETH",
@@ -4291,8 +4291,8 @@
     },
     "USDC-USDT": {
         "symbol": "USDC-USDT",
-        "takerFeeRate": "0",
-        "makerFeeRate": "0"
+        "takerFeeRate": "0.001",
+        "makerFeeRate": "0.001"
     },
     "SHIB-DOGE": {
         "symbol": "SHIB-DOGE",
@@ -4316,8 +4316,8 @@
     },
     "ETH-DAI": {
         "symbol": "ETH-DAI",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     },
     "MKR-DAI": {
         "symbol": "MKR-DAI",
@@ -4331,7 +4331,7 @@
     },
     "BTC-DAI": {
         "symbol": "BTC-DAI",
-        "takerFeeRate": "0.001",
-        "makerFeeRate": "0.001"
+        "takerFeeRate": "0",
+        "makerFeeRate": "0"
     }
 }
