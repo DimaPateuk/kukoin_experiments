@@ -2,17 +2,17 @@ const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
 const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 
-Object
-  .keys(tradeFees)
-  .forEach(key => {
-    if (tradeFees[key].takerFeeRate === '0') {
-      tradeFees[key].takerFeeRate = '0.002';
-    }
+// Object
+//   .keys(tradeFees)
+//   .forEach(key => {
+//     if (tradeFees[key].takerFeeRate === '0') {
+//       tradeFees[key].takerFeeRate = '0.002';
+//     }
 
-    if (tradeFees[key].makerFeeRate === '0') {
-      tradeFees[key].makerFeeRate = '0.002';
-    }
-  });
+//     if (tradeFees[key].makerFeeRate === '0') {
+//       tradeFees[key].makerFeeRate = '0.002';
+//     }
+//   });
 
 
 function canCalc(currentStrategy, depth) {
@@ -98,7 +98,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const receive = exactMath.mul(buy2Coins, fakePrices[2]);
   const profit = receive - (spend + approximateFeeForThreeSteps);
 
-  const multipliedFees = fees.map(fee => fee * 5);
+  const multipliedFees = fees.map(fee => fee * 10);
   const cancelMultipliers = [1 + multipliedFees[0] * 5, 1 + multipliedFees[1], 1 - multipliedFees[2]];
 
   return {
