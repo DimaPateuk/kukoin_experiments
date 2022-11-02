@@ -2,17 +2,17 @@ const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
 const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
 
-// Object
-//   .keys(tradeFees)
-//   .forEach(key => {
-//     if (tradeFees[key].takerFeeRate === '0') {
-//       tradeFees[key].takerFeeRate = '0.002';
-//     }
+Object
+  .keys(tradeFees)
+  .forEach(key => {
+    if (tradeFees[key].takerFeeRate === '0') {
+      tradeFees[key].takerFeeRate = '0.001';
+    }
 
-//     if (tradeFees[key].makerFeeRate === '0') {
-//       tradeFees[key].makerFeeRate = '0.002';
-//     }
-//   });
+    if (tradeFees[key].makerFeeRate === '0') {
+      tradeFees[key].makerFeeRate = '0.001';
+    }
+  });
 
 
 function canCalc(currentStrategy, depth) {
@@ -51,7 +51,7 @@ function getStringPrices(currentStrategy, depth) {
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
 }
-const baseFirstStepAmount = 2;
+const baseFirstStepAmount = 5;
 
 function calcProfit(currentStrategy, orderBookDepth) {
 
@@ -73,7 +73,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 1;
   const prices = getActualPrices();
   const fakePrices = [
-    getBestBid(buy, orderBookDepth),
+    prices[0],
     prices[1],
     prices[2]
   ];
