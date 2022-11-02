@@ -98,7 +98,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const receive = exactMath.mul(buy2Coins, fakePrices[2]);
   const profit = receive - (spend + approximateFeeForThreeSteps);
 
-  const multipliedFees = fees.map(fee => fee * 10);
+  const multipliedFees = fees.map(fee => fee * 1);
   const cancelMultipliers = [1 + multipliedFees[0] * 5, 1 + multipliedFees[1], 1 - multipliedFees[2]];
 
   return {
