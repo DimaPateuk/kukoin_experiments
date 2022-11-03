@@ -99,7 +99,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const profit = receive - (spend + approximateFeeForThreeSteps);
 
   const multipliedFees = fees.map(fee => fee * 1);
-  const cancelMultipliers = [1 + multipliedFees[0] * 50, 1 + multipliedFees[1] * 5, 1 - multipliedFees[2]];
+  const cancelMultipliers = [1 + multipliedFees[0] * 50, 1 + multipliedFees[1] * 50, 1 - multipliedFees[2] * 50];
 
   return {
     cancelPrices: [
