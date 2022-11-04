@@ -54,7 +54,7 @@ function startStrategy(currentStrategy, profitInfo) {
         }
 
         if (!info[value]) {
-          cancellInfo[value] = 0;
+          info[value] = 0;
         }
 
         info[value]++;
