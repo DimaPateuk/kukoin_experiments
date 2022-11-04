@@ -26,6 +26,7 @@ class Strategy {
     this.startedAt = +new Date();
     this.currentStrategy = currentStrategy;
     this.balancesInfo = {};
+    this.cancelledPoint = {};
 
     this.profitInfo = profitInfo;
 
@@ -71,7 +72,7 @@ class Strategy {
       )
       .subscribe((isSuccessful) => {
         console.log('---strategy END', this.currentStrategy);
-        onEnd(isSuccessful);
+        onEnd(isSuccessful, this.cancelledPoint);
       });
 
     this.trackOrders();
@@ -201,12 +202,12 @@ class Strategy {
           symbol: item.symbol,
           size: sellAmount,
         })
-        .then((e) => {
-          console.log('sellAll', e);
-          console.log(item);
-          console.log(sellAmount);
-          console.log('-----');
-        });
+          .then((e) => {
+            console.log('sellAll', e);
+            console.log(item);
+            console.log(sellAmount);
+            console.log('-----');
+          });
 
       });
 
@@ -320,7 +321,7 @@ class Strategy {
       return true;
     }
 
-    console.log(this.currentStrategy, 'Should be canceled because Time!!! step not relevant');
+    console.log(this.currentStrategy, 'Should be canceled because time!!! step not relevant');
     return false;
   }
 
@@ -404,6 +405,12 @@ class Strategy {
   cancelFirstStep() {
     const order = this.trackOrderMap[this.buySymbol].current;
 
+    this.cancelledPoint = {
+      step: 1,
+      symbol: this.buySymbol,
+      currentStrategy: this.currentStrategy,
+      becauesofTime: !this.isStrategyRelevantByTime(),
+    };
     this.stopButTrackDoneOrders();
 
     kucoin
@@ -421,6 +428,12 @@ class Strategy {
     const order = this.trackOrderMap[this.buy2Symbol].current;
 
     this.stopButTrackDoneOrders();
+    this.cancelledPoint = {
+      step: 2,
+      symbol: this.buy2Symbol,
+      currentStrategy: this.currentStrategy,
+      becauesofTime: !this.isStrategyRelevantByTime(),
+    };
 
     kucoin
       .cancelOrder({ id: order.orderId })
@@ -437,6 +450,13 @@ class Strategy {
   cancelThirdStep() {
     const order = this.trackOrderMap[this.sellSymbol].current;
 
+
+    this.cancelledPoint = {
+      step: 3,
+      symbol: this.sellSymbol,
+      currentStrategy: this.currentStrategy,
+      becauesofTime: !this.isStrategyRelevantByTime(),
+    };
     this.stopButTrackDoneOrders();
 
     kucoin

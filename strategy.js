@@ -10,6 +10,9 @@ const strategiesInProgress = new Map();
 let countSuccessfulStrategy = 0;
 let countUnsuccessfulStrategy = 0;
 
+const cancellInfo = {
+};
+
 function shouldWait(currentStrategy) {
   if (count >= maxStrategyTries) {
     return true;
@@ -33,7 +36,7 @@ function startStrategy(currentStrategy, profitInfo) {
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
   let countSt = 5;
-  const onEnd = (isSuccessful) => {
+  const onEnd = (isSuccessful, cancelledPoint) => {
     countSt--;
     if (isSuccessful) {
       countSuccessfulStrategy++;
@@ -41,15 +44,40 @@ function startStrategy(currentStrategy, profitInfo) {
       countUnsuccessfulStrategy++;
     }
 
+    Object.entries(cancelledPoint)
+      .forEach(([key, value]) => {
+        if (key === 'becauesofTime' && value) {
+          if (!cancellInfo[key]) {
+            cancellInfo[key] = 0;
+          }
+
+          cancellInfo[key]++;
+
+          return;
+        }
+
+        if (!cancellInfo[value]) {
+          cancellInfo[value] = 0;
+        }
+
+        cancellInfo[value]++;
+
+      });
+
     if (countSt === 0) {
       setTimeout(() => {
+        console.log('move forward!');
         strategiesInProgress.delete(currentStrategy.join());
       }, 5000);
+    } else {
+      console.log('can not move formard, need:', countSt);
     }
 
     console.log('totalCount', count);
     console.log('countSuccessfulStrategy', countSuccessfulStrategy);
     console.log('countUnsuccessfulStrategy', countUnsuccessfulStrategy);
+    console.log(JSON.stringify(cancellInfo, null, 4));
+
     if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
 
       console.log('countSuccessfulStrategy', countSuccessfulStrategy);
