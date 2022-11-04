@@ -1,4 +1,5 @@
 const { placeOrder, placeOrderErrorSubject } = require('./placeOrder');
+const exactMath = require('exact-math');
 const {
   takeUntil,
   tap,
@@ -98,14 +99,16 @@ class Strategy {
   }
 
   async doSecondStep() {
-    const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
+    const currency = this.buy2Symbol.split('-')[1];
+    const actualBuyCoins = await this.waitTillCurrency(currency);
 
-    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ', this.profitInfo.cancelPrices[1]);
+    const acctualBuy2Coins = this.profitInfo.calcActualBuy2Coins(actualBuyCoins);
 
+    const buyAmount = processNumber((acctualBuy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
-    await this.waitTillCurrency(this.buy2Symbol.split('-')[1]);
-
+    console.log('--- diff initial buy2coins and actual', this.profitInfo.buy2Coins, acctualBuy2Coins, this.profitInfo.buy2Coins - acctualBuy2Coins);
     console.log('---', this.getAvailableBalancesMap());
+    console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ', this.profitInfo.cancelPrices[1]);
 
     placeOrder({
       clientOid: this.clientOidBuy2,
@@ -186,6 +189,7 @@ class Strategy {
       console.log('---- wait', currency, balances[currency]);
     }
 
+    return balances[currency];
 
 
   }

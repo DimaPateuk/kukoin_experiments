@@ -86,6 +86,9 @@ function calcProfit(currentStrategy, orderBookDepth) {
   }
 
   const buy2Coins = exactMath.div(buyCoins, fakePrices[1]);
+  function calcActualBuy2Coins(buyCoins) {
+    return exactMath.div(buyCoins, fakePrices[1]);
+  }
 
   if (buy2Coins * 5 > sizes[1]) {
     return {};
@@ -102,6 +105,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const cancelMultipliers = [1 + multipliedFees[0] * 50, 1 + multipliedFees[1] * 50, 1 - multipliedFees[2] * 50];
 
   return {
+    calcActualBuy2Coins,
     cancelPrices: [
       fakePrices[0] * cancelMultipliers[0],
       fakePrices[1] * cancelMultipliers[1],
