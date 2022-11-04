@@ -173,7 +173,7 @@ class Strategy {
   }
 
   async waitTillCurrency(currency) {
-    let balances = gthis.getAvailableBalancesMap();
+    let balances = this.getAvailableBalancesMap();
 
     while (!(currency in balances)) {
       await new Promise(res => {
