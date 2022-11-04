@@ -101,6 +101,7 @@ class Strategy {
     const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
     console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ', this.profitInfo.cancelPrices[1]);
+    console.log('---', this.getAvailableBalancesMap());
 
     placeOrder({
       clientOid: this.clientOidBuy2,
@@ -118,6 +119,7 @@ class Strategy {
     const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
     console.log(this.sellSymbol, this.profitInfo.stringPrices[2], 'will be canceled when price: ', this.profitInfo.cancelPrices[2]);
+    console.log('---', this.getAvailableBalancesMap());
 
     placeOrder({
       clientOid: this.clientOidSell,
@@ -143,14 +145,7 @@ class Strategy {
     }
   }
 
-  async sellAll() {
-    await new Promise(res => {
-      setTimeout(() => {
-        res();
-      }, 5000);
-    });
-
-    const baseCyrrecncy = this.buySymbol.split('-')[1];
+  getAvailableBalancesMap() {
     const availableBalancesMap = Object
       .values(this.trackOrderMap)
       .map(info => info.current)
@@ -166,6 +161,20 @@ class Strategy {
 
         return res;
       }, {});
+
+    return availableBalancesMap;
+  }
+
+  async sellAll() {
+    await new Promise(res => {
+      setTimeout(() => {
+        res();
+      }, 5000);
+    });
+
+
+    const baseCyrrecncy = this.buySymbol.split('-')[1];
+    const availableBalancesMap = this.getAvailableBalancesMap();
 
     console.log('----', availableBalancesMap);
 
