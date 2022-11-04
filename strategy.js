@@ -32,15 +32,19 @@ function startStrategy(currentStrategy, profitInfo) {
 
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
-  setTimeout(() => {
-    strategiesInProgress.delete(currentStrategy.join());
-  }, 30000);
-
+  let countSt = 5;
   const onEnd = (isSuccessful) => {
+    countSt--;
     if (isSuccessful) {
       countSuccessfulStrategy++;
     } else {
       countUnsuccessfulStrategy++;
+    }
+
+    if (countSt === 0) {
+      setTimeout(() => {
+        strategiesInProgress.delete(currentStrategy.join());
+      }, 5000);
     }
 
     console.log('totalCount', count);
@@ -55,7 +59,6 @@ function startStrategy(currentStrategy, profitInfo) {
       process.exit(0);
     }
   }
-
 
   new Strategy({ currentStrategy, profitInfo, onEnd });
   new Strategy({ currentStrategy, profitInfo, onEnd });
