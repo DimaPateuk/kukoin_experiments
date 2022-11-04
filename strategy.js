@@ -48,8 +48,8 @@ function startStrategy(currentStrategy, profitInfo) {
     }
 
     console.log('totalCount', count);
-    console.log('countSuccessfulStrategy', count);
-    console.log('countUnsuccessfulStrategy', count);
+    console.log('countSuccessfulStrategy', countSuccessfulStrategy);
+    console.log('countUnsuccessfulStrategy', countUnsuccessfulStrategy);
     if (count >= maxStrategyTries && strategiesInProgress.size === 0) {
 
       console.log('countSuccessfulStrategy', countSuccessfulStrategy);
