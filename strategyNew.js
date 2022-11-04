@@ -97,10 +97,14 @@ class Strategy {
     });
   }
 
-  doSecondStep() {
+  async doSecondStep() {
     const buyAmount = processNumber((this.profitInfo.buy2Coins).toString(), this.buy2Symbol, 'asks', false);
 
     console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ', this.profitInfo.cancelPrices[1]);
+
+
+    await this.waitTillCurrency(this.clientOidBuy2.split('-')[1]);
+
     console.log('---', this.getAvailableBalancesMap());
 
     placeOrder({
@@ -112,13 +116,16 @@ class Strategy {
     });
   }
 
-  doThirdStep() {
+  async doThirdStep() {
 
     const order = this.trackOrderMap[this.buy2Symbol].current;
     const filledSize = parseFloat(order.filledSize);
     const sellAmount = processNumber((filledSize).toString(), this.sellSymbol, 'bids');
 
     console.log(this.sellSymbol, this.profitInfo.stringPrices[2], 'will be canceled when price: ', this.profitInfo.cancelPrices[2]);
+
+    await this.waitTillCurrency(this.sellSymbol.split('-')[0]);
+
     console.log('---', this.getAvailableBalancesMap());
 
     placeOrder({
@@ -151,7 +158,7 @@ class Strategy {
       .map(info => info.current)
       .filter(currentOrder => currentOrder)
       .reduce((res, item) => {
-        Object.entries(this.balancesInfo[item.orderId])
+        Object.entries(this.balancesInfo[item.orderId] || {})
           .forEach(([key, value]) => {
             if (!res[key]) {
               res[key] = 0;
@@ -163,6 +170,24 @@ class Strategy {
       }, {});
 
     return availableBalancesMap;
+  }
+
+  async waitTillCurrency(currency) {
+    let balances = gthis.getAvailableBalancesMap();
+
+    while (!(currency in balances)) {
+      await new Promise(res => {
+        setTimeout(() => {
+          res();
+        }, 10);
+      });
+      balances = this.getAvailableBalancesMap();
+
+      console.log('---- wait', currency, balances[currency]);
+    }
+
+
+
   }
 
   async sellAll() {
