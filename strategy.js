@@ -35,7 +35,7 @@ function startStrategy(currentStrategy, profitInfo) {
 
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
-  let countSt = 5;
+  let countSt = 1;
   const onEnd = (isSuccessful, cancelledPoint) => {
     countSt--;
     if (isSuccessful) {
@@ -88,11 +88,12 @@ function startStrategy(currentStrategy, profitInfo) {
     }
   }
 
-  new Strategy({ currentStrategy, profitInfo, onEnd });
-  new Strategy({ currentStrategy, profitInfo, onEnd });
-  new Strategy({ currentStrategy, profitInfo, onEnd });
-  new Strategy({ currentStrategy, profitInfo, onEnd });
-  new Strategy({ currentStrategy, profitInfo, onEnd });
+
+  new Array(countSt)
+    .fill(0)
+    .forEach(() => {
+      new Strategy({ currentStrategy, profitInfo, onEnd });
+    });
 }
 
 function checkStrategy(currentStrategy) {
