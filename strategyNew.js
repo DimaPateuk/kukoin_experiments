@@ -103,7 +103,7 @@ class Strategy {
     console.log(this.buy2Symbol, this.profitInfo.stringPrices[1], 'will be canceled when price: ', this.profitInfo.cancelPrices[1]);
 
 
-    await this.waitTillCurrency(this.clientOidBuy2.split('-')[1]);
+    await this.waitTillCurrency(this.buy2Symbol.split('-')[1]);
 
     console.log('---', this.getAvailableBalancesMap());
 
