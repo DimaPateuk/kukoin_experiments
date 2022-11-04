@@ -3,7 +3,7 @@ const { calcProfit } = require('./calcProfit');
 const { Strategy } = require('./strategyNew');
 
 let count = 0;
-const maxStrategyTries = 50000;
+const maxStrategyTries = 100;
 const maxStrategiesInParallel = 5;
 const strategiesInProgress = new Map();
 
@@ -11,6 +11,7 @@ let countSuccessfulStrategy = 0;
 let countUnsuccessfulStrategy = 0;
 
 const cancellInfo = {
+  becauesofTime: {},
 };
 
 function shouldWait(currentStrategy) {
@@ -44,23 +45,19 @@ function startStrategy(currentStrategy, profitInfo) {
       countUnsuccessfulStrategy++;
     }
 
+    const info = cancelledPoint.becauesofTime ? cancellInfo.becauesofTime : cancellInfo;
+
     Object.entries(cancelledPoint)
       .forEach(([key, value]) => {
-        if (key === 'becauesofTime' && value) {
-          if (!cancellInfo[key]) {
-            cancellInfo[key] = 0;
-          }
-
-          cancellInfo[key]++;
-
+        if (key === 'becauesofTime') {
           return;
         }
 
-        if (!cancellInfo[value]) {
+        if (!info[value]) {
           cancellInfo[value] = 0;
         }
 
-        cancellInfo[value]++;
+        info[value]++;
 
       });
 
