@@ -150,7 +150,7 @@ class Strategy {
     }
 
     if (order.symbol === this.sellSymbol) {
-      console.log('call strategyEndSubject from doneOrderAction');
+      console.log(this.currentStrategy, 'call strategyEndSubject from doneOrderAction');
       this.strategyEndSubject.next(true);
     }
   }
@@ -176,6 +176,7 @@ class Strategy {
   }
 
   async waitTillCurrency(currency) {
+    const start = +new Date();
     let balances = this.getAvailableBalancesMap();
 
     while (!(currency in balances)) {
@@ -186,7 +187,13 @@ class Strategy {
       });
       balances = this.getAvailableBalancesMap();
 
-      console.log('---- wait', currency, balances[currency]);
+      if (+new Date() - start > 10000) {
+
+        console.log('10 seconds wait till currency, something went bad!!!');
+        console.log('---- wait', currency, balances, balances[currency]);
+        process.exit(1);
+
+      }
     }
 
     return balances[currency];
