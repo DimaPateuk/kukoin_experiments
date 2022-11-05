@@ -14,7 +14,7 @@ const { getBestBid, getBestAsk } = require('./calcProfit');
 const { v4 } = require('uuid');
 const kucoin = require('./kucoin');
 
-const maxTimeStrategyAlive = 10 * 60 * 1000;
+const maxTimeStrategyAlive = 60 * 60 * 1000;
 
 
 
