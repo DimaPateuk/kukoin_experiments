@@ -105,6 +105,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const cancelMultipliers = [1 + multipliedFees[0] * 50, 1 + multipliedFees[1] * 50, 1 - multipliedFees[2] * 50];
 
   return {
+    baseCurrency: buy.split('-')[1],
     calcActualBuy2Coins,
     cancelPrices: [
       fakePrices[0] * cancelMultipliers[0],

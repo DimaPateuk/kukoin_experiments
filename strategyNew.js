@@ -331,7 +331,8 @@ class Strategy {
     if (this.isFirstStepStillRelevant() &&
       this.isSecondStepStillRelevant() &&
       this.isThirdStepStillRelevant() &&
-      this.isStrategyRelevantByTime()
+      this.isStrategyRelevantByTime() &&
+      this.isStrategyRelevantMaybeProfitableSell()
     ) {
       return;
     }
@@ -368,6 +369,33 @@ class Strategy {
 
     console.log(this.currentStrategy, 'Should be canceled because time!!! step not relevant');
     return false;
+  }
+
+  isStrategyRelevantMaybeProfitableSell() {
+    const balances = this.getAvailableBalancesMap();
+    const realSpend = balances[this.profitInfo.baseCyrrecncy];
+
+    if (!realSpend) {
+      return true;
+    }
+
+    const [key, value] = Object.entries(balances)
+      .sort((a, b) => b[1] - a[1])[0];
+
+    if (key === this.profitInfo.baseCyrrecncy) {
+      return true;
+    }
+
+    const symbol = `${key}-${this.profitInfo.baseCyrrecncy}`;
+    const earn = getBestAsk(symbol, 0) * value;
+
+    if (earn > realSpend + this.profitInfo.approximateFeeForThreeSteps) {
+      console.log(this.currentStrategy, 'Should be cancelled becaue profitable to sell all now');
+      console.log(this.currentStrategy, balances, symbol, earn, realSpend + this.profitInfo.approximateFeeForThreeSteps);
+      return false;
+    }
+
+    return true;
   }
 
   isFirstStepStillRelevant() {
