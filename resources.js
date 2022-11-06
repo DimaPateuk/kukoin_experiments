@@ -32,6 +32,8 @@ const strategies = Object
   })
   .map(entry => entry[1]);
 
+console.log(strategies);
+
 const allSymbols = [
   // 'TRX-USDT', 'WIN-TRX', 'WIN-USDT'
 ].concat(Object.keys(

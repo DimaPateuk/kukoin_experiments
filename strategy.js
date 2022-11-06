@@ -104,8 +104,6 @@ function checkStrategy(currentStrategy) {
 function doRealStrategy(currentStrategy, orderBookDepth) {
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
 
-  console.log(profitInfo);
-  return;
   if (!profitInfo.strategy) {
     return;
   }
