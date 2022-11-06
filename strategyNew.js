@@ -331,7 +331,6 @@ class Strategy {
     if (this.isFirstStepStillRelevant() &&
       this.isSecondStepStillRelevant() &&
       this.isThirdStepStillRelevant() &&
-      this.isStrategyRelevantByTime() &&
       this.isStrategyRelevantMaybeProfitableSell()
     ) {
       return;
