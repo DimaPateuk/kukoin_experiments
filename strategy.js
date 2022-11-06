@@ -4,7 +4,7 @@ const { Strategy } = require('./strategyNew');
 
 let count = 0;
 const maxStrategyTries = 100;
-const maxStrategiesInParallel = 5;
+const maxStrategiesInParallel = 4;
 const strategiesInProgress = new Map();
 
 let countSuccessfulStrategy = 0;
@@ -36,6 +36,10 @@ function startStrategy(currentStrategy, profitInfo) {
 
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
+  setTimeout(() => {
+    console.log('move forward!');
+    strategiesInProgress.delete(currentStrategy.join());
+  }, 10000);
   let countSt = 1;
   const onEnd = (isSuccessful, cancelledPoint) => {
     countSt--;
@@ -62,10 +66,10 @@ function startStrategy(currentStrategy, profitInfo) {
       });
 
     if (countSt === 0) {
-      setTimeout(() => {
-        console.log('move forward!');
-        strategiesInProgress.delete(currentStrategy.join());
-      }, 5000);
+      // setTimeout(() => {
+      //   console.log('move forward!');
+      //   strategiesInProgress.delete(currentStrategy.join());
+      // }, 5000);
     } else {
       console.log('can not move formard, need:', countSt);
     }
@@ -100,6 +104,8 @@ function checkStrategy(currentStrategy) {
 function doRealStrategy(currentStrategy, orderBookDepth) {
   const profitInfo = calcProfit(currentStrategy, orderBookDepth);
 
+  console.log(profitInfo);
+  return;
   if (!profitInfo.strategy) {
     return;
   }
