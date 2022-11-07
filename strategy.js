@@ -39,7 +39,7 @@ function startStrategy(currentStrategy, profitInfo) {
   setTimeout(() => {
     console.log('move forward!');
     strategiesInProgress.delete(currentStrategy.join());
-  }, 10000);
+  }, 60000 * 10);
   let countSt = 1;
   const onEnd = (isSuccessful, cancelledPoint) => {
     countSt--;
@@ -66,10 +66,10 @@ function startStrategy(currentStrategy, profitInfo) {
       });
 
     if (countSt === 0) {
-      // setTimeout(() => {
-      //   console.log('move forward!');
-      //   strategiesInProgress.delete(currentStrategy.join());
-      // }, 5000);
+      setTimeout(() => {
+        console.log('move forward!');
+        strategiesInProgress.delete(currentStrategy.join());
+      }, 5000);
     } else {
       console.log('can not move formard, need:', countSt);
     }
@@ -108,11 +108,9 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
     return;
   }
 
-  // console.clear();
-  console.log(currentStrategy, profitInfo.profit);
-  // if (profitInfo.profit > 0) {
-  //   startStrategy(currentStrategy, profitInfo);
-  // }
+  if (profitInfo.profit > 0) {
+    startStrategy(currentStrategy, profitInfo);
+  }
 }
 
 function makeCalculation() {
