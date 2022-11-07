@@ -46,7 +46,8 @@ function parseSizes(currentStrategy, depth) {
 function getStringPrices(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
   return [
-    (parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(),
+    // (parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(),
+    symbolsOrderBookInfoMap[buy].asks[depth + 45][0],
     symbolsOrderBookInfoMap[buy2].asks[depth][0],
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];
