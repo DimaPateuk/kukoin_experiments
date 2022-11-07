@@ -1,6 +1,7 @@
 const exactMath = require('exact-math');
 const tradeFees = require('./tradeFees');
 const { symbolsOrderBookInfoMap, symbolsInfo } = require('./resources');
+const { processPrice } = require('./processNumber');
 
 Object
   .keys(tradeFees)
@@ -45,9 +46,16 @@ function parseSizes(currentStrategy, depth) {
 
 function getStringPrices(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
+
+  console.log(
+    buy,
+    processPrice((parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(), buy),
+    (parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(),
+    symbolsOrderBookInfoMap[buy].asks[depth][0]
+  )
+
   return [
-    // (parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(),
-    symbolsOrderBookInfoMap[buy].asks[depth + 45][0],
+    processPrice((parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(), buy),
     symbolsOrderBookInfoMap[buy2].asks[depth][0],
     symbolsOrderBookInfoMap[sell].bids[depth][0]
   ];

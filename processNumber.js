@@ -30,6 +30,13 @@ function processNumber(strNumber, pair, type, isFunds) {
   return cutNNumbersAfterDot(strNumberMulOnFee.toString(), countNumbersAfterDot);
 }
 
+function processPrice(strNumber, pair) {
+  const amount = symbolsInfo[pair].priceIncrement;
+  const countNumbersAfterDot = amount.split('.')[1].length;
+  return cutNNumbersAfterDot(strNumber, countNumbersAfterDot);
+}
+
 module.exports = {
   processNumber,
+  processPrice,
 };
