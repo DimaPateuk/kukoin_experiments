@@ -108,6 +108,8 @@ function doRealStrategy(currentStrategy, orderBookDepth) {
     return;
   }
 
+  console.clear();
+  console.log(profitInfo);
   if (profitInfo.profit > 0) {
     startStrategy(currentStrategy, profitInfo);
   }
