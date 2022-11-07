@@ -73,7 +73,7 @@ function calcProfit(currentStrategy, orderBookDepth) {
   const approximateFeeForThreeSteps = approximateFees.reduce((res, fee) => res + (fee), 0) * 1;
   const prices = getActualPrices();
   const fakePrices = [
-    getBestBid(buy, orderBookDepth),
+    prices[0],
     prices[1],
     prices[2]
   ];
