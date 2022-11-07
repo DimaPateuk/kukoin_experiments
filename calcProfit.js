@@ -47,17 +47,11 @@ function parseSizes(currentStrategy, depth) {
 function getStringPrices(currentStrategy, depth) {
   const [buy, buy2, sell] = currentStrategy;
 
-  console.log(
-    buy,
-    processPrice((parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(), buy),
-    (parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(),
-    symbolsOrderBookInfoMap[buy].asks[depth][0]
-  )
 
   return [
     processPrice((parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.99).toString(), buy),
-    symbolsOrderBookInfoMap[buy2].asks[depth][0],
-    symbolsOrderBookInfoMap[sell].bids[depth][0]
+    symbolsOrderBookInfoMap[buy2].bids[depth + 45][0],
+    symbolsOrderBookInfoMap[sell].asks[depth + 45][0]
   ];
 }
 const baseFirstStepAmount = 2;
