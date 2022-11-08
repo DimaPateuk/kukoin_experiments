@@ -49,7 +49,7 @@ function getStringPrices(currentStrategy, depth) {
 
 
   return [
-    processPrice((parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.999).toString(), buy),
+    processPrice((parseFloat(symbolsOrderBookInfoMap[buy].asks[depth][0]) * 0.9975).toString(), buy),
     symbolsOrderBookInfoMap[buy2].asks[depth + 10][0],
     symbolsOrderBookInfoMap[sell].bids[depth + 10][0]
   ];
