@@ -12,9 +12,18 @@ let countUnsuccessfulStrategy = 0;
 
 const cancellInfo = {
   becauesofTime: {},
+  successful: {},
 };
 
+
+const gapInStrategies = 1 * 60 * 1000;
+let lastTryTime = 0;
+
 function shouldWait(currentStrategy) {
+  if (+new Date() - lastTryTime < gapInStrategies) {
+    return true;
+  }
+
   if (count >= maxStrategyTries) {
     return true;
   }
@@ -33,6 +42,7 @@ function startStrategy(currentStrategy, profitInfo) {
   }
 
   count++;
+  lastTryTime = +new Date();
 
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
@@ -41,6 +51,12 @@ function startStrategy(currentStrategy, profitInfo) {
     countSt--;
     if (isSuccessful) {
       countSuccessfulStrategy++;
+
+      if (!cancellInfo.successful[value]) {
+        cancellInfo.successful[value] = 0;
+      }
+
+      cancellInfo.successful[value]++;
     } else {
       countUnsuccessfulStrategy++;
     }
