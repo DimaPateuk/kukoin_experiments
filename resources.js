@@ -21,10 +21,12 @@ const strategies = Object
   })
   .filter(([key, value]) => {
 
-    return key === 'BTC-USDT,ETH-BTC,ETH-USDT';
+    // return key === 'BTC-USDT,ETH-BTC,ETH-USDT';
 
     const allowed = [
       'KCS',
+      'BTC',
+      'ETH',
     ];
 
     return allowed.includes(value[0].split('-')[0]);
