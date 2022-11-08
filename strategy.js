@@ -36,10 +36,6 @@ function startStrategy(currentStrategy, profitInfo) {
 
   strategiesInProgress.set(currentStrategy.join(), currentStrategy);
 
-  setTimeout(() => {
-    console.log('move forward!');
-    strategiesInProgress.delete(currentStrategy.join());
-  }, 60000 * 10);
   let countSt = 1;
   const onEnd = (isSuccessful, cancelledPoint) => {
     countSt--;
