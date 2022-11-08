@@ -16,8 +16,6 @@ const kucoin = require('./kucoin');
 
 const maxTimeStrategyAlive = 10 * 60 * 1000;
 
-
-
 class Strategy {
   constructor({
     currentStrategy,

@@ -52,11 +52,13 @@ function startStrategy(currentStrategy, profitInfo) {
     if (isSuccessful) {
       countSuccessfulStrategy++;
 
-      if (!cancellInfo.successful[value]) {
-        cancellInfo.successful[value] = 0;
+      const currentStrategyStr = currentStrategy.join();
+
+      if (!cancellInfo.successful[currentStrategyStr]) {
+        cancellInfo.successful[currentStrategyStr] = 0;
       }
 
-      cancellInfo.successful[value]++;
+      cancellInfo.successful[currentStrategyStr]++;
     } else {
       countUnsuccessfulStrategy++;
     }
